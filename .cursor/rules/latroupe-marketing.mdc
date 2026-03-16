@@ -1,0 +1,14 @@
+---
+description: Convenciones para el proyecto latroupe-marketing (Next.js + LaTroupe)
+globs: "**/*.{tsx,ts}"
+alwaysApply: false
+---
+
+# latroupe-marketing
+
+- **Stack**: Next.js App Router, TypeScript estricto, Tailwind CSS.
+- Usa componentes funcionales con Server Components por defecto; `"use client"` solo cuando necesites interactividad.
+- Estructura: `src/app/` para rutas, `src/components/` para componentes compartidos.
+- Metadata en cada página con `export const metadata` para SEO.
+- Contenido placeholder preparado para migrar a CMS (Sanity, Contentful, etc.) más adelante.
+- Idioma principal: español (`lang="es"` en layout).
