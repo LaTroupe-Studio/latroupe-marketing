@@ -2,6 +2,7 @@ import Link from "next/link";
 
 const footerLinks = [
   { href: "/servicios", label: "Servicios" },
+  { href: "/reservas", label: "Reservar" },
   { href: "/contacto", label: "Contacto" },
 ];
 
