@@ -22,34 +22,42 @@
 
 .eyebrow {
   font-family: var(--font-heading);
-  font-size: 78px; line-height: 74px;
-  font-weight: 700; color: #F7F6F5;
+  font-size: 78px;
+  line-height: 74px;
+  font-weight: 700;
+  color: #F7F6F5;
   margin: 0;
 }
 
 /* "Hay pocas cosas…" — col 3, 94px below */
-.headlineCol { grid-column: 3 / 11; grid-row: 2; margin-top: 94px; }
+.headlineCol { grid-column: 3 / 12; grid-row: 2; margin-top: 1rem; }
 
 .headline {
   font-family: var(--font-mono);
-  font-size: 44px; line-height: 56px;
-  font-weight: 650; color: #ECE6E3;
+  font-size: 42px;
+  line-height: 56px;
+  font-weight: 650;
+  color: #ECE6E3;
   margin: 0;
 }
 
 /* "Quienes…" — col 1, 117px below headline */
-.text1Col { grid-column: 1 / 6; grid-row: 3; margin-top: 117px; }
+.text1Col { grid-column: 1 / 6; grid-row: 3; margin-top: 4rem; }
 
 /* "Estamos…" — col 4, 153px below Quienes */
-.text2Col { grid-column: 4 / 8; grid-row: 4; margin-top: 36px; }
+.text2Col { grid-column: 4 / 9; grid-row: 4; margin-top: 36px; }
 
 /* "Tenemos…" — col 8, overlaps with Estamos row */
-.text3Col { grid-column: 8 / 12; grid-row: 5; margin-top: 36px; }
+.text3Col { grid-column: 8 / 13; grid-row: 5; margin-top: 36px; }
+
+
 
 .bodyText {
   font-family: var(--font-body);
-  font-size: 28px; line-height: 35px;
-  font-weight: 400; color: #ECE6E3;
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 400;
+  color: #ECE6E3;
   margin: 0;
 }
 
