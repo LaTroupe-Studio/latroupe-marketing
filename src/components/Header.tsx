@@ -18,19 +18,20 @@ export default function Header({ onNavigate }: HeaderProps) {
 
   useEffect(() => {
     const handleScroll = () => {
-      const scrollY = window.scrollY; const headerH = 70;
-      const aboutEl = document.getElementById("nosotros");
-      const trustEl = document.getElementById("trust-section");
-      const contactEl = document.getElementById("contacto");
-      let newTheme: HeaderTheme = "beige";
-      for (const el of [aboutEl, contactEl]) {
-        if (!el) continue;
-        if (scrollY >= el.offsetTop - headerH && scrollY < el.offsetTop + el.offsetHeight - headerH) { newTheme = "dark"; break; }
-      }
-      if (trustEl && scrollY >= trustEl.offsetTop - headerH && scrollY < trustEl.offsetTop + trustEl.offsetHeight - headerH) newTheme = "terracota";
-      setTheme(newTheme);
-      if (aboutEl) setShowLogo(scrollY > aboutEl.offsetTop - headerH);
-    };
+          const scrollY = window.scrollY; const headerH = 70;
+          const aboutEl = document.getElementById("nosotros");
+          const trustEl = document.getElementById("trust-section");
+          const contactEl = document.getElementById("contacto");
+          let newTheme: HeaderTheme = "beige";
+          if (aboutEl && scrollY >= aboutEl.offsetTop - headerH && scrollY < aboutEl.offsetTop + aboutEl.offsetHeight - headerH) {
+              newTheme = "dark";}
+
+          if (trustEl && scrollY >= trustEl.offsetTop - headerH && scrollY < trustEl.offsetTop + trustEl.offsetHeight - headerH) {
+              newTheme = "terracota";}
+
+          setTheme(newTheme);
+          if (aboutEl) setShowLogo(scrollY > aboutEl.offsetTop - headerH);
+        };
     window.addEventListener("scroll", handleScroll, { passive: true });
     handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
@@ -48,7 +49,7 @@ export default function Header({ onNavigate }: HeaderProps) {
     router.push(segments.join("/"));
   }, [pathname, router]);
 
-  const bgColor = theme === "dark" ? "var(--color-azul-1)" : theme === "terracota" ? "#AC6752" : "var(--color-beige-3)";
+  const bgColor = theme === "dark" ? "var(--color-azul)" : theme === "terracota" ? "#AC6752" : "var(--color-beige-3)";
   const textColor = theme === "beige" ? "var(--color-terracota-3)" : "var(--color-beige-3)";
 
   return (
@@ -66,7 +67,7 @@ export default function Header({ onNavigate }: HeaderProps) {
           {i18nConfig.locales.map((loc, i) => (
             <span key={loc}>
               <button className={styles.langBtn} onClick={() => switchLocale(loc)} style={{color:textColor, opacity:loc===locale?1:0.45, fontWeight:loc===locale?700:400}}>{loc.toUpperCase()}</button>
-              {i < i18nConfig.locales.length - 1 && <span className={styles.langSep} style={{color:textColor}}>/</span>}
+              {i < i18nConfig.locales.length - 1 && <span className={styles.langSep} style={{color:textColor}}> | </span>}
             </span>
           ))}
         </div>

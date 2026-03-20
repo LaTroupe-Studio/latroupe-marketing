@@ -49,7 +49,7 @@ const es: SiteContent = {
   },
   contact: {
     headline: "Empecemos un proyecto juntos",
-    fields: { name:"Nombre", email:"Correo electrónico", company:"Mensaje", message:"Escríbenos tu mensaje", submit:"Enviar", sending:"Enviando...", sent:"¡Enviado!" },
+    fields: { name:"Nombre", email:"E-mail", company:"Mensaje", message:"Escríbenos tu mensaje", submit:"Enviar", sending:"Enviando...", sent:"¡Enviado!" },
     legal: "Al hacer clic en Enviar, aceptas nuestra política de protección de datos y que podamos ponernos en contacto contigo.",
   },
   footer: {

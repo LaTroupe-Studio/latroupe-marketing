@@ -20,7 +20,7 @@
   font-weight: 700;
   color: #28170E;
   margin: 0;
-   padding-bottom: 4rem}
+  padding-bottom: 4rem}
 
 .pillarNumber {
   font-family: var(--font-mono);
@@ -50,21 +50,21 @@
 .textGap { margin-top: 24px; }
 
 /* ── Pillar I columns ── */
-.p1Number { grid-column: 3 / 4; } /* Ocupa només la columna 3 */
-.p1Title { grid-column: 4 / 11; } /* Comença a la col 4 (després del número) */
+.p1Number { grid-column: 3 / 4; margin-top: 3rem; } /* Ocupa només la columna 3 */
+.p1Title { grid-column: 4 / 11; margin-top: 3rem; } /* Comença a la col 4 (després del número) */
 .p1Sub { grid-column: 7 / 11; text-align: right; } /* Penja a la dreta al final del títol */
 .p1t1 { grid-column: 4 / 9; }
 .p1t2 { grid-column: 7 / 12; }
 
 /* ── Pillar II columns ── */
-.p2Number { grid-column: 1 / 2; }
-.p2Title { grid-column: 2 / 8; }
+.p2Number { grid-column: 1 / 2; margin-top: 3rem; }
+.p2Title { grid-column: 2 / 8; margin-top: 3rem; }
 .p2Sub { grid-column: 3 / 7; text-align: right; }
 .p2t1 { grid-column: 2 / 7; }
 
 /* ── Pillar III columns ── */
-.p3Number { grid-column: 6 / 7; }
-.p3Title { grid-column: 7 / 12; }
+.p3Number { grid-column: 6 / 7; margin-top: 3rem; }
+.p3Title { grid-column: 7 / 12; margin-top: 3rem; }
 .p3Sub { grid-column: 7 / 11; text-align: right; }
 .p3t1 { grid-column: 5 / 10; }
 .p3t2 { grid-column: 6 / 11; }
