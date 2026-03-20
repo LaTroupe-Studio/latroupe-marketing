@@ -16,6 +16,7 @@ import { useEffect, useCallback, useState, useRef } from "react";
 import Image from "next/image";
 import { Project } from "@/content/types";
 import { useContent } from "@/lib/locale-context";
+import { withBasePath } from "@/lib/paths";
 import styles from "./ProjectOverlay.module.css";
 
 interface Props { project: Project; onClose: () => void; onNavigate: (p: Project) => void; }
@@ -78,7 +79,7 @@ export default function ProjectOverlay({ project, onClose, onNavigate }: Props) 
               </div>
               <div className={styles.heroImageCol}>
                 <div className={styles.heroImageWrapper}>
-                  <Image src={project.heroImage} alt={project.title} fill sizes="100vw" className={styles.heroImage} priority />
+                  <Image src={withBasePath(project.heroImage)} alt={project.title} fill sizes="100vw" className={styles.heroImage} priority />
                 </div>
               </div>
               <div className={styles.shortDescCol}><p className={styles.shortDesc}>{project.shortDesc}</p></div>
@@ -91,7 +92,7 @@ export default function ProjectOverlay({ project, onClose, onNavigate }: Props) 
                     {project.images.map((img, i) => (
                       <figure key={i} className={styles.galleryItem}>
                         <div className={styles.galleryImageWrapper}>
-                          <Image src={img.src} alt={img.caption} fill sizes="50vw" className={styles.galleryImage} />
+                          <Image src={withBasePath(img.src)} alt={img.caption} fill sizes="50vw" className={styles.galleryImage} />
                         </div>
                         <figcaption className={styles.galleryCaption}>{i + 1}.<span className={styles.captionText}>{img.caption}</span></figcaption>
                       </figure>
@@ -122,7 +123,7 @@ export default function ProjectOverlay({ project, onClose, onNavigate }: Props) 
                 {otherProjects.map((p) => (
                   <button key={p.id} className={styles.otherCard} onClick={() => onNavigate(p)}>
                     <div className={styles.otherThumb}>
-                      <Image src={p.thumbnail} alt={p.title} fill sizes="180px" className={styles.otherImg} />
+                      <Image src={withBasePath(p.thumbnail)} alt={p.title} fill sizes="180px" className={styles.otherImg} />
                     </div>
                     <span className={styles.otherTitle}>{p.title}</span>
                     <span className={styles.otherLoc}>– {p.location}</span>

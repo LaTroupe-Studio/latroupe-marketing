@@ -7,37 +7,7 @@
  * Components reference these via var(--token-name).
  */
 
-/* ─── Font loading ────────────────────────────
- * Roobert fonts: Light (300), Regular (400), Bold (700)
- * Files in /public/fonts/ as woff2 + otf fallback.
- */
-
-@font-face {
-  font-family: 'Roobert';
-  src: url('/fonts/Roobert-Light.woff2') format('woff2'),
-       url('/fonts/Roobert-Light.otf') format('opentype');
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Roobert';
-  src: url('/fonts/Roobert-Regular.woff2') format('woff2'),
-       url('/fonts/Roobert-Regular.otf') format('opentype');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Roobert';
-  src: url('/fonts/Roobert-Bold.woff2') format('woff2'),
-       url('/fonts/Roobert-Bold.otf') format('opentype');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
+/* Roobert se carga con next/font/local en layout.tsx (compatible con basePath y export estático). */
 
 /* ─── CSS Custom Properties ───────────────── */
 :root {
@@ -53,8 +23,8 @@
   --color-white: #FFFFFF;
 
   /* Typography */
-  --font-heading: 'Roobert', 'DM Sans', system-ui, -apple-system, sans-serif;
-  --font-body: 'Roobert', 'DM Sans', system-ui, -apple-system, sans-serif;
+  --font-heading: var(--font-roobert), 'DM Sans', system-ui, -apple-system, sans-serif;
+  --font-body: var(--font-roobert), 'DM Sans', system-ui, -apple-system, sans-serif;
   --font-mono: 'Roobert Mono', 'Space Mono', 'SF Mono', monospace;
 
   /* Grid */

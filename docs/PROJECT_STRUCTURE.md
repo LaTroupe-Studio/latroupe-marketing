@@ -58,3 +58,7 @@ flowchart LR
 - **CMS**: añadir capa `src/lib/cms` y tipos en `src/content` sin romper rutas.
 - **API**: rutas `src/app/api` solo si hace falta servidor (formularios, webhooks).
 - **Tests**: `__tests__` junto a módulos o carpeta `src/__tests__` según se unifique el criterio del equipo.
+
+## Despliegue sin Node (Hostinger, etc.)
+
+El proyecto usa **`output: "export"`** y `basePath` para generar archivos estáticos en `out/`. Ver [DEPLOY_HOSTINGER.md](./DEPLOY_HOSTINGER.md). Las rutas de imágenes pasan por `src/lib/paths.ts` (`withBasePath`) para respetar el prefijo `/beta`.

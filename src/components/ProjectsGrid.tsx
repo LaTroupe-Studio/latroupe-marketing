@@ -3,6 +3,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { Project } from "@/content/types";
 import { useContent } from "@/lib/locale-context";
+import { withBasePath } from "@/lib/paths";
 import styles from "./ProjectsGrid.module.css";
 
 interface Props { onProjectClick: (project: Project) => void; }
@@ -18,7 +19,7 @@ function Entry({ project, className, tooltipText }: {
       onMouseEnter={() => setShow(true)} onMouseLeave={() => setShow(false)}>
       <h3 className={styles.title}>{project.title}</h3>
       <div className={styles.imageWrap}>
-        <Image src={project.thumbnail} alt={project.title} fill sizes="209px" className={styles.img} />
+        <Image src={withBasePath(project.thumbnail)} alt={project.title} fill sizes="209px" className={styles.img} />
       </div>
       <span className={styles.location}>– {project.location}</span>
       {show && <div className={styles.tooltip} style={{ left: pos.x, top: pos.y }}>{tooltipText}</div>}
