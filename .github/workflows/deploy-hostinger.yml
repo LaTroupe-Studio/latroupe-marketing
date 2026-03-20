@@ -1,0 +1,48 @@
+# Despliegue manual a Hostinger (FTP). Los secretos solo existen en este repo y solo tú puedes disparar el workflow.
+name: Deploy to Hostinger (FTP)
+
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-hostinger
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    # Solo tu usuario de GitHub puede ejecutar este job (incl. colaboradores bloqueados).
+    # Si cambias de usuario en GitHub, actualiza el valor de github.actor abajo.
+    if: github.actor == 'jaumetorrespous'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Install and build
+        run: |
+          npm ci
+          npm run build
+
+      - name: Deploy to Hostinger (FTP)
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.6
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          local-dir: ./out/
+          # Raíz FTP suele ser public_html; "beta" = public_html/beta/
+          server-dir: ./beta/
+          # Sincroniza borrando en remoto lo que ya no está en out/ (hashes de _next antiguos)
+          dangerous-clean-slate: true
+          log-level: standard
