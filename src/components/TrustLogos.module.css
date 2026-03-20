@@ -1,0 +1,64 @@
+.section {
+  background-color: #AC6752;
+  min-height: 982px;
+  padding-top: 392px;
+  padding-bottom: 100px;
+  overflow: hidden;
+}
+
+.headline {
+  font-family: var(--font-heading);
+  font-size: 78px; line-height: 74px;
+  font-weight: 700; color: #ECE6E3;
+  margin: 0 0 120px;
+}
+
+.carouselOuter {
+  display: flex; justify-content: center;
+}
+
+.carouselWrapper {
+  width: 900px; max-width: 90vw;
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+}
+
+.carousel {
+  display: flex; gap: 60px;
+  align-items: center;
+  width: max-content;
+  animation: scrollLogos 50s linear infinite;
+}
+
+.logoItem {
+  flex: 0 0 auto;
+  /* Isolation creates a stacking context so blend-mode works against section bg */
+}
+
+.logoImage {
+  height: 100px;
+  width: auto;
+  object-fit: contain;
+  mix-blend-mode: screen;
+  opacity: 0.9;
+  transition: opacity 0.3s ease;
+}
+.logoImage:hover { opacity: 1; }
+
+@keyframes scrollLogos {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-33.333%); }
+}
+
+@media (max-width: 1024px) {
+  .section { padding-top: 200px; min-height: 600px; }
+  .headline { font-size: 56px; line-height: 56px; }
+}
+@media (max-width: 768px) {
+  .section { padding-top: 100px; min-height: auto; }
+  .headline { font-size: 40px; line-height: 40px; margin-bottom: 50px; }
+  .carouselWrapper { width: 100%; }
+  .carousel { gap: 40px; }
+  .logoImage { height: 60px; }
+}

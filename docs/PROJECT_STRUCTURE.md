@@ -1,0 +1,60 @@
+# Estructura del proyecto (latroupe-marketing)
+
+Sitio estático con **Next.js 15** (App Router), **React 19** y **TypeScript**. Rutas localizadas bajo `/[locale]` (`es` / `en`), con **middleware** para redirección y preferencia de idioma.
+
+## Árbol lógico
+
+```
+latroupe-marketing/
+├── docs/
+│   └── PROJECT_STRUCTURE.md    # Este documento
+├── public/                     # Estáticos servidos tal cual
+│   ├── fonts/                  # Tipografías (Roobert)
+│   └── images/                 # Logos, proyectos, assets de marca
+├── src/
+│   ├── app/
+│   │   ├── globals.css         # Tokens CSS y estilos base
+│   │   ├── layout.tsx          # Shell HTML (fuentes, meta)
+│   │   └── [locale]/           # Rutas por idioma
+│   │       ├── layout.tsx      # Header, footer, contexto locale
+│   │       ├── page.tsx        # Home
+│   │       ├── aviso-legal/    # Legal ES
+│   │       ├── cookies/
+│   │       ├── legal-notice/   # Legal EN
+│   │       ├── privacidad/
+│   │       └── privacy/
+│   ├── components/             # UI por bloques (Hero, Projects, Legal…)
+│   ├── content/                # Copys y textos legales (es/en + tipos)
+│   ├── lib/                    # i18n, hooks, tokens de diseño, contexto locale
+│   └── middleware.ts           # Locale y redirecciones
+├── next.config.js
+├── package.json
+└── tsconfig.json
+```
+
+## Convenciones
+
+| Carpeta | Uso |
+|--------|-----|
+| `src/app/[locale]` | Solo páginas y layouts; mínima lógica de negocio. |
+| `src/components` | Componentes reutilizables; CSS Modules junto al `.tsx` cuando aplica. |
+| `src/content` | Fuente de verdad de textos y tipos compartidos (`types.ts`). |
+| `src/lib` | Utilidades sin UI (i18n, hooks, design tokens). |
+| `public` | Imágenes y fuentes referenciadas por URL (`/images/...`). |
+
+## Flujo de datos (i18n)
+
+```mermaid
+flowchart LR
+  middleware["middleware.ts"] --> locale["/[locale]"]
+  locale --> layout["layout.tsx"]
+  layout --> pages["page.tsx + legales"]
+  pages --> content["src/content/*.ts"]
+  pages --> components["src/components"]
+```
+
+## Evolución recomendada
+
+- **CMS**: añadir capa `src/lib/cms` y tipos en `src/content` sin romper rutas.
+- **API**: rutas `src/app/api` solo si hace falta servidor (formularios, webhooks).
+- **Tests**: `__tests__` junto a módulos o carpeta `src/__tests__` según se unifique el criterio del equipo.

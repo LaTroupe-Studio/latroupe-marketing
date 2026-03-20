@@ -1,0 +1,12 @@
+export { default as Header } from "./Header";
+export { default as Hero } from "./Hero";
+export { default as About } from "./About";
+export { default as ProjectsGrid } from "./ProjectsGrid";
+export { default as ProjectOverlay } from "./ProjectOverlay";
+export { default as TrustLogos } from "./TrustLogos";
+export { default as Methodology } from "./Methodology";
+export { default as WhyUs } from "./WhyUs";
+export { default as ContactForm } from "./ContactForm";
+export { default as Footer } from "./Footer";
+export { default as Logo } from "./Logo";
+export { default as LegalPage } from "./LegalPage";

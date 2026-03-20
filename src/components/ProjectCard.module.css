@@ -1,0 +1,39 @@
+.card {
+  cursor: pointer;
+}
+
+.imageWrapper {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: 2px;
+  overflow: hidden;
+  margin-bottom: 12px;
+  background-color: var(--color-terracota-4);
+}
+
+.imageInner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transition: transform 0.4s ease;
+}
+
+.image {
+  object-fit: cover;
+}
+
+.title {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-terracota-dark);
+  margin: 0 0 2px;
+}
+
+.location {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--color-terracota-dark);
+  margin: 0;
+  opacity: 0.6;
+}

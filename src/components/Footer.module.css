@@ -1,0 +1,84 @@
+/*
+ * FIGMA:
+ * Border top: 1px #77330B
+ * Logo: left 65, 209×44
+ * Social: Linkedin left 1117, Instagram 1234, Pinterest 1349, 18px/22px, 700, #AC6752
+ * Copyright: left 65, 14px/18px, 400, #77330B
+ * Privacidad: left 1117, 14px/18px, 400, #77330B
+ * Cookies: left 1234
+ * Aviso legal: left 1351
+ */
+
+.footer {
+  background-color: #ECE6E3;
+  padding: 30px 0 40px;
+  border-top: 1px solid #77330B;
+}
+
+.topRow {
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.logoCol {
+  grid-column: 1 / 4;
+}
+
+.socialCol {
+  grid-column: 10 / 13;
+  display: flex;
+  gap: 24px;
+  justify-content: flex-end;
+}
+
+.socialLink {
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 22px;
+  font-weight: 700;
+  color: #AC6752;
+  text-decoration: none;
+  transition: opacity 0.15s ease;
+}
+
+.socialLink:hover { opacity: 0.7; }
+
+.bottomRow {
+  align-items: center;
+}
+
+.copyright {
+  grid-column: 1 / 7;
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 400;
+  color: #77330B;
+}
+
+.legalLinks {
+  grid-column: 10 / 13;
+  display: flex;
+  gap: 24px;
+  justify-content: flex-end;
+}
+
+.legalLink {
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 400;
+  color: #77330B;
+  text-decoration: none;
+  transition: opacity 0.15s ease;
+}
+
+.legalLink:hover { opacity: 0.7; }
+
+@media (max-width: 768px) {
+  .topRow, .bottomRow { row-gap: 16px; }
+  .logoCol { grid-column: 1 / -1; }
+  .socialCol { grid-column: 1 / -1; justify-content: flex-start; }
+  .copyright { grid-column: 1 / -1; }
+  .legalLinks { grid-column: 1 / -1; justify-content: flex-start; }
+}

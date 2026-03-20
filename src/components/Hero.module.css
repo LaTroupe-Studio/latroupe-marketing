@@ -1,0 +1,97 @@
+/*
+ * FIGMA SPECS:
+ * Frame: 1509×972px
+ * Claim: left 170, top 178, font 134.92px/142px, weight 700, #452515
+ * Description: left 1000, top 700, width 445, font 32px/38px, weight 600, #28170E
+ */
+
+.hero {
+  background-color: var(--color-beige-3);
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.content {
+  position: absolute;
+  left: 0; right: 0;
+  top: 0; bottom: 0;
+  /* Use the grid-container padding via parent */
+  padding-left: var(--grid-margin);
+  padding-right: var(--grid-margin);
+  max-width: var(--grid-max-width);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: var(--grid-gutter);
+  align-content: start;
+}
+
+/* Claim — starts at col 2, positioned at ~18% from top */
+.claimCol {
+  grid-column: 2 / 9;
+  margin-top: 18vh;
+}
+
+.heading {
+  font-family: var(--font-heading);
+  font-size: clamp(64px, 9vw, 134.92px);
+  line-height: 1.05;
+  font-weight: 700;
+  color: #452515;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.line1 { display: block; }
+
+/* "(produce)" and "contigo" indented one column right */
+.lineIndented {
+  display: block;
+  margin-left: calc((100% - 6 * var(--grid-gutter)) / 7 + var(--grid-gutter));
+  white-space: nowrap;
+}
+
+.rotatingWord { color: var(--color-terracota-2); }
+
+.cursor {
+  display: inline-block; width: 3px; height: 0.75em;
+  background-color: var(--color-terracota-2);
+  margin-left: 2px; vertical-align: baseline;
+  animation: blink 1s step-end infinite;
+}
+
+/* Description — col 9, positioned at ~72% from top */
+.descCol {
+  grid-column: 9 / 13;
+  margin-top: 72vh;
+  /* Negative row so it doesn't push below the claim */
+  grid-row: 1;
+  align-self: start;
+}
+
+.description {
+  font-family: var(--font-body);
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 38px;
+  color: #28170E;
+  margin: 0;
+  max-width: 445px;
+}
+
+@media (max-width: 1024px) {
+  .heading { font-size: clamp(52px, 8vw, 100px); }
+  .lineIndented { margin-left: 8%; }
+  .description { font-size: 24px; line-height: 32px; }
+}
+
+@media (max-width: 768px) {
+  .hero { height: auto; min-height: 100vh; padding: 100px 0 50px; }
+  .content { position: relative; align-content: end; }
+  .claimCol { grid-column: 1 / -1; margin-top: 0; }
+  .descCol { grid-column: 1 / -1; margin-top: 32px; grid-row: auto; }
+  .lineIndented { margin-left: 24px; }
+  .description { font-size: 20px; line-height: 28px; max-width: none; }
+}

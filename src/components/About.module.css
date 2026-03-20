@@ -1,0 +1,75 @@
+/*
+ * FIGMA SPECS:
+ * Block: height 995px, bg #2F4868, top 972
+ * "Realmente…": left 67 (col1), +248px, 78px/74px, 700, #F7F6F5
+ * "Hay pocas":  left 300 (col3), +342px, 44px/56px, 650, Mono, #ECE6E3
+ * "Quienes":    left 66 (col1), +459px, width 560, 28px/35px, 400, #ECE6E3
+ * "Estamos":    left 415 (col4), +612px, width 560, 28px/35px, 400, #ECE6E3
+ * "Tenemos":    left 883 (col8), +804px, width 560, 28px/35px, 400, #ECE6E3
+ */
+
+.section {
+  background-color: #2F4868;
+  min-height: 995px;
+  padding-top: 248px;
+  padding-bottom: 80px;
+}
+
+.grid { row-gap: 0; }
+
+/* "Realmente…" — col 1 */
+.eyebrowCol { grid-column: 1 / 5; grid-row: 1; }
+
+.eyebrow {
+  font-family: var(--font-heading);
+  font-size: 78px; line-height: 74px;
+  font-weight: 700; color: #F7F6F5;
+  margin: 0;
+}
+
+/* "Hay pocas cosas…" — col 3, 94px below */
+.headlineCol { grid-column: 3 / 11; grid-row: 2; margin-top: 94px; }
+
+.headline {
+  font-family: var(--font-mono);
+  font-size: 44px; line-height: 56px;
+  font-weight: 650; color: #ECE6E3;
+  margin: 0;
+}
+
+/* "Quienes…" — col 1, 117px below headline */
+.text1Col { grid-column: 1 / 6; grid-row: 3; margin-top: 117px; }
+
+/* "Estamos…" — col 4, 153px below Quienes */
+.text2Col { grid-column: 4 / 8; grid-row: 4; margin-top: 36px; }
+
+/* "Tenemos…" — col 8, overlaps with Estamos row */
+.text3Col { grid-column: 8 / 12; grid-row: 5; margin-top: 36px; }
+
+.bodyText {
+  font-family: var(--font-body);
+  font-size: 28px; line-height: 35px;
+  font-weight: 400; color: #ECE6E3;
+  margin: 0;
+}
+
+@media (max-width: 1024px) {
+  .section { padding-top: 120px; min-height: auto; }
+  .eyebrow { font-size: 56px; line-height: 56px; }
+  .headline { font-size: 32px; line-height: 42px; }
+  .bodyText { font-size: 22px; line-height: 30px; }
+  .headlineCol { margin-top: 50px; }
+  .text1Col { margin-top: 60px; }
+}
+
+@media (max-width: 768px) {
+  .section { padding-top: 80px; }
+  .eyebrowCol, .headlineCol, .text1Col, .text2Col, .text3Col { grid-column: 1 / -1; grid-row: auto; }
+  .headlineCol { margin-top: 20px; }
+  .text1Col { margin-top: 24px; }
+  .text2Col { margin-top: 24px; }
+  .text3Col { margin-top: 24px; }
+  .eyebrow { font-size: 40px; line-height: 40px; }
+  .headline { font-size: 24px; line-height: 32px; }
+  .bodyText { font-size: 20px; line-height: 28px; }
+}

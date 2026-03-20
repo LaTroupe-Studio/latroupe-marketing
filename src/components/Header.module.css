@@ -1,0 +1,64 @@
+.header {
+  position: fixed; top: 0; left: 0; right: 0;
+  z-index: 100; padding: 28px 0 20px;
+}
+
+.gridRow {
+  display: grid; grid-template-columns: repeat(12, 1fr);
+  gap: var(--grid-gutter); align-items: start;
+}
+
+.logoCell { grid-column: 1/3; grid-row: 1; transition: opacity 0.3s ease; }
+.logoButton { background: none; border: none; padding: 0; cursor: pointer; }
+
+.navProyectos { grid-column: 7/8; grid-row: 1; }
+.navNosotros { grid-column: 8/9; grid-row: 1; margin-top: 21px; }
+.navContacto { grid-column: 10/11; grid-row: 1; margin-top: 4px; }
+.navLang { grid-column: 12/13; grid-row: 1; text-align: right; margin-top: 4px; }
+
+.navLink {
+  background: none; border: none; padding: 0;
+  font-family: var(--font-body); font-size: 24px; line-height: 30px;
+  font-weight: 400; letter-spacing: 0.05em; cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+.navLink:hover { opacity: 0.7; }
+
+.langBtn {
+  background: none; border: none; padding: 0;
+  font-family: var(--font-body); font-size: 24px; line-height: 30px;
+  font-weight: 600; letter-spacing: 0.05em; cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+.langBtn:hover { opacity: 0.8; }
+.langSep { opacity: 0.3; font-size: 24px; margin: 0 2px; }
+
+/* ── MOBILE (< 768px) ── */
+@media (max-width: 768px) {
+  .header { padding: 15px 0 12px; }
+
+  .gridRow {
+    display: flex; flex-wrap: wrap;
+    padding-left: 24px; padding-right: 24px;
+    gap: 0;
+  }
+
+  /* Row 1: logo full width */
+  .logoCell {
+    width: 100%; margin-bottom: 10px;
+  }
+
+  /* Row 2: nav items inline */
+  .navProyectos { margin-right: 12px; }
+  .navNosotros { margin-top: 18px; margin-right: 12px; }
+  .navContacto { margin-top: 0; margin-right: auto; }
+  .navLang { margin-top: 0; text-align: right; }
+
+  .navLink {
+    font-size: 18px; line-height: 23px;
+  }
+  .langBtn {
+    font-size: 16px; line-height: 19px;
+  }
+  .langSep { font-size: 16px; }
+}
