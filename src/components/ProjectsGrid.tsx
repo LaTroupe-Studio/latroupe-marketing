@@ -5,6 +5,7 @@ import { Project } from "@/content/types";
 import { useContent } from "@/lib/locale-context";
 import { withBasePath } from "@/lib/paths";
 import styles from "./ProjectsGrid.module.css";
+import ProjectCard from "./ProjectCard";
 
 interface Props { onProjectClick: (project: Project) => void; }
 
@@ -29,28 +30,48 @@ function Entry({ project, className, tooltipText }: {
 
 export default function ProjectsGrid({ onProjectClick }: Props) {
   const { content } = useContent();
-  const p = content.projects;
+  const projects = content.projects;
   const comingSoon = content.overlay.comingSoon;
   const inDev = content.overlay.inDevelopment;
 
   const getTooltip = (proj: Project) => proj.inDevelopment ? inDev : comingSoon;
 
+  const positionClasses = [
+      styles.r1p1, styles.r1p2, styles.r1p3,
+      styles.r2p1, styles.r2p2, styles.r2p3,
+      styles.r3p1
+    ];
+
+const layoutConfig = [
+    { pos: styles.r1p1, variant: 'left' as const },
+    { pos: styles.r1p2, variant: 'center' as const },
+    { pos: styles.r1p3, variant: 'right' as const },
+    { pos: styles.r2p1, variant: 'right' as const },
+    { pos: styles.r2p2, variant: 'left' as const },
+    { pos: styles.r2p3, variant: 'center' as const },
+  ];
+
   return (
     <section id="proyectos" className={styles.section}>
       <div className="grid-container">
-        <h2 className={styles.headline}>{content.projectsSection.headline}</h2>
-        <div className={styles.row}>
-          {p[0] && <Entry project={p[0]} className={styles.r1p1} tooltipText={getTooltip(p[0])} />}
-          {p[1] && <Entry project={p[1]} className={styles.r1p2} tooltipText={getTooltip(p[1])} />}
-          {p[2] && <Entry project={p[2]} className={styles.r1p3} tooltipText={getTooltip(p[2])} />}
+            <h2 className={styles.headline}>{content.projectsSection.headline}</h2>
+
+            <div className={styles.mainGrid}>
+                  {projects.map((project, index) => {
+                    const config = layoutConfig[index % layoutConfig.length];
+                    return (
+                      <div key={project.id || index} className={config.pos}>
+                        <ProjectCard
+                          project={project}
+                          onClick={onProjectClick}
+                          variant={config.variant}
+                          tooltipText={project.inDevelopment ? inDev : comingSoon}
+                        />
+                      </div>
+                    );
+                  })}
+            </div>
         </div>
-        <div className={styles.row}>
-          {p[3] && <Entry project={p[3]} className={styles.r2p1} tooltipText={getTooltip(p[3])} />}
-          {p[4] && <Entry project={p[4]} className={styles.r2p2} tooltipText={getTooltip(p[4])} />}
-          {p[5] && <Entry project={p[5]} className={styles.r2p3} tooltipText={getTooltip(p[5])} />}
-        </div>
-        {p[6] && <div className={styles.row}><Entry project={p[6]} className={styles.r3p1} tooltipText={getTooltip(p[6])} /></div>}
-      </div>
     </section>
   );
 }

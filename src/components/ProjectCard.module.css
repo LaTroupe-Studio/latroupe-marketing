@@ -1,14 +1,32 @@
 .card {
-  cursor: pointer;
+  display: grid;
+  grid-template-columns: repeat(var(--card-cols, 3), 1fr);
+  column-gap: var(--grid-gutter, 20px);
+  width: 100%;
+
+}
+
+.title {
+  grid-column: 1 / -1;
+  font-family: var(--font-body);
+  font-size: 20px;
+  line-height: 1.2;
+  font-weight: 600;
+  color: var(--color-terracota-dark);
+  margin-bottom: 24px;
+}
+
+.titleLine {
+  display: block;
 }
 
 .imageWrapper {
-  width: 100%;
-  aspect-ratio: 4 / 3;
+  position: relative;
+  grid-column: span 2;
+  aspect-ratio: 209 / 136;
   border-radius: 2px;
   overflow: hidden;
-  margin-bottom: 12px;
-  background-color: var(--color-terracota-4);
+  background: var(--color-terracota-4);
 }
 
 .imageInner {
@@ -22,18 +40,55 @@
   object-fit: cover;
 }
 
-.title {
+.location {
   font-family: var(--font-body);
-  font-size: 14px;
-  font-weight: 600;
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 400;
   color: var(--color-terracota-dark);
-  margin: 0 0 2px;
+  margin-top: 14px;
 }
 
-.location {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  color: var(--color-terracota-dark);
-  margin: 0;
-  opacity: 0.6;
+/* ─── VARIANTES DE ALINEACIÓN ─── */
+
+/* Variante Left: Imagen pegada a la izq (Cols 1-2). Loc en Col 2. */
+.variant_left .imageWrapper {
+  grid-column: 1 / span 2;
+}
+.variant_left .location {
+  grid-column: 1 / span 2;
+    text-align: left;
+}
+
+/* Variante Center: Imagen en centro (Cols 2-3). Loc en Col 3. */
+.variant_center .imageWrapper {
+  grid-column: 2 / span 2;
+}
+.variant_center .location {
+  grid-column: 2 / span 2;
+  text-align: right;
+}
+
+/* Variante Right: Imagen en centro (Cols 2-3). Loc alineada con imagen (Col 2). */
+.variant_right .imageWrapper {
+  grid-column: 2 / span 2;
+}
+.variant_right .location {
+  grid-column: 2 / span 2;
+    text-align: left;
+}
+
+/* Tooltip */
+.tooltip {
+  position: fixed;
+  z-index: 100;
+  pointer-events: none;
+  background: #452515;
+  color: #ECE6E3;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 4px;
+  white-space: nowrap;
 }
