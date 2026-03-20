@@ -55,7 +55,6 @@ const layoutConfig = [
     <section id="proyectos" className={styles.section}>
       <div className="grid-container">
             <h2 className={styles.headline}>{content.projectsSection.headline}</h2>
-
             <div className={styles.mainGrid}>
                   {projects.map((project, index) => {
                     const config = layoutConfig[index % layoutConfig.length];

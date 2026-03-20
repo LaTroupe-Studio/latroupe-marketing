@@ -18,10 +18,11 @@ export default function Methodology() {
           <p className={styles.intro}>{content.methodology.intro}</p>
         </div>
 
-        {/* Pillar I: title col3, subtitle col9 below, texts col4 then col7 */}
+        {/* Pillar I */}
         {p[0] && <div className={styles.pillarBlock}>
           <div className={`grid-12`}>
-            <h3 className={`${styles.pillarTitle} ${styles.p1Title}`}>{p[0].number} {p[0].title}</h3>
+            <span className={`${styles.pillarNumber} ${styles.p1Number}`}>{p[0].number}</span>
+            <h3 className={`${styles.pillarTitle} ${styles.p1Title}`}>{p[0].title}</h3>
           </div>
           <div className={`grid-12`}>
             <span className={`${styles.pillarSub} ${styles.p1Sub}`}>{p[0].subtitle}</span>
@@ -34,10 +35,11 @@ export default function Methodology() {
           </div>}
         </div>}
 
-        {/* Pillar II: title col1, subtitle col5 below, text col2 */}
+        {/* Pillar II */}
         {p[1] && <div className={styles.pillarBlock}>
           <div className={`grid-12`}>
-            <h3 className={`${styles.pillarTitle} ${styles.p2Title}`}>{p[1].number} {p[1].title}</h3>
+            <span className={`${styles.pillarNumber} ${styles.p2Number}`}>{p[1].number}</span>
+            <h3 className={`${styles.pillarTitle} ${styles.p2Title}`}>{p[1].title}</h3>
           </div>
           <div className={`grid-12`}>
             <span className={`${styles.pillarSub} ${styles.p2Sub}`}>{p[1].subtitle}</span>
@@ -47,10 +49,11 @@ export default function Methodology() {
           </div>
         </div>}
 
-        {/* Pillar III: title col6, subtitle col9 below, texts col5 then col6 */}
+        {/* Pillar III */}
         {p[2] && <div className={styles.pillarBlock}>
           <div className={`grid-12`}>
-            <h3 className={`${styles.pillarTitle} ${styles.p3Title}`}>{p[2].number} {p[2].title}</h3>
+            <span className={`${styles.pillarNumber} ${styles.p3Number}`}>{p[2].number}</span>
+            <h3 className={`${styles.pillarTitle} ${styles.p3Title}`}>{p[2].title}</h3>
           </div>
           <div className={`grid-12`}>
             <span className={`${styles.pillarSub} ${styles.p3Sub}`}>{p[2].subtitle}</span>

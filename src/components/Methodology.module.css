@@ -1,56 +1,79 @@
-/*
- * FIGMA exact positions:
- * Headline: left 302→col3, 78px/74px 700 #0B172C
- * Intro: left 70→col1, 32px/38px 700 #28170E (more top space)
- *
- * P-I: title left299→col3, sub left994→col9 (below), t1 left416→col4, t2 left765→col7
- * P-II: title left70→col1, sub left528→col5 (below), t1 left185→col2
- * P-III: title left648→col6, sub left1011→col9 (below), t1 left533→col5, t2 left650→col6
- */
 
 .section { background-color: #ECE6E3; padding: 140px 0 100px; }
 
-.headline { grid-column: 3/11; font-family: var(--font-heading); font-size: 78px; line-height: 74px; font-weight: 700; color: #0B172C; margin: 0; }
+.headline {
+   grid-column: 3/9;
+   font-family: var(--font-heading);
+   font-size: 64px;
+   line-height: 68px;
+   font-weight: 700;
+   color: #0B172C;
+   margin: 0; }
 
 .introRow { margin-top: 80px; }
-.intro { grid-column: 1/8; font-family: var(--font-body); font-size: 32px; line-height: 38px; font-weight: 700; color: #28170E; margin: 0; }
 
-/* Pillar block spacing */
-.pillarBlock { margin-top: 80px; }
+.intro {
+  grid-column: 1/8;
+  font-family: var(--font-body);
+  font-size: 28px;
+  line-height: 32px;
+  font-weight: 700;
+  color: #28170E;
+  margin: 0;
+   padding-bottom: 4rem}
+
+.pillarNumber {
+  font-family: var(--font-mono);
+  font-size: 32px;
+  line-height: 42px;
+  font-weight: 750;
+  color: #0B172C;
+  margin: 0;
+}
 
 /* Title: Mono 40px/51px, 750, #0B172C */
-.pillarTitle { font-family: var(--font-mono); font-size: 40px; line-height: 51px; font-weight: 750; color: #0B172C; margin: 0; }
+.pillarTitle {
+  font-family: var(--font-mono);
+  font-size: 32px;
+  line-height: 51px;
+  font-weight: 750;
+  color: #0B172C;
+  margin: 0;
+ }
 
 /* Subtitle: Mono 32px/40px, 400, #0B172C — below title */
-.pillarSub { font-family: var(--font-mono); font-size: 32px; line-height: 40px; font-weight: 400; color: #0B172C; display: block; margin-top: 8px; }
+.pillarSub { font-family: var(--font-mono); font-size: 26px; line-height: 40px; font-weight: 400; color: #0B172C; display: block; margin-top: 0px; }
 
 /* Body text: 32px/40px, 400, #2F4868 */
-.pillarText { font-family: var(--font-body); font-size: 32px; line-height: 40px; font-weight: 400; color: #2F4868; margin: 0; }
+.pillarText { font-family: var(--font-body); font-size: 26px; line-height: 32px; font-weight: 400; color: #2F4868; margin: 0; }
 
 .textGap { margin-top: 24px; }
 
 /* ── Pillar I columns ── */
-.p1Title { grid-column: 3/9; }
-.p1Sub { grid-column: 9/12; }
-.p1t1 { grid-column: 4/10; }
-.p1t2 { grid-column: 7/12; }
+.p1Number { grid-column: 3 / 4; } /* Ocupa només la columna 3 */
+.p1Title { grid-column: 4 / 11; } /* Comença a la col 4 (després del número) */
+.p1Sub { grid-column: 7 / 11; text-align: right; } /* Penja a la dreta al final del títol */
+.p1t1 { grid-column: 4 / 9; }
+.p1t2 { grid-column: 7 / 12; }
 
 /* ── Pillar II columns ── */
-.p2Title { grid-column: 1/5; }
-.p2Sub { grid-column: 5/8; }
-.p2t1 { grid-column: 2/8; }
+.p2Number { grid-column: 1 / 2; }
+.p2Title { grid-column: 2 / 8; }
+.p2Sub { grid-column: 3 / 7; text-align: right; }
+.p2t1 { grid-column: 2 / 7; }
 
 /* ── Pillar III columns ── */
-.p3Title { grid-column: 6/10; }
-.p3Sub { grid-column: 9/12; }
-.p3t1 { grid-column: 5/11; }
-.p3t2 { grid-column: 6/11; }
+.p3Number { grid-column: 6 / 7; }
+.p3Title { grid-column: 7 / 12; }
+.p3Sub { grid-column: 7 / 11; text-align: right; }
+.p3t1 { grid-column: 5 / 10; }
+.p3t2 { grid-column: 6 / 11; }
 
 /* ── Responsive ── */
 @media (max-width: 1024px) {
   .headline { font-size: 56px; line-height: 56px; }
   .intro { font-size: 24px; line-height: 30px; }
-  .pillarTitle { font-size: 28px; line-height: 36px; }
+  .pillarNumber, .pillarTitle { font-size: 28px; line-height: 36px; } /* Ajustem número i títol */
   .pillarSub { font-size: 24px; line-height: 32px; }
   .pillarText { font-size: 24px; line-height: 32px; }
 }
@@ -59,12 +82,15 @@
   .section { padding: 80px 0 60px; }
   .headline { grid-column: 1/-1; font-size: 40px; line-height: 40px; }
   .intro { grid-column: 1/-1; font-size: 20px; line-height: 28px; }
-  .pillarTitle { font-size: 22px; line-height: 30px; }
-  .pillarSub { font-size: 20px; line-height: 28px; }
+  .pillarNumber, .pillarTitle { font-size: 22px; line-height: 30px; }
+  .pillarSub { font-size: 20px; line-height: 28px; text-align: left; margin-top: 4px;} /* En mòbil ho esquerrem */
   .pillarText { font-size: 20px; line-height: 28px; }
-  .p1Title,.p1Sub,.p1t1,.p1t2,
-  .p2Title,.p2Sub,.p2t1,
-  .p3Title,.p3Sub,.p3t1,.p3t2 { grid-column: 1/-1; }
+
+  /* Reajust de columnes en mòbil */
+  .p1Number, .p2Number, .p3Number { grid-column: 1 / 2; }
+  .p1Title, .p2Title, .p3Title { grid-column: 2 / -1; }
+  .p1Sub,.p1t1,.p1t2, .p2Sub,.p2t1, .p3Sub,.p3t1,.p3t2 { grid-column: 1/-1; }
+
   .introRow { margin-top: 40px; }
   .pillarBlock { margin-top: 50px; }
 }
