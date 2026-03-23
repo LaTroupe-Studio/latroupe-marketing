@@ -69,7 +69,7 @@
     row-gap: 60px;
   }
   .r1p1, .r1p2, .r1p3, .r2p1, .r2p2, .r2p3, .r3p1 {
-    grid-column: 1 / -1; /* Ocupan todo el ancho en mobile */
+    grid-column: 1 / -1;
     margin-top: 0 !important;
   }
 }

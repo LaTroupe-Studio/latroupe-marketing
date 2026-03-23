@@ -57,6 +57,7 @@ const es: SiteContent = {
     social: [{label:"Linkedin",href:"https://www.linkedin.com/company/latroupestudio"},{label:"Instagram",href:"https://www.instagram.com/latroupestudio"},{label:"Pinterest",href:"https://www.pinterest.es/latroupestudio/"}],
     copyright: "Desarrollado por latroupe ( ) 2026 © Todos los derechos reservados.",
     legal: "",
+    work:{label: "Trabaja con nosotros", href:"http://notion.com"}
   },
   overlay: { close:"CERRAR", inDevelopment:"En desarrollo", comingSoon:"Próximamente" },
 };

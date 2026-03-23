@@ -90,8 +90,8 @@
 @media (max-width: 768px) {
   .hero { height: auto; min-height: 100vh; padding: 100px 0 50px; }
   .content { position: relative; align-content: end; }
-  .claimCol { grid-column: 1 / -1; margin-top: 0; }
-  .descCol { grid-column: 1 / -1; margin-top: 32px; grid-row: auto; }
+  .claimCol { grid-column: 1 / -1; margin-top: 6rem; }
+  .descCol { grid-column: 1 / -1; margin-top: 6rem; grid-row: auto; }
   .lineIndented { margin-left: 24px; }
   .description { font-size: 20px; line-height: 28px; max-width: none; }
 }

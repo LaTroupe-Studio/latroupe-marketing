@@ -92,3 +92,17 @@
   border-radius: 4px;
   white-space: nowrap;
 }
+
+@media (max-width: 768px) {
+  .variant_right.imageWrapper {
+  grid-column: 1 / span 2;
+  }
+
+  .variant_center .imageWrapper {
+   grid-column: 1 / span 2;
+   }
+
+ .variant_left .imageWrapper {
+  grid-column: 1 / span 2;
+  }
+}
