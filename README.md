@@ -18,6 +18,12 @@ npm run dev
 
 ---
 
+## Despliegue (Vercel)
+
+Producción recomendada: conecta el repo en [Vercel](https://vercel.com) e importa el proyecto (preset Next.js). Pasos detallados en [`docs/VERCEL.md`](docs/VERCEL.md).
+
+---
+
 ## Estructura del proyecto
 
 ```

@@ -1,6 +1,6 @@
 # Estructura del proyecto (latroupe-marketing)
 
-Sitio estático con **Next.js 15** (App Router), **React 19** y **TypeScript**. Rutas localizadas bajo `/[locale]` (`es` / `en`), con **middleware** para redirección y preferencia de idioma.
+Sitio con **Next.js 15** (App Router), **React 19** y **TypeScript**. Rutas localizadas bajo `/[locale]` (`es` / `en`), con **middleware** para redirección y preferencia de idioma. Despliegue recomendado: **Vercel** ([VERCEL.md](./VERCEL.md)).
 
 ## Árbol lógico
 
@@ -59,6 +59,8 @@ flowchart LR
 - **API**: rutas `src/app/api` solo si hace falta servidor (formularios, webhooks).
 - **Tests**: `__tests__` junto a módulos o carpeta `src/__tests__` según se unifique el criterio del equipo.
 
-## Despliegue sin Node (Hostinger, etc.)
+## Despliegue
 
-El proyecto usa **`output: "export"`** y `basePath` para generar archivos estáticos en `out/`. Ver [DEPLOY_HOSTINGER.md](./DEPLOY_HOSTINGER.md). Las rutas de imágenes pasan por `src/lib/paths.ts` (`withBasePath`) para respetar el prefijo `/beta`.
+- **Producción (recomendado):** [Vercel](./VERCEL.md) — Node + middleware + Image Optimization.
+- **Opcional:** export estático en subcarpeta vía FTP; ver [DEPLOY_HOSTINGER.md](./DEPLOY_HOSTINGER.md) (flujo antiguo `/beta`).
+- **`withBasePath()`** en `src/lib/paths.ts` solo aplica si defines `NEXT_PUBLIC_BASE_PATH` (por defecto vacío).
