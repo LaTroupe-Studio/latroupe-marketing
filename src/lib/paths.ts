@@ -1,6 +1,6 @@
 /**
- * Rutas de assets en `public/` deben incluir basePath en export estático
- * (p. ej. /beta/images/... en producción).
+ * Prefijo opcional para assets en `public/` (p. ej. si NEXT_PUBLIC_BASE_PATH está definido).
+ * En Vercel por defecto va vacío.
  */
 export function withBasePath(path: string): string {
   const base = process.env.NEXT_PUBLIC_BASE_PATH || "";
