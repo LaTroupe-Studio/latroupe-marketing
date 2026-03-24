@@ -1,0 +1,85 @@
+/*
+ * FIGMA DESKTOP POSITIONS (6 projects, 2 rows):
+ * ROW 1: Al Ameen col1 base | Rochester col4 +105px | ORO col7 +34px
+ * ROW 2: Sant Feliu col2 +33px | Holbein col7 +69px | Andaz col10 base
+ *
+ * FIGMA MOBILE: stacked vertically, each project ~280px
+ * Title left-aligned, image offset right, location further right
+ */
+
+.section { background-color: #ECE6E3; padding-top: 200px; padding-bottom: 80px; }
+
+.headline {
+  font-family: var(--font-body); font-size: 48px; line-height: 60px;
+  font-weight: 700; color: #28170E; margin: 0 0 100px;
+}
+
+.row {
+  display: grid; grid-template-columns: repeat(12, 1fr);
+  gap: var(--grid-gutter); margin-bottom: 60px; align-items: start;
+}
+
+.entry { cursor: default; display: flex; flex-direction: column; position: relative; }
+
+.title {
+  font-family: var(--font-body); font-size: 24px; line-height: 29px;
+  font-weight: 700; color: #28170E; margin: 0; white-space: pre-line;
+}
+
+.imageWrap {
+  position: relative; width: 209px; height: 136px; margin-top: 14px;
+  border-radius: 2px; overflow: hidden; background: var(--color-terracota-4);
+}
+
+.img { object-fit: cover; }
+
+.location {
+  font-family: var(--font-body); font-size: 16px; line-height: 20px;
+  font-weight: 400; color: #28170E; margin-top: 12px;
+}
+
+.tooltip {
+  position: fixed; z-index: 50; pointer-events: none;
+  transform: translate(16px, -50%);
+  background: #452515; color: #ECE6E3;
+  font-family: var(--font-body); font-size: 13px; font-weight: 600;
+  padding: 6px 14px; border-radius: 4px; white-space: nowrap;
+}
+
+/* ── ROW 1 ── */
+.r1p1 { grid-column: 1/4; }
+.r1p2 { grid-column: 4/7; margin-top: 105px; }
+.r1p2 .imageWrap, .r1p2 .location { margin-left: calc((100% - 2*var(--grid-gutter))/3 + var(--grid-gutter)); }
+.r1p3 { grid-column: 7/10; margin-top: 34px; }
+.r1p3 .imageWrap, .r1p3 .location { margin-left: calc((100% - 2*var(--grid-gutter))/3 + var(--grid-gutter)); }
+
+/* ── ROW 2 ── */
+.r2p1 { grid-column: 2/5; margin-top: 33px; }
+.r2p2 { grid-column: 7/9; margin-top: 69px; }
+.r2p3 { grid-column: 10/13; }
+.r2p3 .imageWrap, .r2p3 .location { margin-left: calc((100% - 2*var(--grid-gutter))/3 + var(--grid-gutter)); }
+
+/* ── MOBILE (6-col grid, 24px margin, 8px gutter) ── */
+@media (max-width: 768px) {
+  .section { padding-top: 80px; }
+  .headline { font-size: 32px; line-height: 38px; margin-bottom: 50px; }
+
+  .row {
+    display: flex; flex-direction: column;
+    gap: 50px; margin-bottom: 30px;
+  }
+
+  .r1p1,.r1p2,.r1p3,.r2p1,.r2p2,.r2p3 { margin-top: 0 !important; }
+
+  /* Reset desktop offsets */
+  .r1p2 .imageWrap, .r1p2 .location,
+  .r1p3 .imageWrap, .r1p3 .location,
+  .r2p3 .imageWrap, .r2p3 .location { margin-left: 0 !important; }
+
+  /* All aligned to col 1 */
+  .entry .title { font-size: 23px; line-height: 28px; white-space: normal; }
+  .entry .imageWrap { width: 208px; height: 136px; }
+  .entry .location { font-size: 15.3px; line-height: 19px; }
+
+  .tooltip { display: none; }
+}
