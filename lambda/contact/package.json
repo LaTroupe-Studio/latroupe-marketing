@@ -1,0 +1,11 @@
+{
+  "name": "latroupe-contact",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "zip": "zip -r function.zip index.mjs node_modules"
+  },
+  "dependencies": {
+    "@aws-sdk/client-ses": "^3.758.0"
+  }
+}

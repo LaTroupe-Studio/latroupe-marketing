@@ -8,32 +8,48 @@ export default function ContactForm() {
   const { content } = useContent();
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [accepted, setAccepted] = useState(false);
-  const [status, setStatus] = useState<"idle"|"sending"|"sent">("idle");
+  const [status, setStatus] = useState<"idle"|"sending"|"sent"|"error">("idle");
 
   const handleSubmit = async (e?: FormEvent) => {
     if (e) e.preventDefault();
     if (!accepted) return;
+    const endpoint = process.env.NEXT_PUBLIC_CONTACT_URL?.trim();
+    if (!endpoint) {
+      setStatus("error");
+      setTimeout(() => setStatus("idle"), 5000);
+      return;
+    }
     setStatus("sending");
     try {
-      const res = await fetch("https://formspree.io/f/xgopwrre", {
+      const res = await fetch(endpoint, {
         method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({ name: form.name, email: form.email, message: form.message }),
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          message: form.message,
+        }),
       });
-      if (res.ok) {
-        setStatus("sent");
-        setForm({ name: "", email: "", message: "" });
-        setTimeout(() => setStatus("idle"), 3000);
-      } else {
-        setStatus("idle");
-      }
+      const data = (await res.json().catch(() => ({}))) as { ok?: boolean };
+      if (!res.ok || !data?.ok) throw new Error("submit failed");
+      setStatus("sent");
+      setForm({ name: "", email: "", message: "" });
+      setTimeout(() => setStatus("idle"), 3000);
     } catch {
-      setStatus("idle");
+      setStatus("error");
+      setTimeout(() => setStatus("idle"), 5000);
     }
   };
 
   const { fields } = content.contact;
-  const btnLabel = status === "sending" ? fields.sending : status === "sent" ? fields.sent : fields.submit;
+  const btnLabel =
+    status === "sending"
+      ? fields.sending
+      : status === "sent"
+        ? fields.sent
+        : status === "error"
+          ? fields.error
+          : fields.submit;
 
   return (
     <section id="contacto" className={styles.section}>

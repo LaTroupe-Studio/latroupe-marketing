@@ -2,6 +2,8 @@
 /node_modules
 /.pnp
 .pnp.js
+lambda/contact/node_modules
+lambda/contact/function.zip
 
 # next.js
 /.next/

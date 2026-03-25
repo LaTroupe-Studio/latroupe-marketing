@@ -102,6 +102,7 @@ export interface SiteContent {
       submit: string;
       sending: string;
       sent: string;
+      error: string;
     };
     legal?: string;
     legalLinkPhrase?: string;
