@@ -104,6 +104,8 @@ export interface SiteContent {
       sent: string;
     };
     legal?: string;
+    legalLinkPhrase?: string;
+    legalLinkHref?: string;
   };
 
   footer: {

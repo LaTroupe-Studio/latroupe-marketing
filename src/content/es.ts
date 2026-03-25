@@ -52,6 +52,8 @@ const es: SiteContent = {
     headline: "Empecemos un proyecto juntos",
     fields: { name:"Nombre", email:"Correo electrónico", company:"Mensaje", message:"Escríbenos tu mensaje", submit:"Enviar", sending:"Enviando...", sent:"¡Enviado!" },
     legal: "Al hacer clic en Enviar, aceptas nuestra política de protección de datos y que podamos ponernos en contacto contigo.",
+    legalLinkPhrase: "política de protección de datos",
+    legalLinkHref: "/es/aviso-legal",
   },
   footer: {
     links: [{label:"Privacidad",href:"/es/privacidad"},{label:"Cookies",href:"/es/cookies"},{label:"Aviso legal",href:"/es/aviso-legal"}],
