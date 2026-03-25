@@ -1,0 +1,53 @@
+name: Deploy staging (S3 + CloudFront)
+
+on:
+  push:
+    branches:
+      - staging
+  workflow_dispatch:
+
+env:
+  STAGING_BUCKET: staging-latroupestudio-com
+  AWS_REGION: eu-central-1
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: AWS
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build static export
+        run: npm run build
+        env:
+          STATIC_EXPORT: "1"
+
+      - name: Configure AWS credentials (LaTroupe account)
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Sync to S3
+        run: aws s3 sync out/ "s3://${STAGING_BUCKET}/" --delete
+
+      - name: Invalidate CloudFront
+        env:
+          CF_ID: ${{ secrets.STAGING_CLOUDFRONT_ID }}
+        run: |
+          if [ -z "$CF_ID" ]; then
+            echo "STAGING_CLOUDFRONT_ID no configurado; omite invalidación."
+            exit 0
+          fi
+          aws cloudfront create-invalidation --distribution-id "$CF_ID" --paths "/*"
