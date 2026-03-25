@@ -1,7 +1,7 @@
 "use client";
 import { useTypingAnimation } from "@/lib/hooks";
 import { useContent } from "@/lib/locale-context";
-import Logo from "./Logo";
+import LogoText from "./LogoText";
 import styles from "./Hero.module.css";
 
 export default function Hero() {
@@ -13,7 +13,7 @@ export default function Hero() {
         <div className={`grid-12 ${styles.content}`}>
           <div className={styles.claimCol}>
             <h1 className={styles.heading}>
-              <span className={styles.line1}><Logo color="#452515" className={styles.logoAsText} /></span>
+              <span className={styles.line1}><LogoText color="#452515" className={styles.logoAsText} /></span>
               <span className={styles.lineIndented}>
                 {"( "}<span className={styles.rotatingWord}>{typedWord}<span className={styles.cursor} /></span>{" )"}
               </span>

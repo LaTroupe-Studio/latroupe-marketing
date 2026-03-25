@@ -1,7 +1,7 @@
 "use client";
 import { useContent } from "@/lib/locale-context";
 import { withBasePath } from "@/lib/paths";
-import Logo from "./Logo";
+import LogoText from "./LogoText";
 import styles from "./TrustLogos.module.css";
 
 export default function TrustLogos() {
@@ -15,7 +15,7 @@ export default function TrustLogos() {
           {headlineParts.length > 1 ? (
             <>
               {headlineParts[0]}
-              <Logo color="#ECE6E3" className={styles.logoInline} />
+              <LogoText color="#ECE6E3" className={styles.logoInline} />
               {headlineParts[1]}
             </>
           ) : (

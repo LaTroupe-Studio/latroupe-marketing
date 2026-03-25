@@ -5,7 +5,7 @@
 
 .textRow { margin-top: 16px; }
 .textRowGap { margin-top: 60px; }
-.bodyText { font-family: var(--font-body); font-size: 32px; line-height: 38px; font-weight: 600; color: #77330B; margin: 0; }
+.bodyText { font-family: var(--font-body); font-size: 28px; line-height: 35px; font-weight: 600; color: #77330B; margin: 0; }
 
 .text1 { grid-column: 6/12; }
 .text2 { grid-column: 7/12; }
