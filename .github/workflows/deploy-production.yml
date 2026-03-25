@@ -36,6 +36,7 @@ jobs:
       - name: Create extensionless aliases (es/* and en/*)
         run: |
           set -euo pipefail
+          shopt -s nullglob
           # CloudFront/S3 está sirviendo como ficheros (p.ej. /es.html),
           # así que generamos también los "aliases" sin extensión.
           for f in out/es/*.html; do
