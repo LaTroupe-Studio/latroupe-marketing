@@ -16,17 +16,18 @@ export async function generateMetadata({
   const loc = locale as Locale;
   const content = await getDictionary(loc);
 
-  const title =
+  const title = "latroupe";
+  const description =
     loc === "es"
-      ? "latroupe — Producimos contigo"
-      : "latroupe — We produce with you";
+      ? "Reforzamos la capacidad de los estudios de arquitectura o interiorismo y les acompañamos en todas las fases de desarrollo de cada proyecto."
+      : content.hero.description;
 
   return {
     title,
-    description: content.hero.description,
+    description,
     openGraph: {
       title,
-      description: content.hero.description,
+      description,
       type: "website",
       locale: loc === "es" ? "es_ES" : "en_GB",
     },

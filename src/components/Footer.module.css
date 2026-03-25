@@ -47,7 +47,7 @@
 
 .legalLinks {
   grid-column: 10 / 13;
-  display: flex; gap: 24px; justify-content: flex-end;
+  display: flex; gap: 24px; justify-content: flex-start;
 }
 
 .legalLink {
