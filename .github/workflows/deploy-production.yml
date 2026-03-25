@@ -1,0 +1,83 @@
+name: Deploy production
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
+  PRODUCTION_BUCKET: latroupestudio-com
+  AWS_REGION: eu-central-1
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: AWS
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build static export
+        run: npm run build
+        env:
+          STATIC_EXPORT: "1"
+
+      - name: Create extensionless aliases (es/* and en/*)
+        run: |
+          set -euo pipefail
+          # CloudFront/S3 está sirviendo como ficheros (p.ej. /es.html),
+          # así que generamos también los "aliases" sin extensión.
+          for f in out/es/*.html; do
+            cp "$f" "${f%.html}"
+          done
+          for f in out/en/*.html; do
+            cp "$f" "${f%.html}"
+          done
+
+      - name: Configure AWS credentials (LaTroupe account)
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Sync to S3 (production)
+        run: aws s3 sync out/ "s3://${PRODUCTION_BUCKET}/" --delete
+
+      - name: Create extensionless aliases (root /es and /en)
+        run: |
+          set -euo pipefail
+          aws s3api put-object \
+            --bucket "${PRODUCTION_BUCKET}" \
+            --key "es" \
+            --body out/es.html \
+            --content-type "text/html; charset=utf-8"
+
+          aws s3api put-object \
+            --bucket "${PRODUCTION_BUCKET}" \
+            --key "en" \
+            --body out/en.html \
+            --content-type "text/html; charset=utf-8"
+
+      - name: Invalidate CloudFront
+        env:
+          CF_ID: ${{ secrets.PRODUCTION_CLOUDFRONT_DISTRIBUTION_ID }}
+        run: |
+          if [ -z "$CF_ID" ]; then
+            echo "PRODUCTION_CLOUDFRONT_DISTRIBUTION_ID no configurado; omite invalidación."
+            exit 0
+          fi
+          aws cloudfront create-invalidation \
+            --distribution-id "$CF_ID" \
+            --paths "/*" "/index.html"
