@@ -13,9 +13,22 @@ export default function ContactForm() {
     if (e) e.preventDefault();
     if (!accepted) return;
     setStatus("sending");
-    await new Promise((r) => setTimeout(r, 1000));
-    setStatus("sent"); setForm({ name:"", email:"", message:"" });
-    setTimeout(() => setStatus("idle"), 3000);
+    try {
+      const res = await fetch("https://formspree.io/f/xgopwrre", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({ name: form.name, email: form.email, message: form.message }),
+      });
+      if (res.ok) {
+        setStatus("sent");
+        setForm({ name: "", email: "", message: "" });
+        setTimeout(() => setStatus("idle"), 3000);
+      } else {
+        setStatus("idle");
+      }
+    } catch {
+      setStatus("idle");
+    }
   };
 
   const { fields } = content.contact;
