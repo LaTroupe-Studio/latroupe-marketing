@@ -1,5 +1,6 @@
 "use client";
 import { useState, FormEvent } from "react";
+import Link from "next/link";
 import { useContent } from "@/lib/locale-context";
 import styles from "./ContactForm.module.css";
 
@@ -13,9 +14,22 @@ export default function ContactForm() {
     if (e) e.preventDefault();
     if (!accepted) return;
     setStatus("sending");
-    await new Promise((r) => setTimeout(r, 1000));
-    setStatus("sent"); setForm({ name:"", email:"", message:"" });
-    setTimeout(() => setStatus("idle"), 3000);
+    try {
+      const res = await fetch("https://formspree.io/f/xgopwrre", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({ name: form.name, email: form.email, message: form.message }),
+      });
+      if (res.ok) {
+        setStatus("sent");
+        setForm({ name: "", email: "", message: "" });
+        setTimeout(() => setStatus("idle"), 3000);
+      } else {
+        setStatus("idle");
+      }
+    } catch {
+      setStatus("idle");
+    }
   };
 
   const { fields } = content.contact;
@@ -56,7 +70,16 @@ export default function ContactForm() {
           {content.contact.legal && (
             <label className={styles.legalRow}>
               <input type="checkbox" checked={accepted} onChange={(e) => setAccepted(e.target.checked)} className={styles.checkbox} />
-              <span className={styles.legalText}>{content.contact.legal}</span>
+              <span className={styles.legalText}>
+                {content.contact.legalLinkPhrase && content.contact.legalLinkHref
+                  ? content.contact.legal!.split(content.contact.legalLinkPhrase).map((part, i, arr) =>
+                      i < arr.length - 1
+                        ? <>{part}<Link href={content.contact.legalLinkHref!} className={styles.legalLink}>{content.contact.legalLinkPhrase}</Link></>
+                        : part
+                    )
+                  : content.contact.legal
+                }
+              </span>
             </label>
           )}
           <button type="button" className={styles.submitBtn} disabled={status==="sending" || !accepted} onClick={handleSubmit}>

@@ -23,7 +23,7 @@
 .subtitleRow { margin-top: 16px; }
 .intro {
   grid-column: 1/8;
-  font-family: var(--font-body); font-size: 32px; line-height: 38px;
+  font-family: var(--font-body); font-size: 28px; line-height: 35px;
   font-weight: 700; color: #28170E; margin: 0;
 }
 
@@ -44,7 +44,7 @@
 
 .textRow { margin-top: 30px; }
 .pillarText {
-  font-family: var(--font-body); font-size: 32px; line-height: 40px;
+  font-family: var(--font-body); font-size: 28px; line-height: 35px;
   font-weight: 400; color: #2F4868; margin: 0;
 }
 
