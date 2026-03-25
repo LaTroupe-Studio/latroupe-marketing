@@ -11,17 +11,20 @@
   font-size: 78px; line-height: 74px;
   font-weight: 700; color: #ECE6E3;
   margin: 0 0 120px;
+  display: flex; align-items: center; gap: 0.2em; flex-wrap: wrap;
 }
 
-.carouselOuter {
-  display: flex; justify-content: center;
+.logoInline {
+  height: 0.85em;
+  width: auto;
+  display: inline-block;
+  vertical-align: middle;
+  flex-shrink: 0;
 }
 
 .carouselWrapper {
   width: 100%;
   overflow: hidden;
-  mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
 }
 
 .carousel {

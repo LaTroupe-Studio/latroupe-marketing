@@ -1,6 +1,7 @@
 interface LogoProps {
   color?: string;
   width?: number;
+  className?: string;
 }
 
 /**
@@ -10,6 +11,7 @@ interface LogoProps {
 export default function Logo({
   color = "#ECE6E3",
   width = 130,
+  className,
 }: LogoProps) {
   const height = width * (61 / 219);
 
@@ -17,6 +19,7 @@ export default function Logo({
     <svg
       width={width}
       height={height}
+      className={className}
       viewBox="0 0 219 61"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
