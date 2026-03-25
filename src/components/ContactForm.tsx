@@ -15,7 +15,7 @@ export default function ContactForm() {
     if (!accepted) return;
     setStatus("sending");
     try {
-      const res = await fetch("/api/contact", {
+      const res = await fetch(process.env.NEXT_PUBLIC_CONTACT_URL!, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name: form.name, email: form.email, message: form.message }),
