@@ -2,7 +2,7 @@ import { SiteContent } from "./types";
 const en: SiteContent = {
   locale: "en",
   nav: { links: [{label:"projects",id:"proyectos"},{label:"about",id:"por-que-nosotros"}], contact:{label:"contact",id:"contacto"} },
-  hero: { prefix:"latroupe", rotatingWords:["designs","optimizes","produces","organizes","improves","develops","engineers"], suffix:"with you", description:"We expand the capabilities of architecture and interior design studios supporting them throughout every phase of a project." },
+  hero: { prefix:"latroupe", rotatingWords:["designs","technifies","organises","improves","optimises","executes","builds","anticipates"], suffix:"behind the scenes", description:"We expand the capabilities of architecture and interior design studios supporting them throughout every phase of a project." },
   about: { eyebrow:"Really...", headline:"There are few things we cannot do", blocks:["Those who work with latroupe rely on us to expand their teams without compromising on quality.","We support design, planning, technical development, and project management, whenever needed. We integrate in a coordinated way with the team, adapting to their way of working, whatever it may be.","We have the experience and capability to work on all types of projects, regardless of their magnitude and complexity."] },
   projectsSection: { headline:"A selection of recent projects in which we collaborate" },
   projects: [

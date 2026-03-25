@@ -4,7 +4,7 @@ const es: SiteContent = {
   nav: { links: [{ label: "proyectos", id: "proyectos" },{ label: "nosotros", id: "por-que-nosotros" }], contact: { label: "contacto", id: "contacto" } },
   hero: {
     prefix: "latroupe",
-    rotatingWords: ["diseña","optimiza","produce","ordena","mejora","desarrolla","tecnifica"],
+    rotatingWords: ["diseña","tecnifica","ordena","mejora","optimiza","ejecuta","construye","anticipa"],
     suffix: "contigo",
     description: "Reforzamos la capacidad de los estudios de arquitectura o interiorismo y les acompañamos en todas las fases de desarrollo de cada proyecto.",
   },
