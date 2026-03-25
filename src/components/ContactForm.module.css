@@ -9,7 +9,7 @@
 }
 
 .headline {
-  grid-column: 6/12;
+  grid-column: 6/13;
   font-family: var(--font-mono);
   font-size: 38.64px; line-height: 49px;
   font-weight: 650; color: #77330B;

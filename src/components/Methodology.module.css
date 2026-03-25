@@ -19,12 +19,12 @@
   font-weight: 700; color: #0B172C; margin: 0;
 }
 
-.introRow { margin-top: 265px; }
+.introRow { margin-top: 100px; }
 .subtitleRow { margin-top: 16px; }
 .intro {
   grid-column: 1/8;
-  font-family: var(--font-body); font-size: 28px; line-height: 35px;
-  font-weight: 700; color: #28170E; margin: 0;
+  font-family: var(--font-body); font-size: 24px; line-height: 35px;
+  font-weight: 400; color: #28170E; margin: 0;
 }
 
 .pillarBlock { margin-top: 100px; }
@@ -44,7 +44,7 @@
 
 .textRow { margin-top: 30px; }
 .pillarText {
-  font-family: var(--font-body); font-size: 28px; line-height: 35px;
+  font-family: var(--font-body); font-size: 24px; line-height: 35px;
   font-weight: 400; color: #2F4868; margin: 0;
 }
 
@@ -52,7 +52,7 @@
 .p1Title { grid-column: 3/12; }
 .p1Sub { grid-column: 9/13; }
 .p1t1 { grid-column: 4/10; }
-.p1t2 { grid-column: 7/12; }
+.p1t2 { grid-column: 6/12; }
 
 /* ── Pillar II columns ── */
 .p2Title { grid-column: 1/12; }
@@ -63,7 +63,7 @@
 .p3Title { grid-column: 6/10; }
 .p3Sub { grid-column: 9/13; }
 .p3t1 { grid-column: 5/11; }
-.p3t2 { grid-column: 6/11; }
+.p3t2 { grid-column: 6/12; }
 
 /* ── Responsive ── */
 @media (max-width: 1024px) {
