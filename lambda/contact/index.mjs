@@ -2,26 +2,15 @@ import { SESClient, SendEmailCommand } from "@aws-sdk/client-ses";
 
 const ses = new SESClient({ region: process.env.AWS_REGION || "eu-central-1" });
 
+/** CORS lo aplica la Function URL (consola); no devolver Access-Control-* aquí o el navegador ve cabeceras duplicadas y falla CORS. */
+const JSON_HEADERS = { "Content-Type": "application/json" };
+
 function parseAllowedOrigins() {
   const raw = process.env.ALLOWED_ORIGIN || "";
   return raw
     .split(",")
     .map((s) => s.trim())
     .filter(Boolean);
-}
-
-function corsHeaders(requestOrigin) {
-  const allowed = parseAllowedOrigins();
-  const origin =
-    requestOrigin && allowed.includes(requestOrigin)
-      ? requestOrigin
-      : allowed[0] || "*";
-  return {
-    "Access-Control-Allow-Origin": origin,
-    "Access-Control-Allow-Headers": "content-type",
-    "Access-Control-Allow-Methods": "OPTIONS,POST",
-    "Content-Type": "application/json",
-  };
 }
 
 function originAllowed(requestOrigin) {
@@ -42,17 +31,15 @@ export const handler = async (event) => {
   const headers = event.headers || {};
   const requestOrigin = headers.origin || headers.Origin || "";
 
-  const baseHeaders = corsHeaders(requestOrigin);
-
   const method = event.requestContext?.http?.method || event.httpMethod;
   if (method === "OPTIONS") {
-    return { statusCode: 204, headers: baseHeaders, body: "" };
+    return { statusCode: 204, headers: {}, body: "" };
   }
 
   if (method !== "POST") {
     return {
       statusCode: 405,
-      headers: baseHeaders,
+      headers: JSON_HEADERS,
       body: JSON.stringify({ ok: false, error: "Method not allowed" }),
     };
   }
@@ -60,7 +47,7 @@ export const handler = async (event) => {
   if (!originAllowed(requestOrigin)) {
     return {
       statusCode: 403,
-      headers: baseHeaders,
+      headers: JSON_HEADERS,
       body: JSON.stringify({ ok: false, error: "Forbidden" }),
     };
   }
@@ -70,7 +57,7 @@ export const handler = async (event) => {
   if (!from || !to) {
     return {
       statusCode: 500,
-      headers: baseHeaders,
+      headers: JSON_HEADERS,
       body: JSON.stringify({ ok: false, error: "Server misconfigured" }),
     };
   }
@@ -84,7 +71,7 @@ export const handler = async (event) => {
   } catch {
     return {
       statusCode: 400,
-      headers: baseHeaders,
+      headers: JSON_HEADERS,
       body: JSON.stringify({ ok: false, error: "Invalid JSON" }),
     };
   }
@@ -96,7 +83,7 @@ export const handler = async (event) => {
   if (!name || !email || !message) {
     return {
       statusCode: 400,
-      headers: baseHeaders,
+      headers: JSON_HEADERS,
       body: JSON.stringify({ ok: false, error: "Missing fields" }),
     };
   }
@@ -122,14 +109,14 @@ export const handler = async (event) => {
     console.error(err);
     return {
       statusCode: 502,
-      headers: baseHeaders,
+      headers: JSON_HEADERS,
       body: JSON.stringify({ ok: false, error: "Email failed" }),
     };
   }
 
   return {
     statusCode: 200,
-    headers: baseHeaders,
+    headers: JSON_HEADERS,
     body: JSON.stringify({ ok: true }),
   };
 };
