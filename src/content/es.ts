@@ -59,7 +59,7 @@ const es: SiteContent = {
     links: [{label:"Privacidad",href:"/es/privacidad"},{label:"Cookies",href:"/es/cookies"},{label:"Aviso legal",href:"/es/aviso-legal"}],
     social: [{label:"Linkedin",href:"https://www.linkedin.com/company/latroupestudio/"},{label:"Instagram",href:"https://www.instagram.com/latroupestudio"},{label:"Pinterest",href:"https://www.pinterest.es/latroupestudio/"}],
     workWithUs: { label: "Trabaja con nosotros", href: "https://invented-cactus-ce6.notion.site/Trabajar-en-LaTroupe-cd9c990923954418bd2e6a3df58b2500" },
-    copyright: "Desarrollado por latroupe ( ) 2026 © Todos los derechos reservados.",
+    copyright: "Desarrollado por latroupe ( ) 2026 ©",
     legal: "",
   },
   overlay: { close:"CERRAR", inDevelopment:"En desarrollo", comingSoon:"Próximamente" },
