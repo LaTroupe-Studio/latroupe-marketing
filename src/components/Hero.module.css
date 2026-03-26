@@ -56,7 +56,7 @@
 .lineIndented {
   display: block;
   margin-left: calc((100% - 6 * var(--grid-gutter)) / 7 + var(--grid-gutter));
-  white-space: nowrap;
+  white-space: wrap;
 }
 
 .rotatingWord { color: var(--color-terracota-2); }
@@ -94,15 +94,15 @@
 }
 
 @media (max-width: 768px) {
-  .hero { height: auto; min-height: 100vh; padding: 120px 0 60px; display: flex; align-items: flex-end; }
+  .hero { height: auto; min-height: 100vh; padding: 120px 0 60px; display: flex; align-items: center; }
   .content { position: relative; align-content: end; }
   .claimCol { grid-column: 1 / -1; margin-top: 0; }
-  .descCol { grid-column: 1 / -1; margin-top: 40px; grid-row: auto; }
-  .heading { font-size: clamp(48px, 12vw, 80px); }
+  .descCol { grid-column: 1 / -1; margin-top: 40px; grid-row: auto; padding-top: 60px;}
+  .heading { font-size: clamp(48px, 13vw, 80px); }
   .lineIndented {
-    margin-left: auto;
-    margin-right: 0;
-    text-align: right;
+    margin-left: 0;
   }
+  .rotatingWord {padding-bottom: 15px;}
+  .logoAsText {height: 1.08em;}
   .description { font-size: 20px; line-height: 28px; max-width: none; }
 }
