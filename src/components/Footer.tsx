@@ -19,9 +19,11 @@ export default function Footer() {
         </div>
 
         <div className={`grid-12 ${styles.middleRow}`}>
-          <a className={styles.workFooter} href={content.footer.workWithUs?.href}>
-            {content.footer.workWithUs?.label}
-          </a>
+          {content.footer.workWithUs && (
+            <a className={styles.workFooter} href={content.footer.workWithUs.href} target="_blank" rel="noopener noreferrer">
+              {content.footer.workWithUs.label}
+            </a>
+          )}
 
           <div className={styles.socialCol}>
             {content.footer.social?.map((s) => (
