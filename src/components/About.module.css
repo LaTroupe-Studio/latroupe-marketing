@@ -63,9 +63,9 @@
 }
 
 @media (max-width: 768px) {
-  .section { padding-top: 80px; }
+  .section { padding-top: 200px; padding-bottom: 100px; height: 100vh;}
   .eyebrowCol, .headlineCol, .text1Col, .text2Col, .text3Col { grid-column: 1 / -1; grid-row: auto; }
-  .headlineCol { margin-top: 20px; }
+  .headlineCol { margin-top: 20px; margin-bottom: 40px; }
   .text1Col { margin-top: 24px; }
   .text2Col { margin-top: 24px; }
   .text3Col { margin-top: 24px; }
