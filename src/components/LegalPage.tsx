@@ -7,7 +7,7 @@ import styles from "./LegalPage.module.css";
 interface Props { title: string; content: string; }
 
 export default function LegalPage({ title, content }: Props) {
-  const { content: siteContent, locale } = useContent();
+  const { locale } = useContent();
   return (
     <div className={styles.page}>
       <header className={styles.header}>
