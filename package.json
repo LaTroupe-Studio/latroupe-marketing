@@ -6,7 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "git:start": "bash scripts/git-start.sh",
+    "git:push": "bash scripts/git-push.sh",
+    "git:release": "bash scripts/git-release.sh",
+    "git:sync": "bash scripts/git-sync.sh"
   },
   "dependencies": {
     "next": "^15.1.0",
