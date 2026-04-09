@@ -47,13 +47,16 @@ Bilingual (ES/EN), deployed to AWS S3 + CloudFront.
 npm run dev          # local dev server
 npm run build        # production build
 npm run lint         # run linter
-
-# Git helpers (for non-tech team members)
-npm run git:start    # start a new feature/fix branch
-npm run git:push     # push branch and create PR to develop
-npm run git:release  # create a release PR from develop to main
-npm run git:sync     # sync your branch with latest develop
 ```
+
+## Claude Skills (slash commands)
+
+| Command | Description |
+|---|---|
+| `/git-start feat my-feature` | Create a new branch from develop |
+| `/git-push` | Commit, push and create PR to develop |
+| `/git-release 1.1.0` | Create release PR from develop to main |
+| `/git-sync` | Sync current branch with latest develop |
 
 ## Deploy
 
