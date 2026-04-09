@@ -9,26 +9,26 @@ argument-hint: "<version> (e.g. 1.1.0)"
 
 The user wants to create a release from `develop` to `main`.
 
-## Current state
-
-Current version in package.json: !`node -p "require('./package.json').version"`
-
-Recent commits on develop not yet in main:
-```!
-git fetch origin develop main 2>/dev/null; git log origin/main..origin/develop --pretty=format:"- %s" --no-merges 2>/dev/null || echo "Unable to fetch"
-```
-
 ## Steps
 
 1. If `$ARGUMENTS` is provided, use it as the version. Otherwise ask the user for the new version number (e.g. `1.1.0`)
-2. Run `git fetch origin develop`
-3. Create branch `release-v<version>` from `origin/develop`
-4. Update the `version` field in `package.json` to the new version
-5. Commit with message `release: v<version>`
-6. Push the branch to origin
-7. Generate a changelog from commits between `origin/main` and `origin/develop`
-8. Create a PR to `main` with title `release: v<version>` and the changelog in the body
-9. Show the PR URL
+2. Run `git fetch origin develop main`
+3. Read `package.json` to check the current version
+4. Run `git log origin/main..origin/develop --pretty=format:"- %s" --no-merges` to see pending commits
+5. Create branch `release-v<version>` from `origin/develop`
+6. Update the `version` field in `package.json` to the new version
+7. Commit with message `release: v<version>`
+8. Push the branch to origin
+9. Generate a changelog from the commits obtained in step 4
+10. Create a PR to `main` with title `release: v<version>` and the changelog in the body
+11. Show the PR URL
+12. Remind the user that after merging the PR they need to sync develop with main:
+    ```
+    git checkout develop
+    git pull origin develop
+    git merge origin/main
+    git push origin develop
+    ```
 
 ## PR body format
 
