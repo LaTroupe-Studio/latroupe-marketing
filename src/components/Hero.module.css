@@ -69,11 +69,11 @@
   animation: blink 1s step-end infinite;
 }
 
-/* Description — col 9, anchored to ~28% from bottom (= 72% from top) */
+/* Description — col 9, bottom anchored: 12vh from bottom matches Figma (120px in 972px frame) */
 .descCol {
   grid-column: 9 / 13;
   align-self: end;
-  padding-bottom: 28vh;
+  margin-bottom: 12vh;
 }
 
 .description {
@@ -96,7 +96,7 @@
   .hero { height: auto; min-height: 100vh; padding: 120px 0 60px; display: flex; align-items: center; }
   .content { position: relative; align-content: end; }
   .claimCol { grid-column: 1 / -1; margin-top: 0; }
-  .descCol { grid-column: 1 / -1; align-self: auto; margin-top: 40px; padding-top: 60px; padding-bottom: 0; }
+  .descCol { grid-column: 1 / -1; align-self: auto; margin-top: 40px; margin-bottom: 0; padding-top: 60px; }
   .heading { font-size: clamp(48px, 13vw, 80px); }
   .lineIndented {
     margin-left: 0;
