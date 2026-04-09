@@ -8,8 +8,7 @@ Bilingual (ES/EN), deployed to AWS S3 + CloudFront.
 ## Git Flow
 
 - **main** — production. Only receives merges from `release-*` PRs. Deploys automatically.
-- **develop** — integration branch. Only receives PRs from feature/fix branches.
-- **staging** — preview environment. Deploys automatically to staging.latroupestudio.com.
+- **develop** — integration branch. Only receives PRs from feature/fix branches. Deploys automatically to staging.latroupestudio.com.
 - Feature/fix branches are always created from `develop`.
 
 ### Branch Naming
@@ -61,4 +60,4 @@ npm run lint         # run linter
 ## Deploy
 
 - **Production**: push/merge to `main` triggers `.github/workflows/deploy-production.yml`
-- **Staging**: push/merge to `staging` triggers `.github/workflows/deploy-staging.yml`
+- **Staging**: push/merge to `develop` triggers `.github/workflows/deploy-staging.yml`

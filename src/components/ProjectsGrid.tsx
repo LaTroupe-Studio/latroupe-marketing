@@ -27,7 +27,7 @@ function Entry({ project, className, tooltipText }: {
   );
 }
 
-export default function ProjectsGrid({ onProjectClick }: Props) {
+export default function ProjectsGrid({ onProjectClick: _onProjectClick }: Props) {
   const { content } = useContent();
   const p = content.projects;
   const comingSoon = content.overlay.comingSoon;

@@ -20,7 +20,6 @@ export default function Header({ onNavigate }: { onNavigate?: (id: string) => vo
       const scrollY = window.scrollY; const headerH = 70;
       const aboutEl = document.getElementById("nosotros");
       const trustEl = document.getElementById("trust-section");
-      const contactEl = document.getElementById("contacto");
       let newTheme: HeaderTheme = "beige";
       if (aboutEl && scrollY >= aboutEl.offsetTop - headerH && scrollY < aboutEl.offsetTop + aboutEl.offsetHeight - headerH) { newTheme = "dark"; }
       if (trustEl && scrollY >= trustEl.offsetTop - headerH && scrollY < trustEl.offsetTop + trustEl.offsetHeight - headerH) newTheme = "terracota";

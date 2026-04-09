@@ -22,6 +22,13 @@ The user wants to create a release from `develop` to `main`.
 9. Generate a changelog from the commits obtained in step 4
 10. Create a PR to `main` with title `release: v<version>` and the changelog in the body
 11. Show the PR URL
+12. Remind the user that after merging the PR they need to sync develop with main:
+    ```
+    git checkout develop
+    git pull origin develop
+    git merge origin/main
+    git push origin develop
+    ```
 
 ## PR body format
 
