@@ -21,7 +21,7 @@ npm run dev
 ## Despliegue
 
 - **Producción**: push/merge a `main` → despliega a **latroupestudio.com** (S3 + CloudFront)
-- **Staging**: push/merge a `staging` → despliega a **staging.latroupestudio.com**
+- **Staging**: push/merge a `develop` → despliega a **staging.latroupestudio.com**
 
 ---
 
@@ -196,8 +196,7 @@ feature/fix branch → PR → develop → release PR → main (producción)
 | Rama | Propósito | Protección |
 |------|-----------|------------|
 | `main` | Producción. Despliega automáticamente | Solo PRs desde `release-*`, requiere 1 approval |
-| `develop` | Integración. Recibe PRs de feature/fix | Solo PRs, sin commits directos |
-| `staging` | Preview. Despliega a staging.latroupestudio.com | — |
+| `develop` | Integración. Despliega a staging.latroupestudio.com | Solo PRs, sin commits directos |
 
 ### Convenciones de nombres
 
