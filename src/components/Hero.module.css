@@ -23,6 +23,7 @@
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: 1fr;
   gap: var(--grid-gutter);
   align-content: start;
 }
@@ -68,13 +69,11 @@
   animation: blink 1s step-end infinite;
 }
 
-/* Description — col 9, positioned at ~72% from top */
+/* Description — col 9, anchored to ~28% from bottom (= 72% from top) */
 .descCol {
   grid-column: 9 / 13;
-  margin-top: 72vh;
-  /* Negative row so it doesn't push below the claim */
-  grid-row: 1;
-  align-self: start;
+  align-self: end;
+  padding-bottom: 28vh;
 }
 
 .description {
@@ -97,7 +96,7 @@
   .hero { height: auto; min-height: 100vh; padding: 120px 0 60px; display: flex; align-items: center; }
   .content { position: relative; align-content: end; }
   .claimCol { grid-column: 1 / -1; margin-top: 0; }
-  .descCol { grid-column: 1 / -1; margin-top: 40px; grid-row: auto; padding-top: 60px;}
+  .descCol { grid-column: 1 / -1; align-self: auto; margin-top: 40px; padding-top: 60px; padding-bottom: 0; }
   .heading { font-size: clamp(48px, 13vw, 80px); }
   .lineIndented {
     margin-left: 0;
