@@ -1,5 +1,6 @@
 "use client";
 import { useState, FormEvent } from "react";
+import Link from "next/link";
 import { useContent } from "@/lib/locale-context";
 import styles from "./ContactForm.module.css";
 
@@ -7,19 +8,48 @@ export default function ContactForm() {
   const { content } = useContent();
   const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [accepted, setAccepted] = useState(false);
-  const [status, setStatus] = useState<"idle"|"sending"|"sent">("idle");
+  const [status, setStatus] = useState<"idle"|"sending"|"sent"|"error">("idle");
 
   const handleSubmit = async (e?: FormEvent) => {
     if (e) e.preventDefault();
     if (!accepted) return;
+    const endpoint = process.env.NEXT_PUBLIC_CONTACT_URL?.trim();
+    if (!endpoint) {
+      setStatus("error");
+      setTimeout(() => setStatus("idle"), 5000);
+      return;
+    }
     setStatus("sending");
-    await new Promise((r) => setTimeout(r, 1000));
-    setStatus("sent"); setForm({ name:"", email:"", message:"" });
-    setTimeout(() => setStatus("idle"), 3000);
+    try {
+      const res = await fetch(endpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          message: form.message,
+        }),
+      });
+      const data = (await res.json().catch(() => ({}))) as { ok?: boolean };
+      if (!res.ok || !data?.ok) throw new Error("submit failed");
+      setStatus("sent");
+      setForm({ name: "", email: "", message: "" });
+      setTimeout(() => setStatus("idle"), 3000);
+    } catch {
+      setStatus("error");
+      setTimeout(() => setStatus("idle"), 5000);
+    }
   };
 
   const { fields } = content.contact;
-  const btnLabel = status === "sending" ? fields.sending : status === "sent" ? fields.sent : fields.submit;
+  const btnLabel =
+    status === "sending"
+      ? fields.sending
+      : status === "sent"
+        ? fields.sent
+        : status === "error"
+          ? fields.error
+          : fields.submit;
 
   return (
     <section id="contacto" className={styles.section}>
@@ -56,7 +86,16 @@ export default function ContactForm() {
           {content.contact.legal && (
             <label className={styles.legalRow}>
               <input type="checkbox" checked={accepted} onChange={(e) => setAccepted(e.target.checked)} className={styles.checkbox} />
-              <span className={styles.legalText}>{content.contact.legal}</span>
+              <span className={styles.legalText}>
+                {content.contact.legalLinkPhrase && content.contact.legalLinkHref
+                  ? content.contact.legal!.split(content.contact.legalLinkPhrase).map((part, i, arr) =>
+                      i < arr.length - 1
+                        ? <>{part}<Link href={content.contact.legalLinkHref!} className={styles.legalLink}>{content.contact.legalLinkPhrase}</Link></>
+                        : part
+                    )
+                  : content.contact.legal
+                }
+              </span>
             </label>
           )}
           <button type="button" className={styles.submitBtn} disabled={status==="sending" || !accepted} onClick={handleSubmit}>

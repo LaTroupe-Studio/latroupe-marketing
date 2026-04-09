@@ -41,14 +41,14 @@
 .text1Col { grid-column: 1 / 6; grid-row: 3; margin-top: 117px; }
 
 /* "Estamos…" — col 4, 153px below Quienes */
-.text2Col { grid-column: 4 / 8; grid-row: 4; margin-top: 36px; }
+.text2Col { grid-column: 4 / 9; grid-row: 4; margin-top: 36px; }
 
 /* "Tenemos…" — col 8, overlaps with Estamos row */
-.text3Col { grid-column: 8 / 12; grid-row: 5; margin-top: 36px; }
+.text3Col { grid-column: 8 / 13; grid-row: 5; margin-top: 36px; }
 
 .bodyText {
   font-family: var(--font-body);
-  font-size: 28px; line-height: 35px;
+  font-size: 24px; line-height: 35px;
   font-weight: 400; color: #ECE6E3;
   margin: 0;
 }
@@ -63,9 +63,9 @@
 }
 
 @media (max-width: 768px) {
-  .section { padding-top: 80px; }
+  .section { padding-top: 200px; padding-bottom: 100px; height: 100vh;}
   .eyebrowCol, .headlineCol, .text1Col, .text2Col, .text3Col { grid-column: 1 / -1; grid-row: auto; }
-  .headlineCol { margin-top: 20px; }
+  .headlineCol { margin-top: 20px; margin-bottom: 40px; }
   .text1Col { margin-top: 24px; }
   .text2Col { margin-top: 24px; }
   .text3Col { margin-top: 24px; }

@@ -22,10 +22,7 @@ export default function Header({ onNavigate }: { onNavigate?: (id: string) => vo
       const trustEl = document.getElementById("trust-section");
       const contactEl = document.getElementById("contacto");
       let newTheme: HeaderTheme = "beige";
-      for (const el of [aboutEl, contactEl]) {
-        if (!el) continue;
-        if (scrollY >= el.offsetTop - headerH && scrollY < el.offsetTop + el.offsetHeight - headerH) { newTheme = "dark"; break; }
-      }
+      if (aboutEl && scrollY >= aboutEl.offsetTop - headerH && scrollY < aboutEl.offsetTop + aboutEl.offsetHeight - headerH) { newTheme = "dark"; }
       if (trustEl && scrollY >= trustEl.offsetTop - headerH && scrollY < trustEl.offsetTop + trustEl.offsetHeight - headerH) newTheme = "terracota";
       setTheme(newTheme);
       if (aboutEl) setShowLogo(scrollY > aboutEl.offsetTop - headerH);

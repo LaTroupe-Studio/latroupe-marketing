@@ -2,7 +2,7 @@ import { SiteContent } from "./types";
 const en: SiteContent = {
   locale: "en",
   nav: { links: [{label:"projects",id:"proyectos"},{label:"about",id:"por-que-nosotros"}], contact:{label:"contact",id:"contacto"} },
-  hero: { prefix:"latroupe", rotatingWords:["designs","optimizes","produces","organizes","improves","develops","engineers"], suffix:"with you", description:"We expand the capabilities of architecture and interior design studios supporting them throughout every phase of a project." },
+  hero: { prefix:"latroupe", rotatingWords:["designs","technifies","organises","improves","optimises","executes","builds","anticipates"], suffix:"behind the scenes", description:"We expand the capabilities of architecture and interior design studios supporting them throughout every phase of a project." },
   about: { eyebrow:"Really...", headline:"There are few things we cannot do", blocks:["Those who work with latroupe rely on us to expand their teams without compromising on quality.","We support design, planning, technical development, and project management, whenever needed. We integrate in a coordinated way with the team, adapting to their way of working, whatever it may be.","We have the experience and capability to work on all types of projects, regardless of their magnitude and complexity."] },
   projectsSection: { headline:"A selection of recent projects in which we collaborate" },
   projects: [
@@ -25,8 +25,8 @@ const en: SiteContent = {
     ],
   },
   whyUs: { headline:"Why us?", paragraphs:["At latroupe, we've worked across architecture, construction, design, technology, and business.","That is why we can offer a service that adapts to your current needs—and evolves as they change.","Our way of working is simple (but not simplistic) and is based on establishing sustainable, long-term relationships.","If you think we can help, it all starts with a conversation."] },
-  contact: { headline:"Let's start a project together", fields:{name:"Name",email:"Email",company:"Message",message:"Write us a message",submit:"Send",sending:"Sending...",sent:"Sent!"}, legal:"By clicking Send, you accept our data protection policy and agree that we may contact you." },
-  footer: { links:[{label:"Privacy",href:"/en/privacy"},{label:"Cookies",href:"/en/cookies"},{label:"Legal notice",href:"/en/legal-notice"}], social:[{label:"Linkedin",href:"https://www.linkedin.com/company/latroupestudio"},{label:"Instagram",href:"https://www.instagram.com/latroupestudio"},{label:"Pinterest",href:"https://www.pinterest.es/latroupestudio/"}], workWithUs:{label:"Work with us",href:"https://invented-cactus-ce6.notion.site/Trabajar-en-LaTroupe-cd9c990923954418bd2e6a3df58b2500"}, copyright:"Developed by latroupe ( ) 2026 © All rights reserved.", legal:"" },
+  contact: { headline:"Let's start a project together", fields:{name:"Name",email:"Email",company:"Message",message:"Write us a message",submit:"Send",sending:"Sending...",sent:"Sent!",error:"Could not send. Please try again."}, legal:"By clicking Send, you accept our data protection policy and agree that we may contact you.", legalLinkPhrase:"data protection policy", legalLinkHref:"/en/legal-notice" },
+  footer: { links:[{label:"Privacy",href:"/en/privacy"},{label:"Cookies",href:"/en/cookies"},{label:"Legal notice",href:"/en/legal-notice"}], social:[{label:"Linkedin",href:"https://www.linkedin.com/company/latroupestudio/"},{label:"Instagram",href:"https://www.instagram.com/latroupestudio"},{label:"Pinterest",href:"https://www.pinterest.es/latroupestudio/"}], workWithUs:{label:"Work with us",href:"https://invented-cactus-ce6.notion.site/Trabajar-en-LaTroupe-cd9c990923954418bd2e6a3df58b2500"}, copyright:"Developed by latroupe ( ) 2026 © All rights reserved.", legal:"" },
   overlay: { close:"CLOSE", inDevelopment:"Ongoing", comingSoon:"Coming soon" },
 };
 export default en;
