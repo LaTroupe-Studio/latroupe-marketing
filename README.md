@@ -18,9 +18,10 @@ npm run dev
 
 ---
 
-## Despliegue (Vercel)
+## Despliegue
 
-Producción recomendada: conecta el repo en [Vercel](https://vercel.com) e importa el proyecto (preset Next.js). Pasos detallados en [`docs/VERCEL.md`](docs/VERCEL.md).
+- **Producción**: push/merge a `main` → despliega a **latroupestudio.com** (S3 + CloudFront)
+- **Staging**: push/merge a `staging` → despliega a **staging.latroupestudio.com**
 
 ---
 
@@ -172,27 +173,62 @@ El formulario en `ContactForm.tsx` tiene un placeholder para el envío. Para con
 
 ---
 
-## Despliegue
+## Build
 
 ```bash
-# Build de producción
-npm run build
-
-# Servir localmente
-npm start
+npm run build    # build de producción (static export a /out)
+npm start        # servir localmente
+npm run lint     # linter
 ```
 
-**Vercel** (recomendado para Next.js):
-```bash
-npx vercel
+---
+
+## Git Flow
+
+El proyecto sigue un flujo de trabajo con ramas protegidas:
+
+```
+feature/fix branch → PR → develop → release PR → main (producción)
 ```
 
-**Exportación estática** (para hosting tradicional):
-Descomenta `output: 'export'` en `next.config.js`, luego:
-```bash
-npm run build
-# Los archivos estáticos estarán en /out
+### Ramas
+
+| Rama | Propósito | Protección |
+|------|-----------|------------|
+| `main` | Producción. Despliega automáticamente | Solo PRs desde `release-*`, requiere 1 approval |
+| `develop` | Integración. Recibe PRs de feature/fix | Solo PRs, sin commits directos |
+| `staging` | Preview. Despliega a staging.latroupestudio.com | — |
+
+### Convenciones de nombres
+
+**Ramas:** `feat-nombre-corto`, `fix-nombre-corto`, `release-v1.0.0`, `hotfix-descripcion`
+
+**Commits:** Conventional Commits en inglés, máximo 72 caracteres
 ```
+feat: add hero section
+fix: resolve contact form submit
+chore: update dependencies
+refactor: simplify grid layout
+```
+
+### Comandos de Claude Code
+
+Si usas [Claude Code](https://claude.ai/code), tienes estos slash commands disponibles:
+
+| Comando | Qué hace |
+|---------|----------|
+| `/git-start feat my-feature` | Crea una rama feature/fix desde `develop` |
+| `/git-push` | Hace commit, push y crea PR a `develop` |
+| `/git-release 1.1.0` | Crea rama release y PR de `develop` a `main` |
+| `/git-sync` | Sincroniza tu rama con el último `develop` |
+
+### Workflow paso a paso
+
+1. **Empieza**: `/git-start feat mi-feature` (o `git checkout -b feat-mi-feature origin/develop`)
+2. **Trabaja**: haz commits atómicos con mensajes claros
+3. **Sube**: `/git-push` (o push manual + crear PR a `develop`)
+4. **Prueba**: mergea a `develop`, verifica en staging
+5. **Publica**: `/git-release 1.1.0` (crea PR de `develop` a `main`)
 
 ---
 
