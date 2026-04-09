@@ -23,14 +23,14 @@
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: 1fr;
-  gap: var(--grid-gutter);
-  align-content: start;
+  grid-template-rows: auto 1fr;
+  gap: 0 var(--grid-gutter);
 }
 
-/* Claim — starts at col 2, positioned at ~18% from top */
+/* Claim — row 1, starts at col 2, offset from top */
 .claimCol {
   grid-column: 2 / 9;
+  grid-row: 1;
   margin-top: 18vh;
 }
 
@@ -69,9 +69,10 @@
   animation: blink 1s step-end infinite;
 }
 
-/* Description — col 9, bottom anchored: 12vh from bottom matches Figma (120px in 972px frame) */
+/* Description — row 2, col 9: always below the title row, anchored to bottom */
 .descCol {
   grid-column: 9 / 13;
+  grid-row: 2;
   align-self: end;
   margin-bottom: 12vh;
 }
@@ -96,7 +97,7 @@
   .hero { height: auto; min-height: 100vh; padding: 120px 0 60px; display: flex; align-items: center; }
   .content { position: relative; align-content: end; }
   .claimCol { grid-column: 1 / -1; margin-top: 0; }
-  .descCol { grid-column: 1 / -1; align-self: auto; margin-top: 40px; margin-bottom: 0; padding-top: 60px; }
+  .descCol { grid-column: 1 / -1; grid-row: auto; align-self: auto; margin-top: 40px; margin-bottom: 0; padding-top: 60px; }
   .heading { font-size: clamp(48px, 13vw, 80px); }
   .lineIndented {
     margin-left: 0;
