@@ -27,7 +27,7 @@ const es: SiteContent = {
     { id:"andaz-turks", title:"Andaz Turks & Caicos at Grace Bay |\nRenovación de hotel", location:"Turks and Caicos Islands", thumbnail:"/images/projects/andaz-turks/hero.jpg", type:"Hotel", status:"En desarrollo", inDevelopment:true, heroImage:"/images/projects/andaz-turks/hero.jpg", shortDesc:"", longDesc:[], labor:[], images:[] },
   ],
   trust: { headline: "Confían en latroupe:", logos: [
-    {name:"Accor",src:"/images/logos/accor.png"},{name:"Aena",src:"/images/logos/aena.png"},{name:"Airia",src:"/images/logos/airia.png"},{name:"Amazon",src:"/images/logos/amazon.png"},{name:"BDG",src:"/images/logos/bdg.png"},{name:"BGY",src:"/images/logos/bgy.png"},{name:"Hyatt",src:"/images/logos/hyatt.png"},{name:"Joan Lao",src:"/images/logos/joan-lao.png"},{name:"LEGO",src:"/images/logos/lego.png"},{name:"M Gallery",src:"/images/logos/m-gallery.png"},{name:"Marriott",src:"/images/logos/marriott.png"},{name:"Modus Operandi",src:"/images/logos/modus-operandi.png"},
+    {name:"Accor",src:"/images/logos/accor.svg"},{name:"Aena",src:"/images/logos/aena.svg"},{name:"Airia",src:"/images/logos/airia.svg"},{name:"Amazon",src:"/images/logos/amazon.svg"},{name:"BDG",src:"/images/logos/bdg.svg"},{name:"BGY",src:"/images/logos/bgy.svg"},{name:"Hyatt",src:"/images/logos/hyatt.svg"},{name:"Joan Lao",src:"/images/logos/joan-lao.svg"},{name:"LEGO",src:"/images/logos/lego.svg"},{name:"M Gallery",src:"/images/logos/m-gallery.svg"},{name:"Marriott",src:"/images/logos/marriott.svg"},{name:"Modus Operandi",src:"/images/logos/modus-operandi.svg"},
   ]},
   methodology: {
     headline: "Nuestra experiencia diseña la metodología",
