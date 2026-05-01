@@ -1,4 +1,4 @@
-.section { background-color: #ECE6E3; padding: 120px 0 100px; }
+.section { padding: 120px 0 100px; }
 
 .headRow { margin-bottom: 60px; }
 .headline { grid-column: 3/9; font-family: var(--font-heading); font-size: 72px; line-height: 86px; font-weight: 700; color: #28170E; margin: 0; }

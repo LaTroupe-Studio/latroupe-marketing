@@ -6,7 +6,7 @@ export default function Methodology() {
   const { content } = useContent();
   const p = content.methodology.pillars;
   return (
-    <section id="metodologia" className={styles.section}>
+    <section id="metodologia" className={styles.section} data-bg-color="#ECE6E3" data-text-color="#77330B">
       <div className="grid-container">
         {/* Headline: col 3 */}
         <div className="grid-12">

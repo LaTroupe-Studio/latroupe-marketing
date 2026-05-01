@@ -52,7 +52,7 @@ export default function ContactForm() {
           : fields.submit;
 
   return (
-    <section id="contacto" className={styles.section}>
+    <section id="contacto" className={styles.section} data-bg-color="#ECE6E3" data-text-color="#77330B">
       {/* Headline */}
       <div className="grid-container">
         <div className="grid-12">

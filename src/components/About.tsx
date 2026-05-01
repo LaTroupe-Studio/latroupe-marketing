@@ -5,7 +5,7 @@ import styles from "./About.module.css";
 export default function About() {
   const { content } = useContent();
   return (
-    <section id="nosotros" className={styles.section}>
+    <section id="nosotros" className={styles.section} data-bg-color="#2F4868" data-text-color="#ECE6E3">
       <div className="grid-container">
         <div className={`grid-12 ${styles.grid}`}>
           <div className={styles.eyebrowCol}><h2 className={styles.eyebrow}>{content.about.eyebrow}</h2></div>

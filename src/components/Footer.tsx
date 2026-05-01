@@ -7,7 +7,7 @@ import styles from "./Footer.module.css";
 export default function Footer() {
   const { content, locale } = useContent();
   return (
-    <footer className={styles.footer}>
+    <footer className={styles.footer} data-bg-color="#ECE6E3" data-text-color="#77330B">
       <div className="grid-container">
 
         <div className={`grid-12 ${styles.logoRow}`}>

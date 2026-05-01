@@ -35,7 +35,7 @@ export default function ProjectsGrid({ onProjectClick: _onProjectClick }: Props)
   const getTooltip = (proj: Project) => proj.inDevelopment ? inDev : comingSoon;
 
   return (
-    <section id="proyectos" className={styles.section}>
+    <section id="proyectos" className={styles.section} data-bg-color="#ECE6E3" data-text-color="#77330B">
       <div className="grid-container">
         <h2 className={styles.headline}>{content.projectsSection.headline}</h2>
 
