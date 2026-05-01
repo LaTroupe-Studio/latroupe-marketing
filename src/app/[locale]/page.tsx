@@ -11,6 +11,7 @@ import Methodology from "@/components/Methodology";
 import WhyUs from "@/components/WhyUs";
 import ContactForm from "@/components/ContactForm";
 import Footer from "@/components/Footer";
+import ScrollColorBackground from "@/components/ScrollColorBackground";
 
 export default function HomePage() {
   const handleNavigate = useCallback((id: string) => {
@@ -20,6 +21,7 @@ export default function HomePage() {
 
   return (
     <>
+      <ScrollColorBackground />
       <Header onNavigate={handleNavigate} />
       <Hero />
       <About />

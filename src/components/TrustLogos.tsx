@@ -9,7 +9,7 @@ export default function TrustLogos() {
   const logos = [...content.trust.logos, ...content.trust.logos, ...content.trust.logos];
   const headlineParts = content.trust.headline.split("latroupe");
   return (
-    <section id="trust-section" className={styles.section}>
+    <section id="trust-section" className={styles.section} data-bg-color="#AC6752" data-text-color="#ECE6E3">
       <div className="grid-container">
         <h2 className={styles.headline}>
           {headlineParts.length > 1 ? (

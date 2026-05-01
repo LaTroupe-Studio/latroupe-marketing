@@ -7,7 +7,7 @@
  * Title left-aligned, image offset right, location further right
  */
 
-.section { background-color: #ECE6E3; padding-top: 200px; padding-bottom: 80px; }
+.section { padding-top: 200px; padding-bottom: 80px; }
 
 .headline {
   font-family: var(--font-body); font-size: 48px; line-height: 60px;
