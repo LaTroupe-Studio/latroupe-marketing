@@ -23,7 +23,7 @@ export default function ScrollColorBackground() {
       const bgColor = section.dataset.bgColor;
       const textColor = section.dataset.textColor;
       const tl = gsap.timeline({
-        scrollTrigger: { trigger: section, start: "top bottom", end: "top top", scrub: true },
+        scrollTrigger: { trigger: section, start: "top 65%", end: "top 35%", scrub: true },
         defaults: { ease: "none", immediateRender: false },
       });
       if (bgColor) tl.to(body, { backgroundColor: bgColor }, 0);
