@@ -53,8 +53,11 @@ export const handler = async (event) => {
   }
 
   const from = process.env.SES_FROM_EMAIL;
-  const to = process.env.SES_TO_EMAIL;
-  if (!from || !to) {
+  const toAddresses = (process.env.SES_TO_EMAIL || "")
+    .split(",")
+    .map((s) => s.trim())
+    .filter(Boolean);
+  if (!from || toAddresses.length === 0) {
     return {
       statusCode: 500,
       headers: JSON_HEADERS,
@@ -95,7 +98,7 @@ export const handler = async (event) => {
     await ses.send(
       new SendEmailCommand({
         Source: from,
-        Destination: { ToAddresses: [to] },
+        Destination: { ToAddresses: toAddresses },
         Message: {
           Subject: { Data: subject, Charset: "UTF-8" },
           Body: {
