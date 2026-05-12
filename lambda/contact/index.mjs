@@ -5,6 +5,13 @@ const ses = new SESClient({ region: process.env.AWS_REGION || "eu-central-1" });
 /** CORS lo aplica la Function URL (consola); no devolver Access-Control-* aquí o el navegador ve cabeceras duplicadas y falla CORS. */
 const JSON_HEADERS = { "Content-Type": "application/json" };
 
+function parseEmailList(raw) {
+  return (raw || "")
+    .split(",")
+    .map((s) => s.trim())
+    .filter(Boolean);
+}
+
 function parseAllowedOrigins() {
   const raw = process.env.ALLOWED_ORIGIN || "";
   return raw
@@ -53,8 +60,8 @@ export const handler = async (event) => {
   }
 
   const from = process.env.SES_FROM_EMAIL;
-  const to = process.env.SES_TO_EMAIL;
-  if (!from || !to) {
+  const to = parseEmailList(process.env.SES_TO_EMAIL);
+  if (!from || to.length === 0) {
     return {
       statusCode: 500,
       headers: JSON_HEADERS,
@@ -95,7 +102,7 @@ export const handler = async (event) => {
     await ses.send(
       new SendEmailCommand({
         Source: from,
-        Destination: { ToAddresses: [to] },
+        Destination: { ToAddresses: to },
         Message: {
           Subject: { Data: subject, Charset: "UTF-8" },
           Body: {
