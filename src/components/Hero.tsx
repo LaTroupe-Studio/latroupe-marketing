@@ -8,7 +8,7 @@ export default function Hero() {
   const { content } = useContent();
   const typedWord = useTypingAnimation(content.hero.rotatingWords);
   return (
-    <section className={styles.hero}>
+    <section className={styles.hero} data-bg-color="#ECE6E3" data-text-color="#77330B">
       <div className="grid-container">
         <div className={`grid-12 ${styles.content}`}>
           <div className={styles.claimCol}>

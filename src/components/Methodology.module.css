@@ -11,7 +11,7 @@
  *      t1 left533→col5 | t2 left650→col6
  */
 
-.section { background-color: #ECE6E3; padding: 140px 0 100px; }
+.section { padding: 140px 0 100px; }
 
 .headline {
   grid-column: 3/11;

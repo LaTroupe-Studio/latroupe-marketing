@@ -6,7 +6,7 @@ export default function WhyUs() {
   const { content } = useContent();
   const p = content.whyUs.paragraphs;
   return (
-    <section id="por-que-nosotros" className={styles.section}>
+    <section id="por-que-nosotros" className={styles.section} data-bg-color="#ECE6E3" data-text-color="#77330B">
       <div className="grid-container">
         <div className={`grid-12 ${styles.headRow}`}>
           <h2 className={styles.headline}>{content.whyUs.headline}</h2>
