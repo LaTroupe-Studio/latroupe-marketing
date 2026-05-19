@@ -1,9 +1,8 @@
 name: Deploy staging environment
 
+# FALLBACK MANUAL — el deploy automático lo hace Vercel (integración Git).
+# Ejecutar solo a mano desde la pestaña Actions si hay que revertir a AWS.
 on:
-  push:
-    branches:
-      - develop
   workflow_dispatch:
 
 env:

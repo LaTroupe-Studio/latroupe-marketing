@@ -59,5 +59,8 @@ npm run lint         # run linter
 
 ## Deploy
 
-- **Production**: push/merge to `main` triggers `.github/workflows/deploy-production.yml`
-- **Staging**: push/merge to `develop` triggers `.github/workflows/deploy-staging.yml`
+- Automatic deploy via **Vercel Git integration** (no GitHub Actions for deploy).
+- **Production**: push/merge to `main` → latroupestudio.com
+- **Staging**: push/merge to `develop` → staging.latroupestudio.com
+- The S3/CloudFront workflows (`deploy-production.yml`, `deploy-staging.yml`) are
+  now manual-only fallback (`workflow_dispatch`). See `docs/VERCEL.md`.
