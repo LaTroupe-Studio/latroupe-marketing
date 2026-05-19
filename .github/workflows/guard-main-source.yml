@@ -1,0 +1,28 @@
+name: Guard main source branch
+
+# Bloquea PRs hacia main que no vengan de release-* o hotfix-*.
+# Para que sea efectivo debe estar en los required status checks de main.
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  main-source-guard:
+    name: main-source-guard
+    runs-on: ubuntu-latest
+    steps:
+      - name: Only allow release-* or hotfix-* into main
+        env:
+          HEAD_REF: ${{ github.head_ref }}
+        run: |
+          echo "PR head branch: $HEAD_REF"
+          case "$HEAD_REF" in
+            release-*|hotfix-*)
+              echo "OK: '$HEAD_REF' may target main."
+              ;;
+            *)
+              echo "::error::PRs to 'main' are only allowed from 'release-*' or 'hotfix-*' branches (got '$HEAD_REF')."
+              exit 1
+              ;;
+          esac
