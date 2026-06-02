@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { Project } from "@/content/types";
-import { withBasePath } from "@/lib/paths";
+import { withBasePath, projectAlt } from "@/lib/paths";
 import styles from "./ProjectCard.module.css";
 
 interface ProjectCardProps {
@@ -23,7 +23,7 @@ export default function ProjectCard({ project, onClick }: ProjectCardProps) {
     >
       <div className={styles.imageWrapper}>
         <div className={styles.imageInner} style={{ transform: hovered ? "scale(1.03)" : "scale(1)" }}>
-          <Image src={withBasePath(project.thumbnail)} alt={project.title} fill sizes="(max-width: 768px) 100vw, 33vw" className={styles.image} />
+          <Image src={withBasePath(project.thumbnail)} alt={projectAlt(project)} fill sizes="(max-width: 768px) 100vw, 33vw" className={styles.image} />
         </div>
       </div>
       <h3 className={styles.title}>{project.title}</h3>
