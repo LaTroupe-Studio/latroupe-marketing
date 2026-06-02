@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://latroupestudio.com/es</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://latroupestudio.com/es"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://latroupestudio.com/en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://latroupestudio.com/es"/>
+    <lastmod>2026-06-01</lastmod>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://latroupestudio.com/en</loc>
+    <xhtml:link rel="alternate" hreflang="es" href="https://latroupestudio.com/es"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://latroupestudio.com/en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://latroupestudio.com/es"/>
+    <lastmod>2026-06-01</lastmod>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://latroupestudio.com/es/aviso-legal</loc>
+    <lastmod>2026-06-01</lastmod>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://latroupestudio.com/es/privacidad</loc>
+    <lastmod>2026-06-01</lastmod>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://latroupestudio.com/es/cookies</loc>
+    <lastmod>2026-06-01</lastmod>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://latroupestudio.com/en/legal-notice</loc>
+    <lastmod>2026-06-01</lastmod>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://latroupestudio.com/en/privacy</loc>
+    <lastmod>2026-06-01</lastmod>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://latroupestudio.com/en/cookies</loc>
+    <lastmod>2026-06-01</lastmod>
+    <priority>0.3</priority>
+  </url>
+</urlset>
