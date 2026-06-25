@@ -1,0 +1,49 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Archivo:wght@300;400;500;600&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  background: #f4f4f2;
+  color: #141414;
+  -webkit-font-smoothing: antialiased;
+  font-family: "Archivo", sans-serif;
+}
+
+::selection {
+  background: #141414;
+  color: #f4f4f2;
+}
+
+img.bw {
+  filter: saturate(1.03) contrast(1.02);
+}
+
+/* Form field focus / button hover (replaces inline style-focus / style-hover) */
+.field:focus {
+  border-bottom: 1px solid #f4f4f2 !important;
+}
+
+.submit-btn:hover {
+  background: #ffffff !important;
+}
+
+/* Responsive: stack the split grids on narrow screens */
+@media (max-width: 860px) {
+  .split-hero,
+  .split-temas,
+  .split-cols,
+  .doc-grid,
+  .form-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .hero-media,
+  .temas-media {
+    min-height: 56vh !important;
+    border-right: none !important;
+  }
+}
