@@ -1,56 +1,49 @@
 # SDR application form
 
-Static, self-contained job-application form for the **SDR — BIM Management** role.
-Intended to live at **apply.sdr.latroupestudio.com** and be reachable only via its
-direct link (it is `noindex` + `robots.txt` Disallow, so it must NOT be linked from
-the main site or sitemap).
+Static job-application form for the **SDR — BIM Management** role.
 
-Submissions are handled entirely inside our Google Workspace — no third-party form
-service. Responses append to a Google Sheet; uploaded CVs are saved to a Drive folder
-(both inside the **09. Sales** folder), and the Sheet stores a link to each CV.
+- **Web bundle:** [`public/apply-sdr/`](../public/apply-sdr/) → served at **`www.latroupestudio.com/apply-sdr`**.
+- **Backend:** `Code.gs` (Google Apps Script) — handles submissions. Not part of the web deploy.
+
+Submissions stay inside our Google Workspace — no third-party form service. Responses append
+to a Google Sheet; uploaded CVs are saved to a Drive folder (both inside the **09. Sales**
+folder), and the Sheet stores a link to each CV.
 
 ---
 
 ## Files
 | File | What it is |
 |------|------------|
-| `index.html` | The form. Self-contained (inline SVG logo, fonts in `fonts/`). |
-| `fonts/` | Roobert / Roobert Mono (brand fonts). Keep alongside `index.html`. |
-| `logo-latroupe-wordmark.svg` | Brand wordmark (also inlined in the HTML; kept for reference). |
-| `robots.txt` | Blocks all indexing for the deployed host. |
-| `Code.gs` | Google Apps Script backend (paste into Apps Script — NOT part of the web deploy). |
+| `../public/apply-sdr/index.html` | The form (self-contained: inline SVG logo, fonts in `fonts/`). |
+| `../public/apply-sdr/fonts/` | Roobert / Roobert Mono brand fonts. |
+| `../public/apply-sdr/logo-latroupe-wordmark.svg` | Brand wordmark (also inlined in the HTML; kept for reference). |
+| `Code.gs` | Google Apps Script backend — paste into Apps Script, NOT deployed with the site. |
 
 ---
 
-## Hosting — two options, your call, @jaume
+## Hosting — @jaume
 
-**Option A — dedicated static deploy (recommended for the subdomain)**
-Serve this `sdr-form/` folder as a standalone static site (Cloudflare Pages / S3 /
-wherever we host static), and point `apply.sdr.latroupestudio.com` at it. Cleanest fit
-for an independent subdomain; no coupling to the Next.js marketing app.
+Lives under `public/apply-sdr/`, so the Next.js app serves it at `www.latroupestudio.com/apply-sdr`.
+On Vercel `public/apply-sdr/index.html` resolves at `/apply-sdr/`; if you want the clean
+no-trailing-slash `/apply-sdr` to resolve too, add a rewrite.
 
-**Option B — serve from this Next.js app**
-Move the folder contents into `public/sdr-form/` here; it would be reachable at
-`latroupestudio.com/sdr-form/`. The subdomain would then need a redirect/route. Use
-this if you'd rather not stand up a separate deploy.
+**Keep it unlisted (reachable only via the direct link):**
+- The page already sends `<meta name="robots" content="noindex, nofollow, noarchive">`.
+- **Do NOT** link it from the site nav, footer, or **sitemap**, and **do NOT** add a
+  `Disallow: /apply-sdr` to the site `robots.txt` — blocking crawl would stop crawlers from
+  reading the `noindex` tag. The meta tag + being unlinked is what keeps it out of search.
 
-Either way the form itself doesn't change — it's plain HTML/CSS/JS.
+The Sheet ID and Drive folder ID are already wired into `Code.gs`, and the Apps Script Web App
+URL is already wired into `index.html`. Backend is live and tested end-to-end.
 
 ---
 
-## Backend setup (one time, ~15 min)
+## Backend setup (already done — reference only)
 
-1. In the **09. Sales** Drive folder, create a Google Sheet → copy its ID into
-   `SHEET_ID` in `Code.gs`.
-2. Copy the **09. Sales** folder ID (or a sub-folder for CVs) into `CV_FOLDER_ID`.
-3. Open the Sheet ▸ **Extensions ▸ Apps Script**, paste `Code.gs`, save.
-4. Run `setupHeaders()` once (authorize when prompted) — writes the header row,
-   including the **CV link** column.
-5. **Deploy ▸ New deployment ▸ Web app** → Execute as **Me**, Access **Anyone** →
-   copy the Web app URL.
-6. In `index.html`, replace `YOUR_APPS_SCRIPT_WEB_APP_URL` with that URL.
+The Apps Script is deployed and the IDs are filled in. For reference, the one-time setup was:
+1. Sheet created inside the **09. Sales** Drive folder → its ID in `SHEET_ID`.
+2. **09. Sales** folder ID in `CV_FOLDER_ID`.
+3. `Code.gs` pasted into the Sheet's Apps Script, `setupHeaders()` run once.
+4. Deployed as a Web app (Execute as: Me · Access: Anyone) → URL wired into `index.html`.
 
-Data controller for GDPR: **Awesomely, S.L.** (notice + consent checkbox already in the form).
-
-To add/rename a question later: edit `index.html`, then add/rename the matching field
-in the `COLUMNS` array in `Code.gs` and re-run `setupHeaders()`.
+GDPR data controller: **Awesomely, S.L.** (privacy notice + consent checkbox in the form).
