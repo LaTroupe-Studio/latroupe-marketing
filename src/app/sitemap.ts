@@ -1,5 +1,7 @@
 import { MetadataRoute } from "next";
 
+export const dynamic = "force-static";
+
 const SITE_URL = "https://latroupestudio.com";
 
 const legalPairs = [
