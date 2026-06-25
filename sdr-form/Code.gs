@@ -17,8 +17,8 @@
  *     (authorize the script when prompted).
  */
 
-const SHEET_ID     = "YOUR_GOOGLE_SHEET_ID";
-const CV_FOLDER_ID = "YOUR_DRIVE_FOLDER_ID";
+const SHEET_ID     = "1a_6hozUPiaqf43K6LWtIycneupMAUOaDxEyGHmXuzyU"; // "SDR Applications — BIM Management", in 09. Sales
+const CV_FOLDER_ID = "1W4JaUI3S_STThJoteI3TkcAOnyLfJf40";            // 09. Sales folder (CVs saved here)
 
 // Column order — matches the form field names (the "name" attributes).
 const COLUMNS = [
