@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Reachable only via the direct link: keep it out of search engines -->
+  <meta name="robots" content="noindex, nofollow, noarchive" />
+  <title>SDR — BIM Management · latroupe()</title>
+  <style>
+    @font-face { font-family:"Roobert"; font-weight:300; src:url("fonts/Roobert-Light.otf") format("opentype"); font-display:swap; }
+    @font-face { font-family:"Roobert"; font-weight:400; src:url("fonts/Roobert-Regular.otf") format("opentype"); font-display:swap; }
+    @font-face { font-family:"Roobert"; font-weight:500; src:url("fonts/Roobert-Medium.otf") format("opentype"); font-display:swap; }
+    @font-face { font-family:"Roobert"; font-weight:600; src:url("fonts/Roobert-SemiBold.otf") format("opentype"); font-display:swap; }
+    @font-face { font-family:"Roobert"; font-weight:700; src:url("fonts/Roobert-Bold.otf") format("opentype"); font-display:swap; }
+    @font-face { font-family:"Roobert"; font-weight:900; src:url("fonts/Roobert-Heavy.otf") format("opentype"); font-display:swap; }
+    @font-face { font-family:"Roobert Mono"; font-weight:400; src:url("fonts/RoobertMono-Regular.otf") format("opentype"); font-display:swap; }
+    @font-face { font-family:"Roobert Mono"; font-weight:500; src:url("fonts/RoobertMono-Medium.otf") format("opentype"); font-display:swap; }
+    @font-face { font-family:"Roobert Mono"; font-weight:600; src:url("fonts/RoobertMono-SemiBold.otf") format("opentype"); font-display:swap; }
+
+    :root {
+      --lt-terracota-1:#AC6752; --lt-terracota-2:#77330B; --lt-terracota-3:#E3B1A1;
+      --lt-ink:#28170E;
+      --lt-neutral-50:#FDFDFC; --lt-neutral-100:#F7F6F5; --lt-neutral-200:#ECE6E3;
+      --lt-neutral-300:#DED1C9; --lt-neutral-400:#BEB2AB;
+      --font-sans:"Roobert", ui-sans-serif, system-ui, -apple-system, Arial, sans-serif;
+      --font-mono:"Roobert Mono", ui-monospace, Menlo, monospace;
+      --r:16px;
+    }
+    * { box-sizing:border-box; }
+    body {
+      margin:0; background:var(--lt-neutral-200); color:var(--lt-ink);
+      font-family:var(--font-sans); font-size:17px; line-height:1.55;
+      -webkit-font-smoothing:antialiased; padding:56px 20px 96px;
+    }
+    .wrap { max-width:640px; margin:0 auto; }
+
+    .logo { width:184px; height:auto; color:var(--lt-ink); display:block; margin-bottom:34px; }
+    .eyebrow {
+      font-family:var(--font-mono); font-weight:500; font-size:13px;
+      letter-spacing:.06em; color:var(--lt-terracota-1); margin-bottom:12px;
+    }
+    h1 { font-family:var(--font-sans); font-weight:900; font-size:36px; line-height:1.04; letter-spacing:-.01em; margin:0 0 10px; color:var(--lt-ink); }
+    .sub { font-family:var(--font-mono); font-weight:400; font-size:15px; color:var(--lt-terracota-2); }
+
+    .intro {
+      background:var(--lt-neutral-50); border-radius:var(--r);
+      padding:26px 28px; margin:28px 0 40px; font-size:16px; color:#4a3a30;
+    }
+    .intro p { margin:0 0 10px; } .intro p:last-child { margin-bottom:0; }
+
+    form { display:flex; flex-direction:column; gap:12px; }
+    .section-title {
+      font-family:var(--font-mono); font-weight:600; font-size:12px; letter-spacing:.14em;
+      text-transform:uppercase; color:var(--lt-terracota-1); margin:34px 0 6px; padding-left:4px;
+    }
+    .field {
+      background:var(--lt-neutral-50); border-radius:var(--r); padding:22px 24px;
+    }
+    .qnum { font-family:var(--font-mono); color:var(--lt-terracota-1); font-weight:600; margin-right:9px; }
+    label.q { display:block; font-weight:600; font-size:16px; margin-bottom:4px; color:var(--lt-ink); }
+    .hint { color:var(--lt-terracota-2); font-size:14px; margin:0 0 14px; opacity:.85; }
+    .req { color:var(--lt-terracota-1); }
+    input[type="text"],input[type="email"],input[type="tel"],input[type="url"],
+    input[type="number"],select,textarea {
+      width:100%; padding:13px 14px; font-size:16px; font-family:inherit;
+      border:1px solid var(--lt-neutral-300); border-radius:12px;
+      background:var(--lt-neutral-100); color:var(--lt-ink);
+    }
+    input:focus,select:focus,textarea:focus {
+      outline:none; border-color:var(--lt-terracota-1); background:var(--lt-neutral-50);
+    }
+    textarea { resize:vertical; min-height:96px; }
+
+    /* custom, clearly-visible file upload */
+    .file-row { display:flex; align-items:center; gap:14px; flex-wrap:wrap; }
+    .file-btn {
+      font-family:var(--font-mono); font-weight:500; font-size:14px; letter-spacing:.02em;
+      background:var(--lt-terracota-3); color:var(--lt-ink); border:none; border-radius:12px;
+      padding:12px 20px; cursor:pointer; display:inline-block;
+    }
+    .file-btn:hover { background:var(--lt-terracota-1); color:var(--lt-neutral-50); }
+    .file-name { font-size:14px; color:var(--lt-terracota-2); }
+
+    .opts { display:flex; gap:10px; flex-wrap:wrap; margin-top:6px; }
+    .opts label {
+      font-weight:500; font-size:15px; display:flex; align-items:center; gap:8px;
+      border:1px solid var(--lt-neutral-300); border-radius:12px; padding:11px 16px; cursor:pointer;
+      background:var(--lt-neutral-100);
+    }
+    .opts label:hover { border-color:var(--lt-terracota-3); }
+    .opts.col { flex-direction:column; align-items:stretch; gap:8px; }
+    .opts input { accent-color:var(--lt-terracota-1); }
+
+    .consent {
+      background:var(--lt-neutral-50); border-radius:var(--r); padding:24px 26px; margin-top:6px;
+    }
+    .consent .legal { font-size:13px; color:var(--lt-terracota-2); margin:0 0 16px; line-height:1.55; opacity:.9; }
+    .consent label { display:flex; gap:11px; align-items:flex-start; font-size:15px; cursor:pointer; }
+    .consent input { accent-color:var(--lt-terracota-1); margin-top:3px; width:18px; height:18px; }
+
+    button.submit {
+      margin-top:22px; background:var(--lt-terracota-1); color:var(--lt-neutral-50); border:none;
+      padding:17px; font-family:var(--font-mono); font-weight:600; font-size:15px;
+      letter-spacing:.04em; text-transform:uppercase; cursor:pointer; border-radius:14px;
+    }
+    button.submit:hover { background:var(--lt-terracota-2); }
+    button.submit:disabled { background:var(--lt-neutral-400); cursor:not-allowed; }
+
+    .thanks {
+      display:none; background:var(--lt-neutral-50); border-radius:var(--r);
+      padding:56px 36px; text-align:center;
+    }
+    .thanks h2 { font-weight:900; font-size:30px; margin:0 0 12px; color:var(--lt-ink); }
+    .thanks p { color:var(--lt-terracota-2); font-size:17px; margin:0 auto; max-width:420px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <svg class="logo" viewBox="0 0 2539 628" fill="currentColor" role="img" aria-label="latroupe ()" xmlns="http://www.w3.org/2000/svg">
+        <path d="M2283.82 280.08L2306.36 263.035C2287.84 238.888 2278.99 212.711 2278.99 182.882C2278.99 153.052 2287.84 126.876 2306.36 102.728L2283.82 85.6831C2260.27 112.468 2248.2 144.124 2248.2 182.882C2248.2 221.639 2260.27 253.295 2283.82 280.08Z"></path>
+        <path d="M2450.45 280.08C2473.99 253.295 2486.07 221.639 2486.07 182.882C2486.07 144.124 2473.99 112.468 2450.45 85.6831L2427.91 102.728C2446.42 126.876 2455.28 153.052 2455.28 182.882C2455.28 212.711 2446.42 238.888 2427.91 263.035L2450.45 280.08Z"></path>
+        <path d="M158.632 99.9146H81.2803V478.773H158.632V99.9146Z"></path>
+        <path d="M334.482 191.483C257.686 191.483 212.055 236.934 208.715 293.606H277.72C278.833 270.039 296.084 248.717 330.03 248.717C361.75 248.717 380.114 264.989 380.114 288.556C380.114 300.339 372.879 309.317 358.968 309.317H311.666C250.452 309.317 209.272 342.984 209.272 398.534C209.272 446.789 246.556 483.261 301.093 483.261C339.49 483.261 370.654 465.867 380.114 439.495V478.773H456.909V296.972C456.909 233.006 405.155 191.483 334.482 191.483ZM320.569 426.589C298.866 426.589 283.285 413.684 283.285 395.167C283.285 373.284 299.98 358.695 323.352 358.695H380.114V362.623C380.114 398.534 358.41 426.589 320.569 426.589Z"></path>
+        <path d="M539.825 100.915V195.972H485.846V261.061H539.825V376.089C539.825 441.739 581.562 478.773 646.114 478.773H692.303V413.123H656.687C631.646 413.123 617.177 400.217 617.177 372.722V261.061H692.303V195.972H617.177V100.915H539.825Z"></path>
+        <path d="M913.785 261.061V195.972H882.066C848.119 195.972 826.973 207.756 811.948 243.106V195.972H734.04V478.773H811.948V341.3C811.948 293.045 829.199 261.061 867.597 261.061H913.785Z"></path>
+        <path d="M1068.49 483.261C1154.74 483.261 1216.51 421.539 1216.51 337.373C1216.51 253.206 1154.74 191.483 1068.49 191.483C982.233 191.483 920.463 253.206 920.463 337.373C920.463 421.539 982.233 483.261 1068.49 483.261ZM1068.49 415.928C1026.75 415.928 998.372 383.945 998.372 337.373C998.372 290.239 1026.75 258.256 1068.49 258.256C1110.23 258.256 1138.61 290.239 1138.61 337.373C1138.61 383.945 1110.23 415.928 1068.49 415.928Z"></path>
+        <path d="M1520.91 195.972H1443V350.839C1443 386.75 1419.08 413.684 1385.13 413.684C1353.41 413.684 1331.15 388.995 1331.15 354.767V195.972H1253.8V372.161C1253.8 436.689 1294.98 483.261 1357.86 483.261C1396.26 483.261 1427.42 466.428 1443 439.495V478.773H1520.91V195.972Z"></path>
+        <path d="M1576.56 593.239H1653.91V453.523C1668.94 472.6 1696.21 483.261 1727.93 483.261C1808.62 483.261 1863.15 425.467 1863.15 337.373C1863.15 249.278 1813.07 191.483 1734.6 191.483C1698.43 191.483 1670.61 204.95 1653.91 226.834V195.972H1576.56V593.239ZM1718.47 415.928C1676.73 415.928 1649.46 384.506 1649.46 337.373C1649.46 289.678 1676.73 258.256 1718.47 258.256C1759.09 258.256 1786.91 289.678 1786.91 337.373C1786.91 384.506 1759.09 415.928 1718.47 415.928Z"></path>
+        <path d="M2092.98 382.822C2086.86 406.95 2066.27 419.295 2035.11 419.295C1996.15 419.295 1971.11 394.606 1965.55 354.767H2166.99C2167.55 348.595 2168.11 340.178 2168.11 329.517C2168.11 264.989 2128.6 191.483 2029.54 191.483C1934.38 191.483 1890.98 264.989 1890.98 336.811C1890.98 408.072 1939.95 483.261 2035.11 483.261C2104.11 483.261 2157.53 443.984 2168.66 382.822H2092.98ZM2029.54 248.717C2066.83 248.717 2088.53 273.967 2090.76 305.389H1966.66C1973.34 266.111 1994.48 248.717 2029.54 248.717Z"></path>
+      </svg>
+      <div class="eyebrow">( now hiring )</div>
+      <h1>Sales Development Representative — BIM Management</h1>
+      <div class="sub">freelance / part-time · fully remote · uk &amp; us markets</div>
+    </header>
+
+    <div class="intro">
+      <p>Thanks for your interest in working with latroupe. We're an architecture and BIM studio expanding into the UK and US markets, and we're looking for an SDR to build our first outbound pipeline — targeting architecture firms, project-management agencies and hotel chains.</p>
+      <p>This form helps us get to know you and see if there's a fit. It's in English on purpose, since most of your work will be too. It takes about 7 minutes.</p>
+    </div>
+
+    <form id="sdr-form" novalidate>
+      <div class="section-title">about you</div>
+
+      <div class="field">
+        <label class="q"><span class="qnum">01</span>Full name <span class="req">*</span></label>
+        <input type="text" name="Full name" required />
+      </div>
+      <div class="field">
+        <label class="q"><span class="qnum">02</span>Email <span class="req">*</span></label>
+        <input type="email" name="Email" required />
+      </div>
+      <div class="field">
+        <label class="q"><span class="qnum">03</span>Phone / WhatsApp</label>
+        <input type="tel" name="Phone" />
+      </div>
+      <div class="field">
+        <label class="q"><span class="qnum">04</span>Country of residence <span class="req">*</span></label>
+        <p class="hint">Where are you based right now?</p>
+        <input type="text" name="Country" required />
+      </div>
+      <div class="field">
+        <label class="q"><span class="qnum">05</span>LinkedIn profile <span class="req">*</span></label>
+        <input type="url" name="LinkedIn" placeholder="https://linkedin.com/in/..." required />
+      </div>
+      <div class="field">
+        <label class="q"><span class="qnum">06</span>Upload your CV <span class="req">*</span></label>
+        <p class="hint">PDF preferred · max 10 MB</p>
+        <div class="file-row">
+          <label class="file-btn" for="cv">Choose file</label>
+          <span class="file-name" id="file-name">No file selected</span>
+        </div>
+        <input type="file" id="cv" name="CV" accept=".pdf,.doc,.docx" required hidden />
+      </div>
+      <div class="field">
+        <label class="q"><span class="qnum">07</span>Portfolio / website</label>
+        <p class="hint">Optional</p>
+        <input type="url" name="Portfolio" placeholder="https://..." />
+      </div>
+
+      <div class="section-title">experience</div>
+
+      <div class="field">
+        <label class="q"><span class="qnum">08</span>Do you have demonstrable professional experience in the architecture / AEC sector? <span class="req">*</span></label>
+        <div class="opts">
+          <label><input type="radio" name="Architecture experience" value="Yes" required /> Yes</label>
+          <label><input type="radio" name="Architecture experience" value="No" /> No</label>
+        </div>
+        <p class="hint" style="margin-top:16px">Briefly describe it — roles, firms, type of projects. <span class="req">*</span></p>
+        <textarea name="Architecture experience detail" required></textarea>
+      </div>
+      <div class="field">
+        <label class="q"><span class="qnum">09</span>Have you worked professionally in the UK market? <span class="req">*</span></label>
+        <div class="opts">
+          <label><input type="radio" name="UK market" value="Yes" required /> Yes</label>
+          <label><input type="radio" name="UK market" value="No" /> No</label>
+        </div>
+        <p class="hint" style="margin-top:16px">If yes, how many years and in what context?</p>
+        <input type="text" name="UK market detail" />
+      </div>
+      <div class="field">
+        <label class="q"><span class="qnum">10</span>Have you worked professionally in the US market? <span class="req">*</span></label>
+        <div class="opts">
+          <label><input type="radio" name="US market" value="Yes" required /> Yes</label>
+          <label><input type="radio" name="US market" value="No" /> No</label>
+        </div>
+        <p class="hint" style="margin-top:16px">If yes, how many years and in what context?</p>
+        <input type="text" name="US market detail" />
+      </div>
+      <div class="field">
+        <label class="q"><span class="qnum">11</span>What's the biggest challenge you've faced working the UK or US market? <span class="req">*</span></label>
+        <p class="hint">Be specific — a real situation, what made it hard, and how you handled it.</p>
+        <textarea name="Biggest market challenge" required></textarea>
+      </div>
+      <div class="field">
+        <label class="q"><span class="qnum">12</span>English level <span class="req">*</span></label>
+        <select name="English level" required>
+          <option value="">Select…</option>
+          <option>Native</option><option>Bilingual</option>
+          <option>C1 — Advanced</option><option>B2 — Upper intermediate</option>
+          <option>Lower than B2</option>
+        </select>
+      </div>
+      <div class="field">
+        <label class="q"><span class="qnum">13</span>Years of B2B outbound experience <span class="req">*</span></label>
+        <select name="Outbound years" required>
+          <option value="">Select…</option>
+          <option>None</option><option>Less than 1 year</option>
+          <option>1–3 years</option><option>3–5 years</option><option>5+ years</option>
+        </select>
+      </div>
+      <div class="field">
+        <label class="q"><span class="qnum">14</span>Which prospecting tools have you worked with?</label>
+        <p class="hint">Select all that apply.</p>
+        <div class="opts col">
+          <label><input type="checkbox" name="Tools" value="LinkedIn Sales Navigator" /> LinkedIn Sales Navigator</label>
+          <label><input type="checkbox" name="Tools" value="Apollo" /> Apollo</label>
+          <label><input type="checkbox" name="Tools" value="Lemlist" /> Lemlist</label>
+          <label><input type="checkbox" name="Tools" value="Instantly" /> Instantly</label>
+          <label><input type="checkbox" name="Tools" value="Clay" /> Clay</label>
+          <label><input type="checkbox" name="Tools" value="Hunter" /> Hunter</label>
+          <label><input type="checkbox" name="Tools" value="HubSpot" /> HubSpot</label>
+          <label><input type="checkbox" name="Tools" value="Pipedrive" /> Pipedrive</label>
+          <label style="gap:10px"><input type="checkbox" id="tools-other-cb" /> Other:
+            <input type="text" id="tools-other-txt" name="Tools other" style="flex:1; margin-left:6px" placeholder="which ones?" />
+          </label>
+        </div>
+      </div>
+      <div class="field">
+        <label class="q"><span class="qnum">15</span>Are you comfortable with cold calling? <span class="req">*</span></label>
+        <div class="opts">
+          <label><input type="radio" name="Cold calling" value="Yes" required /> Yes</label>
+          <label><input type="radio" name="Cold calling" value="No" /> No</label>
+        </div>
+      </div>
+      <div class="field">
+        <label class="q"><span class="qnum">16</span>Spanish level</label>
+        <p class="hint">A plus, but not required.</p>
+        <select name="Spanish level">
+          <option value="">Select…</option>
+          <option>Native / Bilingual</option><option>Conversational</option>
+          <option>Basic</option><option>None</option>
+        </select>
+      </div>
+
+      <div class="section-title">how you work</div>
+
+      <div class="field">
+        <label class="q"><span class="qnum">17</span>This role means keeping the CRM up to date every day and sending a weekly report. How do you stay organized so no lead or follow-up slips through? <span class="req">*</span></label>
+        <p class="hint">Tell us about your system — tools, routines, how you track follow-ups.</p>
+        <textarea name="Organization system" required></textarea>
+      </div>
+      <div class="field">
+        <label class="q"><span class="qnum">18</span>Describe a time you juggled a high volume of leads or tasks at once. How did you keep it under control? <span class="req">*</span></label>
+        <textarea name="High volume example" required></textarea>
+      </div>
+
+      <div class="section-title">logistics</div>
+
+      <div class="field">
+        <label class="q"><span class="qnum">19</span>How many hours per week can you dedicate? <span class="req">*</span></label>
+        <select name="Weekly hours" required>
+          <option value="">Select…</option>
+          <option>Less than 10 hours</option>
+          <option>10–20 hours</option>
+          <option>More than 20 hours</option>
+        </select>
+      </div>
+      <div class="field">
+        <label class="q"><span class="qnum">20</span>What time zone are you in? <span class="req">*</span></label>
+        <select name="Time zone" required>
+          <option value="">Select…</option>
+          <option>GMT-8 — US Pacific</option>
+          <option>GMT-7 — US Mountain</option>
+          <option>GMT-6 — US Central</option>
+          <option>GMT-5 — US Eastern</option>
+          <option>GMT-3 — Argentina</option>
+          <option>GMT-3 — Brazil</option>
+          <option>GMT — UK / Portugal</option>
+          <option>GMT+1 — Spain / Central Europe</option>
+          <option>GMT+2 — South Africa (SAST)</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="field">
+        <label class="q"><span class="qnum">21</span>What days and hours are you available to work? <span class="req">*</span></label>
+        <p class="hint">Some of your day will need to overlap with UK / US business hours.</p>
+        <input type="text" name="Availability" required />
+      </div>
+      <div class="field">
+        <label class="q"><span class="qnum">22</span>Expected monthly rate (€) <span class="req">*</span></label>
+        <input type="number" name="Expected rate EUR" min="0" required />
+      </div>
+      <div class="field">
+        <label class="q"><span class="qnum">23</span>Can you legally issue invoices as of today? <span class="req">*</span></label>
+        <div class="opts">
+          <label><input type="radio" name="Can invoice today" value="Yes" required /> Yes</label>
+          <label><input type="radio" name="Can invoice today" value="No" /> No</label>
+        </div>
+      </div>
+
+      <div class="section-title">one last thing</div>
+
+      <div class="field">
+        <label class="q"><span class="qnum">24</span>A scenario <span class="req">*</span></label>
+        <p class="hint">We're entering the US with zero brand awareness, selling BIM management to a mid-size architecture firm that already runs BIM in-house. You get one first message to their BIM lead. What's your angle, and how do you handle the "we already do this ourselves" objection?</p>
+        <textarea name="Scenario answer" required style="min-height:120px"></textarea>
+      </div>
+
+      <div class="consent">
+        <p class="legal">
+          By submitting this form you consent to Awesomely, Sociedad Limitada
+          (CIF B22482137, C/ Lepant 270, 08013 Barcelona), as data controller,
+          processing the personal data you provide for the sole purpose of managing
+          this recruitment process, on the legal basis of pre-contractual measures and
+          our legitimate interest. Your data is kept only as long as needed for this
+          process and is not shared with third parties. You may exercise your rights of
+          access, rectification, erasure, portability, restriction or objection by
+          writing to <a href="mailto:legal@awesomelygroup.com">legal@awesomelygroup.com</a>.
+        </p>
+        <label>
+          <input type="checkbox" id="consent" name="Consent" value="Yes" required />
+          <span>I have read and accept the data-protection notice above. <span class="req">*</span></span>
+        </label>
+      </div>
+
+      <button type="submit" class="submit" id="submit-btn">Send application</button>
+    </form>
+
+    <div class="thanks" id="thanks">
+      <h2>Thank you</h2>
+      <p>Your application is in. We will get back to you as soon as possible.</p>
+    </div>
+  </div>
+
+  <script>
+    // ── Paste your deployed Google Apps Script Web App URL here ──
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwe3DNUZdog64fSXWrLZPItBeBbYSBWejU1xdwVDrcb1ZHXHz0HMF-IL16WHWJ57_BM/exec";
+
+    const form = document.getElementById('sdr-form');
+    const btn = document.getElementById('submit-btn');
+
+    // file name display
+    const cvInput = document.getElementById('cv');
+    const fileName = document.getElementById('file-name');
+    cvInput.addEventListener('change', () => {
+      fileName.textContent = cvInput.files[0] ? cvInput.files[0].name : 'No file selected';
+    });
+
+    // "Other" tools text auto-ticks its checkbox
+    const otherCb = document.getElementById('tools-other-cb');
+    const otherTxt = document.getElementById('tools-other-txt');
+    otherTxt.addEventListener('input', () => { otherCb.checked = otherTxt.value.trim() !== ''; });
+
+    function fileToBase64(file) {
+      return new Promise((resolve, reject) => {
+        const r = new FileReader();
+        r.onload = () => resolve(r.result.split(',')[1]);
+        r.onerror = reject;
+        r.readAsDataURL(file);
+      });
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      if (!form.checkValidity()) { form.reportValidity(); return; }
+
+      btn.disabled = true; btn.textContent = 'Sending…';
+
+      const data = {};
+      const fd = new FormData(form);
+      for (const key of new Set([...fd.keys()])) {
+        if (key === 'CV') continue;
+        const all = fd.getAll(key).filter(v => v !== '');
+        if (all.length) data[key] = all.join(', ');
+      }
+
+      const cv = cvInput.files[0];
+      if (cv) {
+        data['_fileName'] = cv.name;
+        data['_fileType'] = cv.type || 'application/octet-stream';
+        data['_fileBase64'] = await fileToBase64(cv);
+      }
+
+      try {
+        await fetch(SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify(data)
+        });
+        form.style.display = 'none';
+        document.querySelectorAll('.section-title').forEach(el => el.style.display = 'none');
+        document.getElementById('thanks').style.display = 'block';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } catch (err) {
+        btn.disabled = false; btn.textContent = 'Send application';
+        alert('Something went wrong sending your application. Please try again.');
+      }
+    });
+  </script>
+</body>
+</html>
