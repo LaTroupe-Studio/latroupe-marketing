@@ -27,6 +27,12 @@ const en: SiteContent = {
   whyUs: { headline:"Why us?", paragraphs:["At latroupe, we've worked across architecture, construction, design, technology, and business.","That is why we can offer a service that adapts to your current needs—and evolves as they change.","Our way of working is simple (but not simplistic) and is based on establishing sustainable, long-term relationships.","If you think we can help, it all starts with a conversation."] },
   contact: { headline:"Let's start a project together", fields:{name:"Name",email:"Email",company:"Message",message:"Write us a message",submit:"Send",sending:"Sending...",sent:"Sent!",error:"Could not send. Please try again."}, legal:"By clicking Send, you accept our data protection policy and agree that we may contact you.", legalLinkPhrase:"data protection policy", legalLinkHref:"/en/legal-notice" },
   footer: { links:[{label:"Privacy",href:"/en/privacy"},{label:"Cookies",href:"/en/cookies"},{label:"Legal notice",href:"/en/legal-notice"}], social:[{label:"Linkedin",href:"https://www.linkedin.com/company/latroupestudio/"},{label:"Instagram",href:"https://www.instagram.com/latroupestudio"},{label:"Pinterest",href:"https://www.pinterest.es/latroupestudio/"}], workWithUs:{label:"Work with us",href:"https://invented-cactus-ce6.notion.site/Trabajar-en-LaTroupe-cd9c990923954418bd2e6a3df58b2500"}, copyright:"Developed by latroupe ( ) 2026 © All rights reserved.", legal:"" },
+  cookieBanner: {
+    message: "We use first-party and third-party cookies to analyze site usage and improve our services. Non-essential cookies are only installed with your consent.",
+    moreInfo: "Learn more",
+    accept: "Accept",
+    reject: "Reject",
+  },
   overlay: { close:"CLOSE", inDevelopment:"Ongoing", comingSoon:"Coming soon" },
 };
 export default en;
