@@ -6,7 +6,7 @@
  * below. While it stays empty, analytics stays completely off.
  */
 
-export const GA_MEASUREMENT_ID = "";
+export const GA_MEASUREMENT_ID = "G-0V6FK7GWNK";
 
 export function isAnalyticsConfigured(): boolean {
   return /^G-[A-Z0-9]+$/.test(GA_MEASUREMENT_ID);
