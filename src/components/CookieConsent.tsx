@@ -3,40 +3,29 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useContent } from "@/lib/locale-context";
+import { getConsent, setConsent, type ConsentValue } from "@/lib/consent";
 import styles from "./CookieConsent.module.css";
-
-const CONSENT_COOKIE = "lt_cookie_consent";
-const ONE_YEAR_SECONDS = 60 * 60 * 24 * 365;
-
-function hasConsentChoice(): boolean {
-  return document.cookie
-    .split("; ")
-    .some((c) => c.startsWith(`${CONSENT_COOKIE}=`));
-}
-
-function storeChoice(value: "accepted" | "rejected") {
-  document.cookie = `${CONSENT_COOKIE}=${value}; Max-Age=${ONE_YEAR_SECONDS}; Path=/; SameSite=Lax`;
-}
 
 /**
  * GDPR/LSSI-compliant cookie consent banner.
  * Non-essential scripts (e.g. analytics) must only run after the user
- * accepts here. Choice is stored for a year in a first-party cookie.
+ * accepts here. Choice is stored for a year in a first-party cookie and
+ * broadcast via the consent event so analytics can start immediately.
  */
 export default function CookieConsent() {
   const { content, locale } = useContent();
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    if (!hasConsentChoice()) setVisible(true);
+    if (getConsent() === null) setVisible(true);
   }, []);
 
   if (!visible) return null;
 
   const banner = content.cookieBanner;
 
-  const decide = (value: "accepted" | "rejected") => {
-    storeChoice(value);
+  const decide = (value: ConsentValue) => {
+    setConsent(value);
     setVisible(false);
   };
 

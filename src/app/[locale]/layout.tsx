@@ -3,6 +3,7 @@ import { i18nConfig, Locale } from "@/lib/i18n";
 import { getDictionary } from "@/content/dictionary";
 import { LocaleProvider } from "@/lib/locale-context";
 import CookieConsent from "@/components/CookieConsent";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
 import { roobert } from "../fonts";
 import "../globals.css";
 
@@ -118,6 +119,7 @@ export default async function LocaleLayout({
         <LocaleProvider locale={loc} content={content}>
           {children}
           <CookieConsent />
+          <GoogleAnalytics />
         </LocaleProvider>
       </body>
     </html>
