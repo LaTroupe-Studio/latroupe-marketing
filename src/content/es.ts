@@ -62,6 +62,12 @@ const es: SiteContent = {
     copyright: "Desarrollado por latroupe ( ) 2026 ©",
     legal: "",
   },
+  cookieBanner: {
+    message: "Utilizamos cookies propias y de terceros para analizar el uso del sitio y mejorar nuestros servicios. Las cookies no esenciales solo se instalan con tu consentimiento.",
+    moreInfo: "Más información",
+    accept: "Aceptar",
+    reject: "Rechazar",
+  },
   overlay: { close:"CERRAR", inDevelopment:"En desarrollo", comingSoon:"Próximamente" },
 };
 export default es;

@@ -1,0 +1,74 @@
+.banner {
+  position: fixed;
+  bottom: 16px;
+  left: 16px;
+  right: 16px;
+  z-index: 1000;
+  max-width: 720px;
+  margin-inline: auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px 24px;
+  padding: 20px 24px;
+  background-color: #ece6e3;
+  color: #77330b;
+  border-radius: 8px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+}
+
+.message {
+  flex: 1 1 320px;
+  margin: 0;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+}
+
+.link {
+  color: #77330b;
+  text-decoration: underline;
+  white-space: nowrap;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.reject,
+.accept {
+  font: inherit;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  border: 1px solid #77330b;
+  transition: opacity 0.15s ease;
+}
+
+.reject {
+  background: transparent;
+  color: #77330b;
+}
+
+.accept {
+  background: #77330b;
+  color: #ece6e3;
+}
+
+.reject:hover,
+.accept:hover {
+  opacity: 0.8;
+}
+
+@media (max-width: 520px) {
+  .actions {
+    width: 100%;
+  }
+  .reject,
+  .accept {
+    flex: 1;
+  }
+}

@@ -117,6 +117,13 @@ export interface SiteContent {
     legal: string;
   };
 
+  cookieBanner: {
+    message: string;
+    moreInfo: string;
+    accept: string;
+    reject: string;
+  };
+
   overlay: {
     close: string;
     inDevelopment: string;

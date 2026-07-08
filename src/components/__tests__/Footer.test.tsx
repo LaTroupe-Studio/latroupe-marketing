@@ -69,6 +69,7 @@ const baseContent: SiteContent = {
     copyright: "Desarrollado por latroupe ( ) 2026 ©",
     legal: "",
   },
+  cookieBanner: { message: "", moreInfo: "", accept: "", reject: "" },
   overlay: { close: "", inDevelopment: "", comingSoon: "" },
 };
 
