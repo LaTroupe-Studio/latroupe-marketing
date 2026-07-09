@@ -71,6 +71,15 @@ const baseContent: SiteContent = {
   },
   cookieBanner: { message: "", moreInfo: "", accept: "", reject: "" },
   overlay: { close: "", inDevelopment: "", comingSoon: "" },
+  bim: {
+    meta: { title: "", description: "" },
+    nav: { links: [], contact: { label: "", id: "" }, home: { label: "", id: "/es" } },
+    hero: { word: "", suffix: "", description: "", cta: { label: "", id: "" } },
+    intro: { eyebrow: "", headline: "", blocks: [] },
+    services: { headline: "", items: [] },
+    process: { headline: "", intro: "", steps: [] },
+    banner: { text: "", sub: "", cta: { label: "", id: "" } },
+  },
 };
 
 function renderFooter(overrideContent?: Partial<SiteContent["footer"]>) {

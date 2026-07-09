@@ -48,6 +48,53 @@ export interface MethodologyPillar {
   paragraphs: string[];
 }
 
+export interface BimService {
+  number: string;
+  title: string;
+  subtitle: string;
+  paragraphs: string[];
+}
+
+export interface BimStep {
+  number: string;
+  title: string;
+  text: string;
+}
+
+export interface BimContent {
+  meta: { title: string; description: string };
+  nav: {
+    links: NavLink[];
+    contact: NavLink;
+    home: NavLink;
+  };
+  hero: {
+    word: string;
+    suffix: string;
+    description: string;
+    cta: NavLink;
+  };
+  intro: {
+    eyebrow: string;
+    headline: string;
+    blocks: string[];
+  };
+  services: {
+    headline: string;
+    items: BimService[];
+  };
+  process: {
+    headline: string;
+    intro: string;
+    steps: BimStep[];
+  };
+  banner: {
+    text: string;
+    sub: string;
+    cta: NavLink;
+  };
+}
+
 export interface SiteContent {
   locale: Locale;
 
@@ -129,4 +176,6 @@ export interface SiteContent {
     inDevelopment: string;
     comingSoon: string;
   };
+
+  bim: BimContent;
 }
