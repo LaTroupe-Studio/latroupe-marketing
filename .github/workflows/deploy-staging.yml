@@ -33,6 +33,7 @@ jobs:
         env:
           STATIC_EXPORT: "1"
           NEXT_PUBLIC_CONTACT_URL: ${{ secrets.NEXT_PUBLIC_CONTACT_URL }}
+          NEXT_PUBLIC_GA_MEASUREMENT_ID: "G-XG1RL6WHFD"
 
       - name: Create extensionless aliases (es/* and en/*)
         run: |
