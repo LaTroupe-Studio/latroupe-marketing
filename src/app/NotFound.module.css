@@ -1,0 +1,215 @@
+/* ───────────────────────────────────────────────
+ * Página 404 — "explorador de archivos perdido"
+ * Marca: Roobert + Roobert Mono · terracota + papel
+ * ─────────────────────────────────────────────── */
+
+.page {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  background-color: var(--color-beige-3); /* #ECE6E3 neutral-200 */
+  color: var(--color-terracota-dark); /* #28170E ink */
+  overflow: hidden;
+}
+
+/* mono de marca (Roobert Mono, cargado en fonts.ts) */
+.eyebrow,
+.langToggle,
+.folder {
+  font-family: var(--font-roobert-mono), "Roobert Mono", "SF Mono", monospace;
+}
+
+/* ─── Barra superior ─── */
+.topbar {
+  position: absolute;
+  top: var(--space-xl);
+  left: var(--grid-margin);
+  right: var(--grid-margin);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 3;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  width: 132px;
+  height: auto;
+}
+
+.langToggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.langToggle button {
+  background: transparent;
+  border: 0;
+  color: inherit;
+  opacity: 0.4;
+  transition: opacity var(--transition-fast);
+}
+
+.langToggle button:hover {
+  opacity: 0.8;
+}
+
+.langActive {
+  opacity: 1 !important;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* ─── Carpetas dispersas ─── */
+.folders {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.folder {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 9px 13px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-terracota-3); /* #77330B coffee */
+  background: var(--color-beige-2); /* #F7F6F5 neutral-100 */
+  border-radius: 6px;
+  box-shadow: 0 8px 24px rgba(40, 23, 14, 0.06);
+  white-space: nowrap;
+  cursor: default;
+  transform: rotate(var(--rot, 0deg));
+  transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.folder:hover {
+  transform: rotate(0deg) translateY(-6px);
+  box-shadow: 0 16px 36px rgba(40, 23, 14, 0.12);
+}
+
+.folder svg {
+  color: var(--color-terracota-2); /* #AC6752 terracota-1 */
+}
+
+.dots {
+  margin-left: 4px;
+  opacity: 0.4;
+  letter-spacing: -1px;
+}
+
+/* ─── Contenido central ─── */
+.inner {
+  position: relative;
+  z-index: 2;
+  max-width: var(--grid-max-width);
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: var(--grid-margin);
+}
+
+.eyebrow {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: var(--color-terracota-2);
+  margin-bottom: var(--space-lg);
+}
+
+.eyebrow::before {
+  content: "[ ";
+}
+.eyebrow::after {
+  content: " ]";
+}
+
+.heading {
+  font-family: var(--font-heading);
+  font-size: clamp(48px, 8vw, 120px);
+  line-height: 1.02;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #452515; /* ink-2 */
+  display: flex;
+  flex-direction: column;
+  margin-bottom: var(--space-xl);
+}
+
+.line {
+  display: block;
+}
+
+.accent {
+  color: var(--color-terracota-2); /* #AC6752 terracota-1 */
+}
+
+.body {
+  font-family: var(--font-body);
+  font-size: clamp(17px, 1.6vw, 22px);
+  font-weight: 400;
+  line-height: 1.45;
+  color: var(--color-terracota-3); /* #77330B */
+  max-width: 40ch;
+  margin-bottom: var(--space-2xl);
+}
+
+/* ─── CTA — botón pill de marca (.lt-btn) ─── */
+.cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-body); /* Roobert sans */
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: 0.005em;
+  padding: 16px 40px;
+  color: var(--color-beige-2); /* papel */
+  background-color: var(--color-terracota-2); /* #AC6752 terracota #1 */
+  border: 0;
+  border-radius: 999px;
+  transition: background-color var(--transition-base), gap var(--transition-base);
+}
+
+.cta:hover {
+  background-color: var(--color-terracota-3); /* #77330B coffee */
+  gap: 16px;
+}
+
+.ctaArrow {
+  display: inline-block;
+  transition: transform var(--transition-base);
+}
+
+.cta:hover .ctaArrow {
+  transform: translateX(-4px);
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 900px) {
+  /* En móvil ocultamos las carpetas más alejadas para no estorbar el texto */
+  .folder:nth-child(2),
+  .folder:nth-child(5) {
+    display: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .folders {
+    display: none;
+  }
+  .topbar {
+    top: var(--space-lg);
+  }
+}
