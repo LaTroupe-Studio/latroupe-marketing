@@ -20,8 +20,12 @@ npm run dev
 
 ## Despliegue
 
-- **Producción**: push/merge a `main` → despliega a **latroupestudio.com** (S3 + CloudFront)
-- **Staging**: push/merge a `develop` → despliega a **staging.latroupestudio.com**
+Deploy automático en **Vercel** (integración Git). Ver [docs/VERCEL.md](docs/VERCEL.md).
+
+- **Producción**: push/merge a `main` → **latroupestudio.com**
+- **Staging**: push/merge a `develop` → **staging.latroupestudio.com**
+
+S3/CloudFront queda como fallback manual (workflows `workflow_dispatch`).
 
 ---
 
