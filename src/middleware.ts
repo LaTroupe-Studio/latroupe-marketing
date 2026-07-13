@@ -18,6 +18,7 @@ export function middleware(request: NextRequest) {
     pathname.startsWith("/api") ||
     pathname.startsWith("/images") ||
     pathname.startsWith("/fonts") ||
+    pathname.startsWith("/apply-sdr") ||
     pathname.includes(".")
   ) {
     return NextResponse.next();
