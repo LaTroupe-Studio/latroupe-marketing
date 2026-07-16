@@ -29,6 +29,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   }));
 
+  const bimConsultancyUrls: MetadataRoute.Sitemap = ["es", "en"].map((loc) => ({
+    url: `${SITE_URL}/${loc}/bim-consultancy`,
+    lastModified,
+    priority: 0.8,
+    alternates: {
+      languages: {
+        es: `${SITE_URL}/es/bim-consultancy`,
+        en: `${SITE_URL}/en/bim-consultancy`,
+        "x-default": `${SITE_URL}/es/bim-consultancy`,
+      },
+    },
+  }));
+
   const legalUrls: MetadataRoute.Sitemap = legalPairs.flatMap(({ es, en }) =>
     [es, en].map((url) => ({
       url,
@@ -44,5 +57,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }))
   );
 
-  return [...mainUrls, ...legalUrls];
+  return [...mainUrls, ...bimConsultancyUrls, ...legalUrls];
 }
