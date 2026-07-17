@@ -1,0 +1,710 @@
+/*
+ * ═══════════════════════════════════════════════════════════════
+ * BIM CONSULTANCY LANDING — page-scoped styles
+ * ═══════════════════════════════════════════════════════════════
+ *
+ * Direct port of the "BIM Consultancy" design (claude.ai/design).
+ * Every class is namespaced with `bimc-` so nothing leaks into the
+ * rest of the site. Imported only from the bim-consultancy layout.
+ */
+
+/* ─── Keyframes ──────────────────────────── */
+@keyframes ltmarquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes ltScrollBob { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(7px); } }
+@keyframes ltFaceTop { 0%, 5.9% { opacity: 0; } 6%, 26% { opacity: 1; } 26.1%, 100% { opacity: 0; } }
+@keyframes ltGrid { 0%, 14% { transform: translate(0, 0); } 16%, 30% { transform: translate(92px, 0); } 32%, 46% { transform: translate(184px, 0); } 48%, 62% { transform: translate(184px, 92px); } 64%, 78% { transform: translate(92px, 92px); } 80%, 94% { transform: translate(0, 92px); } 96%, 100% { transform: translate(0, 0); } }
+@keyframes ltMarchIn { to { stroke-dashoffset: 24; } }
+@keyframes ltStep { 0%, 18% { transform: translateY(0); } 24%, 42% { transform: translateY(38px); } 48%, 66% { transform: translateY(76px); } 72%, 90% { transform: translateY(114px); } 96%, 100% { transform: translateY(0); } }
+@keyframes ltMarch { to { stroke-dashoffset: -16; } }
+@keyframes ltRoam { 0%, 8% { transform: translate(0, 0); } 20%, 28% { transform: translate(70px, -60px); } 40%, 48% { transform: translate(-70px, 60px); } 60%, 68% { transform: translate(70px, 60px); } 80%, 88% { transform: translate(-70px, -60px); } 100% { transform: translate(0, 0); } }
+@keyframes ltMem1 { 0%, 7.9% { opacity: 0; } 8%, 100% { opacity: 1; } }
+@keyframes ltMem2 { 0%, 19.9% { opacity: 0; } 20%, 100% { opacity: 1; } }
+@keyframes ltMem3 { 0%, 31.9% { opacity: 0; } 32%, 100% { opacity: 1; } }
+@keyframes ltMem4 { 0%, 43.9% { opacity: 0; } 44%, 100% { opacity: 1; } }
+@keyframes ltFlow { 0% { transform: translateY(0); opacity: 0; } 18% { opacity: 1; } 82% { opacity: 1; } 100% { transform: translateY(48px); opacity: 0; } }
+@keyframes ltLens { 0% { fill-opacity: 0; } 55% { fill-opacity: 0.85; } 100% { fill-opacity: 0.32; } }
+@keyframes ltDraw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+@keyframes ltNode { 0% { transform: scale(0); } 65% { transform: scale(1.3); } 100% { transform: scale(1); } }
+@keyframes ltSheet { 0% { transform: translate(6px, 6px); opacity: 0; } 100% { transform: translate(0, 0); opacity: 1; } }
+@keyframes ltScan { 0% { transform: translateY(-9px); opacity: 0; } 15% { opacity: 1; } 85% { opacity: 1; } 100% { transform: translateY(9px); opacity: 0; } }
+@keyframes ribaBob { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(8px); } }
+
+/* ─── Root / shared ──────────────────────── */
+.bimc-root {
+  width: 100%;
+  overflow-x: clip;
+  background: #ECE6E3;
+  color: #28170E;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.45;
+  text-rendering: optimizeLegibility;
+}
+.bimc-root ::selection { background: #AC6752; color: #fff; }
+
+.bimc-container {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding-left: clamp(20px, 5vw, 64px);
+  padding-right: clamp(20px, 5vw, 64px);
+}
+
+.bimc-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.bimc-cta {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #fff;
+  background: #AC6752;
+  border: 0;
+  cursor: pointer;
+  border-radius: 999px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.bimc-cta:hover { background: #28170E; color: #fff; }
+
+/* ─── Header ─────────────────────────────── */
+.bimc-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  background: transparent;
+  transition: background 0.3s ease;
+}
+.bimc-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding-top: 23px;
+  padding-bottom: 23px;
+}
+.bimc-header-logo { width: 148px; height: auto; display: block; color: #AC6752; }
+.bimc-header-cta { font-size: 12px; letter-spacing: 0.1em; padding: 12px 22px; }
+.bimc-header--dark .bimc-header-logo { color: #F3EEE9; }
+.bimc-header--dark .bimc-header-cta { background: #F3EEE9; color: #28170E; }
+.bimc-header--dark .bimc-header-cta:hover { background: #fff; color: #28170E; }
+
+.bimc-form-overlay { position: fixed; inset: 0; z-index: 55; background: rgba(40, 23, 14, 0.14); border: 0; padding: 0; cursor: default; }
+.bimc-form-pop {
+  position: absolute;
+  top: calc(100% + 2px);
+  right: clamp(20px, 5vw, 64px);
+  width: min(440px, calc(100vw - 40px));
+  max-height: calc(100dvh - 96px);
+  overflow: auto;
+  background: #ECE6E3;
+  border: 1px solid rgba(40, 23, 14, 0.2);
+  border-radius: 16px;
+  z-index: 60;
+}
+.bimc-form-pop-head { display: flex; align-items: flex-start; justify-content: flex-end; padding: 16px 16px 0; }
+.bimc-form-close {
+  width: 44px;
+  height: 44px;
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-size: 28px;
+  font-weight: 300;
+  line-height: 1;
+  color: #AC6752;
+}
+.bimc-form-close:hover { color: #28170E; }
+
+/* ─── Contact form fields (popover + big) ── */
+.bimc-form { display: flex; flex-direction: column; gap: 22px; }
+.bimc-form--pop { padding: 10px 28px 28px; }
+.bimc-form--big { gap: clamp(22px, 2.6vw, 32px); }
+.bimc-field-label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #AC6752;
+  margin-bottom: 8px;
+}
+.bimc-form--big .bimc-field-label { margin-bottom: clamp(8px, 1vw, 12px); }
+.bimc-field-row { display: flex; align-items: center; gap: 8px; border-bottom: 1.5px solid #28170E; padding-bottom: 7px; }
+.bimc-form--big .bimc-field-row { padding-bottom: clamp(6px, 0.7vw, 9px); }
+.bimc-bracket { font-family: var(--font-body); font-size: 20px; font-weight: 300; line-height: 1; color: #AC6752; }
+.bimc-form--big .bimc-bracket { font-size: clamp(20px, 2.2vw, 28px); }
+.bimc-input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  outline: none;
+  font-family: var(--font-body);
+  font-size: 17px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: #28170E;
+  padding: 0;
+}
+.bimc-form--big .bimc-input { font-size: clamp(17px, 1.7vw, 22px); }
+.bimc-input::placeholder { color: rgba(40, 23, 14, 0.42); opacity: 1; }
+.bimc-input:focus::placeholder { color: rgba(40, 23, 14, 0.28); }
+.bimc-form-submit { align-self: flex-start; font-size: 13px; letter-spacing: 0.1em; padding: 14px 26px; margin-top: 4px; }
+.bimc-form--big .bimc-form-submit { margin-top: clamp(4px, 1vw, 10px); }
+.bimc-form-legal {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.6;
+  letter-spacing: 0.01em;
+  color: rgba(40, 23, 14, 0.55);
+}
+.bimc-form--big .bimc-form-legal { margin-top: clamp(2px, 0.6vw, 6px); max-width: 420px; }
+.bimc-form-legal a { color: #AC6752; text-decoration: underline; text-underline-offset: 2px; }
+
+/* ─── Hero ───────────────────────────────── */
+.bimc-hero {
+  position: relative;
+  border-bottom: 1px solid rgba(40, 23, 14, 0.08);
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  padding-bottom: clamp(64px, 10vh, 120px);
+}
+.bimc-hero-scroll {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: ltScrollBob 1.8s ease-in-out infinite;
+  bottom: clamp(24px, 4vh, 44px);
+}
+.bimc-hero-inner {
+  width: 100%;
+  position: relative;
+  padding-top: clamp(96px, 10vw, 148px);
+  padding-bottom: clamp(56px, 7vw, 104px);
+}
+.bimc-hero-copy { position: relative; max-width: 800px; transform: translateY(calc(clamp(24px, 5vh, 72px) + 120px)); }
+.bimc-hero-copy h1 {
+  margin: 0;
+  font-weight: 700;
+  font-size: clamp(48px, 7vw, 88px);
+  line-height: 1.02;
+  letter-spacing: -0.022em;
+  color: #452515;
+  text-wrap: balance;
+}
+.bimc-hero-copy p { margin: 28px 0 0; font-size: clamp(18px, 2vw, 22px); line-height: 1.5; color: #28170E; max-width: 660px; }
+.bimc-hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 24px; margin-top: 40px; }
+.bimc-hero-cta { padding: 17px 32px; }
+.bimc-hero-note { font-size: 15px; color: rgba(40, 23, 14, 0.68); max-width: 280px; white-space: pre-line; }
+.bimc-hero-paren {
+  position: absolute;
+  top: 286px;
+  left: 605px;
+  transform: translateY(-50%);
+  width: 487px;
+  height: 474px;
+  color: #AC6752;
+  opacity: 0.1;
+  pointer-events: none;
+}
+
+/* ─── Trust band ─────────────────────────── */
+.bimc-trust { background: #DED1C9; border-bottom: 1px solid rgba(40, 23, 14, 0.08); }
+.bimc-trust-inner { padding-top: clamp(56px, 7vw, 96px); padding-bottom: clamp(56px, 7vw, 96px); }
+.bimc-trust-eyebrow { color: #77330B; margin-bottom: clamp(28px, 3.4vw, 44px); }
+.bimc-marquee-mask {
+  overflow: hidden;
+  width: 100%;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+.bimc-marquee { display: flex; width: max-content; align-items: center; gap: clamp(40px, 6vw, 88px); animation: ltmarquee 34s linear infinite; }
+.bimc-marquee:hover { animation-play-state: paused; }
+.bimc-marquee img { height: 104px; width: auto; flex: none; opacity: 0.62; }
+.bimc-trust-note { margin: clamp(28px, 3.4vw, 44px) 0 0; font-size: 16px; line-height: 1.6; color: #77330B; max-width: 640px; }
+
+/* ─── Services ───────────────────────────── */
+.bimc-services { border-bottom: 1px solid rgba(40, 23, 14, 0.08); }
+.bimc-services-inner { padding-top: clamp(64px, 8vw, 112px); padding-bottom: clamp(64px, 8vw, 112px); }
+.bimc-svc-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: clamp(12px, 1.5vw, 16px); }
+.bimc-svc-head {
+  grid-column: span 2;
+  background: #AC6752;
+  border: 1px solid #AC6752;
+  border-radius: 16px;
+  padding: clamp(30px, 3.2vw, 42px) clamp(28px, 3vw, 38px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 236px;
+}
+.bimc-svc-head-eyebrow { color: #F3EEE9; opacity: 0.82; margin-bottom: 18px; }
+.bimc-svc-head h2 { margin: 0; font-size: clamp(38px, 5.4vw, 72px); font-weight: 800; line-height: 0.94; letter-spacing: -0.026em; color: #FDFDFC; }
+.bimc-svc-head p {
+  margin: 14px 0 0;
+  font-family: var(--font-mono);
+  font-size: clamp(13px, 1.3vw, 15px);
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: 0.01em;
+  color: #F3EEE9;
+  max-width: 520px;
+}
+.bimc-svc-card { background: #ECE6E3; border: 1px solid rgba(119, 51, 11, 0.65); border-radius: 16px; padding: 28px 26px; }
+.bimc-svc-card h3 { margin: 0 0 12px; font-size: 20px; font-weight: 700; line-height: 1.2; color: #28170E; }
+.bimc-svc-card p { margin: 0; font-size: 16px; line-height: 1.6; color: #28170E; }
+.bimc-svcicon { width: 100%; max-width: 210px; height: auto; display: block; overflow: visible; margin-bottom: 20px; }
+.bimc-svcicon * { animation-play-state: paused !important; }
+.bimc-svc-card:hover .bimc-svcicon * { animation-play-state: running !important; }
+
+/* ─── What you get ───────────────────────── */
+.bimc-wyg { background: #2F4868; color: #F3EEE9; border-bottom: 1px solid rgba(40, 23, 14, 0.08); }
+.bimc-wyg-inner { padding-top: clamp(64px, 8vw, 112px); padding-bottom: clamp(64px, 8vw, 112px); }
+.bimc-wyg-eyebrow { color: #F3EEE9; margin-bottom: 18px; }
+.bimc-wyg h2 {
+  margin: 0 0 clamp(40px, 5vw, 60px);
+  font-size: clamp(28px, 3.4vw, 40px);
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -0.012em;
+  color: #F3EEE9;
+  max-width: 760px;
+}
+.bimc-wyg-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 0 clamp(28px, 4vw, 56px); }
+.bimc-wyg-item {
+  display: grid;
+  grid-template-columns: 36px 1fr;
+  gap: 16px;
+  align-items: start;
+  padding: 24px 0;
+  border-top: 1px solid rgba(243, 238, 233, 0.22);
+}
+.bimc-wyg-num { font-family: var(--font-mono); font-size: 13px; font-weight: 600; color: rgba(243, 238, 233, 0.65); }
+.bimc-wyg-item h3 { margin: 0 0 6px; font-size: 18px; font-weight: 700; line-height: 1.25; color: #F3EEE9; }
+.bimc-wyg-item p { margin: 0; font-size: 15px; line-height: 1.55; color: rgba(243, 238, 233, 0.8); }
+
+/* ─── We adapt to you ────────────────────── */
+.bimc-adapt { border-bottom: 1px solid rgba(40, 23, 14, 0.08); }
+.bimc-adapt-grid {
+  display: grid;
+  grid-template-columns: calc(max((100vw - 1180px) / 2, 0px) + clamp(20px, 5vw, 64px) + (min(100vw, 1180px) - 2 * clamp(20px, 5vw, 64px) - 2 * clamp(28px, 4vw, 56px)) / 3 + clamp(28px, 4vw, 56px) / 2) 1fr;
+  align-items: stretch;
+}
+.bimc-adapt-panel {
+  background: #4A3327;
+  color: #F3EEE9;
+  padding: clamp(64px, 8vw, 112px) clamp(40px, 5vw, 64px) clamp(64px, 8vw, 112px) calc(max((100vw - 1180px) / 2, 0px) + clamp(20px, 5vw, 64px));
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: clamp(40px, 6vw, 72px);
+}
+.bimc-adapt-panel h2 {
+  margin: 0;
+  font-size: clamp(40px, 6vw, 84px);
+  font-weight: 800;
+  line-height: 0.94;
+  letter-spacing: -0.026em;
+  color: #F3EEE9;
+  white-space: pre-line;
+}
+.bimc-adapt-panel p {
+  margin: 18px 0 0;
+  font-family: var(--font-mono);
+  font-size: clamp(13px, 1.4vw, 16px);
+  font-weight: 600;
+  line-height: 1.55;
+  letter-spacing: 0.01em;
+  color: #F3EEE9;
+  opacity: 0.9;
+  max-width: 420px;
+}
+.bimc-adapt-list {
+  padding: clamp(64px, 8vw, 112px) calc(max((100vw - 1180px) / 2, 0px) + clamp(20px, 5vw, 64px)) clamp(56px, 7vw, 100px) clamp(40px, 5vw, 64px);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.bimc-adapt-row { display: grid; grid-template-columns: 56px 1fr; gap: 0 20px; padding: 24px 0; border-bottom: 1px solid rgba(40, 23, 14, 0.12); }
+.bimc-adapt-row:first-child { padding-top: 0; }
+.bimc-adapt-row:last-child { border-bottom: 0; padding-bottom: 0; }
+.bimc-adapt-row h3 { margin: 0 0 7px; font-size: 21px; font-weight: 700; line-height: 1.2; color: #28170E; }
+.bimc-adapt-row p { margin: 0; font-size: 16px; line-height: 1.6; color: #77330B; }
+.bimc-adapt-icon { width: 50px; height: 50px; display: block; overflow: visible; margin-bottom: 18px; }
+.bimc-adapt-icon .lens { animation: ltLens 1.5s ease-in-out both; animation-play-state: paused; }
+.bimc-adapt-icon .draw { animation: ltDraw 0.7s ease-out both; animation-play-state: paused; }
+.bimc-adapt-icon .draw:nth-of-type(2) { animation-delay: 0.12s; }
+.bimc-adapt-icon .draw:nth-of-type(3) { animation-delay: 0.24s; }
+.bimc-adapt-icon .draw:nth-of-type(4) { animation-delay: 0.36s; }
+.bimc-adapt-icon .node { transform-box: fill-box; transform-origin: center; animation: ltNode 0.5s ease-out 0.5s both; animation-play-state: paused; }
+.bimc-adapt-icon .sheet { transform-box: fill-box; animation: ltSheet 0.6s ease-out both; animation-play-state: paused; }
+.bimc-adapt-icon .scan { animation: ltScan 1.6s ease-in-out both; animation-play-state: paused; }
+.bimc-adapt-row:hover .bimc-adapt-icon * { animation-play-state: running; }
+
+/* ─── RIBA stages ────────────────────────── */
+.bimc-riba { background: #DED1C9; border-bottom: 1px solid rgba(40, 23, 14, 0.08); padding-bottom: clamp(56px, 8vw, 110px); }
+.bimc-riba-head { padding-top: clamp(64px, 8vw, 112px); }
+.bimc-riba-eyebrow { color: #77330B; margin-bottom: 18px; }
+.bimc-riba-head h2 {
+  margin: 0 0 20px;
+  font-size: clamp(28px, 3.4vw, 40px);
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -0.012em;
+  color: #452515;
+  max-width: 760px;
+}
+.bimc-riba-head p { margin: 0; font-size: 17px; line-height: 1.6; color: #77330B; max-width: 760px; }
+
+.bimc-riba-track { height: 320vh; position: relative; }
+.bimc-riba-pin {
+  position: sticky;
+  top: calc(50vh - min(43vmin, 310px));
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(28px, 5vw, 88px);
+  padding: 0 clamp(20px, 4vw, 64px);
+}
+.bimc-riba-stages { display: flex; flex-direction: column; flex: none; width: min(360px, 38vw); margin-left: clamp(60px, 8vw, 140px); }
+.bimc-riba-stage { display: flex; align-items: baseline; gap: 16px; padding: 11px 0; }
+.bimc-riba-stage-num { font-family: var(--font-mono); font-size: 12px; font-weight: 700; flex: none; width: 14px; transition: color 0.25s ease; }
+.bimc-riba-stage-title { font-family: var(--font-body); font-size: 16px; line-height: 1.3; transition: color 0.25s ease; }
+.bimc-riba-canvas { position: relative; flex: none; width: min(66vmin, 540px); aspect-ratio: 1 / 1; }
+.bimc-riba-canvas svg { display: block; overflow: visible; }
+.bimc-riba-caption { margin-top: 2px; display: flex; justify-content: center; pointer-events: none; }
+.bimc-riba-caption span {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #77330B;
+}
+.bimc-riba-hint {
+  position: absolute;
+  left: 50%;
+  bottom: -52px;
+  transform: translateX(-50%);
+  animation: ribaBob 1.8s ease-in-out infinite;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+/* ─── Standards & sectors ────────────────── */
+.bimc-standards { background: #AC6752; color: #F3EEE9; border-bottom: 1px solid rgba(40, 23, 14, 0.08); }
+.bimc-standards-inner { padding-top: clamp(64px, 8vw, 112px); padding-bottom: clamp(64px, 8vw, 112px); }
+.bimc-standards-eyebrow { color: #F3EEE9; margin-bottom: 18px; }
+.bimc-standards h2 {
+  margin: 0 0 clamp(40px, 5vw, 60px);
+  font-size: clamp(28px, 3.4vw, 40px);
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -0.012em;
+  color: #F3EEE9;
+  max-width: 720px;
+}
+.bimc-standards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: clamp(24px, 3vw, 40px);
+  border-top: 1px solid rgba(243, 238, 233, 0.3);
+  padding-top: clamp(36px, 4vw, 52px);
+}
+.bimc-standards-grid h3 { margin: 0 0 10px; font-size: 19px; font-weight: 700; color: #F3EEE9; }
+.bimc-standards-grid p { margin: 0; font-size: 16px; line-height: 1.6; color: rgba(243, 238, 233, 0.85); }
+.bimc-sectors { margin-top: clamp(56px, 7vw, 96px); padding-top: clamp(48px, 5vw, 72px); }
+.bimc-sectors-rule {
+  height: 1px;
+  width: 100%;
+  margin-bottom: clamp(40px, 5vw, 64px);
+  background: linear-gradient(90deg, rgba(243, 238, 233, 0.36) 0%, rgba(243, 238, 233, 0.1) 40%, rgba(243, 238, 233, 0) 100%);
+}
+.bimc-sectors h2 { margin: 0 0 clamp(36px, 4vw, 52px); max-width: 640px; }
+.bimc-sectors-chips { display: flex; flex-wrap: wrap; gap: 12px; }
+.bimc-sectors-chips span {
+  font-size: 17px;
+  color: #F3EEE9;
+  background: transparent;
+  border: 1px solid rgba(243, 238, 233, 0.4);
+  border-radius: 999px;
+  padding: 11px 22px;
+}
+.bimc-sectors-note { margin: clamp(32px, 3.6vw, 44px) 0 0; font-size: 18px; line-height: 1.6; color: rgba(243, 238, 233, 0.85); max-width: 560px; }
+
+/* ─── Why latroupe ───────────────────────── */
+.bimc-why { position: relative; overflow: hidden; background: #4A3327; color: #F3EEE9; border-bottom: 1px solid rgba(40, 23, 14, 0.08); }
+.bimc-grid-canvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.bimc-why-inner { position: relative; padding-top: clamp(64px, 8vw, 120px); padding-bottom: clamp(64px, 8vw, 120px); }
+.bimc-why-eyebrow { color: #DED1C9; margin-bottom: 24px; }
+.bimc-why h2 {
+  margin: 0 0 clamp(40px, 5vw, 64px);
+  font-size: clamp(30px, 4.2vw, 52px);
+  font-weight: 700;
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+  color: #DED1C9;
+  max-width: 820px;
+  text-wrap: balance;
+}
+.bimc-why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: clamp(28px, 3vw, 48px); padding-top: clamp(36px, 4vw, 52px); }
+.bimc-why-grid h3 { margin: 0 0 10px; font-size: 18px; font-weight: 700; color: #DED1C9; }
+.bimc-why-grid p { margin: 0; font-size: 16px; line-height: 1.55; color: rgba(222, 209, 201, 0.72); }
+
+/* ─── Our tools ──────────────────────────── */
+.bimc-tools { position: relative; overflow: hidden; border-bottom: 1px solid rgba(40, 23, 14, 0.08); }
+.bimc-tools-inner { position: relative; padding-top: clamp(72px, 9vw, 128px); padding-bottom: clamp(72px, 9vw, 128px); }
+.bimc-tools-head { text-align: center; max-width: 900px; margin: 0 auto; }
+.bimc-tools-eyebrow { color: #AC6752; margin-bottom: 22px; }
+.bimc-tools-head h2 { margin: 0 0 22px; font-size: clamp(44px, 7.5vw, 92px); font-weight: 800; line-height: 0.92; letter-spacing: -0.03em; color: #28170E; text-wrap: balance; }
+.bimc-tools-head p { margin: 24px auto 0; font-size: clamp(17px, 1.9vw, 20px); line-height: 1.6; color: #77330B; max-width: 620px; }
+.bimc-tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: clamp(28px, 3vw, 48px); margin-top: clamp(48px, 6vw, 72px); }
+.bimc-tool { display: flex; flex-direction: column; align-items: flex-start; gap: 18px; }
+.bimc-tool-img { position: relative; width: 112px; height: 112px; display: flex; align-items: center; justify-content: center; }
+.bimc-tool-img img { width: 88px; height: 88px; }
+.bimc-tool h3 { margin: 0 0 4px; display: flex; align-items: baseline; gap: 8px; font-size: 22px; font-weight: 700; color: #28170E; }
+.bimc-tool h3 span { color: #AC6752; font-weight: 400; }
+.bimc-tool-tag { font-family: var(--font-mono); font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #AC6752; }
+
+/* ─── Case study ─────────────────────────── */
+.bimc-case { background: #182A42; border-bottom: 1px solid rgba(40, 23, 14, 0.08); }
+.bimc-case-hero {
+  position: relative;
+  width: 100%;
+  min-height: clamp(540px, 74vh, 820px);
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  background: #0B172C;
+}
+.bimc-case-hero > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) contrast(1.03); transition: filter 0.7s ease; }
+.bimc-case-hero:hover > img { filter: grayscale(0) contrast(1); }
+.bimc-case-hero-shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(11, 23, 44, 0.28) 0%, rgba(11, 23, 44, 0.04) 26%, rgba(11, 23, 44, 0.5) 66%, rgba(11, 23, 44, 0.86) 100%);
+  pointer-events: none;
+}
+.bimc-case-credit {
+  position: absolute;
+  top: clamp(16px, 2vw, 24px);
+  right: clamp(16px, 3vw, 32px);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  color: rgba(253, 253, 252, 0.55);
+}
+.bimc-case-hero-inner { position: relative; width: 100%; padding-top: clamp(44px, 6vw, 76px); padding-bottom: clamp(44px, 6vw, 76px); }
+.bimc-case-eyebrow { color: #E3B1A1; margin-bottom: 16px; }
+.bimc-case-hero-inner h2 {
+  margin: 0 0 clamp(28px, 3.4vw, 40px);
+  font-size: clamp(30px, 4.4vw, 54px);
+  font-weight: 700;
+  line-height: 1.06;
+  letter-spacing: -0.018em;
+  color: #FDFDFC;
+  max-width: 760px;
+  text-wrap: balance;
+}
+.bimc-case-facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: clamp(18px, 2.4vw, 30px);
+  border-top: 1px solid rgba(253, 253, 252, 0.28);
+  padding-top: clamp(24px, 2.8vw, 32px);
+}
+.bimc-case-fact-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #E3B1A1;
+  margin-bottom: 8px;
+}
+.bimc-case-fact-value { font-size: 16px; line-height: 1.4; color: #FDFDFC; }
+.bimc-case-body { padding-top: clamp(48px, 6vw, 80px); padding-bottom: clamp(48px, 6vw, 80px); }
+.bimc-case-intro {
+  display: grid;
+  grid-template-columns: 1fr minmax(190px, 240px);
+  gap: clamp(32px, 4vw, 64px);
+  align-items: start;
+  margin: 0 0 clamp(48px, 5.5vw, 72px);
+}
+.bimc-case-copy { margin: 0; font-size: clamp(17px, 1.8vw, 20px); line-height: 1.65; color: #F3EEE9; }
+.bimc-case-standards-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #E3B1A1;
+  margin-bottom: 12px;
+}
+.bimc-case-standards-list { font-size: 15px; line-height: 1.75; color: #F3EEE9; }
+.bimc-case-body h3 { margin: 0 0 clamp(28px, 3vw, 40px); font-size: clamp(22px, 2.4vw, 28px); font-weight: 700; line-height: 1.15; color: #F3EEE9; }
+.bimc-case-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: clamp(40px, 5vw, 72px); align-items: start; }
+.bimc-case-col-label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #E3B1A1;
+  margin-bottom: 8px;
+}
+.bimc-case-col { display: flex; flex-direction: column; }
+.bimc-case-col p { margin: 0; padding: 18px 0; border-top: 1px solid rgba(243, 238, 233, 0.22); font-size: 16px; line-height: 1.6; color: rgba(243, 238, 233, 0.85); }
+.bimc-case-col--list p { padding: 14px 0; line-height: 1.55; }
+.bimc-case-col p:last-child { border-bottom: 1px solid rgba(243, 238, 233, 0.22); }
+.bimc-case-col strong { color: #F3EEE9; font-weight: 700; }
+.bimc-case-result {
+  background: #ECE6E3;
+  border: 1px solid rgba(40, 23, 14, 0.1);
+  border-radius: 16px;
+  padding: clamp(36px, 4vw, 52px);
+  margin-top: clamp(40px, 5vw, 64px);
+  display: flex;
+  align-items: flex-start;
+  gap: clamp(24px, 3vw, 44px);
+}
+.bimc-case-result-paren { width: clamp(48px, 6vw, 72px); height: auto; color: #AC6752; opacity: 0.5; flex: none; }
+.bimc-case-result-label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #77330B;
+  margin-bottom: 14px;
+}
+.bimc-case-result p { margin: 0; font-size: clamp(18px, 2vw, 22px); line-height: 1.55; color: #28170E; }
+
+/* ─── FAQs ───────────────────────────────── */
+.bimc-faqs { background: #ECE6E3; border-bottom: 1px solid rgba(40, 23, 14, 0.08); }
+.bimc-faqs-inner { padding-top: clamp(64px, 8vw, 120px); padding-bottom: clamp(64px, 8vw, 120px); }
+.bimc-faqs h2 { margin: 0 0 clamp(40px, 6vw, 80px); font-size: clamp(56px, 10vw, 124px); font-weight: 800; line-height: 0.9; letter-spacing: -0.03em; color: #28170E; }
+.bimc-faqs-list { max-width: 680px; margin-left: auto; }
+.bimc-faq { border-top: 1px solid #BEB2AB; }
+.bimc-faq-q {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  text-align: left;
+  padding: clamp(20px, 2.4vw, 28px) 0;
+}
+.bimc-faq-q span {
+  font-family: var(--font-body);
+  font-size: clamp(16px, 1.6vw, 19px);
+  font-weight: 700;
+  line-height: 1.2;
+  color: #28170E;
+  min-width: 0;
+  overflow-wrap: break-word;
+}
+.bimc-faq-q svg { flex: none; }
+.bimc-faq-q svg line:last-child { transition: opacity 320ms ease; }
+.bimc-faq-a { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 380ms cubic-bezier(0.4, 0, 0.2, 1); }
+.bimc-faq--open .bimc-faq-a { grid-template-rows: 1fr; }
+.bimc-faq-a-clip { overflow: hidden; opacity: 0; transition: opacity 300ms ease; }
+.bimc-faq--open .bimc-faq-a-clip { opacity: 1; transition-delay: 60ms; }
+.bimc-faq-a p { margin: 0; padding: 0 0 clamp(22px, 2.6vw, 30px); font-size: 16px; line-height: 1.65; color: #77330B; max-width: 620px; }
+
+/* ─── Contact ────────────────────────────── */
+.bimc-contact { background: #DED1C9; border-bottom: 1.5px solid rgba(40, 23, 14, 0.2); }
+.bimc-contact-inner {
+  padding-top: clamp(88px, 11vw, 168px);
+  padding-bottom: clamp(88px, 11vw, 168px);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: clamp(44px, 6vw, 88px);
+  align-items: start;
+}
+.bimc-contact h2 {
+  margin: 0 0 clamp(28px, 3.4vw, 40px);
+  font-size: clamp(52px, 8.5vw, 108px);
+  font-weight: 800;
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  color: #28170E;
+  white-space: pre-line;
+}
+.bimc-contact-text { margin: 0; font-family: var(--font-body); font-size: clamp(15px, 1.5vw, 17px); font-weight: 400; line-height: 1.6; color: #28170E; max-width: 360px; }
+
+/* ─── Footer ─────────────────────────────── */
+.bimc-footer-inner {
+  padding-top: clamp(28px, 3vw, 40px);
+  padding-bottom: clamp(28px, 3vw, 40px);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: clamp(36px, 5vw, 72px);
+}
+.bimc-footer-brand { display: flex; flex-direction: column; justify-content: space-between; gap: clamp(18px, 2.4vw, 26px); }
+.bimc-footer-logo { width: 170px; height: auto; display: block; color: #452515; }
+.bimc-footer-credit { font-family: var(--font-body); font-size: 14px; font-weight: 400; color: #452515; }
+.bimc-footer-work { display: flex; flex-direction: column; justify-content: flex-start; padding-top: clamp(2px, 1vw, 10px); }
+.bimc-footer-work div { font-family: var(--font-body); font-size: clamp(16px, 1.4vw, 18px); font-weight: 700; letter-spacing: -0.01em; color: #452515; }
+.bimc-footer-links { display: flex; flex-direction: column; justify-content: space-between; gap: clamp(18px, 2.4vw, 26px); padding-top: clamp(2px, 1vw, 10px); }
+.bimc-footer-social { display: flex; gap: clamp(28px, 3vw, 44px); font-size: clamp(16px, 1.4vw, 18px); font-weight: 700; letter-spacing: -0.01em; }
+.bimc-footer-social a { color: #452515; }
+.bimc-footer-social a:hover { color: #AC6752; }
+.bimc-footer-legal { display: flex; gap: clamp(28px, 3vw, 44px); font-size: 14px; font-weight: 400; }
+.bimc-footer-legal a { color: #452515; }
+.bimc-footer-legal a:hover { color: #AC6752; }
+
+/* ─── Responsive ─────────────────────────── */
+@media (max-width: 760px) {
+  .bimc-svc-grid { grid-template-columns: 1fr; }
+  .bimc-svc-head { grid-column: span 1; min-height: 0; padding: 26px 24px; }
+  .bimc-svc-head h2 { font-size: clamp(34px, 10vw, 44px); }
+  .bimc-svc-card .bimc-svcicon { max-width: 150px; }
+
+  .bimc-adapt-grid { grid-template-columns: 1fr; }
+  .bimc-adapt-panel { padding: 60px clamp(20px, 6vw, 40px) 56px; gap: 0; }
+  .bimc-adapt-panel h2 { font-size: clamp(38px, 11vw, 52px); }
+  .bimc-adapt-list { padding: 32px clamp(20px, 6vw, 40px) 48px; }
+
+  .bimc-case-intro { grid-template-columns: 1fr; }
+  .bimc-case-standards { order: -1; }
+
+  .bimc-form-pop { position: fixed; inset: 0; width: auto; max-height: none; border: 0; border-radius: 0; }
+  .bimc-case-result { flex-direction: column; align-items: center; }
+
+  .bimc-riba-track { height: auto; }
+  .bimc-riba-pin { position: static; padding: 4px 0 28px; flex-direction: column; }
+  .bimc-riba-hint { display: none; }
+  .bimc-riba-stages { display: none; }
+
+  .bimc-hero-paren { left: auto; right: -180px; }
+}
+@media (min-width: 761px) {
+  .bimc-riba-caption { display: none; }
+}
