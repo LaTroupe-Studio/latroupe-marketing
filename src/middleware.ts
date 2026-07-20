@@ -24,6 +24,13 @@ export function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
+  // bim-management was removed — it duplicated bim-consultancy.
+  const bimManagementMatch = pathname.match(/^\/(es|en)\/bim-management(\/.*)?$/);
+  if (bimManagementMatch) {
+    const newUrl = new URL(`/${bimManagementMatch[1]}/bim-consultancy`, request.url);
+    return NextResponse.redirect(newUrl, 308);
+  }
+
   const pathnameHasLocale = i18nConfig.locales.some(
     (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
   );
