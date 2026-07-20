@@ -1,109 +1,111 @@
-/* Mirrors Hero.module.css — fixed paren fill ( bim ) + mono CTA. */
-
 .hero {
-  height: 100vh;
   position: relative;
   overflow: hidden;
+  padding: clamp(96px, 10vw, 148px) 0 clamp(56px, 7vw, 104px);
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  background-color: #ECE6E3;
+  color: #452515;
 }
 
-.content {
-  position: absolute;
-  left: 0; right: 0;
-  top: 0; bottom: 0;
-  padding-left: var(--grid-margin);
-  padding-right: var(--grid-margin);
-  max-width: var(--grid-max-width);
+.container {
+  position: relative;
+  width: 100%;
+  max-width: 1180px;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: auto 1fr;
-  gap: 0 var(--grid-gutter);
+  padding: 0 clamp(20px, 5vw, 64px);
 }
 
-.claimCol {
-  grid-column: 2 / 9;
-  grid-row: 1;
-  margin-top: 18vh;
+.copy {
+  position: relative;
+  max-width: 800px;
+  margin-top: 50px;
 }
 
-.heading {
+.decoIcon {
+  position: absolute;
+  top: 38%;
+  right: clamp(-20px, 2vw, 60px);
+  transform: translateY(-50%);
+  width: clamp(220px, 30vw, 487px);
+  height: auto;
+  color: var(--color-terracota-2);
+  opacity: 0.1;
+  pointer-events: none;
+}
+
+.scrollHint {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(24px, 4vh, 44px);
+  transform: translateX(-50%);
+  color: var(--color-terracota-2);
+  animation: scrollBob 1.8s ease-in-out infinite;
+}
+
+@keyframes scrollBob {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(7px); }
+}
+
+.h1 {
   font-family: var(--font-heading);
-  font-size: clamp(64px, 9vw, 134.92px);
-  line-height: 1.05;
+  font-size: clamp(48px, 7vw, 88px);
+  line-height: 1.02;
+  letter-spacing: -0.022em;
   font-weight: 700;
   color: #452515;
   margin: 0;
-  display: flex;
-  flex-direction: column;
 }
 
-.line1 { display: block; }
-
-.logoAsText {
-  display: block;
-  height: 1em;
-  width: auto;
-}
-
-.lineIndented {
-  display: block;
-  margin-left: calc((100% - 6 * var(--grid-gutter)) / 7 + var(--grid-gutter));
-  white-space: nowrap;
-}
-
-.word {
-  color: var(--color-terracota-2);
-  font-family: var(--font-mono);
-}
-
-.descCol {
-  grid-column: 9 / 13;
-  grid-row: 2;
-  align-self: end;
-  margin-bottom: 12vh;
-}
-
-.description {
+.subhead {
   font-family: var(--font-body);
-  font-size: 28px;
+  font-size: clamp(18px, 2vw, 22px);
+  line-height: 1.5;
   font-weight: 400;
-  line-height: 35px;
   color: #28170E;
-  margin: 0;
-  max-width: 445px;
+  max-width: 660px;
+  margin: 28px 0 0;
+}
+
+.ctaRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px 24px;
+  margin-top: 40px;
 }
 
 .cta {
-  margin-top: 32px;
-  background: none;
-  border: none;
-  padding: 0;
+  display: inline-flex;
+  align-items: center;
   font-family: var(--font-mono);
-  font-size: 24px;
-  line-height: 30px;
+  font-size: 13px;
   font-weight: 700;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--color-terracota-3);
-  transition: color var(--transition-fast);
+  color: #fff;
+  background: var(--color-terracota-2);
+  border: none;
+  cursor: pointer;
+  padding: 14px 26px;
+  border-radius: 999px;
+  transition: background var(--transition-fast);
 }
-.cta:hover { color: var(--color-terracota-dark); }
+.cta:hover { background: #28170E; }
 
-@media (max-width: 1024px) {
-  .heading { font-size: clamp(52px, 8vw, 100px); }
-  .lineIndented { margin-left: 8%; }
-  .description { font-size: 22px; line-height: 28px; }
+.ctaSub {
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.4;
+  color: rgba(40, 23, 14, 0.68);
+  max-width: 280px;
 }
 
 @media (max-width: 768px) {
-  .hero { height: auto; min-height: 100vh; padding: 120px 0 60px; display: flex; align-items: center; }
-  .content { position: relative; align-content: end; }
-  .claimCol { grid-column: 1 / -1; margin-top: 0; }
-  .descCol { grid-column: 1 / -1; grid-row: auto; align-self: auto; margin-top: 40px; margin-bottom: 0; padding-top: 60px; }
-  .heading { font-size: clamp(48px, 13vw, 80px); }
-  .lineIndented { margin-left: 0; }
-  .word { padding-bottom: 15px; }
-  .logoAsText { height: 1.08em; }
-  .description { font-size: 20px; line-height: 28px; max-width: none; }
-  .cta { font-size: 20px; margin-top: 24px; }
+  .hero { padding: 120px 0 60px; min-height: auto; }
+  .h1 { font-size: clamp(40px, 12vw, 64px); }
+  .subhead { font-size: 18px; }
+  .decoIcon { width: 140px; opacity: 0.08; top: 20%; }
 }

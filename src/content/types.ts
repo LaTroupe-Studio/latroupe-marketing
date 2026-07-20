@@ -55,10 +55,46 @@ export interface BimService {
   paragraphs: string[];
 }
 
-export interface BimStep {
+export interface BimDeliverable {
   number: string;
   title: string;
   text: string;
+}
+
+export interface BimAdaptItem {
+  title: string;
+  text: string;
+}
+
+export interface BimRibaStage {
+  number: string;
+  label: string;
+}
+
+export interface BimStandard {
+  code: string;
+  description: string;
+}
+
+export interface BimWhyItem {
+  title: string;
+  text: string;
+}
+
+export interface BimTool {
+  name: string;
+  description: string;
+  img: string;
+}
+
+export interface BimCaseStudySection {
+  title: string;
+  items: string[];
+}
+
+export interface BimFaqItem {
+  question: string;
+  answer: string;
 }
 
 export interface BimContent {
@@ -69,29 +105,119 @@ export interface BimContent {
     home: NavLink;
   };
   hero: {
-    word: string;
-    suffix: string;
-    description: string;
+    h1: string;
+    subhead: string;
     cta: NavLink;
+    ctaSub: string;
   };
-  intro: {
+  trustBand: {
     eyebrow: string;
-    headline: string;
-    blocks: string[];
+    tagline: string;
   };
   services: {
+    eyebrow: string;
     headline: string;
+    sub: string;
     items: BimService[];
   };
-  process: {
+  deliverables: {
+    eyebrow: string;
     headline: string;
-    intro: string;
-    steps: BimStep[];
-  };
-  banner: {
-    text: string;
     sub: string;
-    cta: NavLink;
+    items: BimDeliverable[];
+  };
+  adapts: {
+    headline: string;
+    sub: string;
+    items: BimAdaptItem[];
+  };
+  riba: {
+    eyebrow: string;
+    headline: string;
+    caption: string;
+    stages: BimRibaStage[];
+  };
+  standards: {
+    eyebrow: string;
+    headline: string;
+    sub: string;
+    items: BimStandard[];
+  };
+  sectors: {
+    eyebrow: string;
+    headline: string;
+    items: string[];
+    sub: string;
+  };
+  why: {
+    eyebrow: string;
+    headline: string;
+    items: BimWhyItem[];
+  };
+  tools: {
+    eyebrow: string;
+    headline: string;
+    sub: string;
+    items: BimTool[];
+  };
+  caseStudy: {
+    eyebrow: string;
+    headline: string;
+    heroImage: string;
+    location: string;
+    year: string;
+    area: string;
+    typology: string;
+    author: string;
+    endClient: string;
+    intro: string;
+    standards: string;
+    whatWeDid: BimCaseStudySection[];
+    result: string;
+    imageCredit: string;
+  };
+  faq: {
+    eyebrow: string;
+    headline: string;
+    items: BimFaqItem[];
+  };
+  header: {
+    popup: {
+      whoLabel: string;
+      namePlaceholder: string;
+      reachLabel: string;
+      emailPlaceholder: string;
+      projectLabel: string;
+      projectPlaceholder: string;
+      moreLabel: string;
+      morePlaceholder: string;
+      submit: string;
+      legal: string;
+      legalLinkPhrase: string;
+      legalLinkHref: string;
+      closeAriaLabel: string;
+    };
+  };
+  ctaSection: {
+    headline: string;
+    sub: string;
+    fields: {
+      whoLabel: string;
+      namePlaceholder: string;
+      reachLabel: string;
+      emailPlaceholder: string;
+      projectLabel: string;
+      projectPlaceholder: string;
+      moreLabel: string;
+      morePlaceholder: string;
+      submit: string;
+      sending: string;
+      sent: string;
+      error: string;
+    };
+    legal: string;
+    legalLinkPhrase: string;
+    legalLinkHref: string;
   };
 }
 

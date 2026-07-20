@@ -1,68 +1,170 @@
 "use client";
-import { useCallback } from "react";
+import { useEffect, useRef, useState, FormEvent } from "react";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
 import Logo from "./Logo";
 import { useContent } from "@/lib/locale-context";
-import { i18nConfig, Locale } from "@/lib/i18n";
-import styles from "./Header.module.css";
+import styles from "./BimHeader.module.css";
 
-/**
- * Header for the BIM management landing. Mirrors the main Header layout
- * (fixed grid columns so labels don't shift between ES/EN) but the logo
- * links back to the home page and nav anchors to landing sections.
- */
-export default function BimHeader({ onNavigate }: { onNavigate?: (id: string) => void }) {
-  const { content, locale } = useContent();
+export default function BimHeader() {
+  const { content } = useContent();
   const nav = content.bim.nav;
-  const router = useRouter();
-  const pathname = usePathname();
+  const popup = content.bim.header.popup;
+  const headerRef = useRef<HTMLElement>(null);
 
-  const handleClick = (id: string) => {
-    if (onNavigate) onNavigate(id);
-    else document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  const [formOpen, setFormOpen] = useState(false);
+  const [form, setForm] = useState({ name: "", email: "", project: "", message: "" });
+  const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [overDark, setOverDark] = useState(false);
+
+  useEffect(() => {
+    if (!formOpen) return;
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setFormOpen(false); };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [formOpen]);
+
+  useEffect(() => {
+    const header = headerRef.current;
+    if (!header) return;
+    const darks = Array.from(document.querySelectorAll("[data-header-dark]"));
+    const onScroll = () => {
+      const probe = header.getBoundingClientRect().height * 0.5;
+      setOverDark(
+        darks.some((s) => {
+          const r = s.getBoundingClientRect();
+          return r.top <= probe && r.bottom >= probe;
+        })
+      );
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, []);
+
+  const handleSubmit = async (e?: FormEvent) => {
+    if (e) e.preventDefault();
+    const endpoint = process.env.NEXT_PUBLIC_CONTACT_URL?.trim();
+    if (!endpoint) { setStatus("error"); setTimeout(() => setStatus("idle"), 5000); return; }
+    setStatus("sending");
+    try {
+      const res = await fetch(endpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...form, source: "bim-header-popup" }),
+      });
+      const data = (await res.json().catch(() => ({}))) as { ok?: boolean };
+      if (!res.ok || !data?.ok) throw new Error("submit failed");
+      setStatus("sent");
+      setForm({ name: "", email: "", project: "", message: "" });
+      setTimeout(() => { setStatus("idle"); setFormOpen(false); }, 1500);
+    } catch {
+      setStatus("error");
+      setTimeout(() => setStatus("idle"), 5000);
+    }
   };
 
-  const switchLocale = useCallback((newLocale: Locale) => {
-    document.cookie = `NEXT_LOCALE=${newLocale};path=/;max-age=31536000;SameSite=Lax`;
-    const segments = pathname.split("/"); segments[1] = newLocale;
-    router.push(segments.join("/"));
-  }, [pathname, router]);
+  const legalParts = popup.legal.split(popup.legalLinkPhrase);
+  const submitLabel =
+    status === "sending" ? "…" :
+    status === "sent" ? "✓" :
+    status === "error" ? "!" :
+    popup.submit;
 
   return (
-    <header className={styles.header}>
-      <div className={`grid-container ${styles.gridRow}`}>
-        <div className={styles.logoCell}>
-          <Link href={nav.home.id} className={styles.logoButton} aria-label="latroupe">
-            <Logo color="currentColor" width={160} />
-          </Link>
-        </div>
-        <div className={styles.navCol7}>
-          <button className={styles.navLink} onClick={() => handleClick(nav.links[0].id)}>
-            {nav.links[0]?.label}
-          </button>
-        </div>
-        <div className={styles.navCol8}>
-          <button className={styles.navLink} onClick={() => handleClick(nav.links[1].id)}>
-            {nav.links[1]?.label}
-          </button>
-        </div>
-        <div className={styles.navCol10}>
-          <button className={styles.navLink} onClick={() => handleClick(nav.contact.id)}>
+    <header ref={headerRef} className={`${styles.header}${overDark ? ` ${styles.headerDark}` : ""}`}>
+      <div className={styles.bar}>
+        <Link href={nav.home.id} className={styles.logoButton} aria-label="latroupe">
+          <Logo color="currentColor" width={140} />
+        </Link>
+        <div className={styles.right}>
+          <button type="button" className={styles.cta} onClick={() => setFormOpen((v) => !v)}>
             {nav.contact.label}
           </button>
         </div>
-        <div className={styles.navCol12}>
-          {i18nConfig.locales.map((loc, i) => (
-            <span key={loc}>
-              <button className={styles.langBtn} onClick={() => switchLocale(loc)} style={{ opacity: loc === locale ? 1 : 0.45, fontWeight: loc === locale ? 700 : 400 }}>
-                {loc.toUpperCase()}
-              </button>
-              {i < i18nConfig.locales.length - 1 && <span className={styles.langSep}>|</span>}
-            </span>
-          ))}
-        </div>
       </div>
+
+      {formOpen && (
+        <>
+          <div className={styles.backdrop} onClick={() => setFormOpen(false)} />
+          <div className={styles.formPop}>
+            <div className={styles.formPopHead}>
+              <button type="button" onClick={() => setFormOpen(false)} aria-label={popup.closeAriaLabel} className={styles.closeBtn}>×</button>
+            </div>
+            <form className={styles.form} onSubmit={handleSubmit}>
+              <div className={styles.field}>
+                <label className={styles.label}>{popup.whoLabel}</label>
+                <div className={styles.bracketRow}>
+                  <span className={styles.bracket}>[</span>
+                  <input
+                    className={styles.input}
+                    type="text"
+                    placeholder={popup.namePlaceholder}
+                    value={form.name}
+                    onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
+                    required
+                  />
+                  <span className={styles.bracket}>]</span>
+                </div>
+              </div>
+              <div className={styles.field}>
+                <label className={styles.label}>{popup.reachLabel}</label>
+                <div className={styles.bracketRow}>
+                  <span className={styles.bracket}>[</span>
+                  <input
+                    className={styles.input}
+                    type="email"
+                    placeholder={popup.emailPlaceholder}
+                    value={form.email}
+                    onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
+                    required
+                  />
+                  <span className={styles.bracket}>]</span>
+                </div>
+              </div>
+              <div className={styles.field}>
+                <label className={styles.label}>{popup.projectLabel}</label>
+                <div className={styles.bracketRow}>
+                  <span className={styles.bracket}>[</span>
+                  <input
+                    className={styles.input}
+                    type="text"
+                    placeholder={popup.projectPlaceholder}
+                    value={form.project}
+                    onChange={(e) => setForm((f) => ({ ...f, project: e.target.value }))}
+                  />
+                  <span className={styles.bracket}>]</span>
+                </div>
+              </div>
+              <div className={styles.field}>
+                <label className={styles.label}>{popup.moreLabel}</label>
+                <div className={styles.bracketRow}>
+                  <span className={styles.bracket}>[</span>
+                  <input
+                    className={styles.input}
+                    type="text"
+                    placeholder={popup.morePlaceholder}
+                    value={form.message}
+                    onChange={(e) => setForm((f) => ({ ...f, message: e.target.value }))}
+                  />
+                  <span className={styles.bracket}>]</span>
+                </div>
+              </div>
+              <button type="submit" className={styles.submit} disabled={status === "sending"}>
+                {submitLabel}
+              </button>
+              <p className={styles.legalText}>
+                {legalParts[0]}
+                <Link href={popup.legalLinkHref} className={styles.legalLink} target="_blank" rel="noopener">{popup.legalLinkPhrase}</Link>
+                {legalParts[1]}
+              </p>
+            </form>
+          </div>
+        </>
+      )}
     </header>
   );
 }

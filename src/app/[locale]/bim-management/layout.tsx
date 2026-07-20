@@ -4,6 +4,12 @@ import { getDictionary } from "@/content/dictionary";
 
 const SITE_URL = "https://latroupestudio.com";
 
+export function generateStaticParams() {
+  return [{ locale: "en" }];
+}
+
+export const dynamicParams = false;
+
 export async function generateMetadata({
   params,
 }: {
@@ -17,20 +23,19 @@ export async function generateMetadata({
     title,
     description,
     alternates: {
-      canonical: `/${loc}/bim-management`,
+      canonical: "/en/bim-management",
       languages: {
-        es: "/es/bim-management",
         en: "/en/bim-management",
-        "x-default": "/es/bim-management",
+        "x-default": "/en/bim-management",
       },
     },
     openGraph: {
       title,
       description,
       type: "website",
-      url: `${SITE_URL}/${loc}/bim-management`,
+      url: `${SITE_URL}/en/bim-management`,
       siteName: "LaTroupe Studio",
-      locale: loc === "es" ? "es_ES" : "en_GB",
+      locale: "en_GB",
     },
   };
 }

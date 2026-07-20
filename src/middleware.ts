@@ -24,6 +24,15 @@ export function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
+  // bim-management is English-only — no Spanish version exists.
+  if (pathname === "/es/bim-management" || pathname.startsWith("/es/bim-management/")) {
+    const newUrl = new URL(
+      pathname.replace("/es/bim-management", "/en/bim-management"),
+      request.url
+    );
+    return NextResponse.redirect(newUrl);
+  }
+
   const pathnameHasLocale = i18nConfig.locales.some(
     (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
   );
