@@ -15,22 +15,24 @@ El tratamiento de los datos facilitados para las finalidades expuestas.
 
 El envío de comunicaciones comerciales por correo electrónico sobre ofertas, promociones y nuevos servicios de Awesomely SL, previo consentimiento del interesado. No obstante, si el usuario no desea continuar recibiendo comunicaciones comerciales, puede indicarlo en cualquier momento mediante comunicación remitida a legal@awesomelygroup.com.
 
-En cumplimiento de las obligaciones de información recogidas en el artículo 22.2 de la Ley 34/2002, de 11 de julio, de servicios de la sociedad de la información y de comercio electrónico (LSSI-CE), utilizamos cookies propias y de terceros para mejorar nuestros servicios y mostrar información relacionada con sus preferencias mediante el análisis de sus hábitos de navegación. Las cookies que no son estrictamente necesarias solo se instalan con su consentimiento previo. Puede obtener más información y configurar o rechazar su uso en nuestra Política de cookies o escribiendo a legal@awesomelygroup.com.`,
+En cumplimiento de las obligaciones de información recogidas en el artículo 22.2 de la Ley 34/2002, de 11 de julio, de servicios de la sociedad de la información y de comercio electrónico (LSSI-CE), le informamos de que este sitio web utiliza únicamente una cookie propia de carácter técnico, necesaria para recordar el idioma de navegación seleccionado. No utilizamos cookies de análisis, publicidad ni de terceros. Puede obtener más información en nuestra Política de cookies o escribiendo a legal@awesomelygroup.com.`,
   },
   cookies: {
     title: "Política de cookies",
-    content: `En cumplimiento del deber de información recogido en el artículo 22.2 de la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Información y de Comercio Electrónico (LSSI-CE), y de conformidad con el Reglamento (UE) 2016/679 (RGPD), le informamos sobre el uso de cookies en este sitio web. Utilizamos cookies propias y de terceros para mejorar nuestros servicios, analizar sus hábitos de navegación y mostrarle información relacionada con sus preferencias. Las cookies que no son estrictamente necesarias solo se instalan con su consentimiento previo, expreso e informado, que puede otorgar, rechazar o retirar en cualquier momento a través del panel de configuración de cookies. La navegación por el sitio web no implica, por sí sola, la aceptación de las cookies. Puede obtener más información escribiendo a legal@awesomelygroup.com.
+    content: `En cumplimiento del deber de información recogido en el artículo 22.2 de la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Información y de Comercio Electrónico (LSSI-CE), le informamos sobre el uso de cookies en este sitio web.
 
-Una cookie es un fichero que se descarga en su ordenador al acceder a determinadas páginas web. Las cookies permiten a una página web, entre otras cosas, almacenar y recuperar información sobre los hábitos de navegación de un usuario o de su equipo y, dependiendo de la información que contengan y de la forma en que utilice su equipo, pueden utilizarse para reconocer al usuario. El navegador del usuario memoriza cookies en el disco duro solamente durante la sesión actual, ocupando un espacio de memoria mínimo y sin perjudicar al ordenador. Las cookies no contienen ninguna clase de información personal específica, y la mayoría de ellas se borran del disco duro al finalizar la sesión de navegación (cookies de sesión).
+Una cookie es un fichero que se descarga en su ordenador al acceder a determinadas páginas web. Las cookies permiten a una página web, entre otras cosas, almacenar y recuperar información sobre los hábitos de navegación de un usuario o de su equipo y, dependiendo de la información que contengan y de la forma en que utilice su equipo, pueden utilizarse para reconocer al usuario.
 
-La mayoría de los navegadores aceptan las cookies de forma estándar y, con independencia de ello, permiten o impiden en los ajustes de seguridad las cookies temporales o memorizadas. Sin su consentimiento expreso, mediante la activación de las cookies en su navegador, Awesomely SL no vinculará en las cookies los datos memorizados con sus datos personales proporcionados en el momento del registro o de alguna compra en nuestro portal web.
+Este sitio web utiliza únicamente la siguiente cookie, de carácter propio y técnico, que no requiere su consentimiento por ser estrictamente necesaria para el funcionamiento del sitio:
 
-En particular, este sitio web utiliza Google Analytics, un servicio analítico prestado por Google, Inc. Para la prestación de estos servicios se utilizan cookies que recopilan información, incluida la dirección IP del usuario, que será transmitida, tratada y almacenada por Google en los términos fijados en sus políticas de privacidad, lo que puede incluir la transmisión de dicha información a terceros por razones de exigencia legal o cuando dichos terceros procesen la información por cuenta de Google. Estas transferencias internacionales de datos se realizan con las garantías adecuadas previstas en el RGPD.
+Nombre: NEXT_LOCALE. Finalidad: recordar el idioma (español/inglés) seleccionado por el usuario. Duración: 1 año.
 
-El Usuario reconoce la posibilidad de rechazar el tratamiento de tales datos o información rechazando el uso de cookies mediante la selección de la configuración apropiada en su navegador o a través del panel de configuración de cookies. Si bien esta opción de bloqueo de cookies puede no permitirle el uso pleno de todas las funcionalidades del sitio web.`,
+No utilizamos cookies de análisis, publicidad ni de terceros, y el sitio no realiza seguimiento de su navegación. La mayoría de los navegadores permiten eliminar o bloquear cookies desde sus ajustes de seguridad; tenga en cuenta que bloquear la cookie NEXT_LOCALE puede hacer que el sitio no recuerde su idioma preferido entre visitas.
+
+Si en el futuro incorporamos cookies de análisis, publicidad o de terceros, actualizaremos esta política y solicitaremos su consentimiento previo, expreso e informado, mediante un panel de configuración de cookies, tal y como exige la normativa vigente. Puede obtener más información escribiendo a legal@awesomelygroup.com.`,
   },
   legalNotice: {
-    title: "Aviso Legal — Política de Protección de Datos",
+    title: "Aviso Legal",
     content: `1. OBJETO Y ACEPTACIÓN
 
 El presente aviso legal regula el uso del sitio web www.latroupestudio.com (en adelante, LA WEB), del que es titular Awesomely SL, que opera bajo el nombre comercial LaTroupe Studio (en adelante, EL PROPIETARIO DE LA WEB).
@@ -93,52 +95,8 @@ En todo caso, el hiperenlace únicamente permitirá el acceso a la home-page o p
 
 EL PROPIETARIO DE LA WEB no se responsabiliza del uso que cada usuario le dé a los materiales puestos a disposición en este sitio web ni de las actuaciones que realice en base a los mismos.
 
-4. POLÍTICA DE PRIVACIDAD
+4. PROTECCIÓN DE DATOS
 
-Quién es el Responsable de tratamiento de sus datos:
-
-El responsable de tratamiento se encuentra identificado en el expositivo 1 de este Aviso Legal. Para cualquier cuestión relativa a la protección de sus datos puede dirigirse a legal@awesomelygroup.com.
-
-Qué tipo de datos tenemos sobre su persona y cómo los hemos obtenido
-
-Las categorías de datos personales que tratamos de clientes y proveedores son:
-
-Datos de identificación
-
-Direcciones postales o electrónicas
-
-Información comercial
-
-Datos económicos y de transacciones
-
-En ningún caso tratamos datos especialmente protegidos.
-
-Todos los datos arriba mencionados los hemos obtenido directamente de Usted mediante la presentación de una oferta comercial, propuesta contractual, etc., o mediante su empresa al facilitarnos los datos de identificación y demás información necesaria para llevar a cabo el objeto de la relación contractual entre las partes. Será una obligación suya o de su empresa facilitarnos los datos actualizados en caso de modificación.
-
-¿Cuál es la base jurídica del tratamiento?
-
-La base jurídica para el tratamiento de sus datos es el consentimiento del interesado, la ejecución de una relación contractual o precontractual, el cumplimiento de obligaciones legales aplicables y el interés legítimo del responsable, según proceda en cada caso.
-
-¿Con qué finalidad tratamos sus datos?
-
-Tratamos los datos que nos facilitan las personas interesadas con el fin de gestionar distintas actividades derivadas de procedimientos específicos realizados en materia de ventas, servicio post venta, gestión de proveedores, calidad de servicios, etc. De esta manera, utilizaremos sus datos para llevar a cabo alguna de las siguientes acciones:
-
-I. Envío de la información que nos soliciten mediante el formulario de contacto de nuestra página web o cualquier otro medio de contacto con nuestra empresa.
-
-II. Facilitar tanto a los clientes potenciales como a nuestros clientes, ofertas de productos y servicios de su interés.
-
-III. Llevar a cabo la gestión administrativa, fiscal y contable de nuestros clientes y/o proveedores.
-
-IV. Llevar a cabo encuestas de satisfacción, estudios de mercado, etc. con el fin de poder ofrecerle las ofertas más adecuadas y una calidad optimizada de servicio, etc.
-
-¿Por cuánto tiempo conservaremos sus datos?
-
-Los datos personales relativos a personas físicas vinculadas a clientes potenciales, clientes y proveedores que recopilemos mediante los distintos formularios de contacto y/o recogida de información se conservarán mientras no se solicite su supresión por el interesado. Los datos proporcionados por nuestros clientes y proveedores se conservarán mientras se mantenga la relación mercantil entre las partes respetando en cualquier caso los plazos mínimos legales de conservación según la materia.
-
-En cualquier caso guardaremos sus datos personales durante el período de tiempo que sea razonablemente necesario teniendo en cuenta nuestras necesidades de dar respuesta a cuestiones que se planteen o resolver problemas, realizar mejoras, activar nuevos servicios y cumplir los requisitos que exija la legislación aplicable. Esto significa que podemos conservar sus datos personales durante un período de tiempo razonable incluso después de que haya dejado de usar nuestros productos o esta página web. Después de este período, sus datos personales serán eliminados de todos nuestros sistemas.
-
-¿Cuáles son sus derechos?
-
-Usted tiene derecho a acceder a sus datos personales, así como a solicitar la rectificación de los datos inexactos o, en su caso, solicitar su supresión cuando, entre otros motivos, los datos ya no sean necesarios para los fines para los que fueron recogidos. En determinadas circunstancias, podrá solicitar la limitación del tratamiento de sus datos, oponerse a su tratamiento o solicitar la portabilidad de los mismos. Podrá ejercer sus derechos dirigiéndose a legal@awesomelygroup.com. Asimismo, tiene derecho a presentar una reclamación ante la Agencia Española de Protección de Datos (www.aepd.es) si considera que el tratamiento no se ajusta a la normativa vigente.`,
+El tratamiento de los datos personales derivado del uso de este sitio web se rige por nuestra Política de Privacidad, disponible en este mismo sitio web.`,
   },
 };

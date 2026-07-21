@@ -34,54 +34,5 @@ const en: SiteContent = {
     reject: "Reject",
   },
   overlay: { close:"CLOSE", inDevelopment:"Ongoing", comingSoon:"Coming soon" },
-  bim: {
-    meta: {
-      title: "latroupe ( bim ) · BIM management and coordination for architecture studios",
-      description: "We manage the coordination, standards and BIM production of your project. We integrate into your team and keep the model ordered, consistent and traceable across every phase. Let's start with a call.",
-    },
-    nav: {
-      links: [{ label: "services", id: "servicios" }, { label: "process", id: "proceso" }],
-      contact: { label: "contact", id: "contacto" },
-      home: { label: "latroupe", id: "/en" },
-    },
-    hero: {
-      word: "bim",
-      suffix: "for your studio",
-      description: "We manage the coordination, standards and BIM production of your project so your team can focus on designing. We integrate into your workflow, not the other way around.",
-      cta: { label: "let's talk", id: "contacto" },
-    },
-    intro: {
-      eyebrow: "What we do",
-      headline: "A well-managed model is one that never slows you down",
-      blocks: [
-        "BIM management is more than modelling: it is keeping information ordered, consistent and traceable across every phase and between every discipline.",
-        "We join you as your coordination and technical production team, with the rigour of the standards each project needs (ISO 19650, BEP, information levels) and the flexibility to adapt to your way of working.",
-      ],
-    },
-    services: {
-      headline: "What we manage",
-      items: [
-        { number:"I)", title:"Model coordination", subtitle:"(multidisciplinary)", paragraphs:["We federate architecture, structure and MEP in a common data environment. We detect and resolve clashes before they reach the site."] },
-        { number:"II)", title:"Standards and BEP", subtitle:"(iso 19650)", paragraphs:["We define and maintain the BIM execution plan: folder structure, naming conventions and information levels for every deliverable."] },
-        { number:"III)", title:"Technical production", subtitle:"(revit)", paragraphs:["Modelling and documentation to your standards: drawing packages, quantity schedules and models ready for coordination."] },
-        { number:"IV)", title:"Quality control", subtitle:"(qa / qc)", paragraphs:["We validate models, check compliance with specifications and ensure document consistency before every milestone."] },
-      ],
-    },
-    process: {
-      headline: "How we work",
-      intro: "A simple process, in short cycles, designed to integrate into your team without complicating it.",
-      steps: [
-        { number:"1.", title:"Kick-off", text:"We review your project, define the BEP and set the starting standards." },
-        { number:"2.", title:"Integration", text:"We join your common data environment, be it ACC, BIM 360 or whatever you use." },
-        { number:"3.", title:"Coordination", text:"Production, federation and clash resolution in short cycles." },
-        { number:"4.", title:"Delivery", text:"Validated models and documentation, ready for each project milestone." },
-      ],
-    },
-    banner: {
-      text: "shall we coordinate your next project?",
-      sub: "A single call is enough to start getting to know each other.",
-      cta: { label: "let's talk", id: "contacto" },
-    },
-  },
 };
 export default en;

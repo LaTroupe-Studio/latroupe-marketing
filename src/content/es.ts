@@ -69,54 +69,5 @@ const es: SiteContent = {
     reject: "Rechazar",
   },
   overlay: { close:"CERRAR", inDevelopment:"En desarrollo", comingSoon:"Próximamente" },
-  bim: {
-    meta: {
-      title: "latroupe ( bim ) · gestión y coordinación BIM para estudios de arquitectura",
-      description: "Gestionamos la coordinación, los estándares y la producción BIM de tu proyecto. Nos integramos en tu equipo y mantenemos el modelo ordenado, coherente y trazable en todas las fases. Empecemos con una videollamada.",
-    },
-    nav: {
-      links: [{ label: "servicios", id: "servicios" }, { label: "proceso", id: "proceso" }],
-      contact: { label: "contacto", id: "contacto" },
-      home: { label: "latroupe", id: "/es" },
-    },
-    hero: {
-      word: "bim",
-      suffix: "para tu estudio",
-      description: "Gestionamos la coordinación, los estándares y la producción BIM de tu proyecto para que tu equipo se concentre en diseñar. Nos integramos en tu flujo, no al revés.",
-      cta: { label: "hablemos", id: "contacto" },
-    },
-    intro: {
-      eyebrow: "¿Qué hacemos?",
-      headline: "Un modelo bien gestionado es el que no te frena",
-      blocks: [
-        "La gestión BIM no es solo modelar: es mantener la información ordenada, coherente y trazable a lo largo de todas las fases y entre todas las disciplinas.",
-        "Nos incorporamos como tu equipo de coordinación y producción técnica, con el rigor de los estándares que cada proyecto necesita (ISO 19650, BEP, niveles de información) y la flexibilidad de adaptarnos a tu forma de trabajar.",
-      ],
-    },
-    services: {
-      headline: "Lo que gestionamos",
-      items: [
-        { number:"I)", title:"Coordinación de modelos", subtitle:"(multidisciplinar)", paragraphs:["Federamos arquitectura, estructura e instalaciones en un entorno común de datos. Detectamos y resolvemos las interferencias antes de que lleguen a obra."] },
-        { number:"II)", title:"Estándares y BEP", subtitle:"(iso 19650)", paragraphs:["Definimos y mantenemos el plan de ejecución BIM: estructura de carpetas, nomenclatura y niveles de información de cada entrega."] },
-        { number:"III)", title:"Producción técnica", subtitle:"(revit)", paragraphs:["Modelado y documentación conforme a tus estándares: paquetes de planos, tablas de cantidades y modelos listos para coordinación."] },
-        { number:"IV)", title:"Control de calidad", subtitle:"(qa / qc)", paragraphs:["Validamos los modelos, comprobamos el cumplimiento de las especificaciones y aseguramos la coherencia documental antes de cada hito."] },
-      ],
-    },
-    process: {
-      headline: "Cómo trabajamos",
-      intro: "Un proceso sencillo, en ciclos cortos, pensado para integrarse en tu equipo sin complicarlo.",
-      steps: [
-        { number:"1.", title:"Arranque", text:"Revisamos tu proyecto, definimos el BEP y los estándares de partida." },
-        { number:"2.", title:"Integración", text:"Nos sumamos a tu entorno común de datos, sea ACC, BIM 360 o el que utilices." },
-        { number:"3.", title:"Coordinación", text:"Producción, federación y resolución de interferencias en ciclos cortos." },
-        { number:"4.", title:"Entrega", text:"Modelos y documentación validados, listos para cada hito del proyecto." },
-      ],
-    },
-    banner: {
-      text: "¿coordinamos tu próximo proyecto?",
-      sub: "Una videollamada es suficiente para empezar a conocernos.",
-      cta: { label: "hablemos", id: "contacto" },
-    },
-  },
 };
 export default es;
