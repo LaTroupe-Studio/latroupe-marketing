@@ -10,3 +10,4 @@ export { default as ContactForm } from "./ContactForm";
 export { default as Footer } from "./Footer";
 export { default as Logo } from "./Logo";
 export { default as LegalPage } from "./LegalPage";
+export { default as ChatLauncher } from "./Chat/ChatLauncher";
