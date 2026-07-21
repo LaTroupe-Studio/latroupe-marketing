@@ -4,6 +4,7 @@ import { useState, FormEvent } from "react";
 import Link from "next/link";
 import { ChatContent } from "@/lib/chat/content";
 import { trackChatEvent } from "@/lib/chat/analytics";
+import { trackLeadConversion } from "@/lib/analytics";
 import styles from "./ChatWidget.module.css";
 
 interface ChatHistoryEntry {
@@ -47,6 +48,7 @@ export default function LeadMiniForm({
       if (!res.ok || !data?.ok) throw new Error("submit failed");
       setStatus("sent");
       trackChatEvent("chat_lead_form_submit");
+      trackLeadConversion();
       setTimeout(onSent, 1600);
     } catch {
       setStatus("error");
