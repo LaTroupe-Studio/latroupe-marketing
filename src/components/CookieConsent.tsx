@@ -8,9 +8,11 @@ import styles from "./CookieConsent.module.css";
 
 /**
  * GDPR/LSSI-compliant cookie consent banner.
- * Non-essential scripts (e.g. analytics) must only run after the user
- * accepts here. Choice is stored for a year in a first-party cookie and
- * broadcast via the consent event so analytics can start immediately.
+ * Google's tag (analytics + ads, see GoogleAnalytics.tsx) runs Consent Mode
+ * v2: it loads regardless, but ad/analytics storage stays denied — no
+ * cookie, no stored identifier — until the user accepts here. Choice is
+ * stored for a year in a first-party cookie and broadcast via the consent
+ * event so consent state updates immediately, without a reload.
  */
 export default function CookieConsent() {
   const { content, locale } = useContent();

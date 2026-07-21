@@ -2,6 +2,7 @@
 import { useState, FormEvent } from "react";
 import Link from "next/link";
 import { ConsultancyContent } from "./content";
+import { trackLeadConversion } from "@/lib/analytics";
 
 interface ConsultancyFormProps {
   content: ConsultancyContent["contact"];
@@ -40,6 +41,7 @@ export default function ConsultancyForm({ content, variant, onSent }: Consultanc
       const data = (await res.json().catch(() => ({}))) as { ok?: boolean };
       if (!res.ok || !data?.ok) throw new Error("submit failed");
       setStatus("sent");
+      trackLeadConversion();
       setForm({ name: "", email: "", project: "", more: "" });
       setTimeout(() => {
         setStatus("idle");
