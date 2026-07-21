@@ -4,6 +4,8 @@
 .pnp.js
 lambda/contact/node_modules
 lambda/contact/function.zip
+lambda/chat/node_modules
+lambda/chat/function.zip
 
 # next.js
 /.next/

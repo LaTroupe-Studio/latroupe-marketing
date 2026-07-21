@@ -27,11 +27,19 @@ function originAllowed(requestOrigin) {
   return allowed.includes(requestOrigin);
 }
 
-const MAX = { name: 200, email: 320, message: 10000 };
+const MAX = { name: 200, email: 320, message: 10000, transcript: 8000 };
 
 function trim(str, max) {
   if (typeof str !== "string") return "";
   return str.trim().slice(0, max);
+}
+
+function formatTranscript(transcript) {
+  if (!Array.isArray(transcript)) return "";
+  const lines = transcript
+    .filter((m) => m && typeof m.content === "string" && m.content.trim())
+    .map((m) => `${m.role === "assistant" ? "Latty" : "Usuario"}: ${m.content.trim()}`);
+  return trim(lines.join("\n"), MAX.transcript);
 }
 
 export const handler = async (event) => {
@@ -86,6 +94,8 @@ export const handler = async (event) => {
   const name = trim(body.name, MAX.name);
   const email = trim(body.email, MAX.email);
   const message = trim(body.message, MAX.message);
+  const source = body.source === "chat" ? "chat" : "contact-form";
+  const transcript = formatTranscript(body.transcript);
 
   if (!name || !email || !message) {
     return {
@@ -95,8 +105,11 @@ export const handler = async (event) => {
     };
   }
 
-  const subject = `[LaTroupe contact] ${name}`;
-  const text = `From: ${name} <${email}>\n\n${message}`;
+  const subject =
+    source === "chat" ? `[LaTroupe chat lead] ${name}` : `[LaTroupe contact] ${name}`;
+  const text = transcript
+    ? `From: ${name} <${email}>\n\n${message}\n\n--- Conversación con Latty ---\n${transcript}`
+    : `From: ${name} <${email}>\n\n${message}`;
 
   try {
     await ses.send(

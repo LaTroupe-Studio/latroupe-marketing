@@ -42,17 +42,19 @@ DNS (en el proveedor del dominio, fuera del repo):
 
 ## Variables de entorno
 
-**Settings → Environment Variables**. Necesaria para el formulario de contacto:
+**Settings → Environment Variables**. Necesarias para el formulario de contacto y el chat:
 
 | Variable                  | Entornos              | Valor                                  |
 |---------------------------|-----------------------|----------------------------------------|
-| `NEXT_PUBLIC_CONTACT_URL` | Production, Preview    | URL de la Lambda Function URL (la misma que el secret de GitHub) |
+| `NEXT_PUBLIC_CONTACT_URL` | Production, Preview    | URL de la Lambda Function URL de `lambda/contact` (también recibe los leads del chat) |
+| `NEXT_PUBLIC_CHAT_URL`    | Production, Preview    | URL de la Lambda Function URL de `lambda/chat` |
 
-## CORS del Lambda de contacto
+## CORS de los Lambdas (contacto y chat)
 
-El backend del formulario sigue en **AWS Lambda + SES** (`lambda/contact/`),
-independiente del hosting. Añade los dominios de Vercel a la variable
-`ALLOWED_ORIGIN` del Lambda (consola AWS) para que el `fetch` no falle CORS:
+Los backends del formulario y del chat viven en **AWS Lambda**
+(`lambda/contact/`, `lambda/chat/`), independientes del hosting. Añade los
+dominios de Vercel a la variable `ALLOWED_ORIGIN` de **cada Lambda** (consola
+AWS) para que el `fetch` no falle CORS:
 
 ```
 https://latroupestudio.com,https://staging.latroupestudio.com
@@ -60,6 +62,33 @@ https://latroupestudio.com,https://staging.latroupestudio.com
 
 (Si quieres probar desde URLs de Preview efímeras `*.vercel.app`, añádelas
 también o deja `ALLOWED_ORIGIN` vacío para permitir cualquier origen.)
+
+## Lambda del chat (`lambda/chat/`)
+
+Llama al SDK de Anthropic (Claude) con el prompt de Latty (`lambda/chat/prompt.mjs`).
+Variables de entorno propias de este Lambda (no de Vercel):
+
+| Variable             | Obligatoria | Valor                                                      |
+|----------------------|-------------|-------------------------------------------------------------|
+| `ANTHROPIC_API_KEY`  | Sí          | API key de Anthropic (console.anthropic.com)                |
+| `ANTHROPIC_MODEL`    | No          | Modelo a usar (por defecto `claude-sonnet-4-6`)              |
+| `ALLOWED_ORIGIN`     | No          | Igual que en `lambda/contact`                                |
+
+Sin `ANTHROPIC_API_KEY` configurada, el Lambda responde con un mensaje de
+fallback y abre igualmente el miniform de contacto, en vez de fallar.
+
+### Despliegue manual (igual que `lambda/contact`)
+
+```bash
+cd lambda/chat
+npm install
+npm run zip          # genera function.zip
+```
+
+Sube `function.zip` a la función Lambda desde la consola AWS (o `aws lambda
+update-function-code`), configura las variables de entorno de la tabla
+anterior, y crea/edita la **Function URL** con CORS igual que la de
+`lambda/contact`. Apunta `NEXT_PUBLIC_CHAT_URL` (en Vercel) a esa Function URL.
 
 ## Fallback a AWS
 

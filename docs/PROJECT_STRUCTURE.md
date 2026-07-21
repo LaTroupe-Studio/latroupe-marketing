@@ -8,6 +8,9 @@ Sitio con **Next.js 15** (App Router), **React 19** y **TypeScript**. Rutas loca
 latroupe-marketing/
 ├── docs/
 │   └── PROJECT_STRUCTURE.md    # Este documento
+├── lambda/                     # Backends AWS Lambda, independientes del hosting
+│   ├── contact/                # Formulario de contacto + leads del chat (SES)
+│   └── chat/                   # Chat "Latty" (Anthropic SDK + prompt.mjs)
 ├── public/                     # Estáticos servidos tal cual
 │   ├── fonts/                  # Tipografías (Roobert)
 │   └── images/                 # Logos, proyectos, assets de marca
@@ -24,8 +27,10 @@ latroupe-marketing/
 │   │       ├── privacidad/
 │   │       └── privacy/
 │   ├── components/             # UI por bloques (Hero, Projects, Legal…)
+│   │   └── Chat/                # ChatLauncher + ChatWidget + LeadMiniForm
 │   ├── content/                # Copys y textos legales (es/en + tipos)
 │   ├── lib/                    # i18n, hooks, tokens de diseño, contexto locale
+│   │   └── chat/                 # Copy del chat (es/en) y tracking GA4
 │   └── middleware.ts           # Locale y redirecciones
 ├── next.config.js
 ├── package.json
