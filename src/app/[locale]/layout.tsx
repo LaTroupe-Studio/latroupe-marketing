@@ -4,6 +4,7 @@ import { getDictionary } from "@/content/dictionary";
 import { LocaleProvider } from "@/lib/locale-context";
 import CookieConsent from "@/components/CookieConsent";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
+import Clarity from "@/components/Clarity";
 import ChatLauncher from "@/components/Chat/ChatLauncher";
 import { roobert } from "../fonts";
 import "../globals.css";
@@ -121,6 +122,7 @@ export default async function LocaleLayout({
           {children}
           <CookieConsent />
           <GoogleAnalytics />
+          <Clarity />
           <ChatLauncher />
         </LocaleProvider>
       </body>
