@@ -2,6 +2,7 @@
 import { useState, FormEvent } from "react";
 import Link from "next/link";
 import { useContent } from "@/lib/locale-context";
+import { trackLeadConversion } from "@/lib/analytics";
 import styles from "./ContactForm.module.css";
 
 export default function ContactForm() {
@@ -33,6 +34,7 @@ export default function ContactForm() {
       const data = (await res.json().catch(() => ({}))) as { ok?: boolean };
       if (!res.ok || !data?.ok) throw new Error("submit failed");
       setStatus("sent");
+      trackLeadConversion();
       setForm({ name: "", email: "", message: "" });
       setTimeout(() => setStatus("idle"), 3000);
     } catch {
