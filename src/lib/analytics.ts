@@ -27,6 +27,20 @@ export function isGoogleAdsConfigured(): boolean {
   return /^AW-[0-9]+$/.test(GOOGLE_ADS_ID);
 }
 
+/**
+ * Microsoft Clarity project ID (short alphanumeric code, e.g. xqldsf5r3p).
+ *
+ * PUBLIC — exposed in the browser, injected per environment at build time
+ * via NEXT_PUBLIC_CLARITY_ID (set in the deploy workflows). While it stays
+ * empty (e.g. local dev), Clarity stays completely off. Same project id is
+ * currently used for both staging and production.
+ */
+export const CLARITY_ID = (process.env.NEXT_PUBLIC_CLARITY_ID ?? "").trim();
+
+export function isClarityConfigured(): boolean {
+  return /^[a-z0-9]+$/i.test(CLARITY_ID);
+}
+
 const LEAD_FORM_CONVERSION_LABEL = "TsAxCMqZkNQcEPjkjalE";
 
 /**
@@ -49,5 +63,6 @@ declare global {
   interface Window {
     dataLayer?: unknown[];
     gtag?: (...args: unknown[]) => void;
+    clarity?: (...args: unknown[]) => void;
   }
 }
