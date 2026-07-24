@@ -1,0 +1,11 @@
+{
+  "name": "latroupe-chat",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "zip": "zip -r function.zip index.mjs prompt.mjs node_modules"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.39.0"
+  }
+}
