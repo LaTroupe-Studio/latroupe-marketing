@@ -38,10 +38,38 @@ export async function generateMetadata({
   };
 }
 
-export default function BimConsultancyLayout({
+/**
+ * FAQPage structured data for the landing's own FAQ block. It complements —
+ * it does not replace — the Organization/Service graph emitted by the parent
+ * [locale] layout.
+ */
+export default async function BimConsultancyLayout({
   children,
+  params,
 }: {
   children: React.ReactNode;
+  params: Promise<{ locale: string }>;
 }) {
-  return children;
+  const { locale } = await params;
+  const { faqs } = getConsultancyContent(locale as Locale);
+
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.items.map(({ q, a }) => ({
+      "@type": "Question",
+      name: q,
+      acceptedAnswer: { "@type": "Answer", text: a },
+    })),
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
+      {children}
+    </>
+  );
 }
