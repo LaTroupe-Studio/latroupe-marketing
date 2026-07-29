@@ -3,7 +3,7 @@ import { Locale } from "@/lib/i18n";
 import { getConsultancyContent } from "@/components/bim-consultancy/content";
 import "./consultancy.css";
 
-const SITE_URL = "https://latroupestudio.com";
+const SITE_URL = "https://www.latroupestudio.com";
 
 export async function generateMetadata({
   params,
@@ -22,7 +22,9 @@ export async function generateMetadata({
       languages: {
         es: "/es/bim-consultancy",
         en: "/en/bim-consultancy",
-        "x-default": "/es/bim-consultancy",
+        // The BIM offer targets the UK market, so English is the fallback
+        // for visitors Google can't match to a specific locale.
+        "x-default": "/en/bim-consultancy",
       },
     },
     openGraph: {
@@ -36,10 +38,38 @@ export async function generateMetadata({
   };
 }
 
-export default function BimConsultancyLayout({
+/**
+ * FAQPage structured data for the landing's own FAQ block. It complements —
+ * it does not replace — the Organization/Service graph emitted by the parent
+ * [locale] layout.
+ */
+export default async function BimConsultancyLayout({
   children,
+  params,
 }: {
   children: React.ReactNode;
+  params: Promise<{ locale: string }>;
 }) {
-  return children;
+  const { locale } = await params;
+  const { faqs } = getConsultancyContent(locale as Locale);
+
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.items.map(({ q, a }) => ({
+      "@type": "Question",
+      name: q,
+      acceptedAnswer: { "@type": "Answer", text: a },
+    })),
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
+      {children}
+    </>
+  );
 }

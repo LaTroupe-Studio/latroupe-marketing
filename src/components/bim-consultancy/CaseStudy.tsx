@@ -17,7 +17,14 @@ export default function CaseStudy({ content }: { content: ConsultancyContent }) 
   return (
     <section className="bimc-case" data-header-dark="">
       <div className="bimc-case-hero">
-        <img src={withBasePath("/images/bim-consultancy/lego-southbank.jpg")} alt={cs.imageAlt} />
+        <img
+          src={withBasePath("/images/bim-consultancy/lego-southbank.jpg")}
+          alt={cs.imageAlt}
+          width={1920}
+          height={1234}
+          loading="lazy"
+          decoding="async"
+        />
         <div className="bimc-case-hero-shade" />
         <div className="bimc-case-credit">{cs.imageCredit}</div>
         <div className="bimc-container bimc-case-hero-inner">

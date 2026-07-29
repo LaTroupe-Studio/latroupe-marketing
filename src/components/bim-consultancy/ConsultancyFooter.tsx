@@ -17,7 +17,9 @@ export default function ConsultancyFooter({ content }: { content: ConsultancyCon
           <div className="bimc-footer-credit">{content.footer.credit}</div>
         </div>
         <div className="bimc-footer-work">
-          <div>{content.footer.workWithUs}</div>
+          <a href={content.footer.workWithUs.href} target="_blank" rel="noopener noreferrer">
+            {content.footer.workWithUs.label}
+          </a>
         </div>
         <div className="bimc-footer-links">
           <div className="bimc-footer-social">
