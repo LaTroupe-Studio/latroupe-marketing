@@ -671,7 +671,8 @@
 .bimc-footer-logo { width: 170px; height: auto; display: block; color: #452515; }
 .bimc-footer-credit { font-family: var(--font-body); font-size: 14px; font-weight: 400; color: #452515; }
 .bimc-footer-work { display: flex; flex-direction: column; justify-content: flex-start; padding-top: clamp(2px, 1vw, 10px); }
-.bimc-footer-work div { font-family: var(--font-body); font-size: clamp(16px, 1.4vw, 18px); font-weight: 700; letter-spacing: -0.01em; color: #452515; }
+.bimc-footer-work a { font-family: var(--font-body); font-size: clamp(16px, 1.4vw, 18px); font-weight: 700; letter-spacing: -0.01em; color: #452515; }
+.bimc-footer-work a:hover { color: #AC6752; }
 .bimc-footer-links { display: flex; flex-direction: column; justify-content: space-between; gap: clamp(18px, 2.4vw, 26px); padding-top: clamp(2px, 1vw, 10px); }
 .bimc-footer-social { display: flex; gap: clamp(28px, 3vw, 44px); font-size: clamp(16px, 1.4vw, 18px); font-weight: 700; letter-spacing: -0.01em; }
 .bimc-footer-social a { color: #452515; }
