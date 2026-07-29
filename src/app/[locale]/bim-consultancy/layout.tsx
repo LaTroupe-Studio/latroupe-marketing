@@ -3,7 +3,7 @@ import { Locale } from "@/lib/i18n";
 import { getConsultancyContent } from "@/components/bim-consultancy/content";
 import "./consultancy.css";
 
-const SITE_URL = "https://latroupestudio.com";
+const SITE_URL = "https://www.latroupestudio.com";
 
 export async function generateMetadata({
   params,
@@ -22,7 +22,9 @@ export async function generateMetadata({
       languages: {
         es: "/es/bim-consultancy",
         en: "/en/bim-consultancy",
-        "x-default": "/es/bim-consultancy",
+        // The BIM offer targets the UK market, so English is the fallback
+        // for visitors Google can't match to a specific locale.
+        "x-default": "/en/bim-consultancy",
       },
     },
     openGraph: {

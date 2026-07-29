@@ -9,7 +9,7 @@ import ChatLauncher from "@/components/Chat/ChatLauncher";
 import { roobert } from "../fonts";
 import "../globals.css";
 
-const SITE_URL = "https://latroupestudio.com";
+const SITE_URL = "https://www.latroupestudio.com";
 
 export function generateStaticParams() {
   return i18nConfig.locales.map((locale) => ({ locale }));
