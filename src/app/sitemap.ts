@@ -2,7 +2,7 @@ import { MetadataRoute } from "next";
 
 export const dynamic = "force-static";
 
-const SITE_URL = "https://latroupestudio.com";
+const SITE_URL = "https://www.latroupestudio.com";
 
 const legalPairs = [
   { es: `${SITE_URL}/es/aviso-legal`, en: `${SITE_URL}/en/legal-notice` },
@@ -37,7 +37,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
       languages: {
         es: `${SITE_URL}/es/bim-consultancy`,
         en: `${SITE_URL}/en/bim-consultancy`,
-        "x-default": `${SITE_URL}/es/bim-consultancy`,
+        // UK-facing offer — English is the x-default (see bim-consultancy/layout).
+        "x-default": `${SITE_URL}/en/bim-consultancy`,
       },
     },
   }));

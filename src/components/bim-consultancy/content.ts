@@ -92,7 +92,7 @@ export interface ConsultancyContent {
   };
   footer: {
     credit: string;
-    workWithUs: string;
+    workWithUs: { label: string; href: string };
     legal: { label: string; href: string }[];
   };
 }
@@ -359,7 +359,10 @@ const en: ConsultancyContent = {
   },
   footer: {
     credit: "Developed by latroupe ( ) 2026 ©",
-    workWithUs: "Work with us",
+    workWithUs: {
+      label: "Work with us",
+      href: "https://invented-cactus-ce6.notion.site/Trabajar-en-LaTroupe-cd9c990923954418bd2e6a3df58b2500",
+    },
     legal: [
       { label: "Privacy", href: "/en/privacy" },
       { label: "Cookies", href: "/en/cookies" },
@@ -630,7 +633,10 @@ const es: ConsultancyContent = {
   },
   footer: {
     credit: "Developed by latroupe ( ) 2026 ©",
-    workWithUs: "Trabaja con nosotros",
+    workWithUs: {
+      label: "Trabaja con nosotros",
+      href: "https://invented-cactus-ce6.notion.site/Trabajar-en-LaTroupe-cd9c990923954418bd2e6a3df58b2500",
+    },
     legal: [
       { label: "Privacidad", href: "/es/privacidad" },
       { label: "Cookies", href: "/es/cookies" },
