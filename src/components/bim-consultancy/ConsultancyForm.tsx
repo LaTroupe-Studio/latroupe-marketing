@@ -31,9 +31,16 @@ export default function ConsultancyForm({ content, variant, onSent }: Consultanc
     }
     setStatus("sending");
     try {
+      // Include the question label with each answer so the email body shows
+      // which answer corresponds to which question, instead of raw pasted text.
       // Only name and email are required, but the endpoint rejects an empty
       // message — so fall back to a placeholder instead of failing the submit.
-      const details = [form.project.trim(), form.more.trim()].filter(Boolean).join("\n\n");
+      const answeredFields = [
+        { label: content.fields.project.label, value: form.project.trim() },
+        { label: content.fields.more.label, value: form.more.trim() },
+      ].filter((f) => f.value);
+      const details = answeredFields.map((f) => `${f.label}\n${f.value}`).join("\n\n");
+
       const res = await fetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
