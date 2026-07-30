@@ -5,6 +5,8 @@ export type ChatPage = "home" | "bim";
 export interface ChatContent {
   welcome: Record<ChatPage, string>;
   initialOptions: Record<ChatPage, string[]>;
+  /** Chip that leads to the lead form; kept on screen even if others are dropped. */
+  contactOption: string;
   placeholder: string;
   send: string;
   typingLabel: string;
@@ -35,6 +37,7 @@ const es: ChatContent = {
     home: ["Conocer los servicios", "Tengo un proyecto en marcha", "Hablar con el equipo"],
     bim: ["Ver servicios BIM", "Cómo empezamos", "Hablar con el equipo"],
   },
+  contactOption: "Hablar con el equipo",
   placeholder: "Escribe tu mensaje...",
   send: "Enviar",
   typingLabel: "Latty está escribiendo...",
@@ -66,6 +69,7 @@ const en: ChatContent = {
     home: ["See services", "I have an ongoing project", "Talk to the team"],
     bim: ["See BIM services", "How we start", "Talk to the team"],
   },
+  contactOption: "Talk to the team",
   placeholder: "Type your message...",
   send: "Send",
   typingLabel: "Latty is typing...",
@@ -94,5 +98,5 @@ export function getChatContent(locale: Locale): ChatContent {
 }
 
 export function getChatPage(pathname: string): ChatPage {
-  return pathname.includes("/bim-management") ? "bim" : "home";
+  return pathname.includes("/bim-consultancy") ? "bim" : "home";
 }

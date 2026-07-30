@@ -25,6 +25,9 @@
   right: var(--space-lg);
   bottom: calc(var(--space-lg) + 72px);
   z-index: 60;
+  /* globals.css sets a semibold body for the site's display type; at the chat's
+     14px that reads as bold, so the widget opts back out to a regular weight. */
+  font-weight: 400;
   width: 360px;
   max-width: calc(100vw - 2 * var(--space-lg));
   height: 520px;
@@ -49,6 +52,7 @@
 .headerTitle {
   font-family: var(--font-mono);
   font-size: 14px;
+  font-weight: 600;
 }
 
 .closeBtn {
