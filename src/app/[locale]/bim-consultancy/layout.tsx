@@ -39,37 +39,10 @@ export async function generateMetadata({
 }
 
 /**
- * FAQPage structured data for the landing's own FAQ block. It complements —
- * it does not replace — the Organization/Service graph emitted by the parent
- * [locale] layout.
+ * Shared shell for the landing and its thank-you page: page-scoped styles only.
+ * The FAQPage structured data lives in the Faqs component so it is emitted by
+ * the landing alone, not by every route under this segment.
  */
-export default async function BimConsultancyLayout({
-  children,
-  params,
-}: {
-  children: React.ReactNode;
-  params: Promise<{ locale: string }>;
-}) {
-  const { locale } = await params;
-  const { faqs } = getConsultancyContent(locale as Locale);
-
-  const faqJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqs.items.map(({ q, a }) => ({
-      "@type": "Question",
-      name: q,
-      acceptedAnswer: { "@type": "Answer", text: a },
-    })),
-  };
-
-  return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
-      />
-      {children}
-    </>
-  );
+export default function BimConsultancyLayout({ children }: { children: React.ReactNode }) {
+  return children;
 }

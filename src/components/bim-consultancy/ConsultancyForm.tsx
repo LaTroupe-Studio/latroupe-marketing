@@ -1,6 +1,7 @@
 "use client";
 import { useState, FormEvent } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { ConsultancyContent } from "./content";
 import { trackLeadConversion } from "@/lib/analytics";
 
@@ -16,6 +17,7 @@ interface ConsultancyFormProps {
  * the main site contact form (NEXT_PUBLIC_CONTACT_URL).
  */
 export default function ConsultancyForm({ content, variant, onSent }: ConsultancyFormProps) {
+  const router = useRouter();
   const [form, setForm] = useState({ name: "", email: "", project: "", more: "" });
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
 
@@ -29,13 +31,16 @@ export default function ConsultancyForm({ content, variant, onSent }: Consultanc
     }
     setStatus("sending");
     try {
+      // Only name and email are required, but the endpoint rejects an empty
+      // message — so fall back to a placeholder instead of failing the submit.
+      const details = [form.project.trim(), form.more.trim()].filter(Boolean).join("\n\n");
       const res = await fetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           name: form.name,
           email: form.email,
-          message: [form.project, form.more].filter(Boolean).join("\n\n"),
+          message: details || content.noDetails,
         }),
       });
       const data = (await res.json().catch(() => ({}))) as { ok?: boolean };
@@ -43,10 +48,8 @@ export default function ConsultancyForm({ content, variant, onSent }: Consultanc
       setStatus("sent");
       trackLeadConversion();
       setForm({ name: "", email: "", project: "", more: "" });
-      setTimeout(() => {
-        setStatus("idle");
-        onSent?.();
-      }, 2500);
+      onSent?.();
+      router.push(content.thanksHref);
     } catch {
       setStatus("error");
       setTimeout(() => setStatus("idle"), 5000);

@@ -84,11 +84,23 @@ export interface ConsultancyContent {
     sending: string;
     sent: string;
     error: string;
+    /** Sent as the message body when the visitor only fills name and email. */
+    noDetails: string;
+    /** Where the form redirects after a successful submit. */
+    thanksHref: string;
     privacyPre: string;
     privacyLink: string;
     privacyHref: string;
     privacyPost: string;
     privacyExtra: string;
+  };
+  thanks: {
+    metaTitle: string;
+    metaDescription: string;
+    eyebrow: string;
+    title: string;
+    text: string;
+    back: string;
   };
   footer: {
     credit: string;
@@ -351,11 +363,21 @@ const en: ConsultancyContent = {
     sending: "Sending…",
     sent: "Sent ✓",
     error: "Error — try again",
+    noDetails: "No project details provided — the visitor only left their name and email.",
+    thanksHref: "/en/bim-consultancy/thank-you",
     privacyPre: "By submitting this form you agree to our ",
     privacyLink: "privacy policy",
     privacyHref: "/en/privacy",
     privacyPost: ".",
     privacyExtra: " We only use your details to reply to your enquiry — never for anything else.",
+  },
+  thanks: {
+    metaTitle: "Thank you · BIM Consulting & Modelling · LaTroupe Studio",
+    metaDescription: "We've received your enquiry and will reply within one working day.",
+    eyebrow: "( enquiry received )",
+    title: "Thanks —\nwe've got it.",
+    text: "Your enquiry is with our BIM team. We'll read it properly and come back to you within one working day, with the next step already mapped out. If it's urgent, reply to our confirmation email and we'll bring the call forward.",
+    back: "back to the site",
   },
   footer: {
     credit: "Developed by latroupe ( ) 2026 ©",
@@ -625,11 +647,21 @@ const es: ConsultancyContent = {
     sending: "Enviando…",
     sent: "Enviado ✓",
     error: "Error — inténtalo de nuevo",
+    noDetails: "Sin detalles del proyecto — solo ha dejado nombre y email.",
+    thanksHref: "/es/bim-consultancy/thank-you",
     privacyPre: "Al enviar este formulario aceptas nuestra ",
     privacyLink: "política de privacidad",
     privacyHref: "/es/privacidad",
     privacyPost: ".",
     privacyExtra: " Solo usamos tus datos para responder a tu consulta — nunca para otra cosa.",
+  },
+  thanks: {
+    metaTitle: "Gracias · Consultoría y Modelado BIM · LaTroupe Studio",
+    metaDescription: "Hemos recibido tu consulta y te responderemos en un día laborable.",
+    eyebrow: "( consulta recibida )",
+    title: "Gracias —\nya la tenemos.",
+    text: "Tu consulta ya está con nuestro equipo BIM. La leeremos con calma y te responderemos en un día laborable con el siguiente paso definido. Si es urgente, contesta al email de confirmación y adelantamos la llamada.",
+    back: "volver a la web",
   },
   footer: {
     credit: "Developed by latroupe ( ) 2026 ©",
