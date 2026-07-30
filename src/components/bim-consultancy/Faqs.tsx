@@ -5,26 +5,8 @@ import { ConsultancyContent } from "./content";
 export default function Faqs({ content }: { content: ConsultancyContent }) {
   const [open, setOpen] = useState(-1);
 
-  /**
-   * FAQPage structured data for this block. It complements — it does not
-   * replace — the Organization/Service graph emitted by the [locale] layout.
-   */
-  const faqJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: content.faqs.items.map(({ q, a }) => ({
-      "@type": "Question",
-      name: q,
-      acceptedAnswer: { "@type": "Answer", text: a },
-    })),
-  };
-
   return (
     <section id="faqs" className="bimc-faqs">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
-      />
       <div className="bimc-container bimc-faqs-inner">
         <h2>{content.faqs.title}</h2>
         <div className="bimc-faqs-list">

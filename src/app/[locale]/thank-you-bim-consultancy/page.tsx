@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { Locale } from "@/lib/i18n";
 import { getConsultancyContent } from "@/components/bim-consultancy/content";
 import ThankYou from "@/components/bim-consultancy/ThankYou";
+// The page lives outside the bim-consultancy segment (the campaign needs this
+// exact URL), so it pulls in the landing's styles itself.
+import "../bim-consultancy/consultancy.css";
 
 export async function generateMetadata({
   params,
@@ -18,7 +21,7 @@ export async function generateMetadata({
     // Conversion page: it must never be indexed nor become an entry point
     // from organic search. It is also kept out of the sitemap.
     robots: { index: false, follow: false },
-    alternates: { canonical: `/${loc}/bim-consultancy/thank-you` },
+    alternates: { canonical: `/${loc}/thank-you-bim-consultancy` },
   };
 }
 
