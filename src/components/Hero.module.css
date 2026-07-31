@@ -19,6 +19,12 @@
  */
 
 .hero {
+  /* Shared by the heading and by the paragraph's alignment, which is expressed
+     in heading line-heights — keep them derived from one place. */
+  --hero-fs: clamp(56px, 8.6vw, 130px);
+  --hero-lh: 1.02;
+  --hero-line: calc(var(--hero-fs) * var(--hero-lh));
+
   min-height: 100svh;
   display: flex;
   align-items: center;
@@ -45,14 +51,12 @@
 
 .heading {
   font-family: var(--font-heading);
-  font-size: clamp(56px, 8.6vw, 130px);
-  line-height: 1.02;
+  font-size: var(--hero-fs);
+  line-height: var(--hero-lh);
   font-weight: 700;
   letter-spacing: -0.01em;
   color: var(--color-terracota-4);
   margin: 0;
-  position: relative;
-  top: 30px;
 }
 
 .logoLine {
@@ -77,10 +81,15 @@
   animation: blink 1s step-end infinite;
 }
 
+/* The paragraph's top edge sits on the top of the heading's LAST line, whether
+   the heading runs to three lines (ES) or four (EN).
+   The cell is bottom-aligned with the heading, which puts the paragraph's
+   bottom on the heading's bottom; shifting it by (its own height − one heading
+   line) lands its top on that last line. Hence the translate below, expressed
+   in the heading's own line height so it holds as the font-size clamp resolves. */
 .descCol {
   grid-column: 9 / 13;
   align-self: end;
-  margin-bottom: clamp(8px, 1.5vw, 20px);
 }
 
 .description {
@@ -90,6 +99,7 @@
   line-height: 1.2;
   color: var(--color-terracota-dark);
   margin: 0;
+  transform: translateY(calc(100% - var(--hero-line)));
 }
 
 @media (max-width: 1024px) {
@@ -98,10 +108,13 @@
 }
 
 @media (max-width: 768px) {
-  .hero { min-height: 100svh; padding-top: 140px; padding-bottom: 60px; }
+  .hero { --hero-fs: clamp(48px, 13vw, 80px); min-height: 100svh; padding-top: 140px; padding-bottom: 60px; }
   .content { margin-top: 0; row-gap: 40px; }
   .claimCol { grid-column: 1 / -1; }
-  .descCol { grid-column: 1 / -1; margin-bottom: 0; }
-  .heading { font-size: clamp(48px, 13vw, 80px); top: 0; }
-  .description { font-size: 18px; }
+  .descCol { grid-column: 1 / -1; }
+  .description {
+    font-size: 18px;
+    /* Stacked layout — the paragraph follows the heading, nothing to align to. */
+    transform: none;
+  }
 }
