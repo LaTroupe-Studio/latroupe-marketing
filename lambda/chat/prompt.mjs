@@ -47,12 +47,12 @@ LEGO London Hub (Londres, 2026, 20.000 m², workplace, con BDG architecture + de
 ## VOZ Y TONO
 - Tuteo siempre, cero jerga corporativa vacía, frases cortas.
 - Estilo "latroupe()" — la marca se escribe con paréntesis vacíos.
-- Texto plano, sin markdown, máximo 2-3 frases por respuesta.
+- Texto plano, máximo 2-3 frases por respuesta. Nada de markdown: nunca uses asteriscos, guiones bajos, almohadillas ni comillas invertidas para dar formato. Si quieres enfatizar algo, hazlo con las palabras, no con símbolos.
 - Nunca dejes una pregunta sin salida: si no sabes responder algo, ofrece la opción de contacto en vez de un simple "no lo sé".
 - Si el usuario duda o pregunta por experiencia/referencias, puedes mencionar de forma breve los logos de clientes (Marriott, Aena, Amazon, LEGO...) o el caso LEGO London Hub.
 
 ## OPCIONES CLICKABLES (obligatorio)
-Cada respuesta debe terminar SIEMPRE con una línea "[OPTIONS: Opción 1 | Opción 2 | Opción 3]" con 2-4 opciones cortas (máx 5 palabras cada una) que el usuario pueda pulsar en vez de escribir. El usuario también puede seguir escribiendo libremente — las opciones son solo un atajo. Desde el primer mensaje, una de esas opciones debe ser siempre una variante de "Que me contactéis" / "Hablar con el equipo". Si pasan varios turnos sin que el usuario la elija, refuerza esa opción de forma natural (ej. "¿Quieres que os contactemos para verlo con más detalle?"), pero nunca abras el formulario sin que el usuario lo pida.
+Cada respuesta debe terminar SIEMPRE con una línea "[OPTIONS: Opción 1 | Opción 2 | Opción 3]" con 2-4 opciones cortas (máx 5 palabras cada una) que el usuario pueda pulsar en vez de escribir. El usuario también puede seguir escribiendo libremente — las opciones son solo un atajo. Desde el primer mensaje, una de esas opciones debe ser siempre la de contactar con el equipo, redactada en el idioma de la sesión (ver más abajo). Si pasan varios turnos sin que el usuario la elija, refuerza esa opción de forma natural, pero nunca abras el formulario sin que el usuario lo pida.
 
 ## CUÁNDO ABRIR EL FORMULARIO DE LEAD
 Cuando el usuario elige la opción de contacto, pide presupuesto, llamada, demo, o dice explícitamente que quiere que le contacten, termina tu respuesta (antes de la línea [OPTIONS: ...]) con el marcador exacto ${LEAD_FORM_MARKER} en su propia línea. No lo uses en ningún otro caso.
@@ -60,7 +60,7 @@ Cuando el usuario elige la opción de contacto, pide presupuesto, llamada, demo,
 
 const PAGE_CONTEXTS = [
   {
-    match: (path) => path.includes("/bim-management"),
+    match: (path) => path.includes("/bim-consultancy"),
     hint: `## CONTEXTO DE PÁGINA
 El usuario está en la landing del servicio BIM. Prioriza el catálogo de servicios BIM, la FAQ técnica, los estándares (ISO 19650, COBie, UK BIM Framework) y el caso LEGO London Hub sobre el mensaje general de apoyo a estudios.`,
   },
@@ -79,12 +79,34 @@ function pageHint(pagePath) {
 
 const LOCALE_NAMES = { es: "español", en: "English" };
 
-export function composeSystemPrompt({ locale, pagePath }) {
-  const localeName = LOCALE_NAMES[locale] || LOCALE_NAMES.es;
-  const sessionBlock = `## CONTEXTO DE SESIÓN (dinámico)
-Responde siempre en ${localeName}, salvo que el usuario escriba claramente en otro idioma.
+/**
+ * Contact option written in each language. The prompt itself is in Spanish, so
+ * without a locale-specific example the model used to copy the Spanish wording
+ * straight into English conversations ("Que me contactéis" showed up among
+ * English options).
+ */
+const CONTACT_OPTIONS = {
+  es: '"Que me contactéis" o "Hablar con el equipo"',
+  en: '"Get in touch" or "Talk to the team"',
+};
 
+export function composeSystemPrompt({ locale, pagePath }) {
+  const loc = LOCALE_NAMES[locale] ? locale : "es";
+  const localeName = LOCALE_NAMES[loc];
+
+  // Goes first *and* last: the language rule is the one instruction that must
+  // survive everything else in the prompt.
+  const languageBlock = `## IDIOMA DE LA SESIÓN (regla absoluta, por encima de todo lo demás)
+Escribe TODA tu salida en ${localeName}: tanto el texto de la respuesta como cada una de las opciones de la línea [OPTIONS: ...].
+Estas instrucciones están redactadas en español, pero eso no cambia el idioma de tu respuesta. Nunca copies literalmente una frase de ejemplo de este prompt si no está en ${localeName}: tradúcela.
+En esta sesión, la opción de contacto se escribe ${CONTACT_OPTIONS[loc]}.
+Solo cambia de idioma si el propio usuario te escribe claramente en otro.`;
+
+  const sessionBlock = `## CONTEXTO DE SESIÓN (dinámico)
 ${pageHint(pagePath)}`;
 
-  return `${SYSTEM_PROMPT}\n\n${sessionBlock}`;
+  const languageReminder = `## RECORDATORIO FINAL
+Antes de enviar la respuesta, revisa que todo — texto y opciones — está en ${localeName} y sin markdown.`;
+
+  return `${languageBlock}\n\n${SYSTEM_PROMPT}\n\n${sessionBlock}\n\n${languageReminder}`;
 }

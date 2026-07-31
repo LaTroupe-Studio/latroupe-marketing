@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import { useContent } from "@/lib/locale-context";
 import { getChatContent, getChatPage } from "@/lib/chat/content";
+import { stripMarkdown, sanitizeOptions } from "@/lib/chat/format";
 import { trackChatEvent } from "@/lib/chat/analytics";
 import LeadMiniForm from "./LeadMiniForm";
 import styles from "./ChatWidget.module.css";
@@ -101,11 +102,19 @@ export default function ChatWidget({ onClose }: { onClose: () => void }) {
         shouldOpenLeadForm: boolean;
       };
 
-      setDisplay((prev) => [...prev, { role: "assistant", text: data.reply, options: data.options }]);
+      const reply = stripMarkdown(data.reply ?? "");
+      const options = sanitizeOptions(
+        data.options ?? [],
+        locale,
+        content.initialOptions[page],
+        content.contactOption,
+      );
+
+      setDisplay((prev) => [...prev, { role: "assistant", text: reply, options }]);
       setHistory((prev) => [
         ...prev,
         { role: "user", content: trimmed },
-        { role: "assistant", content: data.reply },
+        { role: "assistant", content: reply },
       ]);
 
       if (data.shouldOpenLeadForm) {
@@ -139,7 +148,7 @@ export default function ChatWidget({ onClose }: { onClose: () => void }) {
             key={i}
             className={`${styles.bubble} ${m.role === "user" ? styles.bubbleUser : styles.bubbleAssistant}`}
           >
-            {m.text}
+            {m.role === "assistant" ? stripMarkdown(m.text) : m.text}
           </div>
         ))}
         {isTyping && <div className={styles.typing}>{content.typingLabel}</div>}

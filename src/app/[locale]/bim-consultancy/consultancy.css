@@ -657,6 +657,45 @@
 }
 .bimc-contact-text { margin: 0; font-family: var(--font-body); font-size: clamp(15px, 1.5vw, 17px); font-weight: 400; line-height: 1.6; color: #28170E; max-width: 360px; }
 
+/* ─── Thank you page ─────────────────────── */
+.bimc-thanks-bar {
+  display: flex;
+  align-items: center;
+  padding-top: clamp(22px, 2.6vw, 34px);
+  padding-bottom: clamp(22px, 2.6vw, 34px);
+  color: #452515;
+}
+.bimc-thanks { background: #DED1C9; border-top: 1.5px solid rgba(40, 23, 14, 0.2); border-bottom: 1.5px solid rgba(40, 23, 14, 0.2); }
+.bimc-thanks-inner {
+  min-height: 62vh;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: clamp(72px, 9vw, 132px);
+  padding-bottom: clamp(72px, 9vw, 132px);
+}
+.bimc-thanks-eyebrow { margin: 0 0 clamp(20px, 2.4vw, 30px); color: #AC6752; }
+.bimc-thanks-title {
+  margin: 0 0 clamp(24px, 2.8vw, 34px);
+  font-size: clamp(46px, 7.5vw, 96px);
+  font-weight: 800;
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  color: #28170E;
+  white-space: pre-line;
+}
+.bimc-thanks-text {
+  margin: 0 0 clamp(32px, 3.6vw, 46px);
+  font-family: var(--font-body);
+  font-size: clamp(15px, 1.5vw, 17px);
+  font-weight: 400;
+  line-height: 1.6;
+  color: #28170E;
+  max-width: 520px;
+}
+.bimc-thanks-cta { padding: 17px 32px; }
+
 /* ─── Footer ─────────────────────────────── */
 .bimc-footer-inner {
   padding-top: clamp(28px, 3vw, 40px);

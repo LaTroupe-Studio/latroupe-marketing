@@ -15,6 +15,11 @@ const DEFAULT_OPTIONS = {
   en: ["Get in touch", "See services", "Talk to the team"],
 };
 
+const CONTACT_OPTION = { es: "Que me contactéis", en: "Get in touch" };
+
+/** Characters that only appear in Spanish, used to spot options that slipped language. */
+const SPANISH_ONLY = /[áéíóúñü¿¡]/i;
+
 /** CORS lo aplica la Function URL (consola); no devolver Access-Control-* aquí o el navegador ve cabeceras duplicadas y falla CORS. */
 const JSON_HEADERS = { "Content-Type": "application/json" };
 
@@ -65,7 +70,56 @@ function sanitizeHistory(history) {
     .map((m) => ({ role: m.role, content: trim(m.content, MAX_MESSAGE_LEN) }));
 }
 
-function parseReply(rawText) {
+/**
+ * Latty is told to answer in plain text, but the model still slips markdown in
+ * now and then and the widget renders the reply raw — so stray `**` used to
+ * reach the bubble. Strip it here, at the source, so the stored history and the
+ * transcript emailed with a lead are clean too.
+ */
+function stripMarkdown(str) {
+  return str
+    .replace(/```[\s\S]*?```/g, "")
+    .replace(/`([^`]+)`/g, "$1")
+    .replace(/\*\*\*([^*]+)\*\*\*/g, "$1")
+    .replace(/\*\*([^*]+)\*\*/g, "$1")
+    .replace(/(^|\s)\*([^*\n]+)\*/g, "$1$2")
+    .replace(/(^|\s)_([^_\n]+)_/g, "$1$2")
+    .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
+    .replace(/^#{1,6}\s+/gm, "")
+    .replace(/^\s*[-*+]\s+/gm, "")
+    .trim();
+}
+
+/**
+ * The clickable options are the part most likely to slip back into Spanish in
+ * an English session, because the system prompt is written in Spanish. Drop any
+ * option that is obviously in the wrong language and make sure the contact
+ * option — the one that drives the lead form — survives in the right one.
+ */
+function sanitizeOptions(rawOptions, locale) {
+  const cleaned = rawOptions.map((o) => stripMarkdown(o)).filter(Boolean);
+  const kept = cleaned.filter((o) => !(locale === "en" && SPANISH_ONLY.test(o)));
+  const droppedForLanguage = kept.length !== cleaned.length;
+  const unique = [...new Set(kept)];
+
+  if (unique.length < 2) return DEFAULT_OPTIONS[locale];
+
+  // If the dropped option was the contact one, the conversation would lose its
+  // route to the lead form — put it back, in the session language.
+  const contact = CONTACT_OPTION[locale];
+  const hasContact = unique.some((o) => o.toLowerCase() === contact.toLowerCase());
+  if (droppedForLanguage && !hasContact) {
+    if (unique.length >= 4) unique[3] = contact;
+    else unique.push(contact);
+  }
+
+  return unique.slice(0, 4);
+}
+
+/* Exported for the unit tests; the Lambda itself only ever calls `handler`. */
+export { stripMarkdown, sanitizeOptions };
+
+export function parseReply(rawText, locale) {
   let text = rawText;
   let shouldOpenLeadForm = false;
 
@@ -77,14 +131,17 @@ function parseReply(rawText) {
   let options = [];
   const optionsMatch = text.match(/\[OPTIONS:\s*([^\]]+)\]/i);
   if (optionsMatch) {
-    options = optionsMatch[1]
-      .split("|")
-      .map((o) => o.trim())
-      .filter(Boolean);
+    options = sanitizeOptions(
+      optionsMatch[1]
+        .split("|")
+        .map((o) => o.trim())
+        .filter(Boolean),
+      locale,
+    );
     text = text.replace(optionsMatch[0], "");
   }
 
-  return { text: text.trim(), options, shouldOpenLeadForm };
+  return { text: stripMarkdown(text), options, shouldOpenLeadForm };
 }
 
 export const handler = async (event) => {
@@ -168,7 +225,7 @@ export const handler = async (event) => {
       .map((block) => block.text)
       .join("\n");
 
-    const { text, options, shouldOpenLeadForm } = parseReply(rawText);
+    const { text, options, shouldOpenLeadForm } = parseReply(rawText, locale);
 
     return {
       statusCode: 200,
