@@ -14,7 +14,7 @@ export default function Hero() {
           <div className={styles.claimCol}>
             <h1 className={styles.heading}>
               <LogoText color="#452515" className={styles.logoLine} />
-              <span className={styles.line}>
+              <span className={styles.wordLine}>
                 {"( "}<span className={styles.rotatingWord}>{typedWord}<span className={styles.cursor} /></span>{" )"}
               </span>
               <span className={styles.line}>{content.hero.suffix}</span>

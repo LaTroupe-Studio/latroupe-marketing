@@ -44,10 +44,11 @@
   margin-top: 60px;
 }
 
-/* Claim and description must not share a column: with 2/10 + 9/12 they both
-   occupy column 9 and the EN suffix ("behind the scenes") collides with the
-   paragraph. 2/9 + 9/13 keeps them adjacent but disjoint. */
-.claimCol { grid-column: 2 / 9; }
+/* Claim and description must not share a column, or the EN suffix ("behind the
+   scenes") collides with the paragraph. They also cannot be 7 + 4: the claim
+   needs eight columns to hold "( anticipates )" — the longest rotating word —
+   on one line at every width. Hence 8 + 3. */
+.claimCol { grid-column: 2 / 10; }
 
 .heading {
   font-family: var(--font-heading);
@@ -66,8 +67,12 @@
   margin: -0.06em 0 -0.18em -0.086em;
 }
 
-/* No nowrap: the EN suffix is long enough to break out of the column and
-   run under the paragraph. Let it wrap inside its own column instead. */
+/* The bracketed word is one typographic unit — it must never break, or the
+   closing bracket drops to a line of its own. The claim column is sized to
+   hold the longest word in either language, so nowrap cannot overflow. */
+.wordLine { display: block; white-space: nowrap; }
+
+/* The suffix may wrap: "behind the scenes" is meant to run to two lines. */
 .line { display: block; }
 
 .rotatingWord { color: var(--color-terracota-2); }
@@ -88,7 +93,7 @@
    line) lands its top on that last line. Hence the translate below, expressed
    in the heading's own line height so it holds as the font-size clamp resolves. */
 .descCol {
-  grid-column: 9 / 13;
+  grid-column: 10 / 13;
   align-self: end;
 }
 
