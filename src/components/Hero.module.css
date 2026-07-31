@@ -1,107 +1,107 @@
 /*
- * FIGMA SPECS:
- * Frame: 1509×972px
- * Claim: left 170, top 178, font 134.92px/142px, weight 700, #452515
- * Description: left 1000, top 700, width 445, font 32px/38px, weight 600, #28170E
+ * Hero — three flush-left lines: wordmark / ( rotating word ) / suffix.
+ *
+ * Line 1 is the wordmark SVG, not text, so three values are derived from
+ * its viewBox (0 0 219 61) to make it behave like a line of type:
+ *
+ *   height       1.16em   — 38/61 of the height is the ascender, so
+ *                           1.16em × 38/61 ≈ 0.723em, the ascender of
+ *                           Roobert at this size. Line 1 then reads the
+ *                           same size as lines 2 and 3.
+ *   margin-left  -0.086em — the glyph starts at x=4.5 of 61 units tall,
+ *                           i.e. 4.5/61 × 1.16em. Cancels that bearing so
+ *                           the wordmark is flush with "(" and the suffix.
+ *   margin-bottom -0.18em — the SVG is a block, so it ignores line-height.
+ *                           Pulls the next line up until the baseline step
+ *                           equals line-height and all three are even.
+ *
+ * All three are in em so they hold as the font-size clamp resolves.
  */
 
 .hero {
-  height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  padding-top: clamp(90px, 12vh, 140px);
+  padding-bottom: clamp(40px, 6vh, 80px);
   position: relative;
-  overflow: hidden;
+}
+
+.hero > .grid-container,
+.hero > div {
+  width: 100%;
 }
 
 .content {
-  position: absolute;
-  left: 0; right: 0;
-  top: 0; bottom: 0;
-  /* Use the grid-container padding via parent */
-  padding-left: var(--grid-margin);
-  padding-right: var(--grid-margin);
-  max-width: var(--grid-max-width);
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: auto 1fr;
-  gap: 0 var(--grid-gutter);
+  align-items: end;
+  width: 100%;
+  margin-top: 60px;
 }
 
-/* Claim — row 1, starts at col 2, offset from top */
-.claimCol {
-  grid-column: 2 / 9;
-  grid-row: 1;
-  margin-top: 18vh;
-}
+/* Claim and description must not share a column: with 2/10 + 9/12 they both
+   occupy column 9 and the EN suffix ("behind the scenes") collides with the
+   paragraph. 2/9 + 9/13 keeps them adjacent but disjoint. */
+.claimCol { grid-column: 2 / 9; }
 
 .heading {
   font-family: var(--font-heading);
-  font-size: clamp(64px, 9vw, 134.92px);
-  line-height: 1.05;
+  font-size: clamp(56px, 8.6vw, 130px);
+  line-height: 1.02;
   font-weight: 700;
-  color: #452515;
+  letter-spacing: -0.01em;
+  color: var(--color-terracota-4);
   margin: 0;
-  display: flex;
-  flex-direction: column;
+  position: relative;
+  top: 30px;
 }
 
-.line1 { display: block; }
-
-.logoAsText {
+.logoLine {
   display: block;
-  height: 1em;
+  height: 1.16em;
   width: auto;
+  margin: -0.06em 0 -0.18em -0.086em;
 }
 
-/* "(produce)" and "contigo" indented one column right */
-.lineIndented {
-  display: block;
-  margin-left: calc((100% - 6 * var(--grid-gutter)) / 7 + var(--grid-gutter));
-  white-space: nowrap;
-}
+/* No nowrap: the EN suffix is long enough to break out of the column and
+   run under the paragraph. Let it wrap inside its own column instead. */
+.line { display: block; }
 
 .rotatingWord { color: var(--color-terracota-2); }
 
 .cursor {
-  display: inline-block; width: 3px; height: 0.75em;
+  display: inline-block;
+  width: 0.03em; height: 0.72em;
   background-color: var(--color-terracota-2);
-  margin-left: 2px; vertical-align: baseline;
+  margin-left: 0.04em;
+  vertical-align: baseline;
   animation: blink 1s step-end infinite;
 }
 
-/* Description — row 2, col 9: always below the title row, anchored to bottom */
 .descCol {
   grid-column: 9 / 13;
-  grid-row: 2;
   align-self: end;
-  margin-bottom: 12vh;
+  margin-bottom: clamp(8px, 1.5vw, 20px);
 }
 
 .description {
   font-family: var(--font-body);
-  font-size: 28px;
+  font-size: 20px;
   font-weight: 400;
-  line-height: 35px;
-  color: #28170E;
+  line-height: 1.2;
+  color: var(--color-terracota-dark);
   margin: 0;
-  max-width: 445px;
 }
 
 @media (max-width: 1024px) {
-  .heading { font-size: clamp(52px, 8vw, 100px); }
-  .lineIndented { margin-left: 8%; }
-  .description { font-size: 22px; line-height: 28px; }
+  .claimCol { grid-column: 1 / 9; }
+  .descCol { grid-column: 9 / 13; }
 }
 
 @media (max-width: 768px) {
-  .hero { height: auto; min-height: 100vh; padding: 120px 0 60px; display: flex; align-items: center; }
-  .content { position: relative; align-content: end; }
-  .claimCol { grid-column: 1 / -1; margin-top: 0; }
-  .descCol { grid-column: 1 / -1; grid-row: auto; align-self: auto; margin-top: 40px; margin-bottom: 0; padding-top: 60px; }
-  .heading { font-size: clamp(48px, 13vw, 80px); }
-  .lineIndented {
-    margin-left: 0;
-  }
-  .rotatingWord {padding-bottom: 15px;}
-  .logoAsText {height: 1.08em;}
-  .description { font-size: 20px; line-height: 28px; max-width: none; }
+  .hero { min-height: 100svh; padding-top: 140px; padding-bottom: 60px; }
+  .content { margin-top: 0; row-gap: 40px; }
+  .claimCol { grid-column: 1 / -1; }
+  .descCol { grid-column: 1 / -1; margin-bottom: 0; }
+  .heading { font-size: clamp(48px, 13vw, 80px); top: 0; }
+  .description { font-size: 18px; }
 }
