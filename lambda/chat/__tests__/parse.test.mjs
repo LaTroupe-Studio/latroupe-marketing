@@ -68,4 +68,47 @@ describe("composeSystemPrompt", () => {
     const en = composeSystemPrompt({ locale: "en", pagePath: "/en/bim-consultancy" });
     expect(en).toContain("landing del servicio BIM");
   });
+
+  it("keeps the BIM catalogue off every page but the consultancy landing", () => {
+    const home = composeSystemPrompt({ locale: "es", pagePath: "/es" });
+
+    expect(home).toContain("web general de latroupe()");
+    // The technical catalogue is what used to pull every conversation towards
+    // BIM consultancy on the general site.
+    expect(home).not.toContain("BIM Execution Plan");
+    expect(home).not.toContain("BIM Coordination & Clash Detection");
+    expect(home).not.toContain("BIM Content Creation");
+    expect(home).not.toContain("ISO 19650");
+    expect(home).not.toContain("LEGO London Hub");
+
+    // It may still route a BIM question to the right place — that is the
+    // difference between mentioning BIM and reciting the catalogue.
+    expect(home).toContain("ofréceles la página de BIM Consultancy");
+  });
+
+  it("gives the home body the general story to answer with", () => {
+    const home = composeSystemPrompt({ locale: "es", pagePath: "/es" });
+
+    expect(home).toContain("Amplía el equipo interno");
+    expect(home).toContain("Cómo trabajamos");
+    expect(home).toContain("Portfolio");
+    expect(home).toContain("Rochester Row");
+  });
+
+  it("does not put the general body on the consultancy landing", () => {
+    const bim = composeSystemPrompt({ locale: "es", pagePath: "/es/bim-consultancy" });
+
+    expect(bim).toContain("BIM Execution Plan");
+    expect(bim).toContain("LEGO London Hub");
+    expect(bim).not.toContain("web general de latroupe()");
+  });
+
+  it("keeps identity, pricing and the lead marker on both pages", () => {
+    for (const pagePath of ["/es", "/es/bim-consultancy"]) {
+      const prompt = composeSystemPrompt({ locale: "es", pagePath });
+      expect(prompt).toContain("Eres Latty");
+      expect(prompt).toContain("No hay tarifas públicas");
+      expect(prompt).toContain(LEAD_FORM_MARKER);
+    }
+  });
 });
