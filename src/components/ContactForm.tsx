@@ -1,5 +1,5 @@
 "use client";
-import { useState, FormEvent } from "react";
+import { useState, Fragment, FormEvent } from "react";
 import Link from "next/link";
 import { useContent } from "@/lib/locale-context";
 import { trackLeadConversion } from "@/lib/analytics";
@@ -91,9 +91,12 @@ export default function ContactForm() {
               <span className={styles.legalText}>
                 {content.contact.legalLinkPhrase && content.contact.legalLinkHref
                   ? content.contact.legal!.split(content.contact.legalLinkPhrase).map((part, i, arr) =>
-                      i < arr.length - 1
-                        ? <>{part}<Link href={content.contact.legalLinkHref!} className={styles.legalLink}>{content.contact.legalLinkPhrase}</Link></>
-                        : part
+                      <Fragment key={i}>
+                        {part}
+                        {i < arr.length - 1 && (
+                          <Link href={content.contact.legalLinkHref!} className={styles.legalLink}>{content.contact.legalLinkPhrase}</Link>
+                        )}
+                      </Fragment>
                     )
                   : content.contact.legal
                 }
