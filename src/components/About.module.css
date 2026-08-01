@@ -1,74 +1,68 @@
 /*
- * FIGMA SPECS:
- * Block: height 995px, bg #2F4868, top 972
- * "Realmente…": left 67 (col1), +248px, 78px/74px, 700, #F7F6F5
- * "Hay pocas":  left 300 (col3), +342px, 44px/56px, 650, Mono, #ECE6E3
- * "Quienes":    left 66 (col1), +459px, width 560, 28px/35px, 400, #ECE6E3
- * "Estamos":    left 415 (col4), +612px, width 560, 28px/35px, 400, #ECE6E3
- * "Tenemos":    left 883 (col8), +804px, width 560, 28px/35px, 400, #ECE6E3
+ * Terracotta band — "Realmente... / Hay pocas cosas que no podamos hacer".
+ *
+ * Ported from the design prototype, which inverts the previous hierarchy:
+ * the eyebrow drops to small mono and the headline becomes the large sans
+ * display type. The three copy blocks stack in one column instead of being
+ * staggered across the grid.
  */
 
+/* No background here on purpose: ScrollColorBackground animates the body
+   colour from each section's data-bg-color, so the sections stay transparent
+   and the transition between them is a single smooth tween. */
 .section {
-  min-height: 995px;
-  padding-top: 248px;
-  padding-bottom: 80px;
+  padding-top: clamp(90px, 12vh, 150px);
+  padding-bottom: clamp(90px, 12vh, 150px);
 }
 
 .grid { row-gap: 0; }
 
-/* "Realmente…" — col 1 */
-.eyebrowCol { grid-column: 1 / 5; grid-row: 1; }
+/* Eyebrow + headline — col 2 */
+.headCol { grid-column: 2 / 10; }
 
 .eyebrow {
-  font-family: var(--font-heading);
-  font-size: 78px; line-height: 74px;
-  font-weight: 700; color: #F7F6F5;
-  margin: 0;
+  font-family: var(--font-mono);
+  font-size: clamp(18px, 1.9vw, 28px);
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--color-azul-dark);
+  margin: 0 0 10px;
 }
-
-/* "Hay pocas cosas…" — col 3, 94px below */
-.headlineCol { grid-column: 3 / 12; grid-row: 2; margin-top: 94px; }
 
 .headline {
-  font-family: var(--font-mono);
-  font-size: 44px; line-height: 56px;
-  font-weight: 650; color: #ECE6E3;
+  font-family: var(--font-heading);
+  font-size: clamp(44px, 6.4vw, 96px);
+  font-weight: 700;
+  line-height: 1;
+  color: var(--color-beige-2);
   margin: 0;
 }
 
-/* "Quienes…" — col 1, 117px below headline */
-.text1Col { grid-column: 1 / 6; grid-row: 3; margin-top: 117px; }
-
-/* "Estamos…" — col 4, 153px below Quienes */
-.text2Col { grid-column: 4 / 9; grid-row: 4; margin-top: 36px; }
-
-/* "Tenemos…" — col 8, overlaps with Estamos row */
-.text3Col { grid-column: 8 / 13; grid-row: 5; margin-top: 36px; }
+/* Copy — indented two columns further in than the headline */
+.copyCol {
+  grid-column: 4 / 10;
+  margin-top: clamp(56px, 8vh, 110px);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(28px, 4vh, 48px);
+}
 
 .bodyText {
   font-family: var(--font-body);
-  font-size: 24px; line-height: 35px;
-  font-weight: 400; color: #ECE6E3;
+  font-size: clamp(17px, 1.6vw, 24px);
+  font-weight: 400;
+  line-height: 1.3;
+  color: var(--color-beige-3);
   margin: 0;
 }
 
 @media (max-width: 1024px) {
-  .section { padding-top: 120px; min-height: 100vh; }
-  .eyebrow { font-size: 56px; line-height: 56px; }
-  .headline { font-size: 32px; line-height: 42px; }
-  .bodyText { font-size: 22px; line-height: 30px; }
-  .headlineCol { margin-top: 50px; }
-  .text1Col { margin-top: 60px; }
+  .headCol { grid-column: 1 / 11; }
+  .copyCol { grid-column: 3 / 12; }
 }
 
 @media (max-width: 768px) {
-  .section { padding-top: 200px; padding-bottom: 100px; min-height: 100vh;}
-  .eyebrowCol, .headlineCol, .text1Col, .text2Col, .text3Col { grid-column: 1 / -1; grid-row: auto; }
-  .headlineCol { margin-top: 20px; margin-bottom: 40px; }
-  .text1Col { margin-top: 24px; }
-  .text2Col { margin-top: 24px; }
-  .text3Col { margin-top: 24px; }
-  .eyebrow { font-size: 40px; line-height: 40px; }
-  .headline { font-size: 24px; line-height: 32px; }
-  .bodyText { font-size: 20px; line-height: 28px; }
+  .section { padding-top: 90px; padding-bottom: 90px; }
+  .headCol, .copyCol { grid-column: 1 / -1; }
+  .copyCol { margin-top: 48px; gap: 28px; }
 }
