@@ -13,11 +13,11 @@ export default function Hero() {
         <div className={`grid-12 ${styles.content}`}>
           <div className={styles.claimCol}>
             <h1 className={styles.heading}>
-              <span className={styles.line1}><LogoText color="#452515" className={styles.logoAsText} /></span>
-              <span className={styles.lineIndented}>
+              <LogoText color="#452515" className={styles.logoLine} />
+              <span className={styles.wordLine}>
                 {"( "}<span className={styles.rotatingWord}>{typedWord}<span className={styles.cursor} /></span>{" )"}
               </span>
-              <span className={styles.lineIndented}>{content.hero.suffix}</span>
+              <span className={styles.line}>{content.hero.suffix}</span>
             </h1>
           </div>
           <div className={styles.descCol}>

@@ -25,38 +25,35 @@ export default function Header({ onNavigate }: { onNavigate?: (id: string) => vo
 
   return (
     <header className={styles.header}>
-      <div className={`grid-container ${styles.gridRow}`}>
-        <div className={styles.logoCell}>
-          <button className={styles.logoButton} onClick={() => handleClick("top")} aria-label="Home">
-            <Logo color="currentColor" width={160} />
-          </button>
-        </div>
-        {/* Nav items anchored to fixed grid columns — won't shift between languages */}
-        <div className={styles.navCol7}>
-          <button className={styles.navLink} onClick={() => handleClick("proyectos")}>
-            {content.nav.links[0]?.label}
-          </button>
-        </div>
-        <div className={styles.navCol8}>
-          <button className={styles.navLink} onClick={() => handleClick("por-que-nosotros")}>
-            {content.nav.links[1]?.label}
-          </button>
-        </div>
-        <div className={styles.navCol10}>
+      <div className={styles.bar}>
+        <button className={styles.logoButton} onClick={() => handleClick("top")} aria-label="Home">
+          <Logo color="currentColor" width={197} className={styles.logo} />
+        </button>
+        <nav className={styles.nav}>
+          {content.nav.links.map((link) => (
+            <button key={link.id} className={styles.navLink} onClick={() => handleClick(link.id)}>
+              {link.label}
+            </button>
+          ))}
           <button className={styles.navLink} onClick={() => handleClick(content.nav.contact.id)}>
             {content.nav.contact.label}
           </button>
-        </div>
-        <div className={styles.navCol12}>
-          {i18nConfig.locales.map((loc, i) => (
-            <span key={loc}>
-              <button className={styles.langBtn} onClick={() => switchLocale(loc)} style={{ opacity: loc === locale ? 1 : 0.45, fontWeight: loc === locale ? 700 : 400 }}>
-                {loc.toUpperCase()}
-              </button>
-              {i < i18nConfig.locales.length - 1 && <span className={styles.langSep}>|</span>}
-            </span>
-          ))}
-        </div>
+          <div className={styles.langGroup}>
+            {i18nConfig.locales.map((loc, i) => (
+              <span key={loc}>
+                <button
+                  className={styles.langBtn}
+                  onClick={() => switchLocale(loc)}
+                  aria-current={loc === locale ? "true" : undefined}
+                  style={{ opacity: loc === locale ? 1 : 0.55, fontWeight: loc === locale ? 700 : 400 }}
+                >
+                  {loc.toUpperCase()}
+                </button>
+                {i < i18nConfig.locales.length - 1 && <span className={styles.langSep}>|</span>}
+              </span>
+            ))}
+          </div>
+        </nav>
       </div>
     </header>
   );
