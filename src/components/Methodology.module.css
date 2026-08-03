@@ -1,90 +1,183 @@
 /*
- * FIGMA exact positions:
- * Headline: left302→col3, 78px/74px, 700, #0B172C
- * Intro: left70→col1, 32px/38px, 700, #28170E, +265px below headline
+ * Methodology — scroll-driven pillars, ported from the design prototype.
  *
- * P-I: title left299→col3 | sub left994→col9 (+60px below title)
- *      t1 left416→col4 | t2 left765→col7
- * P-II: title left70→col1 | sub left528→col5 (+48px below title)
- *      t1 left185→col2
- * P-III: title left648→col6 | sub left1011→col9 (+50px below title)
- *      t1 left533→col5 | t2 left650→col6
+ * The track is three viewports tall; the pin sticks inside it and holds the
+ * heading, the intro row and the three pillars, which occupy one grid cell and
+ * cross-fade. The pin's padding-top clears the fixed header (~107px), so the
+ * heading lands just under the logo at the moment the sequence starts.
  */
 
-.section { padding: 140px 0 100px; }
+.section { padding: 0; }
+
+.track { position: relative; height: 300vh; }
+
+.pin {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  padding-top: clamp(122px, 12vh, 136px);
+}
+
+/* ── Heading block ── */
+.headRow { align-items: end; margin-bottom: clamp(28px, 5vh, 72px); row-gap: 0; }
 
 .headline {
-  grid-column: 3/11;
-  font-family: var(--font-heading); font-size: 78px; line-height: 74px;
-  font-weight: 700; color: #0B172C; margin: 0;
+  grid-column: 1 / 8;
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: clamp(40px, 5.2vw, 78px);
+  line-height: 0.96;
+  font-weight: 700;
+  color: var(--color-azul-dark);
 }
 
-.introRow { margin-top: 100px; }
-.subtitleRow { margin-top: 16px; }
+.introRow { margin-bottom: clamp(64px, 8vh, 110px); row-gap: 0; }
+
+/* Sits on the baseline of the row so it rests just above the rule */
+.subtitle {
+  grid-column: 1 / 4;
+  align-self: end;
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  line-height: 1.6;
+  font-weight: 400;
+  color: var(--color-terracota-4);
+}
+
 .intro {
-  grid-column: 1/8;
-  font-family: var(--font-body); font-size: 24px; line-height: 35px;
-  font-weight: 400; color: #28170E; margin: 0;
+  grid-column: 8 / 13;
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: clamp(20px, 2.1vw, 32px);
+  line-height: 1;
+  font-weight: 700;
+  text-align: right;
+  color: var(--color-terracota-dark);
 }
 
-.pillarBlock { margin-top: 100px; }
+/* ── Pillars — all stacked in a single cell ── */
+.panels {
+  width: 100%;
+  border-top: 1px solid rgba(0, 0, 0, 0.45);
+  padding-top: clamp(16px, 2vh, 28px);
+  display: grid;
+}
 
-/* Title: Mono 40px/51px, 750, #0B172C */
+.rollerRow { grid-area: 1/1; pointer-events: none; }
+
+.roller {
+  grid-column: 2 / 4;
+  display: flex;
+  margin-top: -0.13em;
+  font-family: var(--font-heading);
+  font-size: clamp(64px, 7.5vw, 120px);
+  line-height: 0.9;
+  font-weight: 700;
+  color: var(--color-azul-dark);
+}
+
+.rollerWindow { display: block; overflow: hidden; height: 0.9em; }
+.rollerTape { display: block; transition: transform 0.55s cubic-bezier(0.65, 0, 0.35, 1); }
+.rollerTape > span { display: block; }
+
+.panel {
+  grid-area: 1/1;
+  row-gap: 16px;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  pointer-events: none;
+}
+.panel[data-active="true"] {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+
+/* The number is only shown inline on small screens, where the roller is hidden */
+.rowNum {
+  display: none;
+  grid-column: 2 / 4;
+  align-self: start;
+  margin-top: -0.13em;
+  font-family: var(--font-heading);
+  font-size: clamp(64px, 7.5vw, 120px);
+  line-height: 0.9;
+  font-weight: 700;
+  color: var(--color-azul-dark);
+}
+
+.pillarHead { grid-column: 4 / 8; }
+
 .pillarTitle {
-  font-family: var(--font-mono); font-size: 40px; line-height: 51px;
-  font-weight: 750; color: #0B172C; margin: 0;
+  margin: 0 0 10px;
+  font-family: var(--font-heading);
+  font-size: clamp(26px, 2.7vw, 40px);
+  line-height: 1;
+  font-weight: 700;
+  color: var(--color-azul-dark);
 }
 
-/* Subtitle row — positioned below and offset right */
-.subRow { margin-top: 10px; }
 .pillarSub {
-  font-family: var(--font-mono); font-size: 32px; line-height: 40px;
-  font-weight: 400; color: #0B172C;
+  font-family: var(--font-mono);
+  font-size: clamp(16px, 1.4vw, 20px);
+  font-weight: 400;
+  color: var(--color-azul-dark);
 }
 
-.textRow { margin-top: 30px; }
 .pillarText {
-  font-family: var(--font-body); font-size: 24px; line-height: 35px;
-  font-weight: 400; color: #2F4868; margin: 0;
+  grid-column: 8 / 12;
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 1.5;
+  font-weight: 400;
+  color: var(--color-terracota-dark);
+  white-space: pre-line;
 }
 
-/* ── Pillar I columns ── */
-.p1Title { grid-column: 3/12; }
-.p1Sub { grid-column: 8/13; }
-.p1t1 { grid-column: 4/10; }
-.p1t2 { grid-column: 6/12; }
-
-/* ── Pillar II columns ── */
-.p2Title { grid-column: 1/12; }
-.p2Sub { grid-column: 5/9; }
-.p2t1 { grid-column: 2/8; }
-
-/* ── Pillar III columns ── */
-.p3Title { grid-column: 6/10; }
-.p3Sub { grid-column: 9/13; }
-.p3t1 { grid-column: 5/11; }
-.p3t2 { grid-column: 6/12; }
-
-/* ── Responsive ── */
 @media (max-width: 1024px) {
-  .headline { font-size: 56px; line-height: 56px; }
-  .introRow { margin-top: 120px; }
-  .intro { font-size: 24px; line-height: 30px; }
-  .pillarTitle { font-size: 28px; line-height: 36px; }
-  .pillarSub { font-size: 24px; line-height: 32px; }
-  .pillarText { font-size: 24px; line-height: 32px; }
+  .headline { grid-column: 1 / 9; }
+  .intro { grid-column: 7 / 13; }
+  .pillarHead { grid-column: 4 / 9; }
+  .pillarText { grid-column: 9 / 13; }
 }
 
+/*
+ * Below this width the sequence is dropped: the track collapses, the pin stops
+ * sticking and the three pillars simply stack. Cross-fading in a single cell
+ * needs vertical room that a phone does not have.
+ */
 @media (max-width: 768px) {
   .section { padding: 80px 0 60px; }
-  .headline { grid-column: 1/-1; font-size: 40px; line-height: 40px; }
-  .introRow { margin-top: 60px; }
-  .intro { grid-column: 1/-1; font-size: 20px; line-height: 28px; }
-  .pillarBlock { margin-top: 60px; }
-  .pillarTitle { font-size: 24px; line-height: 32px; }
-  .pillarSub { font-size: 20px; line-height: 28px; }
-  .pillarText { font-size: 20px; line-height: 28px; }
-  .p1Title,.p1Sub,.p1t1,.p1t2,
-  .p2Title,.p2Sub,.p2t1,
-  .p3Title,.p3Sub,.p3t1,.p3t2 { grid-column: 1/-1; }
+  .track { height: auto; }
+  .pin { position: static; height: auto; display: block; padding-top: 0; }
+
+  .headline { grid-column: 1 / -1; }
+  .subtitle, .intro { grid-column: 1 / -1; text-align: left; }
+  .introRow { row-gap: 24px; margin-bottom: 40px; }
+
+  .panels { display: block; }
+  .rollerRow { display: none; }
+
+  .panel {
+    display: grid;
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+    border-top: 1px solid rgba(0, 0, 0, 0.45);
+    padding: 32px 0;
+  }
+  .panel:first-of-type { border-top: 0; }
+  .rowNum { display: block; grid-column: 1 / -1; }
+  .pillarHead, .pillarText { grid-column: 1 / -1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .panel { transition: none; }
+  .rollerTape { transition: none; }
 }
