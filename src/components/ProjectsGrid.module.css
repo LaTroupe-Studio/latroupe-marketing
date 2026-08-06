@@ -1,85 +1,131 @@
 /*
- * FIGMA DESKTOP POSITIONS (6 projects, 2 rows):
- * ROW 1: Al Ameen col1 base | Rochester col4 +105px | ORO col7 +34px
- * ROW 2: Sant Feliu col2 +33px | Holbein col7 +69px | Andaz col10 base
+ * Projects collage, ported from the design prototype.
  *
- * FIGMA MOBILE: stacked vertically, each project ~280px
- * Title left-aligned, image offset right, location further right
+ * Pieces are absolutely placed on a canvas whose height is fixed by
+ * aspect-ratio, so every vertical position can be a percentage and the whole
+ * arrangement scales with the viewport instead of being pinned to pixels.
  */
 
-.section { padding-top: 200px; padding-bottom: 80px; }
+.section {
+  padding-top: clamp(90px, 12vh, 160px);
+  padding-bottom: clamp(60px, 8vh, 100px);
+}
+
+.layout { row-gap: 0; }
 
 .headline {
-  font-family: var(--font-body); font-size: 48px; line-height: 60px;
-  font-weight: 700; color: #28170E; margin: 0 0 100px;
+  grid-column: 1 / 10;
+  margin: 0 0 clamp(40px, 6vh, 84px);
+  font-family: var(--font-body);
+  font-size: clamp(44px, 6.4vw, 96px);
+  line-height: 1;
+  font-weight: 700;
+  color: var(--color-terracota-dark);
 }
 
-.row {
-  display: grid; grid-template-columns: repeat(12, 1fr);
-  gap: var(--grid-gutter); margin-bottom: 60px; align-items: start;
+.collage {
+  grid-column: 1 / -1;
+  position: relative;
+  aspect-ratio: 1509 / 2770;
+  /* One of twelve columns with the gutters taken out — the unit every
+     position is built on, so the collage sits on the page grid. */
+  --u: calc((100% - 11 * var(--grid-gutter)) / 12);
 }
 
-.entry { cursor: default; display: flex; flex-direction: column; position: relative; }
+/* Overflow stays visible: the label hangs below the box, and the zoomed
+   framing on one piece deliberately spills past its edges. */
+.piece { position: absolute; }
 
-.title {
-  font-family: var(--font-body); font-size: 24px; line-height: 29px;
-  font-weight: 700; color: #28170E; margin: 0; white-space: pre-line;
+/* Carries the image's own proportions, so the label can sit outside them */
+.frame { position: relative; width: 100%; }
+
+.img { display: block; }
+
+/* Warm wash over the photographs; lifts on hover. Line drawings never get it. */
+.tint {
+  position: absolute;
+  inset: 0;
+  background: var(--color-terracota-2);
+  opacity: 0.75;
+  mix-blend-mode: multiply;
+  transition: opacity 0.45s ease;
+  pointer-events: none;
+}
+.piece:hover .tint { opacity: 0; }
+
+/* Name and place, revealed under the image being pointed at */
+.label {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  padding-top: 10px;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  pointer-events: none;
+  color: var(--color-terracota-dark);
+  line-height: 1.2;
+}
+.label[data-on="true"] { opacity: 1; transform: translateY(0); }
+
+.label b {
+  display: block;
+  font-family: var(--font-body);
+  font-size: clamp(16px, 1.5vw, 22px);
+  font-weight: 600;
 }
 
-.imageWrap {
-  position: relative; width: 209px; height: 136px; margin-top: 14px;
-  border-radius: 2px; overflow: hidden; background: var(--color-terracota-4);
+.label i {
+  display: block;
+  margin-top: 3px;
+  font-family: var(--font-body);
+  font-style: normal;
+  font-size: clamp(11px, 0.95vw, 14px);
+  font-weight: 400;
+  opacity: 0.7;
 }
 
-.img { object-fit: cover; }
-
-.location {
-  font-family: var(--font-body); font-size: 16px; line-height: 20px;
-  font-weight: 400; color: #28170E; margin-top: 12px;
+@media (max-width: 1024px) {
+  .headline { grid-column: 1 / -1; }
 }
 
-.tooltip {
-  position: fixed; z-index: 50; pointer-events: none;
-  transform: translate(16px, -50%);
-  background: #452515; color: #ECE6E3;
-  font-family: var(--font-body); font-size: 13px; font-weight: 600;
-  padding: 6px 14px; border-radius: 4px; white-space: nowrap;
-}
-
-/* ── ROW 1 ── */
-.r1p1 { grid-column: 1/4; }
-.r1p2 { grid-column: 4/7; margin-top: 105px; }
-.r1p2 .imageWrap, .r1p2 .location { margin-left: calc((100% - 2*var(--grid-gutter))/3 + var(--grid-gutter)); }
-.r1p3 { grid-column: 7/10; margin-top: 34px; }
-.r1p3 .imageWrap, .r1p3 .location { margin-left: calc((100% - 2*var(--grid-gutter))/3 + var(--grid-gutter)); }
-
-/* ── ROW 2 ── */
-.r2p1 { grid-column: 2/5; margin-top: 33px; }
-.r2p2 { grid-column: 7/10; margin-top: 69px; }
-.r2p3 { grid-column: 10/13; }
-.r2p3 .imageWrap, .r2p3 .location { margin-left: calc((100% - 2*var(--grid-gutter))/3 + var(--grid-gutter)); }
-
-/* ── MOBILE (6-col grid, 24px margin, 8px gutter) ── */
+/*
+ * There is no hover on touch, so the collage would leave every project
+ * unnamed. Below this width it becomes a plain two-column grid with the names
+ * always visible, and the absolute placement is dropped entirely. The line
+ * drawings go with it: letterboxed into a photo-shaped cell they read as
+ * mistakes rather than as the connective tissue they are on desktop.
+ */
 @media (max-width: 768px) {
-  .section { padding-top: 80px; }
-  .headline { font-size: 32px; line-height: 38px; margin-bottom: 50px; }
-
-  .row {
-    display: flex; flex-direction: column;
-    gap: 50px; margin-bottom: 30px;
+  .collage {
+    position: static;
+    aspect-ratio: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px 16px;
+    align-items: start;
   }
 
-  .r1p1,.r1p2,.r1p3,.r2p1,.r2p2,.r2p3 { margin-top: 0 !important; }
+  .piece[data-decorative] { display: none; }
 
-  /* Reset desktop offsets */
-  .r1p2 .imageWrap, .r1p2 .location,
-  .r1p3 .imageWrap, .r1p3 .location,
-  .r2p3 .imageWrap, .r2p3 .location { margin-left: 0 !important; }
+  .piece {
+    position: static;
+    width: 100% !important;
+  }
 
-  /* All aligned to col 1 */
-  .entry .title { font-size: 23px; line-height: 28px; white-space: normal; }
-  .entry .imageWrap { width: 208px; height: 136px; }
-  .entry .location { font-size: 15.3px; line-height: 19px; }
+  /* One shape for every cell, so the rows line up */
+  .frame { aspect-ratio: 326 / 214 !important; }
 
-  .tooltip { display: none; }
+  /* Back into the flow, so a long name pushes the row instead of overlapping it */
+  .label {
+    position: static;
+    opacity: 1;
+    transform: none;
+    padding-top: 8px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tint, .label { transition: none; }
 }
