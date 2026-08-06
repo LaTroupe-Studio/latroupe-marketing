@@ -36,8 +36,9 @@
    framing on one piece deliberately spills past its edges. */
 .piece { position: absolute; }
 
-/* Carries the image's own proportions, so the label can sit outside them */
-.frame { position: relative; width: 100%; }
+/* Carries the image's own proportions, so the label can sit outside them.
+   Clipped, so a piece framed tighter than its box crops instead of spilling. */
+.frame { position: relative; width: 100%; overflow: hidden; }
 
 .img { display: block; }
 
@@ -92,10 +93,8 @@
 
 /*
  * There is no hover on touch, so the collage would leave every project
- * unnamed. Below this width it becomes a plain two-column grid with the names
- * always visible, and the absolute placement is dropped entirely. The line
- * drawings go with it: letterboxed into a photo-shaped cell they read as
- * mistakes rather than as the connective tissue they are on desktop.
+ * unnamed. Below this width it becomes a two-column grid with the names always
+ * visible and the absolute placement dropped entirely.
  */
 @media (max-width: 768px) {
   .collage {
@@ -107,15 +106,30 @@
     align-items: start;
   }
 
-  .piece[data-decorative] { display: none; }
-
   .piece {
     position: static;
     width: 100% !important;
   }
 
-  /* One shape for every cell, so the rows line up */
-  .frame { aspect-ratio: 326 / 214 !important; }
+  /* One shape for every photograph, so the rows line up */
+  .piece:not([data-decorative]) .frame { aspect-ratio: 326 / 214 !important; }
+
+  /*
+   * The drawings take a cell like any other, which keeps them threaded through
+   * the photographs instead of interrupting them. They are sized by height, not
+   * width, so a tall one and a wide one carry the same weight, and they float
+   * in the middle of their cell rather than being cropped to a photo's shape.
+   */
+  .piece[data-decorative] {
+    width: auto !important;
+    align-self: center;
+    justify-self: center;
+  }
+
+  .piece[data-decorative] .frame {
+    height: clamp(96px, 26vw, 150px);
+    width: auto;
+  }
 
   /* Back into the flow, so a long name pushes the row instead of overlapping it */
   .label {
