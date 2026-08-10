@@ -1,12 +1,11 @@
 /*
  * Light client band, ported from the design prototype.
- * Hairline rules top and bottom so the band reads as a closed strip.
+ * No hairline rules: the scroll colour transition already separates the band
+ * from the sections above and below, and the rules read as a seam against it.
  */
 
 .section {
   background: #DED1C9;
-  border-top: 1px solid rgba(40, 23, 14, 0.08);
-  border-bottom: 1px solid rgba(40, 23, 14, 0.08);
   padding-top: clamp(56px, 7vw, 96px);
   padding-bottom: clamp(56px, 7vw, 96px);
   overflow: hidden;
