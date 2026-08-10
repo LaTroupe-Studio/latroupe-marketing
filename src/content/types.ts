@@ -15,6 +15,13 @@ export interface ProjectImage {
   caption: string;
 }
 
+export interface CollageItem {
+  id: string;
+  title: string;
+  location: string;
+  image: string;
+}
+
 export interface Project {
   id: string;
   title: string;
@@ -72,6 +79,14 @@ export interface SiteContent {
   projectsSection: {
     headline: string;
   };
+
+  /**
+   * The collage shows more work than the overlay documents, and with its own
+   * shorter wording, so it carries only what it renders. Keeping it apart from
+   * `projects` means an entry can appear in the collage without inventing the
+   * case-study copy the overlay would need.
+   */
+  projectsCollage: CollageItem[];
 
   projects: Project[];
 

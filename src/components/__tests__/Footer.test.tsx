@@ -34,6 +34,7 @@ const baseContent: SiteContent = {
   hero: { prefix: "", rotatingWords: [], suffix: "", description: "" },
   about: { eyebrow: "", headline: "", blocks: [] },
   projectsSection: { headline: "" },
+  projectsCollage: [],
   projects: [],
   trust: { headline: "", logos: [] },
   methodology: { headline: "", intro: "", subtitle: "", pillars: [] },
