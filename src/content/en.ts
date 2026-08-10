@@ -26,7 +26,7 @@ const en: SiteContent = {
     { id:"holbein-gardens", title:"Holbein Gardens |\nCorporate Offices", location:"London, UK", thumbnail:"/images/projects/holbein-gardens/hero.jpg", type:"Offices / Workplace", status:"Ongoing", inDevelopment:true, heroImage:"/images/projects/holbein-gardens/hero.jpg", shortDesc:"", longDesc:[], labor:[], images:[] },
     { id:"andaz-turks", title:"Andaz Turks & Caicos at Grace Bay |\nHotel Renovation", location:"Turks and Caicos Islands", thumbnail:"/images/projects/andaz-turks/hero.jpg", type:"Hotel", status:"Ongoing", inDevelopment:true, heroImage:"/images/projects/andaz-turks/hero.jpg", shortDesc:"", longDesc:[], labor:[], images:[] },
   ],
-  trust: { headline:"Trusted by:", logos:[{name:"Accor",src:"/images/logos/blanco/accor-blanco.svg"},{name:"Aena",src:"/images/logos/blanco/aena-blanco.svg"},{name:"Airia",src:"/images/logos/blanco/airia-blanco.svg"},{name:"Amazon",src:"/images/logos/blanco/amazon-blanco.svg"},{name:"BDG",src:"/images/logos/blanco/bdg-blanco.svg"},{name:"BGY",src:"/images/logos/blanco/bgy-blanco.svg"},{name:"Hyatt",src:"/images/logos/blanco/hyatt-blanco.svg"},{name:"Joan Lao",src:"/images/logos/blanco/joanlao-blanco.svg"},{name:"LEGO",src:"/images/logos/blanco/lego-blanco.svg"},{name:"M Gallery",src:"/images/logos/blanco/mgallery-blanco.svg"},{name:"Marriott",src:"/images/logos/blanco/marriott-blanco.svg"},{name:"Modus Operandi",src:"/images/logos/blanco/modusoperandi-blanco.svg"}] },
+  trust: { headline:"they trust latroupe", logos:[{name:"Joan Lao",src:"/images/logos/joan-lao.svg"},{name:"Hyatt",src:"/images/logos/hyatt.svg"},{name:"Amazon",src:"/images/logos/amazon.svg"},{name:"Aena",src:"/images/logos/aena.svg"},{name:"LEGO",src:"/images/logos/lego.svg"},{name:"BDG",src:"/images/logos/bdg.svg"},{name:"Marriott",src:"/images/logos/marriott.svg"},{name:"M Gallery",src:"/images/logos/m-gallery.svg"},{name:"Accor",src:"/images/logos/accor.svg"},{name:"Modus Operandi",src:"/images/logos/modus-operandi.svg"},{name:"Radisson Hotels",src:"/images/logos/radisson.svg"},{name:"Airia",src:"/images/logos/airia.svg"},{name:"BGY",src:"/images/logos/bgy.svg"}] },
   methodology: {
     headline:"Experience defines our methodology",
     intro:"Our goal has always been simple: to be genuinely useful to the teams we work with.",
@@ -38,7 +38,18 @@ const en: SiteContent = {
     ],
   },
   whyUs: { headline:"Why us?", paragraphs:["At latroupe, we've worked across architecture, construction, design, technology, and business.","That is why we can offer a service that adapts to your current needs—and evolves as they change.","Our way of working is simple (but not simplistic) and is based on establishing sustainable, long-term relationships.","If you think we can help, it all starts with a conversation."] },
-  contact: { headline:"Let's start a project together", fields:{name:"Name",email:"Email",company:"Message",message:"Write us a message",submit:"Send",sending:"Sending...",sent:"Sent!",error:"Could not send. Please try again."}, legal:"By clicking Send, you accept our data protection policy and agree that we may contact you.", legalLinkPhrase:"data protection policy", legalLinkHref:"/en/legal-notice" },
+  contact: {
+    headline:"Let's talk.",
+    intro:"Tell us where your project is — at the start, mid-stage or already on site. It all begins with a video call to get to know each other. No commitment: we reply within one working day.",
+    fields:{
+      name:"( who are you? )", email:"( how do we reach you? )", company:"( tell us more )",
+      namePlaceholder:"Your name", emailPlaceholder:"Your email", message:"A short description of what you need",
+      submit:"Send", sending:"Sending...", sent:"Sent!", error:"Could not send. Please try again.",
+    },
+    legal:"By submitting this form you agree to our privacy policy. We only use your details to reply to your enquiry — never for anything else.",
+    legalLinkPhrase:"privacy policy",
+    legalLinkHref:"/en/privacy",
+  },
   footer: { links:[{label:"Privacy",href:"/en/privacy"},{label:"Cookies",href:"/en/cookies"},{label:"Legal notice",href:"/en/legal-notice"}], social:[{label:"Linkedin",href:"https://www.linkedin.com/company/latroupestudio/"},{label:"Instagram",href:"https://www.instagram.com/latroupestudio"},{label:"Pinterest",href:"https://www.pinterest.es/latroupestudio/"}], workWithUs:{label:"Work with us",href:"https://invented-cactus-ce6.notion.site/Trabajar-en-LaTroupe-cd9c990923954418bd2e6a3df58b2500"}, copyright:"Developed by latroupe ( ) 2026 © All rights reserved.", legal:"" },
   cookieBanner: {
     message: "We use first-party and third-party cookies to analyze site usage and improve our services. Non-essential cookies are only installed with your consent.",

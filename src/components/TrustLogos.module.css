@@ -1,68 +1,73 @@
+/*
+ * Light client band, ported from the design prototype.
+ * Hairline rules top and bottom so the band reads as a closed strip.
+ */
+
 .section {
-  min-height: 982px;
-  padding-top: 392px;
-  padding-bottom: 100px;
+  background: #DED1C9;
+  border-top: 1px solid rgba(40, 23, 14, 0.08);
+  border-bottom: 1px solid rgba(40, 23, 14, 0.08);
+  padding-top: clamp(56px, 7vw, 96px);
+  padding-bottom: clamp(56px, 7vw, 96px);
   overflow: hidden;
 }
 
-.headline {
-  font-family: var(--font-heading);
-  font-size: 78px; line-height: 74px;
-  font-weight: 700; color: #ECE6E3;
-  margin: 0 0 120px;
-  display: flex; align-items: center; gap: 0.2em; flex-wrap: wrap;
-}
-
-.logoInline {
-  height: 1.15em;
-  width: auto;
-  display: inline-block;
-  vertical-align: bottom;
-  flex-shrink: 0;
-  margin-top: 22px;
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #77330B;
+  margin: 0 0 clamp(28px, 3.4vw, 44px);
 }
 
 .carouselWrapper {
   width: 100%;
   overflow: hidden;
-  mask-image: linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
 }
 
 .carousel {
-  display: flex; gap: 60px;
+  display: flex;
   align-items: center;
+  gap: clamp(40px, 6vw, 88px);
   width: max-content;
-  animation: scrollLogos 50s linear infinite;
+  animation: scrollLogos 34s linear infinite;
 }
 
-.logoItem {
-  flex: 0 0 auto;
+.carousel:hover {
+  animation-play-state: paused;
 }
 
 .logoImage {
-  height: 100px;
+  height: 104px;
   width: auto;
-  object-fit: contain;
-  filter: brightness(0) invert(1);
-  opacity: 0.9;
+  flex: none;
+  opacity: 0.62;
   transition: opacity 0.3s ease;
 }
-.logoImage:hover { opacity: 1; }
 
+.logoImage:hover {
+  opacity: 1;
+}
+
+/* The track holds the list twice, so -50% lands exactly on the seam. */
 @keyframes scrollLogos {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-33.333%); }
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .carousel { animation: none; }
 }
 
 @media (max-width: 1024px) {
-  .section { padding-top: 200px; min-height: 600px; }
-  .headline { font-size: 56px; line-height: 56px; }
+  .logoImage { height: 80px; }
 }
+
 @media (max-width: 768px) {
-  .section { padding-top: 100px; min-height: auto; height: 100vh; display: flex; flex-direction: column; justify-content: center;}
-  .headline { font-size: 40px; line-height: 40px; margin-bottom: 50px; }
+  .logoImage { height: 60px; }
   .carousel { gap: 40px; }
-  .logoImage { width: 100%; height: 300px; }
-  .logoItem {width: 320px;}
 }

@@ -91,6 +91,8 @@ export interface SiteContent {
   projects: Project[];
 
   trust: {
+    /** Mono eyebrow above the logo marquee. Plain text in every locale so
+     *  ES and EN render identically — only the wording differs. */
     headline: string;
     logos: TrustLogo[];
   };
@@ -109,10 +111,16 @@ export interface SiteContent {
 
   contact: {
     headline: string;
+    /** Paragraph under the headline, left column. */
+    intro: string;
     fields: {
+      /** Bracketed mono eyebrow above each input. */
       name: string;
       email: string;
       company: string;
+      /** Input placeholders. */
+      namePlaceholder: string;
+      emailPlaceholder: string;
       message: string;
       submit: string;
       sending: string;

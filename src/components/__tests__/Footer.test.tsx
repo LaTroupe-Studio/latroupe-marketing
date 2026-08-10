@@ -41,10 +41,13 @@ const baseContent: SiteContent = {
   whyUs: { headline: "", paragraphs: [] },
   contact: {
     headline: "",
+    intro: "",
     fields: {
       name: "",
       email: "",
       company: "",
+      namePlaceholder: "",
+      emailPlaceholder: "",
       message: "",
       submit: "",
       sending: "",
