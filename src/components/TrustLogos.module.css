@@ -62,11 +62,14 @@
   .carousel { animation: none; }
 }
 
+/* The logos sit on a square 500x500 canvas, so a wordmark only fills a
+   fraction of the box height. Keep the box generous on small screens or the
+   marks shrink to a few pixels of actual ink. */
 @media (max-width: 1024px) {
-  .logoImage { height: 80px; }
+  .logoImage { height: 96px; }
 }
 
 @media (max-width: 768px) {
-  .logoImage { height: 60px; }
-  .carousel { gap: 40px; }
+  .logoImage { height: 88px; }
+  .carousel { gap: 32px; }
 }
