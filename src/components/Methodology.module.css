@@ -161,7 +161,16 @@
   .subtitle, .intro { grid-column: 1 / -1; text-align: left; }
   .introRow { row-gap: 24px; margin-bottom: 40px; }
 
-  .panels { display: block; }
+  /* Each pillar carries its own top rule, so the container's would double up
+     on the first one. The container closes the stack with a bottom rule
+     instead — :first-of-type cannot be used here because the hidden
+     .rollerRow is still the first div child. */
+  .panels {
+    display: block;
+    border-top: 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.45);
+    padding-top: 0;
+  }
   .rollerRow { display: none; }
 
   .panel {
@@ -172,7 +181,6 @@
     border-top: 1px solid rgba(0, 0, 0, 0.45);
     padding: 32px 0;
   }
-  .panel:first-of-type { border-top: 0; }
   .rowNum { display: block; grid-column: 1 / -1; }
   .pillarHead, .pillarText { grid-column: 1 / -1; }
 }
