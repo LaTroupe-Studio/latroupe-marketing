@@ -39,8 +39,8 @@ const es: SiteContent = {
     { id:"holbein-gardens", title:"Holbein Gardens |\nOficinas corporativas", location:"Londres, Reino Unido", thumbnail:"/images/projects/holbein-gardens/hero.jpg", type:"Oficinas / Workplace", status:"En desarrollo", inDevelopment:true, heroImage:"/images/projects/holbein-gardens/hero.jpg", shortDesc:"", longDesc:[], labor:[], images:[] },
     { id:"andaz-turks", title:"Andaz Turks & Caicos at Grace Bay |\nRenovación de hotel", location:"Turks and Caicos Islands", thumbnail:"/images/projects/andaz-turks/hero.jpg", type:"Hotel", status:"En desarrollo", inDevelopment:true, heroImage:"/images/projects/andaz-turks/hero.jpg", shortDesc:"", longDesc:[], labor:[], images:[] },
   ],
-  trust: { headline: "Confían en latroupe:", logos: [
-    {name:"Accor",src:"/images/logos/blanco/accor-blanco.svg"},{name:"Aena",src:"/images/logos/blanco/aena-blanco.svg"},{name:"Airia",src:"/images/logos/blanco/airia-blanco.svg"},{name:"Amazon",src:"/images/logos/blanco/amazon-blanco.svg"},{name:"BDG",src:"/images/logos/blanco/bdg-blanco.svg"},{name:"BGY",src:"/images/logos/blanco/bgy-blanco.svg"},{name:"Hyatt",src:"/images/logos/blanco/hyatt-blanco.svg"},{name:"Joan Lao",src:"/images/logos/blanco/joanlao-blanco.svg"},{name:"LEGO",src:"/images/logos/blanco/lego-blanco.svg"},{name:"M Gallery",src:"/images/logos/blanco/mgallery-blanco.svg"},{name:"Marriott",src:"/images/logos/blanco/marriott-blanco.svg"},{name:"Modus Operandi",src:"/images/logos/blanco/modusoperandi-blanco.svg"},
+  trust: { headline: "confían en latroupe", logos: [
+    {name:"Joan Lao",src:"/images/logos/joan-lao.svg"},{name:"Hyatt",src:"/images/logos/hyatt.svg"},{name:"Amazon",src:"/images/logos/amazon.svg"},{name:"Aena",src:"/images/logos/aena.svg"},{name:"LEGO",src:"/images/logos/lego.svg"},{name:"BDG",src:"/images/logos/bdg.svg"},{name:"Marriott",src:"/images/logos/marriott.svg"},{name:"M Gallery",src:"/images/logos/m-gallery.svg"},{name:"Accor",src:"/images/logos/accor.svg"},{name:"Modus Operandi",src:"/images/logos/modus-operandi.svg"},{name:"Radisson Hotels",src:"/images/logos/radisson.svg"},{name:"Airia",src:"/images/logos/airia.svg"},{name:"BGY",src:"/images/logos/bgy.svg"},
   ]},
   methodology: {
     headline: "Nuestra experiencia diseña la metodología",
@@ -62,11 +62,16 @@ const es: SiteContent = {
     ],
   },
   contact: {
-    headline: "Empecemos un proyecto juntos",
-    fields: { name:"Nombre", email:"Correo electrónico", company:"Mensaje", message:"Escríbenos tu mensaje", submit:"Enviar", sending:"Enviando...", sent:"¡Enviado!", error:"No se pudo enviar. Inténtalo de nuevo." },
-    legal: "Al hacer clic en Enviar, aceptas nuestra política de protección de datos y que podamos ponernos en contacto contigo.",
-    legalLinkPhrase: "política de protección de datos",
-    legalLinkHref: "/es/aviso-legal",
+    headline: "¿Hablamos?",
+    intro: "Cuéntanos en qué punto está tu proyecto — al inicio, en fase intermedia o ya en obra. Todo empieza con una videollamada para conocernos. Sin compromiso: respondemos en un día laborable.",
+    fields: {
+      name:"( quién eres )", email:"( cómo te contactamos )", company:"( cuéntanos más )",
+      namePlaceholder:"Tu nombre", emailPlaceholder:"Tu email", message:"Una breve descripción de lo que necesitas",
+      submit:"Enviar", sending:"Enviando...", sent:"¡Enviado!", error:"No se pudo enviar. Inténtalo de nuevo.",
+    },
+    legal: "Al enviar este formulario aceptas nuestra política de privacidad. Solo usamos tus datos para responder a tu consulta — nunca para nada más.",
+    legalLinkPhrase: "política de privacidad",
+    legalLinkHref: "/es/privacidad",
   },
   footer: {
     links: [{label:"Privacidad",href:"/es/privacidad"},{label:"Cookies",href:"/es/cookies"},{label:"Aviso legal",href:"/es/aviso-legal"}],

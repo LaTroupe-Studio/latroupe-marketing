@@ -1,120 +1,170 @@
 /*
- * Labels ABOVE inputs (stacked), 10px gap
- * Labels start at col 6, inputs start at col 7
+ * "¿Hablamos?" — ported from the design prototype.
+ * Two columns: headline + intro on the left, form on the right.
+ * The form top aligns with the intro paragraph, not with the headline.
  */
 
 .section {
-  padding: 80px 0 100px;
+  padding: clamp(88px, 11vw, 168px) 0;
+}
+
+.grid {
+  align-items: start;
+  row-gap: 44px;
+}
+
+.intro {
+  grid-column: 1 / 6;
 }
 
 .headline {
-  grid-column: 6/13;
-  font-family: var(--font-mono);
-  font-size: 38.64px; line-height: 49px;
-  font-weight: 650; color: #77330B;
-  margin: 0 0 40px;
+  margin: 0 0 clamp(28px, 3.4vw, 40px);
+  font-family: var(--font-heading);
+  font-size: clamp(52px, 8.5vw, 108px);
+  line-height: 0.9;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #28170E;
 }
 
-.separator {
-  width: 100%; height: 1px;
-  background-color: #77330B;
-  margin-bottom: 80px;
+.introText {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: clamp(15px, 1.5vw, 17px);
+  line-height: 1.6;
+  font-weight: 400;
+  color: #28170E;
+  max-width: 360px;
 }
 
-/* Each field row: label above, input below, using 2 grid rows */
-.fieldRow {
-  margin-bottom: 20px;
-  grid-template-rows: auto auto;
-  row-gap: 10px;
+.form {
+  grid-column: 8 / 13;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(22px, 2.6vw, 32px);
+  /* Drop the form to the intro paragraph: headline box (font-size x
+     line-height 0.9) plus its margin-bottom. Same clamps as .headline,
+     so the offset tracks the headline as it scales. */
+  margin-top: calc(clamp(52px, 8.5vw, 108px) * 0.9 + clamp(28px, 3.4vw, 40px));
 }
 
 .label {
-  grid-column: 6/12;
-  grid-row: 1;
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #AC6752;
+  margin-bottom: clamp(8px, 1vw, 12px);
+}
+
+.field {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1.5px solid #28170E;
+  padding-bottom: clamp(6px, 0.7vw, 9px);
+}
+
+.fieldMultiline {
+  align-items: flex-start;
+}
+
+.bracket {
   font-family: var(--font-body);
-  font-size: 24px; line-height: 29px;
-  font-weight: 600; color: #28170E;
+  font-size: clamp(20px, 2.2vw, 28px);
+  line-height: 1;
+  font-weight: 300;
+  color: #AC6752;
+  user-select: none;
 }
 
 .input {
-  grid-column: 7/11;
-  grid-row: 2;
-  width: 100%; height: 48px;
-  background: #DED1C9; border: 1px solid #BEB2AB;
-  border-radius: 8px; padding: 0 16px;
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  outline: none;
+  padding: 0;
   font-family: var(--font-body);
-  font-size: 16px; line-height: 20px;
-  font-weight: 400; color: #2F4868;
-  outline: none; transition: border-color 0.2s;
+  font-size: clamp(17px, 1.7vw, 22px);
+  line-height: 1.4;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: #28170E;
 }
-.input::placeholder { color: #2F4868; opacity: 0.5; }
-.input:focus { border-color: #77330B; }
-.textarea { height: 156px; padding: 14px 16px; resize: vertical; }
 
-.actionRow {
-  margin-top: 8px;
-  grid-template-rows: auto auto;
-  row-gap: 16px;
+.input::placeholder {
+  color: rgba(40, 23, 14, 0.42);
+  opacity: 1;
+}
+
+.input:focus::placeholder {
+  color: rgba(40, 23, 14, 0.28);
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 2.6em;
 }
 
 .legalRow {
-  grid-column: 7/11;
-  grid-row: 1;
-  display: flex; align-items: flex-start; gap: 10px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
   cursor: pointer;
+  max-width: 420px;
 }
 
 .checkbox {
-  margin-top: 3px; accent-color: #77330B; flex-shrink: 0;
+  margin-top: 2px;
+  accent-color: #77330B;
+  flex-shrink: 0;
 }
 
 .legalText {
-  font-family: var(--font-body);
-  font-size: 12px; line-height: 15px;
-  font-weight: 400; color: #2F4868;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 1.6;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  color: rgba(40, 23, 14, 0.55);
 }
 
 .legalLink {
-  color: #2F4868;
+  color: rgba(40, 23, 14, 0.55);
   text-decoration: underline;
 }
-.legalLink:hover { opacity: 0.75; }
+
+.legalLink:hover {
+  color: #77330B;
+}
 
 .submitBtn {
-  grid-column: 8 / 12;
-  grid-row: 2;
-  width: auto;
-  min-width: 93px;
-  max-width: min(320px, 100%);
+  align-self: flex-start;
   min-height: 48px;
-  padding: 0 16px;
-  background: #77330B; border: none; border-radius: 8px;
-  font-family: var(--font-body);
-  font-size: 20px; line-height: 24px;
-  font-weight: 600; color: #DED1C9;
-  cursor: pointer; transition: opacity 0.2s;
-  display: flex; align-items: center; justify-content: center;
-  justify-self: end;
-  text-align: center;
-  white-space: normal;
+  padding: 0 32px;
+  background: #AC6752;
+  border: none;
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #ECE6E3;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
 }
+
 .submitBtn:hover { opacity: 0.85; }
 .submitBtn:disabled { opacity: 0.4; cursor: not-allowed; }
 
-@media (max-width: 1024px) {
-  .headline { grid-column: 4/12; font-size: 32px; }
-  .label { grid-column: 4/11; }
-  .input { grid-column: 5/11; }
-  .legalRow { grid-column: 5/11; }
-  .submitBtn { grid-column: 10/11; }
-}
-
+/* Below the 12-col grid the layout stacks, so the offset is dropped. */
 @media (max-width: 768px) {
   .section { padding: 60px 0; }
-  .headline { grid-column: 1/-1; font-size: 24px; line-height: 32px; }
-  .separator { margin-bottom: 40px; }
-  .label { grid-column: 1/-1; }
-  .input { grid-column: 2/-1; width: 100%; }
-  .legalRow { grid-column: 2/-1; }
-  .submitBtn { grid-column: 1/-1; grid-row: 2; width: 100%; justify-self: stretch; }
+  .intro, .form { grid-column: 1 / -1; }
+  .form { margin-top: 0; }
 }
