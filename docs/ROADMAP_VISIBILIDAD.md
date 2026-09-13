@@ -98,12 +98,12 @@ negocio. Todo verificado sobre el HTML que genera `npm run build`.
 
 | Cambio | Por qué | Ficheros |
 |---|---|---|
-| **H1 semántico oculto** en la home | El H1 era el wordmark SVG más un claim animado por JS: Googlebot leía aproximadamente «latroupe ( ) contigo». Ahora el H1 abre con «LaTroupe Studio · apoyo técnico para estudios de arquitectura e interiorismo» (ES) y su equivalente EN, sin tocar el diseño. El wordmark pasa a `aria-hidden` para que los lectores de pantalla no lo lean dos veces. | `Hero.tsx`, `LogoText.tsx`, `content/{types,es,en}.ts`, `globals.css` |
+| **H1 semántico oculto** en la home | El H1 era el wordmark SVG más un claim animado por JS: Googlebot leía aproximadamente «latroupe ( ) contigo». Ahora el H1 abre con «latroupe · apoyo técnico para estudios de arquitectura e interiorismo» (ES) y su equivalente EN, sin tocar el diseño. El wordmark pasa a `aria-hidden` para que los lectores de pantalla no lo lean dos veces. | `Hero.tsx`, `LogoText.tsx`, `content/{types,es,en}.ts`, `globals.css` |
 | **`og:image` + Twitter card** en home y landing BIM | No existía ninguna: cada enlace compartido en LinkedIn o WhatsApp se renderizaba como tarjeta sin imagen. LinkedIn es el canal número 1 del plan. **Es un placeholder**: usa una imagen del portfolio hasta que exista una pieza de marca 1200×630. | `[locale]/layout.tsx`, `bim-consultancy/layout.tsx` |
 | **`Organization` enriquecido** | Añade `alternateName`, `image` y `knowsAbout` (BIM, Revit, hospitality, workplace, residencial). Es lo que los motores generativos usan para saber de qué puede hablar la marca. | `[locale]/layout.tsx` |
 | **`robots.txt`** | El `Sitemap:` apuntaba al dominio sin `www`, que redirige. Además declara explícitamente GPTBot, OAI-SearchBot, ClaudeBot, PerplexityBot y Google-Extended. | `public/robots.txt` |
 | **`llms.txt`** | No listaba la landing BIM ni ningún proyecto, y usaba el dominio sin `www`. Ahora incluye ambas landings y ocho proyectos de referencia con sector y ubicación: es el contenido que un LLM puede citar. | `public/llms.txt` |
-| **`alt` del hero de proyecto** | Pasa de solo el título a «título · ubicación · LaTroupe Studio». | `ProjectOverlay.tsx` |
+| **`alt` del hero de proyecto** | Pasa de solo el título a «título · ubicación · latroupe». | `ProjectOverlay.tsx` |
 
 Lo que **no** entra y por qué:
 
@@ -111,7 +111,7 @@ Lo que **no** entra y por qué:
   página, así que requiere una sección nueva de diseño y contenido validado. Va a
   la fase 2.
 - **Textos de proyectos y casos de estudio.** Son contenido de marca: los escribe
-  LaTroupe, no el repo. Ver `CONTENIDO_PENDIENTE.md`.
+  latroupe, no el repo. Ver `CONTENIDO_PENDIENTE.md`.
 - **Blog.** Es una decisión de arquitectura, no un quick win. Fase 2.
 
 ## 5. Fases pendientes

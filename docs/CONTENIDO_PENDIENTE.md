@@ -1,4 +1,4 @@
-# Contenido pendiente (para LaTroupe)
+# Contenido pendiente (para latroupe)
 
 Lo que hace falta escribir para desbloquear el roadmap de visibilidad. El plan
 técnico y el contexto están en [ROADMAP_VISIBILIDAD.md](./ROADMAP_VISIBILIDAD.md).
@@ -16,12 +16,12 @@ primero el español y marcarlo.
 
 | # | Bloque | Quién | Esfuerzo estimado | Prioridad |
 |---|---|---|---|---|
-| A | Textos de 5 proyectos del portfolio | LaTroupe | ~45 min por proyecto | **Alta** |
-| B | 2 casos de estudio narrativos (Andaz, Rochester Row) | LaTroupe | ~2 h cada uno | **Alta** |
-| C | 5-8 FAQs para la home | LaTroupe | ~1 h | Media |
+| A | Textos de 5 proyectos del portfolio | latroupe | ~45 min por proyecto | **Alta** |
+| B | 2 casos de estudio narrativos (Andaz, Rochester Row) | latroupe | ~2 h cada uno | **Alta** |
+| C | 5-8 FAQs para la home | latroupe | ~1 h | Media |
 | D | Imagen de marca para compartir en redes | Diseño | ~1 h | Media |
-| E | Temas del blog (3 primeros artículos) | LaTroupe + quien redacte | ~1 h de decisión | Media |
-| F | Lead magnet y newsletter | LaTroupe | Depende de G | Baja hasta decidir G |
+| E | Temas del blog (3 primeros artículos) | latroupe + quien redacte | ~1 h de decisión | Media |
+| F | Lead magnet y newsletter | latroupe | Depende de G | Baja hasta decidir G |
 | G | **Decisión de posicionamiento** | Emmelin + Jaume | Una conversación | **Bloqueante** |
 
 ---
@@ -96,7 +96,7 @@ revisarlas y adaptar las que apliquen al servicio general**, no escribir de cero
 
 Preguntas que el informe sugiere cubrir:
 
-- ¿Cuánto se tarda en integrar al equipo de LaTroupe en un proyecto?
+- ¿Cuánto se tarda en integrar al equipo de latroupe en un proyecto?
 - ¿Con qué tipo de estudios trabajáis?
 - ¿En qué fases del proyecto podéis apoyar?
 - ¿Cómo se factura / cómo se dimensiona el equipo?
