@@ -79,7 +79,7 @@ export default function ProjectOverlay({ project, onClose, onNavigate }: Props) 
               </div>
               <div className={styles.heroImageCol}>
                 <div className={styles.heroImageWrapper}>
-                  <Image src={withBasePath(project.heroImage)} alt={project.title} fill sizes="100vw" className={styles.heroImage} priority />
+                  <Image src={withBasePath(project.heroImage)} alt={`${project.title.replace(/\n/g, " ")} · ${project.location} · LaTroupe Studio`} fill sizes="100vw" className={styles.heroImage} priority />
                 </div>
               </div>
               <div className={styles.shortDescCol}><p className={styles.shortDesc}>{project.shortDesc}</p></div>
