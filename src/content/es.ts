@@ -7,6 +7,7 @@ const es: SiteContent = {
     rotatingWords: ["diseña","tecnifica","ordena","mejora","optimiza","ejecuta","construye","anticipa"],
     suffix: "contigo",
     description: "Reforzamos la capacidad de los estudios de arquitectura o interiorismo y les acompañamos en todas las fases de desarrollo de cada proyecto.",
+    srHeading: "LaTroupe Studio · apoyo técnico para estudios de arquitectura e interiorismo",
   },
   about: {
     eyebrow: "Realmente...",
