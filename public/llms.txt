@@ -1,8 +1,8 @@
-# LaTroupe Studio
+# latroupe
 
-> LaTroupe Studio es un equipo de apoyo técnico para estudios de arquitectura e interiorismo. Ampliamos la capacidad de cada estudio integrando nuestro equipo en el suyo, con producción técnica, coordinación BIM y gestión en todas las fases del proyecto.
+> latroupe es un equipo de apoyo técnico para estudios de arquitectura e interiorismo. Ampliamos la capacidad de cada estudio integrando nuestro equipo en el suyo, con producción técnica, coordinación BIM y gestión en todas las fases del proyecto.
 
-LaTroupe Studio works as an extension of architecture and interior design studios, providing technical reinforcement (Revit/BIM production, technical drawing packages, clash detection, QA/QC and design support) that adapts to each team's way of working. We collaborate on projects of any scale and complexity, with experience across hospitality, corporate offices/workplace and residential sectors.
+latroupe works as an extension of architecture and interior design studios, providing technical reinforcement (Revit/BIM production, technical drawing packages, clash detection, QA/QC and design support) that adapts to each team's way of working. We collaborate on projects of any scale and complexity, with experience across hospitality, corporate offices/workplace and residential sectors.
 
 ## Servicios / Services
 

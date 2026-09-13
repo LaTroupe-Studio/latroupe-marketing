@@ -1,7 +1,7 @@
 export const legalEn = {
   privacy: {
     title: "Privacy Policy",
-    content: `Privacy Policy Statement for the website owned by LaTroupe Studio and/or Awesomely SL
+    content: `Privacy Policy Statement for the website owned by latroupe and/or Awesomely SL
 
 In compliance with Regulation (EU) 2016/679 of the European Parliament and of the Council of 27 April 2016 on the protection of natural persons with regard to the processing of personal data and on the free movement of such data (GDPR), and with the Spanish Organic Law 3/2018 of 5 December on the Protection of Personal Data and the guarantee of digital rights (LOPDGDD), Awesomely SL, as the data controller, informs you that any personal data requested as a result of subscribing to or signing up for any of the services offered on the website will be processed with the necessary security measures. The purpose is to manage and tailor our commercial offerings to your requests in order to provide you with a more personalized and efficient service. Providing the requested information is voluntary, and refusal will result only in the inability to receive the offered services.
 
@@ -35,7 +35,7 @@ If we introduce analytics, advertising, or third-party cookies in the future, we
     title: "Legal Notice",
     content: `1. OBJECT AND ACCEPTANCE
 
-This legal notice regulates the use of the website www.latroupestudio.com (hereinafter, THE WEBSITE), owned by Awesomely SL, which operates under the trade name LaTroupe Studio (hereinafter, THE WEBSITE OWNER).
+This legal notice regulates the use of the website www.latroupestudio.com (hereinafter, THE WEBSITE), owned by Awesomely SL, which operates under the trade name latroupe (hereinafter, THE WEBSITE OWNER).
 
 By browsing the website of THE WEBSITE OWNER, the user acquires the status of a user of the site and implies the full and unreserved acceptance of each and every provision included in this Legal Notice, which may be subject to modifications.
 

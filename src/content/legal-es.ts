@@ -1,7 +1,7 @@
 export const legalEs = {
   privacy: {
     title: "Política de privacidad",
-    content: `Declaración de Política de Privacidad para el sitio propiedad de LaTroupe Studio y/o Awesomely SL
+    content: `Declaración de Política de Privacidad para el sitio propiedad de latroupe y/o Awesomely SL
 
 En cumplimiento del Reglamento (UE) 2016/679 del Parlamento Europeo y del Consejo, de 27 de abril de 2016, relativo a la protección de las personas físicas en lo que respecta al tratamiento de datos personales y a la libre circulación de estos datos (RGPD), y de la Ley Orgánica 3/2018, de 5 de diciembre, de Protección de Datos Personales y garantía de los derechos digitales (LOPDGDD), Awesomely SL, como responsable del tratamiento, le informa de que los datos personales que puedan requerirse como consecuencia de la suscripción o alta en alguno de los servicios ofrecidos por el sitio web serán tratados con las medidas de seguridad necesarias, con la finalidad de gestionar y adecuar nuestras ofertas comerciales a sus peticiones para poder ofrecerle un servicio más personalizado y eficaz. La entrega de la información solicitada tiene carácter voluntario y su negativa tiene como única consecuencia el no poder percibir los servicios que se ofrecen.
 
@@ -35,7 +35,7 @@ Si en el futuro incorporamos cookies de análisis, publicidad o de terceros, act
     title: "Aviso Legal",
     content: `1. OBJETO Y ACEPTACIÓN
 
-El presente aviso legal regula el uso del sitio web www.latroupestudio.com (en adelante, LA WEB), del que es titular Awesomely SL, que opera bajo el nombre comercial LaTroupe Studio (en adelante, EL PROPIETARIO DE LA WEB).
+El presente aviso legal regula el uso del sitio web www.latroupestudio.com (en adelante, LA WEB), del que es titular Awesomely SL, que opera bajo el nombre comercial latroupe (en adelante, EL PROPIETARIO DE LA WEB).
 
 La navegación por el sitio web de EL PROPIETARIO DE LA WEB atribuye la condición de usuario del mismo e implica la aceptación plena y sin reservas de todas y cada una de las disposiciones incluidas en este Aviso Legal, que pueden sufrir modificaciones.
 

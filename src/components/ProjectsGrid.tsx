@@ -102,7 +102,7 @@ export default function ProjectsGrid({ onProjectClick: _onProjectClick }: Props)
                 <div className={styles.frame} style={{ aspectRatio: piece.ratio }}>
                   <Image
                     src={withBasePath(src)}
-                    alt={item ? `${item.title} · ${item.location} · LaTroupe Studio` : ""}
+                    alt={item ? `${item.title} · ${item.location} · latroupe` : ""}
                     aria-hidden={item ? undefined : true}
                     fill
                     sizes={SIZES}
