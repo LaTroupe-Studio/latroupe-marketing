@@ -11,6 +11,16 @@ import "../globals.css";
 
 const SITE_URL = "https://www.latroupestudio.com";
 
+/**
+ * Social preview image. Placeholder until a branded 1200x630 asset exists —
+ * without it LinkedIn and WhatsApp render every shared link as a bare card.
+ */
+const OG_IMAGE = {
+  url: "/images/projects/collage/s01-hero.jpg",
+  width: 1400,
+  height: 840,
+};
+
 export function generateStaticParams() {
   return i18nConfig.locales.map((locale) => ({ locale }));
 }
@@ -18,13 +28,13 @@ export function generateStaticParams() {
 const meta = {
   es: {
     title:
-      "LaTroupe Studio · Apoyo técnico para estudios de arquitectura e interiorismo",
+      "latroupe · Apoyo técnico para estudios de arquitectura e interiorismo",
     description:
       "Ampliamos la capacidad de tu estudio de arquitectura o interiorismo integrando nuestro equipo en el tuyo: producción técnica, coordinación BIM y gestión en todas las fases del proyecto. Empecemos con una videollamada.",
   },
   en: {
     title:
-      "LaTroupe Studio · Technical support for architecture and interior design studios",
+      "latroupe · Technical support for architecture and interior design studios",
     description:
       "We expand the capacity of your architecture or interior design studio by integrating our team into yours: technical production, BIM coordination and project management across every phase. Let's start with a call.",
   },
@@ -56,8 +66,15 @@ export async function generateMetadata({
       description,
       type: "website",
       url: `${SITE_URL}/${loc}`,
-      siteName: "LaTroupe Studio",
+      siteName: "latroupe",
       locale: loc === "es" ? "es_ES" : "en_GB",
+      images: [{ ...OG_IMAGE, alt: title }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [OG_IMAGE.url],
     },
   };
 }
@@ -80,10 +97,20 @@ export default async function LocaleLayout({
       {
         "@type": "Organization",
         "@id": orgId,
-        name: "LaTroupe Studio",
+        name: "latroupe",
+        alternateName: "LaTroupe Studio",
         url: SITE_URL,
         logo: `${SITE_URL}/images/latroupe-logo.svg`,
+        image: `${SITE_URL}${OG_IMAGE.url}`,
         description: meta[loc].description,
+        knowsAbout: [
+          "BIM",
+          "Autodesk Revit",
+          "Architectural technical documentation",
+          "Hospitality interior design",
+          "Workplace and corporate offices",
+          "Residential architecture",
+        ],
         sameAs: [
           "https://www.linkedin.com/company/latroupestudio/",
           "https://www.instagram.com/latroupestudio",

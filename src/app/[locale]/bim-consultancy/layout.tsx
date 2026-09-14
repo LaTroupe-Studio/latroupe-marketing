@@ -5,6 +5,13 @@ import "./consultancy.css";
 
 const SITE_URL = "https://www.latroupestudio.com";
 
+/** Social preview for the BIM offer. See the note in [locale]/layout.tsx. */
+const OG_IMAGE = {
+  url: "/images/bim-consultancy/lego-southbank.jpg",
+  width: 1920,
+  height: 1234,
+};
+
 export async function generateMetadata({
   params,
 }: {
@@ -32,8 +39,15 @@ export async function generateMetadata({
       description,
       type: "website",
       url: `${SITE_URL}/${loc}/bim-consultancy`,
-      siteName: "LaTroupe Studio",
+      siteName: "latroupe",
       locale: loc === "es" ? "es_ES" : "en_GB",
+      images: [{ ...OG_IMAGE, alt: title }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [OG_IMAGE.url],
     },
   };
 }

@@ -1,6 +1,8 @@
 interface LogoTextProps {
   color?: string;
   className?: string;
+  /** Hide the wordmark from assistive tech when a sibling already names it. */
+  decorative?: boolean;
 }
 
 /**
@@ -10,14 +12,16 @@ interface LogoTextProps {
 export default function LogoText({
   color = "#ECE6E3",
   className,
+  decorative = false,
 }: LogoTextProps) {
   return (
     <svg
       viewBox="0 0 219 61"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      aria-label="latroupe"
-      role="img"
+      {...(decorative
+        ? { "aria-hidden": true }
+        : { "aria-label": "latroupe", role: "img" })}
       className={className}
     >
       <path d="M12.3,7.4H4.5v38h7.8V7.4z" fill={color} />

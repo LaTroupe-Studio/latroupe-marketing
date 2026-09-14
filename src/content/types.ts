@@ -68,6 +68,8 @@ export interface SiteContent {
     rotatingWords: string[];
     suffix: string;
     description: string;
+    /** Visually hidden H1 text. Carries the keywords the wordmark cannot. */
+    srHeading: string;
   };
 
   about: {
