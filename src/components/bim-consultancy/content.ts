@@ -111,7 +111,7 @@ export interface ConsultancyContent {
 
 const en: ConsultancyContent = {
   meta: {
-    title: "BIM Consulting & Modelling Services · LaTroupe Studio",
+    title: "BIM Consulting & Modelling Services · latroupe",
     description:
       "Coordinated, data-rich BIM delivered to your standards and your timeline. BIM modelling, coordination, management and consultancy — we plug into your team at any project stage.",
   },
@@ -372,7 +372,7 @@ const en: ConsultancyContent = {
     privacyExtra: " We only use your details to reply to your enquiry — never for anything else.",
   },
   thanks: {
-    metaTitle: "Thank you · BIM Consulting & Modelling · LaTroupe Studio",
+    metaTitle: "Thank you · BIM Consulting & Modelling · latroupe",
     metaDescription: "We've received your enquiry and will reply within one working day.",
     eyebrow: "( enquiry received )",
     title: "Thanks —\nwe've got it.",
@@ -395,7 +395,7 @@ const en: ConsultancyContent = {
 
 const es: ConsultancyContent = {
   meta: {
-    title: "Consultoría y Modelado BIM · LaTroupe Studio",
+    title: "Consultoría y Modelado BIM · latroupe",
     description:
       "BIM coordinado y rico en datos, entregado según tus estándares y tus plazos. Modelado, coordinación, gestión y consultoría BIM — nos integramos en tu equipo en cualquier fase del proyecto.",
   },
@@ -656,7 +656,7 @@ const es: ConsultancyContent = {
     privacyExtra: " Solo usamos tus datos para responder a tu consulta — nunca para otra cosa.",
   },
   thanks: {
-    metaTitle: "Gracias · Consultoría y Modelado BIM · LaTroupe Studio",
+    metaTitle: "Gracias · Consultoría y Modelado BIM · latroupe",
     metaDescription: "Hemos recibido tu consulta y te responderemos en un día laborable.",
     eyebrow: "( consulta recibida )",
     title: "Gracias —\nya la tenemos.",

@@ -13,7 +13,8 @@ export default function Hero() {
         <div className={`grid-12 ${styles.content}`}>
           <div className={styles.claimCol}>
             <h1 className={styles.heading}>
-              <LogoText color="#452515" className={styles.logoLine} />
+              <span className="sr-only">{content.hero.srHeading}</span>
+              <LogoText color="#452515" className={styles.logoLine} decorative />
               <span className={styles.wordLine}>
                 {"( "}<span className={styles.rotatingWord}>{typedWord}<span className={styles.cursor} /></span>{" )"}
               </span>

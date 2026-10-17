@@ -1,8 +1,8 @@
-# LaTroupe Studio
+# latroupe
 
-> LaTroupe Studio es un equipo de apoyo técnico para estudios de arquitectura e interiorismo. Ampliamos la capacidad de cada estudio integrando nuestro equipo en el suyo, con producción técnica, coordinación BIM y gestión en todas las fases del proyecto.
+> latroupe es un equipo de apoyo técnico para estudios de arquitectura e interiorismo. Ampliamos la capacidad de cada estudio integrando nuestro equipo en el suyo, con producción técnica, coordinación BIM y gestión en todas las fases del proyecto.
 
-LaTroupe Studio works as an extension of architecture and interior design studios, providing technical reinforcement (Revit/BIM production, technical drawing packages, clash detection, QA/QC and design support) that adapts to each team's way of working. We collaborate on projects of any scale and complexity, with experience across hospitality, corporate offices/workplace and residential sectors.
+latroupe works as an extension of architecture and interior design studios, providing technical reinforcement (Revit/BIM production, technical drawing packages, clash detection, QA/QC and design support) that adapts to each team's way of working. We collaborate on projects of any scale and complexity, with experience across hospitality, corporate offices/workplace and residential sectors.
 
 ## Servicios / Services
 
@@ -19,10 +19,23 @@ LaTroupe Studio works as an extension of architecture and interior design studio
 
 ## Páginas / Pages
 
-- [Inicio (ES)](https://latroupestudio.com/es): Presentación del estudio, metodología y proyectos.
-- [Home (EN)](https://latroupestudio.com/en): Studio overview, methodology and projects.
+- [Inicio (ES)](https://www.latroupestudio.com/es): Presentación del estudio, metodología y proyectos.
+- [Home (EN)](https://www.latroupestudio.com/en): Studio overview, methodology and projects.
+- [Consultoría y modelado BIM (ES)](https://www.latroupestudio.com/es/bim-consultancy): Servicios de modelado, coordinación, gestión y consultoría BIM, con preguntas frecuentes.
+- [BIM consultancy and modelling (EN)](https://www.latroupestudio.com/en/bim-consultancy): BIM modelling, coordination, management and consultancy services, with FAQs.
+
+## Proyectos de referencia / Reference projects
+
+- Al Ameen HQ — Jeddah, Arabia Saudí. Oficinas corporativas. Producción BIM y paquetes técnicos en Stage 3, entorno colaborativo Autodesk Construction Cloud.
+- Andaz Turks and Caicos at Grace Bay — Grace Bay, Turks and Caicos. Renovación de hotel (Hyatt).
+- Oro Hato Rey, Marriott Autograph Collection — San Juan, Puerto Rico. Renovación de hotel.
+- Rochester Row — Londres, Reino Unido. Reforma de oficinas.
+- Holbein Gardens — Londres, Reino Unido. Oficinas corporativas.
+- LEGO London HUB — Londres, Reino Unido. Workplace.
+- Amazon (AWS) HQ — Abu Dhabi, EAU. Workplace.
+- Aena East Lot Airports — España. Infraestructura aeroportuaria.
 
 ## Contacto / Contact
 
-- Web: https://latroupestudio.com
+- Web: https://www.latroupestudio.com
 - LinkedIn: https://www.linkedin.com/company/latroupestudio/
