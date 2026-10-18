@@ -56,6 +56,7 @@ const en: SiteContent = {
     moreInfo: "Learn more",
     accept: "Accept",
     reject: "Reject",
+    settings: "Cookie settings",
   },
   overlay: { close:"CLOSE", inDevelopment:"Ongoing", comingSoon:"Coming soon" },
 };

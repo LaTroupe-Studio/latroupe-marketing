@@ -85,6 +85,7 @@ const es: SiteContent = {
     moreInfo: "Más información",
     accept: "Aceptar",
     reject: "Rechazar",
+    settings: "Configurar cookies",
   },
   overlay: { close:"CERRAR", inDevelopment:"En desarrollo", comingSoon:"Próximamente" },
 };
