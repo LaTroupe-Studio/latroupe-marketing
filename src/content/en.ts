@@ -52,10 +52,11 @@ const en: SiteContent = {
   },
   footer: { links:[{label:"Privacy",href:"/en/privacy"},{label:"Cookies",href:"/en/cookies"},{label:"Legal notice",href:"/en/legal-notice"}], social:[{label:"Linkedin",href:"https://www.linkedin.com/company/latroupestudio/"},{label:"Instagram",href:"https://www.instagram.com/latroupestudio"},{label:"Pinterest",href:"https://www.pinterest.es/latroupestudio/"}], workWithUs:{label:"Work with us",href:"https://invented-cactus-ce6.notion.site/Trabajar-en-LaTroupe-cd9c990923954418bd2e6a3df58b2500"}, copyright:"Developed by latroupe ( ) 2026 © All rights reserved.", legal:"" },
   cookieBanner: {
-    message: "We use first-party and third-party cookies to analyze site usage and improve our services. Non-essential cookies are only installed with your consent.",
+    message: "We use first-party and third-party cookies to analyze site usage and measure the effectiveness of our ads. Non-essential cookies are only installed with your consent.",
     moreInfo: "Learn more",
     accept: "Accept",
     reject: "Reject",
+    settings: "Cookie settings",
   },
   overlay: { close:"CLOSE", inDevelopment:"Ongoing", comingSoon:"Coming soon" },
 };

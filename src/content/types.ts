@@ -145,6 +145,8 @@ export interface SiteContent {
     moreInfo: string;
     accept: string;
     reject: string;
+    /** Footer link that reopens the banner to change the choice. */
+    settings: string;
   };
 
   overlay: {

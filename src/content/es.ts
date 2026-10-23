@@ -81,10 +81,11 @@ const es: SiteContent = {
     legal: "",
   },
   cookieBanner: {
-    message: "Utilizamos cookies propias y de terceros para analizar el uso del sitio y mejorar nuestros servicios. Las cookies no esenciales solo se instalan con tu consentimiento.",
+    message: "Utilizamos cookies propias y de terceros para analizar el uso del sitio y medir la eficacia de nuestros anuncios. Las cookies no esenciales solo se instalan con tu consentimiento.",
     moreInfo: "Más información",
     accept: "Aceptar",
     reject: "Rechazar",
+    settings: "Configurar cookies",
   },
   overlay: { close:"CERRAR", inDevelopment:"En desarrollo", comingSoon:"Próximamente" },
 };

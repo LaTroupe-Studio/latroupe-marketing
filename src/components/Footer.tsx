@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useContent } from "@/lib/locale-context";
+import { openConsentSettings } from "@/lib/consent";
 import Logo from "./Logo";
 import styles from "./Footer.module.css";
 
@@ -42,6 +43,9 @@ export default function Footer() {
                 {l.label}
               </Link>
             ))}
+            <button type="button" className={`${styles.legalLink} ${styles.legalButton}`} onClick={openConsentSettings}>
+              {content.cookieBanner.settings}
+            </button>
           </div>
         </div>
 

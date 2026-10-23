@@ -65,7 +65,7 @@ export default function ContactForm() {
           </div>
 
           {/* Form, right column — top-aligned with the intro paragraph */}
-          <form className={styles.form} onSubmit={handleSubmit}>
+          <form className={styles.form} onSubmit={handleSubmit} data-clarity-mask="True">
             {/* Name */}
             <div>
               <label className={styles.label} htmlFor="contact-name">{fields.name}</label>

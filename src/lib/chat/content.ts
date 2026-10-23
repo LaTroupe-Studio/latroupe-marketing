@@ -54,7 +54,7 @@ const es: ChatContent = {
     legal:
       "Al hacer clic en Enviar, aceptas nuestra política de protección de datos y que podamos ponernos en contacto contigo.",
     legalLinkPhrase: "política de protección de datos",
-    legalLinkHref: "/es/aviso-legal",
+    legalLinkHref: "/es/privacidad",
     submit: "Enviar",
     sending: "Enviando...",
     sent: "¡Enviado!",
@@ -86,7 +86,7 @@ const en: ChatContent = {
     messagePlaceholder: "Tell us briefly about your project",
     legal: "By clicking Send, you accept our data protection policy and agree that we may contact you.",
     legalLinkPhrase: "data protection policy",
-    legalLinkHref: "/en/legal-notice",
+    legalLinkHref: "/en/privacy",
     submit: "Send",
     sending: "Sending...",
     sent: "Sent!",
