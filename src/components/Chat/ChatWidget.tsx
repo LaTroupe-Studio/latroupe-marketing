@@ -141,6 +141,9 @@ export default function ChatWidget({ onClose }: { onClose: () => void }) {
           ×
         </button>
       </div>
+      <p className={styles.aiNotice} role="note">
+        {content.aiNotice}
+      </p>
 
       <div className={styles.messages}>
         {display.map((m, i) => (
