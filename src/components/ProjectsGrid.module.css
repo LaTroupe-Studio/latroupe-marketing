@@ -26,7 +26,7 @@
 .collage {
   grid-column: 1 / -1;
   position: relative;
-  aspect-ratio: 1509 / 2770;
+  aspect-ratio: 1509 / 3180;
   /* One of twelve columns with the gutters taken out — the unit every
      position is built on, so the collage sits on the page grid. */
   --u: calc((100% - 11 * var(--grid-gutter)) / 12);
