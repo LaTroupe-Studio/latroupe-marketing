@@ -18,6 +18,8 @@ export interface ProjectImage {
 export interface CollageItem {
   id: string;
   title: string;
+  /** Architecture studio we worked for, shown before the location: "BDG · Jeddah". */
+  client?: string;
   location: string;
   image: string;
 }

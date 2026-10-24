@@ -41,21 +41,23 @@ type Piece = {
 /** In the prototype's own order, top of the canvas downwards. */
 const PIECES: Piece[] = [
   { id: "rochester-row", col: 4, top: "0", cols: 3, gutters: 2, ratio: "326/214", fit: "cover", tint: true },
-  { id: "oro-hato-rey", col: 8, top: "3.85%", cols: 3, gutters: 2, ratio: "327/218", fit: "cover", tint: true },
-  { id: "al-ameen", col: 0, top: "11.75%", cols: 3, gutters: 2, ratio: "327/213", fit: "cover", tint: true },
-  { src: "axo-bar-lounge.png", col: 5, top: "14.68%", cols: 3, gutters: 2, ratio: "2222/1687", fit: "contain" },
-  { src: "axo-closet.png", col: 9, top: "23.61%", cols: 2, gutters: 1, ratio: "224/270", fit: "contain" },
-  { id: "sant-feliu", col: 1, top: "25.41%", cols: 3, gutters: 2, ratio: "327/220", fit: "cover", tint: true },
-  { id: "andaz-turks", col: 5, top: "29.89%", cols: 3, gutters: 2, ratio: "326/223", fit: "cover", tint: true },
-  { src: "axo-explotado.png", col: 1, top: "37.17%", cols: 3, gutters: 2, ratio: "393/278", fit: "contain" },
-  { id: "holbein-gardens", col: 7, top: "44.25%", cols: 3, gutters: 2, ratio: "325/223", fit: "cover", tint: true },
-  { id: "workplace-competition", col: 3, top: "50.74%", cols: 3, gutters: 2, ratio: "326/214", fit: "cover", tint: true },
-  { src: "axo-holbein-plan.png", col: 9, top: "57.01%", cols: 3, gutters: 2, ratio: "2336/1524", fit: "contain" },
-  { id: "aena-east-lot", col: 0, top: "64.14%", cols: 3, gutters: 2, ratio: "326/214", fit: "cover", tint: true },
-  { src: "axo-desk-pod.png", col: 4, top: "67.02%", cols: 2, gutters: 2, ratio: "1276/977", fit: "contain" },
-  { id: "llavaneres", col: 7, top: "72.80%", cols: 3, gutters: 2, ratio: "327/220", fit: "cover", tint: true },
-  { id: "lego-london-hub", col: 2, top: "81.95%", cols: 3, gutters: 2, ratio: "326/214", fit: "cover", tint: true, zoom: 1.18 },
-  { id: "amazon-aws-hq", col: 9, top: "84.84%", cols: 3, gutters: 2, ratio: "2506/1658", fit: "contain" },
+  { id: "oro-hato-rey", col: 8, top: "3.35%", cols: 3, gutters: 2, ratio: "327/218", fit: "cover", tint: true },
+  { id: "al-ameen", col: 0, top: "10.24%", cols: 3, gutters: 2, ratio: "327/213", fit: "cover", tint: true },
+  { src: "axo-bar-lounge.png", col: 5, top: "12.79%", cols: 3, gutters: 2, ratio: "2222/1687", fit: "contain" },
+  { src: "axo-closet.png", col: 9, top: "20.57%", cols: 2, gutters: 1, ratio: "224/270", fit: "contain" },
+  { id: "archer-st", col: 1, top: "22.13%", cols: 3, gutters: 2, ratio: "327/220", fit: "cover", tint: true },
+  { id: "andaz-turks", col: 5, top: "26.04%", cols: 3, gutters: 2, ratio: "326/223", fit: "cover", tint: true },
+  { src: "axo-explotado.png", col: 1, top: "32.38%", cols: 3, gutters: 2, ratio: "393/278", fit: "contain" },
+  { id: "holbein-gardens", col: 7, top: "38.54%", cols: 3, gutters: 2, ratio: "325/223", fit: "cover", tint: true },
+  { id: "workplace-competition", col: 3, top: "44.20%", cols: 3, gutters: 2, ratio: "326/214", fit: "cover", tint: true },
+  { src: "axo-holbein-plan.png", col: 9, top: "49.66%", cols: 3, gutters: 2, ratio: "2336/1524", fit: "contain" },
+  { id: "aena-east-lot", col: 0, top: "55.87%", cols: 3, gutters: 2, ratio: "326/214", fit: "cover", tint: true },
+  { src: "axo-desk-pod.png", col: 4, top: "58.38%", cols: 2, gutters: 2, ratio: "1276/977", fit: "contain" },
+  { id: "llavaneres", col: 7, top: "63.41%", cols: 3, gutters: 2, ratio: "327/220", fit: "cover", tint: true },
+  { id: "lego-london-hub", col: 2, top: "71.38%", cols: 3, gutters: 2, ratio: "326/214", fit: "cover", tint: true, zoom: 1.18 },
+  { id: "amazon-aws-hq", col: 9, top: "73.90%", cols: 3, gutters: 2, ratio: "2506/1658", fit: "contain" },
+  { id: "tiber-gardens", col: 6, top: "81.76%", cols: 3, gutters: 2, ratio: "326/214", fit: "cover", tint: true },
+  { id: "sant-feliu", col: 1, top: "86.79%", cols: 3, gutters: 2, ratio: "327/220", fit: "cover", tint: true },
 ];
 
 const G = "var(--grid-gutter)";
@@ -117,7 +119,7 @@ export default function ProjectsGrid({ onProjectClick: _onProjectClick }: Props)
                 {item && (
                   <div className={styles.label} data-on={on}>
                     <b>{item.title}</b>
-                    <i>{item.location}</i>
+                    <i>{item.client ? `${item.client} · ${item.location}` : item.location}</i>
                   </div>
                 )}
               </div>
