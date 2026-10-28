@@ -189,3 +189,31 @@
   .panel { transition: none; }
   .rollerTape { transition: none; }
 }
+
+/*
+ * Reduced motion on desktop/tablet: the step-driving scroll listener never
+ * runs (see Methodology.tsx), so `data-active` never changes past pillar I.
+ * Stripping the transition above is not enough — `.panel` still defaults to
+ * opacity:0/pointer-events:none, which would permanently hide pillars II and
+ * III. Lift that gating and fall back to the same stacked layout the ≤768px
+ * breakpoint uses, so every pillar stays visible without any cross-fade.
+ */
+@media (prefers-reduced-motion: reduce) and (min-width: 769px) {
+  .panels {
+    display: block;
+    border-top: 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.45);
+    padding-top: 0;
+  }
+  .rollerRow { display: none; }
+
+  .panel {
+    display: grid;
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+    border-top: 1px solid rgba(0, 0, 0, 0.45);
+    padding: 32px 0;
+  }
+  .rowNum { display: block; }
+}
