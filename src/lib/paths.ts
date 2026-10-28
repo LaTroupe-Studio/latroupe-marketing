@@ -10,7 +10,7 @@ export function withBasePath(path: string): string {
 
 /**
  * Texto alternativo descriptivo para imágenes de proyecto, orientado a SEO:
- * "[Nombre del proyecto] · [tipo de espacio] · LaTroupe Studio".
+ * "[Nombre del proyecto] · [tipo de espacio] · latroupe".
  */
 export function projectAlt(project: {
   title: string;
@@ -19,5 +19,5 @@ export function projectAlt(project: {
 }): string {
   const name = project.title.split("|")[0].replace(/\s+/g, " ").trim();
   const descriptor = project.type ?? "architecture & interior design";
-  return `${name} · ${descriptor} · LaTroupe Studio`;
+  return `${name} · ${descriptor} · latroupe`;
 }
