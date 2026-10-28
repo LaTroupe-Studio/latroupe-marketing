@@ -4,6 +4,8 @@ export type ChatPage = "home" | "bim";
 
 export interface ChatContent {
   welcome: Record<ChatPage, string>;
+  /** Always-visible AI disclosure (EU AI Act, art. 50.1). */
+  aiNotice: string;
   initialOptions: Record<ChatPage, string[]>;
   /** Chip that leads to the lead form; kept on screen even if others are dropped. */
   contactOption: string;
@@ -30,9 +32,10 @@ export interface ChatContent {
 
 const es: ChatContent = {
   welcome: {
-    home: "¡Hola! Soy Latty, de latroupe(). ¿En qué te puedo ayudar?",
-    bim: "¡Hola! Soy Latty, de latroupe(). ¿Qué te gustaría saber sobre nuestro servicio BIM?",
+    home: "¡Hola! Soy Latty, la asistente virtual de latroupe(), y funciono con inteligencia artificial. ¿En qué te puedo ayudar?",
+    bim: "¡Hola! Soy Latty, la asistente virtual de latroupe(), y funciono con inteligencia artificial. ¿Qué te gustaría saber sobre nuestro servicio BIM?",
   },
+  aiNotice: "Asistente con IA · Puede cometer errores. Para algo concreto, habla con el equipo.",
   initialOptions: {
     home: ["Conocer los servicios", "Tengo un proyecto en marcha", "Hablar con el equipo"],
     bim: ["Ver servicios BIM", "Cómo empezamos", "Hablar con el equipo"],
@@ -51,7 +54,7 @@ const es: ChatContent = {
     legal:
       "Al hacer clic en Enviar, aceptas nuestra política de protección de datos y que podamos ponernos en contacto contigo.",
     legalLinkPhrase: "política de protección de datos",
-    legalLinkHref: "/es/aviso-legal",
+    legalLinkHref: "/es/privacidad",
     submit: "Enviar",
     sending: "Enviando...",
     sent: "¡Enviado!",
@@ -62,9 +65,10 @@ const es: ChatContent = {
 
 const en: ChatContent = {
   welcome: {
-    home: "Hi, I'm Latty from latroupe(). What can I help you with?",
-    bim: "Hi, I'm Latty from latroupe(). What would you like to know about our BIM service?",
+    home: "Hi, I'm Latty, latroupe()'s virtual assistant, powered by artificial intelligence. What can I help you with?",
+    bim: "Hi, I'm Latty, latroupe()'s virtual assistant, powered by artificial intelligence. What would you like to know about our BIM service?",
   },
+  aiNotice: "AI assistant · It can make mistakes. For anything specific, talk to the team.",
   initialOptions: {
     home: ["See services", "I have an ongoing project", "Talk to the team"],
     bim: ["See BIM services", "How we start", "Talk to the team"],
@@ -82,7 +86,7 @@ const en: ChatContent = {
     messagePlaceholder: "Tell us briefly about your project",
     legal: "By clicking Send, you accept our data protection policy and agree that we may contact you.",
     legalLinkPhrase: "data protection policy",
-    legalLinkHref: "/en/legal-notice",
+    legalLinkHref: "/en/privacy",
     submit: "Send",
     sending: "Sending...",
     sent: "Sent!",

@@ -65,6 +65,16 @@
   padding: var(--space-xs);
 }
 
+.aiNotice {
+  margin: 0;
+  padding: var(--space-xs) var(--space-md);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  line-height: 1.4;
+  color: var(--color-terracota-dark);
+  background: rgba(40, 23, 14, 0.06);
+}
+
 .messages {
   flex: 1;
   overflow-y: auto;

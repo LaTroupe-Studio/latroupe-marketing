@@ -15,7 +15,31 @@ The processing of the data provided for the stated purposes.
 
 Sending commercial communications via email regarding offers, promotions, and new services from Awesomely SL, subject to the data subject's prior consent. However, if the user does not wish to continue receiving commercial communications, they may indicate this at any time by sending a communication to legal@awesomelygroup.com.
 
-In compliance with the information obligations established in Article 22.2 of Law 34/2002 of 11 July on Information Society Services and Electronic Commerce (LSSI-CE), we inform you that this website uses only one first-party, technical cookie, necessary to remember your selected browsing language. We do not use analytics, advertising, or third-party cookies. You may obtain more information in our Cookies Policy or by contacting legal@awesomelygroup.com.`,
+VIRTUAL ASSISTANT (CHAT)
+
+This website offers a virtual assistant, Latty, powered by artificial intelligence. Its answers are generated automatically and may contain errors. For any specific enquiry, you can ask to be contacted by our team from within the chat.
+
+The messages you write in the chat are sent to Anthropic, PBC, the provider of the artificial intelligence model, which processes them on behalf of Awesomely SL as data processor, solely to generate the answer and in accordance with the data processing agreement entered into by both parties. Awesomely SL does not store the conversation history, unless you submit the contact form from the chat (see next section). Your browser keeps it only while the tab remains open. We recommend that you do not include in the chat any personal data that is not necessary for your enquiry.
+
+The legal basis for this processing is the legitimate interest of Awesomely SL in responding to the enquiries that users voluntarily make through the chat.
+
+CONTACT FORMS
+
+If you provide your name, email address and message through the contact form or the chat form, we will use them to respond to your request. If you submit it from the chat, the conversation you had with the assistant is sent together with your details, so that our team has the context of your enquiry. This data is sent by email through Amazon Web Services (Amazon SES), on servers located in the European Union, and is kept for one year from receipt.
+
+PROVIDERS AND INTERNATIONAL TRANSFERS
+
+To provide the service, Awesomely SL relies on the following providers, acting as data processors: Vercel Inc. (website hosting); Amazon Web Services EMEA SARL (form delivery and chat operation); Anthropic, PBC (the chat's artificial intelligence model); and, only if you accept the corresponding cookies, Google Ireland Ltd. (Google Analytics and Google Ads) and Microsoft Ireland Operations Ltd. (Microsoft Clarity).
+
+Some of these providers may process data in the United States. These transfers are covered by the EU-US Data Privacy Framework or, failing that, by the standard contractual clauses approved by the European Commission.
+
+CONTENT GENERATED WITH ARTIFICIAL INTELLIGENCE
+
+Some of the project images shown on this website are visualisations generated or edited with artificial intelligence tools, and not photographs of built spaces.
+
+COOKIES
+
+In compliance with Article 22.2 of Law 34/2002 of 11 July on Information Society Services and Electronic Commerce (LSSI-CE), we inform you that this website uses technical cookies, necessary for it to function, and, only if you accept them, third-party analytics and advertising cookies (Google Analytics, Google Ads and Microsoft Clarity). You can find the details in our Cookies Policy and change your choice at any time through the "Cookie settings" link at the bottom of the page.`,
   },
   cookies: {
     title: "Cookies Policy",
@@ -23,13 +47,33 @@ In compliance with the information obligations established in Article 22.2 of La
 
 A cookie is a file that is downloaded onto your computer when accessing certain web pages. Cookies allow a website, among other things, to store and retrieve information about a user's or their device's browsing habits and, depending on the information they contain and the way the user's device is used, they can be used to recognize the user.
 
-This website uses only the following cookie, which is first-party and technical, and does not require your consent because it is strictly necessary for the website to function:
+This website uses the following cookies:
 
-Name: NEXT_LOCALE. Purpose: remembers the language (Spanish/English) selected by the user. Duration: 1 year.
+TECHNICAL COOKIES (NO CONSENT REQUIRED)
 
-We do not use analytics, advertising, or third-party cookies, and the website does not track your browsing. Most browsers let you delete or block cookies from their security settings; please note that blocking the NEXT_LOCALE cookie may prevent the website from remembering your preferred language between visits.
+Name: NEXT_LOCALE. Owner: first-party. Purpose: remembers the language (Spanish/English) selected by the user. Duration: 1 year.
 
-If we introduce analytics, advertising, or third-party cookies in the future, we will update this policy and request your prior, express, and informed consent through a cookie settings panel, as required by applicable law. You may obtain more information by contacting legal@awesomelygroup.com.`,
+Name: lt_cookie_consent. Owner: first-party. Purpose: remembers whether the user has accepted or rejected analytics and advertising cookies. Duration: 1 year.
+
+In addition, the virtual assistant stores the conversation in the browser's session storage (not a cookie), which is deleted when the tab is closed.
+
+ANALYTICS COOKIES (ONLY IF YOU ACCEPT THEM)
+
+Name: _ga, _ga_*. Owner: Google (Google Analytics). Purpose: statistically measures visits and use of the website, including use of the chat and forms. Duration: 2 years.
+
+Name: _clck, _clsk, CLID, MUID. Owner: Microsoft (Clarity). Purpose: analyses how the website is browsed through heatmaps and session recordings. The content of the chat and forms is hidden in recordings. Duration: from 1 day to 1 year.
+
+ADVERTISING COOKIES (ONLY IF YOU ACCEPT THEM)
+
+Name: _gcl_au. Owner: Google (Google Ads). Purpose: measures how many contact requests come from our ads. Duration: 3 months.
+
+Google and Microsoft may process this data outside the European Economic Area. More information is available in the privacy policies of Google (policies.google.com/privacy) and Microsoft (privacy.microsoft.com/privacystatement).
+
+HOW TO ACCEPT, REJECT OR CHANGE YOUR CHOICE
+
+On your first visit, a banner lets you accept or reject analytics and advertising cookies. If you reject them, they are not installed. You can change your choice at any time through the "Cookie settings" link at the bottom of the page. You can also delete or block cookies from your browser settings; please note that blocking the NEXT_LOCALE cookie may prevent the website from remembering your preferred language.
+
+You may obtain more information by contacting legal@awesomelygroup.com.`,
   },
   legalNotice: {
     title: "Legal Notice",

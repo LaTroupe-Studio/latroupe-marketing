@@ -134,13 +134,16 @@ export default function ChatWidget({ onClose }: { onClose: () => void }) {
   const lastOptions = !showLeadForm ? display[display.length - 1]?.options : undefined;
 
   return (
-    <div className={styles.panel}>
+    <div className={styles.panel} data-clarity-mask="True">
       <div className={styles.header}>
         <span className={styles.headerTitle}>Latty · latroupe()</span>
         <button className={styles.closeBtn} onClick={onClose} aria-label="Close chat">
           ×
         </button>
       </div>
+      <p className={styles.aiNotice} role="note">
+        {content.aiNotice}
+      </p>
 
       <div className={styles.messages}>
         {display.map((m, i) => (

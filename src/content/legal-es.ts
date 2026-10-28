@@ -15,7 +15,31 @@ El tratamiento de los datos facilitados para las finalidades expuestas.
 
 El envío de comunicaciones comerciales por correo electrónico sobre ofertas, promociones y nuevos servicios de Awesomely SL, previo consentimiento del interesado. No obstante, si el usuario no desea continuar recibiendo comunicaciones comerciales, puede indicarlo en cualquier momento mediante comunicación remitida a legal@awesomelygroup.com.
 
-En cumplimiento de las obligaciones de información recogidas en el artículo 22.2 de la Ley 34/2002, de 11 de julio, de servicios de la sociedad de la información y de comercio electrónico (LSSI-CE), le informamos de que este sitio web utiliza únicamente una cookie propia de carácter técnico, necesaria para recordar el idioma de navegación seleccionado. No utilizamos cookies de análisis, publicidad ni de terceros. Puede obtener más información en nuestra Política de cookies o escribiendo a legal@awesomelygroup.com.`,
+ASISTENTE VIRTUAL (CHAT)
+
+Este sitio web ofrece un asistente virtual, Latty, que funciona con inteligencia artificial. Sus respuestas se generan de forma automática y pueden contener errores. Para cualquier consulta concreta puede solicitar el contacto con nuestro equipo desde el propio chat.
+
+Los mensajes que escriba en el chat se envían a Anthropic, PBC, proveedor del modelo de inteligencia artificial, que los trata por cuenta de Awesomely SL como encargado del tratamiento, con la única finalidad de generar la respuesta y conforme al contrato de encargo del tratamiento suscrito entre ambas partes. Awesomely SL no guarda el historial de la conversación, salvo que usted envíe el formulario de contacto desde el chat (ver apartado siguiente). En su navegador se conserva solo mientras la pestaña permanece abierta. Le recomendamos no incluir en el chat datos personales que no sean necesarios para su consulta.
+
+La base jurídica de este tratamiento es el interés legítimo de Awesomely SL en atender las consultas que los usuarios realizan voluntariamente a través del chat.
+
+FORMULARIOS DE CONTACTO
+
+Si nos facilita su nombre, correo electrónico y mensaje mediante el formulario de contacto o el formulario del chat, los utilizaremos para responder a su solicitud. Si lo envía desde el chat, junto a sus datos se envía también la conversación mantenida con el asistente, para que nuestro equipo tenga el contexto de su consulta. Estos datos se envían por correo electrónico mediante Amazon Web Services (Amazon SES), en servidores ubicados en la Unión Europea, y se conservan durante un año desde su recepción.
+
+PROVEEDORES Y TRANSFERENCIAS INTERNACIONALES
+
+Para prestar el servicio, Awesomely SL cuenta con los siguientes proveedores, que actúan como encargados del tratamiento: Vercel Inc. (alojamiento del sitio web); Amazon Web Services EMEA SARL (envío de formularios y funcionamiento del chat); Anthropic, PBC (modelo de inteligencia artificial del chat); y, únicamente si acepta las cookies correspondientes, Google Ireland Ltd. (Google Analytics y Google Ads) y Microsoft Ireland Operations Ltd. (Microsoft Clarity).
+
+Algunos de estos proveedores pueden tratar datos en Estados Unidos. Estas transferencias se amparan en el Marco de Privacidad de Datos UE-EE. UU. o, en su defecto, en las cláusulas contractuales tipo aprobadas por la Comisión Europea.
+
+CONTENIDO GENERADO CON INTELIGENCIA ARTIFICIAL
+
+Algunas de las imágenes de proyectos que se muestran en este sitio web son visualizaciones generadas o retocadas con herramientas de inteligencia artificial, y no fotografías de espacios construidos.
+
+COOKIES
+
+En cumplimiento del artículo 22.2 de la Ley 34/2002, de 11 de julio, de servicios de la sociedad de la información y de comercio electrónico (LSSI-CE), le informamos de que este sitio web utiliza cookies técnicas, necesarias para su funcionamiento, y, únicamente si usted las acepta, cookies de análisis y de publicidad de terceros (Google Analytics, Google Ads y Microsoft Clarity). Puede consultar el detalle en nuestra Política de cookies y cambiar su elección en cualquier momento desde el enlace «Configurar cookies» al pie de la página.`,
   },
   cookies: {
     title: "Política de cookies",
@@ -23,13 +47,33 @@ En cumplimiento de las obligaciones de información recogidas en el artículo 22
 
 Una cookie es un fichero que se descarga en su ordenador al acceder a determinadas páginas web. Las cookies permiten a una página web, entre otras cosas, almacenar y recuperar información sobre los hábitos de navegación de un usuario o de su equipo y, dependiendo de la información que contengan y de la forma en que utilice su equipo, pueden utilizarse para reconocer al usuario.
 
-Este sitio web utiliza únicamente la siguiente cookie, de carácter propio y técnico, que no requiere su consentimiento por ser estrictamente necesaria para el funcionamiento del sitio:
+Este sitio web utiliza las siguientes cookies:
 
-Nombre: NEXT_LOCALE. Finalidad: recordar el idioma (español/inglés) seleccionado por el usuario. Duración: 1 año.
+COOKIES TÉCNICAS (NO REQUIEREN CONSENTIMIENTO)
 
-No utilizamos cookies de análisis, publicidad ni de terceros, y el sitio no realiza seguimiento de su navegación. La mayoría de los navegadores permiten eliminar o bloquear cookies desde sus ajustes de seguridad; tenga en cuenta que bloquear la cookie NEXT_LOCALE puede hacer que el sitio no recuerde su idioma preferido entre visitas.
+Nombre: NEXT_LOCALE. Titular: propia. Finalidad: recordar el idioma (español/inglés) seleccionado por el usuario. Duración: 1 año.
 
-Si en el futuro incorporamos cookies de análisis, publicidad o de terceros, actualizaremos esta política y solicitaremos su consentimiento previo, expreso e informado, mediante un panel de configuración de cookies, tal y como exige la normativa vigente. Puede obtener más información escribiendo a legal@awesomelygroup.com.`,
+Nombre: lt_cookie_consent. Titular: propia. Finalidad: recordar si el usuario ha aceptado o rechazado las cookies de análisis y publicidad. Duración: 1 año.
+
+Además, el asistente virtual guarda la conversación en el almacenamiento de sesión del navegador (no es una cookie), que se borra al cerrar la pestaña.
+
+COOKIES DE ANÁLISIS (SOLO SI LAS ACEPTA)
+
+Nombre: _ga, _ga_*. Titular: Google (Google Analytics). Finalidad: medir de forma estadística las visitas y el uso del sitio, incluido el uso del chat y de los formularios. Duración: 2 años.
+
+Nombre: _clck, _clsk, CLID, MUID. Titular: Microsoft (Clarity). Finalidad: analizar cómo se navega por el sitio mediante mapas de calor y grabaciones de sesión. El contenido del chat y de los formularios se oculta en las grabaciones. Duración: entre 1 día y 1 año.
+
+COOKIES DE PUBLICIDAD (SOLO SI LAS ACEPTA)
+
+Nombre: _gcl_au. Titular: Google (Google Ads). Finalidad: medir cuántas solicitudes de contacto proceden de nuestros anuncios. Duración: 3 meses.
+
+Google y Microsoft pueden tratar estos datos fuera del Espacio Económico Europeo. Puede obtener más información en las políticas de privacidad de Google (policies.google.com/privacy) y de Microsoft (privacy.microsoft.com/privacystatement).
+
+CÓMO ACEPTAR, RECHAZAR O CAMBIAR SU ELECCIÓN
+
+Al entrar por primera vez, un banner le permite aceptar o rechazar las cookies de análisis y publicidad. Si las rechaza, no se instalan. Puede cambiar su elección en cualquier momento desde el enlace «Configurar cookies» al pie de la página. También puede eliminar o bloquear las cookies desde los ajustes de su navegador; tenga en cuenta que bloquear la cookie NEXT_LOCALE puede hacer que el sitio no recuerde su idioma preferido.
+
+Puede obtener más información escribiendo a legal@awesomelygroup.com.`,
   },
   legalNotice: {
     title: "Aviso Legal",
