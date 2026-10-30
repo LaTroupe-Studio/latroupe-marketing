@@ -1,6 +1,8 @@
 export const legalEn = {
   privacy: {
     title: "Privacy Policy",
+    metaDescription:
+      "How Awesomely SL (LaTroupe Studio) handles your personal data: what we use it for, on what legal basis and how to exercise your rights.",
     content: `Privacy Policy Statement for the website owned by LaTroupe Studio and/or Awesomely SL
 
 In compliance with Regulation (EU) 2016/679 of the European Parliament and of the Council of 27 April 2016 on the protection of natural persons with regard to the processing of personal data and on the free movement of such data (GDPR), and with the Spanish Organic Law 3/2018 of 5 December on the Protection of Personal Data and the guarantee of digital rights (LOPDGDD), Awesomely SL, as the data controller, informs you that any personal data requested as a result of subscribing to or signing up for any of the services offered on the website will be processed with the necessary security measures. The purpose is to manage and tailor our commercial offerings to your requests in order to provide you with a more personalized and efficient service. Providing the requested information is voluntary, and refusal will result only in the inability to receive the offered services.
@@ -43,6 +45,8 @@ In compliance with Article 22.2 of Law 34/2002 of 11 July on Information Society
   },
   cookies: {
     title: "Cookies Policy",
+    metaDescription:
+      "Which cookies the LaTroupe Studio website uses, what each one is for and how to accept, reject or change your choice.",
     content: `In compliance with the information duty set out in Article 22.2 of Law 34/2002 of 11 July on Information Society Services and Electronic Commerce (LSSI-CE), we inform you about the use of cookies on this website.
 
 A cookie is a file that is downloaded onto your computer when accessing certain web pages. Cookies allow a website, among other things, to store and retrieve information about a user's or their device's browsing habits and, depending on the information they contain and the way the user's device is used, they can be used to recognize the user.
@@ -77,6 +81,8 @@ You may obtain more information by contacting legal@awesomelygroup.com.`,
   },
   legalNotice: {
     title: "Legal Notice",
+    metaDescription:
+      "Owner details for the LaTroupe Studio website (Awesomely SL) and its terms of use, intellectual property and liability.",
     content: `1. OBJECT AND ACCEPTANCE
 
 This legal notice regulates the use of the website www.latroupestudio.com (hereinafter, THE WEBSITE), owned by Awesomely SL, which operates under the trade name LaTroupe Studio (hereinafter, THE WEBSITE OWNER).

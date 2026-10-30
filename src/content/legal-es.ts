@@ -1,6 +1,8 @@
 export const legalEs = {
   privacy: {
     title: "Política de privacidad",
+    metaDescription:
+      "Cómo trata Awesomely SL (LaTroupe Studio) tus datos personales: para qué los usa, con qué base jurídica y cómo ejercer tus derechos.",
     content: `Declaración de Política de Privacidad para el sitio propiedad de LaTroupe Studio y/o Awesomely SL
 
 En cumplimiento del Reglamento (UE) 2016/679 del Parlamento Europeo y del Consejo, de 27 de abril de 2016, relativo a la protección de las personas físicas en lo que respecta al tratamiento de datos personales y a la libre circulación de estos datos (RGPD), y de la Ley Orgánica 3/2018, de 5 de diciembre, de Protección de Datos Personales y garantía de los derechos digitales (LOPDGDD), Awesomely SL, como responsable del tratamiento, le informa de que los datos personales que puedan requerirse como consecuencia de la suscripción o alta en alguno de los servicios ofrecidos por el sitio web serán tratados con las medidas de seguridad necesarias, con la finalidad de gestionar y adecuar nuestras ofertas comerciales a sus peticiones para poder ofrecerle un servicio más personalizado y eficaz. La entrega de la información solicitada tiene carácter voluntario y su negativa tiene como única consecuencia el no poder percibir los servicios que se ofrecen.
@@ -43,6 +45,8 @@ En cumplimiento del artículo 22.2 de la Ley 34/2002, de 11 de julio, de servici
   },
   cookies: {
     title: "Política de cookies",
+    metaDescription:
+      "Qué cookies usa la web de LaTroupe Studio, para qué sirve cada una y cómo aceptarlas, rechazarlas o cambiar tu elección.",
     content: `En cumplimiento del deber de información recogido en el artículo 22.2 de la Ley 34/2002, de 11 de julio, de Servicios de la Sociedad de la Información y de Comercio Electrónico (LSSI-CE), le informamos sobre el uso de cookies en este sitio web.
 
 Una cookie es un fichero que se descarga en su ordenador al acceder a determinadas páginas web. Las cookies permiten a una página web, entre otras cosas, almacenar y recuperar información sobre los hábitos de navegación de un usuario o de su equipo y, dependiendo de la información que contengan y de la forma en que utilice su equipo, pueden utilizarse para reconocer al usuario.
@@ -77,6 +81,8 @@ Puede obtener más información escribiendo a legal@awesomelygroup.com.`,
   },
   legalNotice: {
     title: "Aviso Legal",
+    metaDescription:
+      "Datos del titular de la web de LaTroupe Studio (Awesomely SL) y condiciones de uso, propiedad intelectual y responsabilidad.",
     content: `1. OBJETO Y ACEPTACIÓN
 
 El presente aviso legal regula el uso del sitio web www.latroupestudio.com (en adelante, LA WEB), del que es titular Awesomely SL, que opera bajo el nombre comercial LaTroupe Studio (en adelante, EL PROPIETARIO DE LA WEB).
