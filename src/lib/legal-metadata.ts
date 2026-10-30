@@ -26,7 +26,7 @@ export function getLegal(loc: Locale) {
  */
 export function getLegalMetadata(section: LegalSection, loc: Locale): Metadata {
   const { title: pageTitle, metaDescription: description } = getLegal(loc)[section];
-  const title = `${pageTitle} · LaTroupe Studio`;
+  const title = `${pageTitle} · latroupe()`;
   const path = (l: Locale) => `/${l}/${slugs[section][l]}`;
 
   return {
@@ -45,7 +45,7 @@ export function getLegalMetadata(section: LegalSection, loc: Locale): Metadata {
       description,
       type: "website",
       url: `${SITE_URL}${path(loc)}`,
-      siteName: "LaTroupe Studio",
+      siteName: "latroupe()",
       locale: loc === "es" ? "es_ES" : "en_GB",
     },
   };
