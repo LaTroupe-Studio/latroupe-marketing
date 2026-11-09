@@ -32,7 +32,7 @@ export async function generateMetadata({
       description,
       type: "website",
       url: `${SITE_URL}/${loc}/bim-consultancy`,
-      siteName: "LaTroupe Studio",
+      siteName: "latroupe()",
       locale: loc === "es" ? "es_ES" : "en_GB",
     },
   };
