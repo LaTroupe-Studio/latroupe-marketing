@@ -8,6 +8,8 @@
 
 export const CONSENT_COOKIE = "lt_cookie_consent";
 export const CONSENT_EVENT = "lt:consent";
+/** Fired by the footer "Cookie settings" link to reopen the banner. */
+export const OPEN_CONSENT_EVENT = "lt:consent-open";
 const ONE_YEAR_SECONDS = 60 * 60 * 24 * 365;
 
 export type ConsentValue = "accepted" | "rejected";
@@ -25,4 +27,8 @@ export function getConsent(): ConsentValue | null {
 export function setConsent(value: ConsentValue) {
   document.cookie = `${CONSENT_COOKIE}=${value}; Max-Age=${ONE_YEAR_SECONDS}; Path=/; SameSite=Lax`;
   window.dispatchEvent(new CustomEvent<ConsentValue>(CONSENT_EVENT, { detail: value }));
+}
+
+export function openConsentSettings() {
+  window.dispatchEvent(new Event(OPEN_CONSENT_EVENT));
 }

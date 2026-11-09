@@ -1,8 +1,9 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { LocaleProvider } from "@/lib/locale-context";
 import Footer from "../Footer";
 import type { SiteContent } from "@/content/types";
+import { OPEN_CONSENT_EVENT } from "@/lib/consent";
 
 // Mock next/link
 vi.mock("next/link", () => ({
@@ -73,7 +74,7 @@ const baseContent: SiteContent = {
     copyright: "Desarrollado por latroupe ( ) 2026 ©",
     legal: "",
   },
-  cookieBanner: { message: "", moreInfo: "", accept: "", reject: "" },
+  cookieBanner: { message: "", moreInfo: "", accept: "", reject: "", settings: "Configurar cookies" },
   overlay: { close: "", inDevelopment: "", comingSoon: "" },
 };
 
@@ -249,6 +250,17 @@ describe("Footer", () => {
     it("renderiza el elemento footer", () => {
       const { container } = renderFooter();
       expect(container.querySelector("footer")).toBeInTheDocument();
+    });
+  });
+
+  describe("Configurar cookies", () => {
+    it("el botón reabre el banner de cookies", () => {
+      const listener = vi.fn();
+      window.addEventListener(OPEN_CONSENT_EVENT, listener);
+      renderFooter();
+      fireEvent.click(screen.getByRole("button", { name: "Configurar cookies" }));
+      expect(listener).toHaveBeenCalledTimes(1);
+      window.removeEventListener(OPEN_CONSENT_EVENT, listener);
     });
   });
 });

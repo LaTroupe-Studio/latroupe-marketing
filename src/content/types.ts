@@ -18,6 +18,8 @@ export interface ProjectImage {
 export interface CollageItem {
   id: string;
   title: string;
+  /** Architecture studio we worked for, shown before the location: "BDG · Jeddah". */
+  client?: string;
   location: string;
   image: string;
 }
@@ -147,6 +149,8 @@ export interface SiteContent {
     moreInfo: string;
     accept: string;
     reject: string;
+    /** Footer link that reopens the banner to change the choice. */
+    settings: string;
   };
 
   overlay: {

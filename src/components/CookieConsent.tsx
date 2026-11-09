@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useContent } from "@/lib/locale-context";
-import { getConsent, setConsent, type ConsentValue } from "@/lib/consent";
+import { getConsent, setConsent, OPEN_CONSENT_EVENT, type ConsentValue } from "@/lib/consent";
 import styles from "./CookieConsent.module.css";
 
 /**
@@ -20,6 +20,9 @@ export default function CookieConsent() {
 
   useEffect(() => {
     if (getConsent() === null) setVisible(true);
+    const open = () => setVisible(true);
+    window.addEventListener(OPEN_CONSENT_EVENT, open);
+    return () => window.removeEventListener(OPEN_CONSENT_EVENT, open);
   }, []);
 
   if (!visible) return null;

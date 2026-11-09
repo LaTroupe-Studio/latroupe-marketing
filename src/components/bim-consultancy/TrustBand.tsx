@@ -10,7 +10,6 @@ const logos = [
   { src: "/images/logos/m-gallery.svg", alt: "M Gallery" },
   { src: "/images/logos/lego.svg", alt: "LEGO" },
   { src: "/images/logos/bdg.svg", alt: "BDG" },
-  { src: "/images/logos/joan-lao.svg", alt: "Joan Lao" },
   { src: "/images/logos/modus-operandi.svg", alt: "Modus Operandi" },
 ];
 
