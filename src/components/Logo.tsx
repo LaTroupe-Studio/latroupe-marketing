@@ -7,20 +7,23 @@ interface LogoProps {
 /**
  * latroupe logo rendered as inline SVG (with brackets).
  * Used in Header and Footer.
+ *
+ * The viewBox is cropped to the glyphs' left and right edges so the logo
+ * sits flush with the grid margin. Never add horizontal padding inside it.
  */
 export default function Logo({
   color = "#ECE6E3",
   width = 130,
   className,
 }: LogoProps) {
-  const height = width * (61 / 219);
+  const height = width * (61 / 205.014);
 
   return (
     <svg
       width={width}
       height={height}
       className={className}
-      viewBox="0 0 219 61"
+      viewBox="9.945 0 205.014 61"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       aria-label="latroupe logo"

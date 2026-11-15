@@ -8,6 +8,9 @@ interface LogoTextProps {
 /**
  * latroupe wordmark as inline SVG (no brackets).
  * Used inline as text replacement in Hero and TrustLogos.
+ *
+ * The viewBox is cropped to the glyphs' left and right edges so the logo
+ * sits flush with the grid margin. Never add horizontal padding inside it.
  */
 export default function LogoText({
   color = "#ECE6E3",
@@ -16,7 +19,7 @@ export default function LogoText({
 }: LogoTextProps) {
   return (
     <svg
-      viewBox="0 0 219 61"
+      viewBox="4.5 0 211.3 61"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       {...(decorative
