@@ -106,7 +106,7 @@ export const handler = async (event) => {
   }
 
   const subject =
-    source === "chat" ? `[LaTroupe chat lead] ${name}` : `[LaTroupe contact] ${name}`;
+    source === "chat" ? `[latroupe() chat lead] ${name}` : `[latroupe() contact] ${name}`;
   const text = transcript
     ? `From: ${name} <${email}>\n\n${message}\n\n--- Conversación con Latty ---\n${transcript}`
     : `From: ${name} <${email}>\n\n${message}`;

@@ -1,4 +1,4 @@
-# LaTroupe Marketing Website
+# latroupe() Marketing Website
 
 ## Project
 

@@ -3,7 +3,7 @@ name: Git Conventions
 description: Use when creating commits, branches, pull requests, or releases. Defines naming conventions, commit message format, branch strategy, and PR workflow for this project.
 ---
 
-# Git Conventions — LaTroupe Marketing
+# Git Conventions — latroupe() Marketing
 
 Standard git workflow and naming conventions for this project.
 
