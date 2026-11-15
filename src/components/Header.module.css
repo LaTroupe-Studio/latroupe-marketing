@@ -84,3 +84,7 @@
   .bar { flex-direction: column; align-items: flex-start; gap: 12px; }
   .nav { gap: 14px; }
 }
+
+/* The tech link is a real <a>, so it can be opened in a new tab; mark it when
+   it is the page being viewed. */
+.navLink[aria-current="page"] { text-decoration: underline; text-underline-offset: 6px; text-decoration-thickness: 1px; }

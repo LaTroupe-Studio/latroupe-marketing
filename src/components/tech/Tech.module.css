@@ -1,0 +1,596 @@
+/*
+ * latroupe(tech) — browns and beiges only. Sections stay transparent: the body
+ * colour is tweened by ScrollColorBackground from each data-bg-color, and each
+ * band sets its own text colour inline.
+ *
+ * Product screens always sit in a light browser frame, straight on the band
+ * colour, with no backdrop behind them.
+ */
+
+/* ─── Hero ─────────────────────────────────── */
+.hero { min-height: 100svh; overflow: hidden; isolation: isolate; }
+.heroInner { position: relative; z-index: 1; }
+/* Doubled class so these win over Hero.module.css whatever the load order:
+   the claim is all light beige, only the changing word is terracotta. */
+.heroHeading.heroHeading { color: #ECE6E3; }
+.word.word { color: #AC6752; }
+.cursor.cursor { background-color: #AC6752; }
+
+/* Line 1: the wordmark followed by "tech" at the same size. The SVG's letters
+   sit at y=45.4 of its 61-unit box, so 25.6% of its 1.16em height hangs below
+   the baseline: dropping it by 0.297em puts both words on one baseline. */
+.logoRow { display: block; white-space: nowrap; }
+.logoMark.logoMark { display: inline-block; margin: 0 0.24em 0 -0.086em; vertical-align: -0.297em; }
+
+.heroBackdrop { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
+.player.heroPlayer {
+  position: absolute;
+  right: -3vw;
+  top: 54%;
+  width: min(60vw, 1080px);
+  transform: translateY(-42%);
+  opacity: 0.3;
+  filter: sepia(0.35) saturate(0.8);
+  /* Fade the screen into the brown on the side where the claim starts. */
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 55%);
+  mask-image: linear-gradient(90deg, transparent 0%, #000 55%);
+}
+
+.heroDesc {
+  margin-top: clamp(28px, 4vh, 44px);
+  font-family: var(--font-body);
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.25;
+  max-width: 30ch;
+  color: #ECE6E3;
+}
+
+.ctaRow { display: flex; margin-top: 32px; color: #ECE6E3; }
+
+/* Buttons: thin outline pill in Roobert, empty until hover fills it. They
+   take the band's text colour, so the same class works on dark and light. */
+.btn {
+  align-self: flex-start;
+  min-height: 42px;
+  padding: 0 24px;
+  border-radius: 999px;
+  border: 1px solid currentColor;
+  background: transparent;
+  color: inherit;
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+.btn:hover { background-color: var(--btn-ink, #ECE6E3); color: var(--btn-ground, #28170E); }
+.btn:focus-visible, .feature:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
+
+@media (max-width: 768px) {
+  .player.heroPlayer {
+    right: auto;
+    left: var(--grid-margin);
+    width: calc(100vw - 2 * var(--grid-margin));
+    top: auto;
+    bottom: 6svh;
+    transform: none;
+    opacity: 0.3;
+    -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 45%);
+    mask-image: linear-gradient(180deg, transparent 0%, #000 45%);
+  }
+  .heroDesc { font-size: 18px; }
+}
+
+/* ─── Band shell and heading ──────────────── */
+.band {
+  padding-top: clamp(100px, 13vh, 160px);
+  padding-bottom: clamp(100px, 13vh, 160px);
+}
+
+.head { row-gap: 18px; margin-bottom: clamp(48px, 7vh, 80px); }
+.eyebrow, .headline, .intro { grid-column: 2 / 10; }
+/* Headings move across the grid from band to band, like the home page:
+   left starts on column 2, mid on column 3, right on column 5, and the
+   intro paragraph always sits two columns further in than its headline. */
+.head[data-align="left"] .intro { grid-column: 4 / 9; }
+.head[data-align="mid"] .eyebrow, .head[data-align="mid"] .headline { grid-column: 3 / 11; }
+.head[data-align="mid"] .intro { grid-column: 5 / 10; }
+.head[data-align="right"] .eyebrow, .head[data-align="right"] .headline { grid-column: 5 / 13; }
+.head[data-align="right"] .intro { grid-column: 7 / 12; }
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: clamp(18px, 1.9vw, 26px);
+  font-weight: 400;
+  line-height: 1.2;
+  opacity: 0.7;
+}
+.headline {
+  font-family: var(--font-heading);
+  font-size: clamp(40px, 5vw, 76px);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+.intro {
+  grid-column: 2 / 8;
+  font-family: var(--font-body);
+  font-size: clamp(17px, 1.5vw, 22px);
+  font-weight: 400;
+  line-height: 1.3;
+}
+
+
+@media (max-width: 1024px) {
+  .eyebrow, .headline { grid-column: 1 / 11; }
+  .intro { grid-column: 1 / 9; }
+}
+@media (max-width: 768px) {
+  .band { padding-top: 80px; padding-bottom: 80px; }
+  .eyebrow, .headline, .intro { grid-column: 1 / -1; }
+}
+
+/* ─── Browser frame ─────────────────────── */
+.browser {
+  background: #FDFDFC;
+  color: #28170E;
+  border: 1px solid rgba(40, 23, 14, 0.18);
+}
+.browserBar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 5px 12px;
+  background: #F7F6F5;
+  border-bottom: 1px solid rgba(40, 23, 14, 0.12);
+}
+.browserDots { display: flex; gap: 5px; }
+.browserDots i { display: block; width: 6px; height: 6px; border-radius: 50%; background: #DED1C9; }
+.browserUrl {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 400;
+  opacity: 0.55;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.browserBody { position: relative; }
+
+/* ─── Real screens ───────────────────────── */
+.player { position: relative; padding: 18px; }
+.screen, .showScreen {
+  position: relative;
+  aspect-ratio: 2400 / 1500;
+  max-width: 100%;
+  background: #F7F6F5;
+}
+.screen { overflow: hidden; }
+.shot {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top left;
+  opacity: 0;
+  transform: scale(1.0);
+  transition: opacity 700ms ease, transform 5000ms ease-out;
+}
+.screen .shot[data-on="true"] { opacity: 1; transform: scale(1.045); }
+.showScreen .shot[data-on="true"] { opacity: 1; }
+
+.brk { position: absolute; width: 26px; height: 26px; border: 0 solid #ECE6E3; opacity: 0.8; }
+.brkTl { left: 0; top: 0; border-width: 2px 0 0 2px; }
+.brkTr { right: 0; top: 0; border-width: 2px 2px 0 0; }
+.brkBl { left: 0; bottom: 0; border-width: 0 0 2px 2px; }
+.brkBr { right: 0; bottom: 0; border-width: 0 2px 2px 0; }
+
+/* ─── Notes pinned on screens ───────────── */
+.showScreen { overflow: visible; }
+
+.note {
+  position: absolute;
+  z-index: 2;
+  width: 0;
+  height: 0;
+  opacity: 0;
+  animation: noteIn 500ms ease forwards;
+}
+@keyframes noteIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+.pin {
+  position: absolute;
+  left: -7px;
+  top: -7px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #AC6752;
+  box-shadow: 0 0 0 5px rgba(172, 103, 82, 0.3);
+}
+
+.noteCard {
+  position: absolute;
+  top: -22px;
+  width: 250px;
+  padding: 14px 16px;
+  background: #28170E;
+  color: #ECE6E3;
+  border: 1px solid rgba(236, 230, 227, 0.28);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.3;
+}
+.noteCard strong { font-weight: 700; font-size: 16px; }
+.note[data-side="right"] .noteCard { left: 22px; }
+.note[data-side="left"] .noteCard { right: 22px; }
+
+.notesList { display: none; }
+
+/* Same breakpoint as the pinned layout: notes float wherever the band pins. */
+@media (max-width: 768px) {
+  .noteCard { display: none; }
+  .notesList {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 16px;
+    list-style: none;
+    font-family: var(--font-body);
+    font-size: 16px;
+    font-weight: 400;
+  }
+  .notesList strong { font-weight: 700; margin-right: 6px; }
+}
+
+/* ─── Feature list + visual ───────────────── */
+/* The track is tall when pinned (height set inline); the pin sticks under
+   the fixed header (the .stage) and centres the list and the screen in what is left. */
+.track { position: relative; }
+.stage[data-pinned="true"] {
+  position: sticky;
+  top: 90px;
+  height: calc(100vh - 90px);
+  display: flex;
+  align-items: center;
+}
+.stage[data-pinned="true"] > * { width: 100%; }
+.featureTag {
+  margin-left: 10px;
+  padding: 2px 9px;
+  border-radius: 999px;
+  background: #AC6752;
+  color: #FDFDFC;
+  font-family: var(--font-body);
+  font-style: normal;
+  font-size: 13px;
+  font-weight: 600;
+  vertical-align: 4px;
+}
+.featureGrid { align-items: center; row-gap: 40px; }
+.featureCol { grid-column: 2 / 5; display: flex; flex-direction: column; gap: 32px; }
+.featureVisual { grid-column: 6 / 13; min-width: 0; }
+.featureGrid[data-flip="true"] .featureCol { grid-column: 9 / 13; order: 2; }
+.featureGrid[data-flip="true"] .featureVisual { grid-column: 2 / 8; order: 1; }
+.featureGrid[data-align="mid"] .featureCol { grid-column: 3 / 6; }
+.featureGrid[data-align="mid"] .featureVisual { grid-column: 7 / 13; }
+
+.features { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+.feature {
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  border-left: 2px solid color-mix(in srgb, currentColor 20%, transparent);
+  padding: 12px 0 12px 18px;
+  color: inherit;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  opacity: 0.5;
+  transition: opacity 300ms ease, border-color 300ms ease;
+}
+.feature strong { font-family: var(--font-heading); font-size: 22px; font-weight: 700; }
+.feature span { font-family: var(--font-body); font-size: 16px; font-weight: 400; line-height: 1.35; }
+.feature:hover { opacity: 0.8; }
+.feature[data-active="true"] { opacity: 1; border-left-color: currentColor; }
+
+@media (max-width: 1024px) {
+  .featureCol, .featureGrid[data-flip="true"] .featureCol { grid-column: 1 / 5; order: 0; }
+  .featureVisual, .featureGrid[data-flip="true"] .featureVisual { grid-column: 5 / 13; order: 0; }
+}
+@media (max-width: 768px) {
+  .featureCol, .featureVisual,
+  .featureGrid[data-flip="true"] .featureCol,
+  .featureGrid[data-flip="true"] .featureVisual { grid-column: 1 / -1; }
+}
+
+/* ─── Intro (deep blue) ─── */
+.introBand {
+  padding-top: clamp(90px, 12vh, 150px);
+  padding-bottom: clamp(90px, 12vh, 150px);
+}
+.introGrid { row-gap: 0; }
+.introHead { grid-column: 2 / 10; }
+.introEyebrow {
+  font-family: var(--font-mono);
+  font-size: clamp(18px, 1.9vw, 28px);
+  font-weight: 400;
+  line-height: 1.2;
+  color: #AC6752;
+  margin: 0 0 10px;
+}
+.introHeadline {
+  font-family: var(--font-heading);
+  font-size: clamp(44px, 6.4vw, 96px);
+  font-weight: 700;
+  line-height: 1;
+  color: #F7F6F5;
+}
+.introText {
+  grid-column: 5 / 11;
+  margin-top: clamp(48px, 7vh, 90px);
+  font-family: var(--font-body);
+  font-size: clamp(17px, 1.6vw, 24px);
+  font-weight: 400;
+  line-height: 1.3;
+  color: #ECE6E3;
+}
+/* The wordmark set inline in a headline, sized and aligned like the type
+   (same metrics as the hero's: its letters sit at y=45.4 of 61 units). */
+.inlineLogo { display: inline-block; height: 1.16em; width: auto; vertical-align: -0.297em; }
+
+/* Hairline between consecutive dark bands of the same colour. */
+.ruled { border-top: 1px solid rgba(236, 230, 227, 0.14); }
+
+/* ─── Coming soon ──────────────────────────── */
+.soonGrid { align-items: center; row-gap: 40px; }
+.soonCopy { grid-column: 9 / 13; order: 2; display: flex; flex-direction: column; gap: 22px; }
+.soonVisual { grid-column: 2 / 8; order: 1; min-width: 0; }
+.soonBadge {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  overflow: hidden;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 400;
+  border: 1px solid #AC6752;
+}
+.soonBadge b { font-weight: 600; background: #AC6752; color: #F7F6F5; padding: 6px 14px; }
+.soonBadge span { padding: 6px 14px; color: #E3B1A1; }
+.soonHeadline {
+  font-family: var(--font-heading);
+  font-size: clamp(36px, 4.2vw, 64px);
+  font-weight: 700;
+  line-height: 1;
+}
+.soonProduct { color: #AC6752; display: block; }
+.soonText { font-family: var(--font-body); font-size: clamp(17px, 1.5vw, 22px); font-weight: 400; line-height: 1.3; }
+.soonPoints { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+.soonPoints li {
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.35;
+  opacity: 0.9;
+}
+.soonShot { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top left; }
+
+/* ─── AI manifesto ────────────────────────────
+   Terracotta, with dark brown accents (no salmon). The opening mirrors the
+   home's terracotta band; the four principles are staggered on the grid. */
+.manifesto { --m-accent: #28170E; }
+
+.mGrid { row-gap: 0; align-items: start; }
+.mHead { grid-column: 2 / 10; }
+.mEyebrow { font-family: var(--font-mono); font-size: clamp(18px, 1.9vw, 28px); font-weight: 400; line-height: 1.2; color: var(--m-accent); margin-bottom: 10px; }
+.mHeadline { font-family: var(--font-heading); font-size: clamp(44px, 6.4vw, 96px); font-weight: 700; line-height: 1; text-wrap: balance; }
+.mIntro {
+  grid-column: 6 / 12;
+  margin-top: clamp(48px, 7vh, 90px);
+  font-family: var(--font-body);
+  font-size: clamp(17px, 1.6vw, 24px);
+  font-weight: 400;
+  line-height: 1.3;
+}
+
+.mItem { display: flex; flex-direction: column; gap: 12px; margin-top: clamp(64px, 10vh, 120px); }
+.mItem[data-i="0"] { grid-column: 2 / 6; }
+.mItem[data-i="1"] { grid-column: 8 / 12; margin-top: clamp(140px, 20vh, 240px); }
+.mItem[data-i="2"] { grid-column: 4 / 8; }
+.mItem[data-i="3"] { grid-column: 9 / 13; margin-top: clamp(140px, 20vh, 240px); }
+.mNum { font-family: var(--font-mono); font-size: 15px; font-weight: 400; color: var(--m-accent); }
+.mItem h3 { font-family: var(--font-heading); font-size: clamp(26px, 2.6vw, 40px); font-weight: 700; line-height: 1.05; }
+.mItem p { font-family: var(--font-body); font-size: clamp(16px, 1.25vw, 19px); font-weight: 400; line-height: 1.4; opacity: 0.88; }
+.mPartner {
+  grid-column: 2 / 8;
+  margin-top: clamp(72px, 11vh, 130px);
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 400;
+  opacity: 0.8;
+}
+
+@media (max-width: 1024px) {
+  .introHead { grid-column: 1 / 11; }
+  .introText { grid-column: 4 / 12; }
+  .soonCopy { grid-column: 8 / 13; }
+  .soonVisual { grid-column: 1 / 8; }
+  .mHead { grid-column: 1 / 11; }
+  .mIntro { grid-column: 4 / 12; }
+  .mItem[data-i="0"] { grid-column: 1 / 6; }
+  .mItem[data-i="1"] { grid-column: 7 / 13; }
+  .mItem[data-i="2"] { grid-column: 2 / 7; }
+  .mItem[data-i="3"] { grid-column: 8 / 13; }
+}
+@media (max-width: 768px) {
+  .introHead, .introText, .soonCopy, .soonVisual { grid-column: 1 / -1; order: 0; }
+  .mHead, .mIntro, .mPartner, .mItem[data-i] { grid-column: 1 / -1; margin-top: 48px; }
+  .mHead { margin-top: 0; }
+}
+
+/* ─── [specto], rebuilt at the app's real size ─
+   Drawn at 1200×750 and scaled by AppCanvas, so these px are the app's own
+   proportions. Colours copy the specbook and design tracker captures. */
+.canvasBox { position: absolute; inset: 0; overflow: hidden; }
+.canvas { width: 1200px; height: 750px; transform-origin: 0 0; }
+.app {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: #ECE6E3;
+  color: #28170E;
+  font-family: var(--font-body);
+  font-weight: 400;
+  line-height: 1.3;
+}
+.appTop {
+  height: 66px;
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  padding: 0 34px;
+  background: #FDFCFB;
+  border-bottom: 1px solid #E2DAD4;
+}
+.appLogo { height: 30px; width: auto; }
+.appCrumb { font-size: 16px; color: #71655A; padding-left: 22px; border-left: 1px solid #DED1C9; }
+.appCrumb b { color: #28170E; font-weight: 700; }
+.appCrumb i { font-style: normal; opacity: 0.6; margin: 0 6px; }
+.appLang {
+  margin-left: auto;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  color: #9A8E84;
+  border: 1px solid #DED1C9;
+  border-radius: 999px;
+  padding: 6px 14px;
+}
+.appLang b { color: #28170E; margin-right: 8px; }
+
+.appBody { flex: 1; min-height: 0; padding: 28px 34px 0; display: flex; flex-direction: column; gap: 18px; overflow: hidden; }
+.appTitleRow { display: flex; justify-content: space-between; align-items: flex-end; }
+.appTitle { font-family: var(--font-heading); font-size: 34px; font-weight: 700; letter-spacing: -0.01em; margin: 0; }
+.appDoc { display: inline-block; margin-top: 6px; font-family: var(--font-mono); font-size: 13px; color: #71655A; }
+.appBtn {
+  background: #AC6752;
+  color: #FDFCFB;
+  border-radius: 999px;
+  padding: 13px 24px;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.appTabs { display: flex; gap: 30px; border-bottom: 1px solid #DED1C9; }
+.appTabs span {
+  padding-bottom: 10px;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #71655A;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  transition: color 300ms ease, border-color 300ms ease;
+}
+.appTabs span[data-on="true"] { color: #AC6752; border-bottom-color: #AC6752; }
+
+.appCard { background: #FDFCFB; border: 1px solid #E7DFD9; border-radius: 14px; overflow: hidden; animation: fadeIn 400ms ease both; }
+.appRow { display: grid; align-items: center; gap: 16px; padding: 0 22px; height: 50px; border-top: 1px solid #EFE9E4; font-size: 17px; }
+.appHead { border-top: none; font-weight: 700; font-size: 16px; }
+.rulesRow { grid-template-columns: 90px minmax(0, 1fr) 170px 80px; }
+.checksRow { grid-template-columns: minmax(0, 1fr) 120px 220px; }
+.appRow[data-new="true"] { background: #FBF3EE; animation: fadeIn 600ms ease both; }
+.appId { font-family: var(--font-mono); font-size: 15px; letter-spacing: 0.06em; color: #AC6752; }
+.appMuted { color: #71655A; }
+.appTag, .appPill {
+  font-style: normal;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+.appTag { background: #F0E6DF; color: #77330B; }
+.appPill[data-state="ok"] { background: #E3EEDC; color: #3E6B3A; border-color: #C7DCBC; }
+.appPill[data-state="issue"] { background: #F6EBD0; color: #7C560F; border-color: #E8D29B; }
+.appPill[data-state="run"] { color: #AC6752; border-color: #E3B1A1; }
+.appPill[data-state="wait"] { color: #9A8E84; border-color: #DED1C9; }
+.appExtract { height: 50px; display: flex; align-items: center; padding: 0 22px; border-top: 1px solid #EFE9E4; font-family: var(--font-mono); font-size: 14px; color: #AC6752; }
+.appSummary { height: 66px; display: flex; align-items: center; gap: 10px; padding: 0 22px; font-size: 17px; color: #71655A; }
+.appSummary b { font-family: var(--font-heading); font-size: 30px; color: #28170E; }
+
+.appReport { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 30px; padding: 28px; }
+.appReport h4 { font-family: var(--font-heading); font-size: 28px; font-weight: 700; margin: 6px 0 16px; }
+.appReport ul { list-style: none; }
+.appReport li { display: flex; justify-content: space-between; align-items: center; height: 50px; border-top: 1px solid #EFE9E4; font-size: 17px; }
+.appStamp {
+  border: 1.5px solid #AC6752;
+  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 20px;
+  text-align: center;
+  color: #AC6752;
+}
+.appStamp b { font-family: var(--font-heading); font-size: 56px; font-weight: 700; }
+.appStamp span { font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; }
+.appStamp code { font-family: var(--font-mono); font-size: 11px; color: #71655A; }
+
+.appStatus {
+  height: 34px;
+  flex: none;
+  margin-top: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 18px;
+  background: #AC6752;
+  color: #F7F1EC;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.appStatus i { font-style: normal; margin-left: 22px; opacity: 0.85; text-transform: none; letter-spacing: 0.04em; }
+
+@media (prefers-reduced-motion: reduce) {
+  .feature, .appTabs span { transition: none; }
+  .note, .appCard, .appRow { animation: none; opacity: 1; }
+  .shot { transition: none; transform: none; }
+  .screen .shot[data-on="true"] { transform: none; }
+}
+
+/* Grid offsets collapse on smaller screens (these come last so they win
+   over the per-alignment rules above, which have the same weight). */
+@media (max-width: 1024px) {
+  .head[data-align] .eyebrow, .head[data-align] .headline { grid-column: 1 / 11; }
+  .head[data-align] .intro { grid-column: 1 / 9; }
+  .featureGrid[data-align="mid"] .featureCol { grid-column: 1 / 5; }
+  .featureGrid[data-align="mid"] .featureVisual { grid-column: 5 / 13; }
+}
+@media (max-width: 768px) {
+  .head[data-align] .eyebrow, .head[data-align] .headline, .head[data-align] .intro { grid-column: 1 / -1; }
+  .featureGrid[data-align="mid"] .featureCol, .featureGrid[data-align="mid"] .featureVisual { grid-column: 1 / -1; }
+}

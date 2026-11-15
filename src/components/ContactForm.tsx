@@ -7,11 +7,16 @@ import styles from "./ContactForm.module.css";
 
 const EMPTY = { name: "", surname: "", email: "", organization: "", reason: "", product: "", message: "" };
 
-export default function ContactForm() {
+/**
+ * `defaultReason` preselects the "why" dropdown, e.g. "product" on the tech
+ * page so visitors land straight on the product choice.
+ */
+export default function ContactForm({ defaultReason = "" }: { defaultReason?: string }) {
+  const initial = { ...EMPTY, reason: defaultReason };
   const { content, locale } = useContent();
   const contact = content.contact;
   const { fields } = contact;
-  const [form, setForm] = useState(EMPTY);
+  const [form, setForm] = useState(initial);
   const [accepted, setAccepted] = useState(false);
   const [marketing, setMarketing] = useState(false);
   const [status, setStatus] = useState<"idle"|"sending"|"sent"|"error">("idle");
@@ -65,7 +70,7 @@ export default function ContactForm() {
       if (!res.ok || !data?.ok) throw new Error("submit failed");
       setStatus("sent");
       trackLeadConversion();
-      setForm(EMPTY);
+      setForm(initial);
       setAccepted(false);
       setMarketing(false);
       setTimeout(() => setStatus("idle"), 3000);
