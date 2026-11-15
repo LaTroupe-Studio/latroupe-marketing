@@ -109,4 +109,14 @@ describe("Contenido ES — contacto", () => {
   it("legalLinkHref apunta a una ruta /es/", () => {
     expect(es.contact.legalLinkHref).toMatch(/^\/es\//);
   });
+
+  it("el motivo 'producto' existe y hay productos para elegir", () => {
+    expect(es.contact.reasons.some((r) => r.value === "product")).toBe(true);
+    expect(es.contact.products.length).toBeGreaterThan(0);
+  });
+
+  it("la casilla comercial es opcional y explica cómo darse de baja", () => {
+    expect(es.contact.marketing).toMatch(/opcional/i);
+    expect(es.contact.marketing).toMatch(/baja/i);
+  });
 });

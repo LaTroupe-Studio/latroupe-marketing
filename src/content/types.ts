@@ -118,19 +118,36 @@ export interface SiteContent {
     /** Paragraph under the headline, left column. */
     intro: string;
     fields: {
-      /** Bracketed mono eyebrow above each input. */
+      /** Mono eyebrow above each input. */
       name: string;
+      surname: string;
       email: string;
+      /** Eyebrow of the free-text message field. */
       company: string;
+      organization: string;
+      reason: string;
+      product: string;
       /** Input placeholders. */
       namePlaceholder: string;
+      surnamePlaceholder: string;
       emailPlaceholder: string;
+      organizationPlaceholder: string;
+      /** First, empty option of the dropdowns. */
+      selectPlaceholder: string;
       message: string;
       submit: string;
       sending: string;
       sent: string;
       error: string;
     };
+    /** Why they get in touch. `product` reveals the product dropdown. */
+    reasons: { value: string; label: string }[];
+    products: { value: string; label: string }[];
+    /**
+     * Optional, unticked opt-in for commercial emails (RGPD art. 7, LSSI
+     * art. 21). Never a condition to send the form.
+     */
+    marketing: string;
     legal?: string;
     legalLinkPhrase?: string;
     legalLinkHref?: string;

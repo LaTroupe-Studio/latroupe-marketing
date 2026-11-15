@@ -27,7 +27,9 @@ La base jurídica de este tratamiento es el interés legítimo de Awesomely SL e
 
 FORMULARIOS DE CONTACTO
 
-Si nos facilita su nombre, correo electrónico y mensaje mediante el formulario de contacto o el formulario del chat, los utilizaremos para responder a su solicitud. Si lo envía desde el chat, junto a sus datos se envía también la conversación mantenida con el asistente, para que nuestro equipo tenga el contexto de su consulta. Estos datos se envían por correo electrónico mediante Amazon Web Services (Amazon SES), en servidores ubicados en la Unión Europea, y se conservan durante un año desde su recepción.
+Si nos facilita sus datos mediante el formulario de contacto (nombre, apellido, correo electrónico y, si lo desea, empresa, el motivo de su consulta y su mensaje) o mediante el formulario del chat (nombre, correo electrónico y mensaje), los utilizaremos para responder a su solicitud. Si lo envía desde el chat, junto a sus datos se envía también la conversación mantenida con el asistente, para que nuestro equipo tenga el contexto de su consulta. Estos datos se envían por correo electrónico mediante Amazon Web Services (Amazon SES), en servidores ubicados en la Unión Europea, y se conservan durante un año desde su recepción.
+
+En el formulario de contacto puede marcar además, de forma voluntaria, una casilla para recibir por correo electrónico novedades, proyectos, herramientas y eventos de latroupe(). No marcarla no afecta a la respuesta a su consulta. La base jurídica es su consentimiento (art. 6.1.a RGPD y art. 21 de la Ley 34/2002, LSSI). Guardamos la fecha en que lo dio y el texto que aceptó, y conservamos su nombre, apellido, empresa y correo electrónico para este fin hasta que se dé de baja o retire el consentimiento, lo que puede hacer en cualquier momento escribiendo a legal@awesomelygroup.com o desde el enlace de baja de cada envío.
 
 PROVEEDORES Y TRANSFERENCIAS INTERNACIONALES
 
