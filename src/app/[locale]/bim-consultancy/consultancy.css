@@ -92,7 +92,7 @@
   padding-top: 23px;
   padding-bottom: 23px;
 }
-.bimc-header-logo { width: 148px; height: auto; display: block; color: #AC6752; }
+.bimc-header-logo { width: 140px; height: auto; display: block; color: #AC6752; }
 .bimc-header-cta { font-size: 12px; letter-spacing: 0.1em; padding: 12px 22px; }
 .bimc-header--dark .bimc-header-logo { color: #F3EEE9; }
 .bimc-header--dark .bimc-header-cta { background: #F3EEE9; color: #28170E; }
@@ -707,7 +707,7 @@
   gap: clamp(36px, 5vw, 72px);
 }
 .bimc-footer-brand { display: flex; flex-direction: column; justify-content: space-between; gap: clamp(18px, 2.4vw, 26px); }
-.bimc-footer-logo { width: 170px; height: auto; display: block; color: #452515; }
+.bimc-footer-logo { width: 161px; height: auto; display: block; color: #452515; }
 .bimc-footer-credit { font-family: var(--font-body); font-size: 14px; font-weight: 400; color: #452515; }
 .bimc-footer-work { display: flex; flex-direction: column; justify-content: flex-start; padding-top: clamp(2px, 1vw, 10px); }
 .bimc-footer-work a { font-family: var(--font-body); font-size: clamp(16px, 1.4vw, 18px); font-weight: 700; letter-spacing: -0.01em; color: #452515; }

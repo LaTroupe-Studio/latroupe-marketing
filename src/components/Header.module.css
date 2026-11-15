@@ -31,7 +31,7 @@
 /* Overrides the width/height attributes on the inline SVG so the
    wordmark scales with the viewport instead of staying fixed. */
 .logo {
-  width: clamp(150px, 14vw, 197px);
+  width: clamp(140px, 13.1vw, 184px);
   height: auto;
   transition: color var(--transition-fast);
 }

@@ -13,7 +13,7 @@ export default function LegalPage({ title, content }: Props) {
       <header className={styles.header}>
         <div className="grid-container">
           <Link href={`/${locale}`} className={styles.logoLink}>
-            <Logo color="var(--color-terracota-3)" width={130} />
+            <Logo color="var(--color-terracota-3)" width={122} />
           </Link>
         </div>
       </header>
