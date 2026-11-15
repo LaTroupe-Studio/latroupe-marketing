@@ -1,69 +1,110 @@
+/*
+ * Banner de cookies — integrado con el lenguaje de la web:
+ * tarjeta beige suave, texto de cuerpo en peso regular y
+ * botones pill en Roobert Mono mayúsculas (mismo patrón que
+ * el botón de enviar del formulario de contacto).
+ */
 .banner {
   position: fixed;
-  bottom: 16px;
+  bottom: 24px;
   left: 16px;
   right: 16px;
   z-index: 1000;
-  max-width: 720px;
+  max-width: 820px;
   margin-inline: auto;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 16px 24px;
-  padding: 20px 24px;
-  background-color: #ece6e3;
-  color: #77330b;
-  border-radius: 8px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.18);
+  gap: 16px 32px;
+  padding: 20px 20px 20px 28px;
+  background-color: var(--color-beige-2);
+  color: var(--color-terracota-dark);
+  border: 1px solid rgba(119, 51, 11, 0.18);
+  border-radius: 16px;
+  box-shadow: 0 12px 40px rgba(40, 23, 14, 0.12);
 }
 
 .message {
   flex: 1 1 320px;
   margin: 0;
-  font-size: 0.8125rem;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 400;
   line-height: 1.5;
+  color: rgba(40, 23, 14, 0.75);
 }
 
 .link {
-  color: #77330b;
+  color: var(--color-terracota-3);
   text-decoration: underline;
+  text-underline-offset: 3px;
   white-space: nowrap;
+  transition: color var(--transition-fast);
+}
+
+.link:hover {
+  color: var(--color-terracota-2);
 }
 
 .actions {
   display: flex;
-  gap: 12px;
+  gap: 8px;
   flex-shrink: 0;
 }
 
+/* Botón pill de marca */
 .reject,
 .accept {
-  font: inherit;
-  font-size: 0.8125rem;
+  min-height: 44px;
+  padding: 0 24px;
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 1;
   font-weight: 600;
-  padding: 10px 20px;
-  border-radius: 6px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
   cursor: pointer;
-  border: 1px solid #77330b;
-  transition: opacity 0.15s ease;
+  transition: background-color var(--transition-fast), color var(--transition-fast),
+    border-color var(--transition-fast);
 }
 
+/* Secundario: contorno fino, con menos peso visual */
 .reject {
   background: transparent;
-  color: #77330b;
+  color: var(--color-terracota-3);
+  border: 1px solid rgba(119, 51, 11, 0.35);
 }
 
+.reject:hover {
+  border-color: var(--color-terracota-3);
+  background: rgba(119, 51, 11, 0.06);
+}
+
+/* Principal: terracota, como el CTA del formulario */
 .accept {
-  background: #77330b;
-  color: #ece6e3;
+  background: var(--color-terracota-2);
+  color: var(--color-beige-3);
+  border: 1px solid var(--color-terracota-2);
 }
 
-.reject:hover,
 .accept:hover {
-  opacity: 0.8;
+  background: var(--color-terracota-3);
+  border-color: var(--color-terracota-3);
+}
+
+.reject:focus-visible,
+.accept:focus-visible,
+.link:focus-visible {
+  outline: 2px solid var(--color-terracota-3);
+  outline-offset: 2px;
 }
 
 @media (max-width: 520px) {
+  .banner {
+    bottom: 16px;
+    padding: 20px;
+  }
   .actions {
     width: 100%;
   }
