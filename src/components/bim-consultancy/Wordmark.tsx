@@ -1,11 +1,14 @@
 /**
  * latroupe () wordmark (with parentheses), as used in the BIM Consultancy
  * landing header and footer. Colour is inherited via currentColor.
+ *
+ * The viewBox is cropped to the glyphs' left and right edges so the logo
+ * sits flush with the grid margin. Never add horizontal padding inside it.
  */
 export default function Wordmark({ className }: { className?: string }) {
   return (
     <svg
-      viewBox="0 0 2539 628"
+      viewBox="81.28 0 2404.79 628"
       fill="currentColor"
       aria-label="latroupe ()"
       role="img"

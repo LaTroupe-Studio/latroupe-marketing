@@ -14,7 +14,7 @@ export default function Footer() {
         <div className={`grid-12 ${styles.logoRow}`}>
           <div className={styles.logoWrapper}>
              <Link href={`/${locale}`}>
-               <Logo color="var(--color-terracota-3)" width={160} />
+               <Logo color="var(--color-terracota-3)" width={150} />
              </Link>
           </div>
         </div>

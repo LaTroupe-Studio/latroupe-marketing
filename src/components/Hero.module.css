@@ -1,21 +1,21 @@
 /*
  * Hero — three flush-left lines: wordmark / ( rotating word ) / suffix.
  *
- * Line 1 is the wordmark SVG, not text, so three values are derived from
- * its viewBox (0 0 219 61) to make it behave like a line of type:
+ * Line 1 is the wordmark SVG, not text, so two values are derived from
+ * its viewBox (4.5 0 211.3 61) to make it behave like a line of type:
  *
  *   height       1.16em   — 38/61 of the height is the ascender, so
  *                           1.16em × 38/61 ≈ 0.723em, the ascender of
  *                           Roobert at this size. Line 1 then reads the
  *                           same size as lines 2 and 3.
- *   margin-left  -0.086em — the glyph starts at x=4.5 of 61 units tall,
- *                           i.e. 4.5/61 × 1.16em. Cancels that bearing so
- *                           the wordmark is flush with "(" and the suffix.
  *   margin-bottom -0.18em — the SVG is a block, so it ignores line-height.
  *                           Pulls the next line up until the baseline step
  *                           equals line-height and all three are even.
  *
- * All three are in em so they hold as the font-size clamp resolves.
+ * The viewBox starts at the glyph's left edge (x=4.5), so the wordmark is
+ * already flush with "(" and the suffix — no negative margin-left needed.
+ *
+ * Both are in em so they hold as the font-size clamp resolves.
  */
 
 .hero {
@@ -64,7 +64,7 @@
   display: block;
   height: 1.16em;
   width: auto;
-  margin: -0.06em 0 -0.18em -0.086em;
+  margin: -0.06em 0 -0.18em 0;
 }
 
 /* The bracketed word is one typographic unit — it must never break, or the

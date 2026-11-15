@@ -27,7 +27,7 @@ export default function Header({ onNavigate }: { onNavigate?: (id: string) => vo
     <header className={styles.header}>
       <div className={styles.bar}>
         <button className={styles.logoButton} onClick={() => handleClick("top")} aria-label="Home">
-          <Logo color="currentColor" width={197} className={styles.logo} />
+          <Logo color="currentColor" width={184} className={styles.logo} />
         </button>
         <nav className={styles.nav}>
           {content.nav.links.map((link) => (
