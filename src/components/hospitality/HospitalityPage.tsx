@@ -282,6 +282,13 @@ export function HospitalityTech() {
   );
 }
 
+/** Where each project sits on the grid: start column (0–11) and height on the canvas. */
+const COLLAGE = [
+  { col: 1, top: "0%" },
+  { col: 5, top: "38%" },
+  { col: 8, top: "8%" },
+];
+
 /** Hotel projects on deep blue, then the hotel brands on beige. */
 export function HospitalityProjects() {
   const { projects, brands } = useT();
@@ -293,24 +300,34 @@ export function HospitalityProjects() {
             <p className={styles.eyebrow}>{projects.eyebrow}</p>
             <h2 className={styles.headline}>{projects.headline}</h2>
           </div>
-          <div className={`grid-12 ${styles.projectGrid}`}>
-            {projects.items.map((p, i) => (
-              <figure key={p.title} className={styles.project} data-i={i}>
-                <div className={styles.projectImage}>
-                  <Image
-                    src={p.image}
-                    alt={`${p.title} · ${p.brand} · latroupe()`}
-                    fill
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                  />
-                </div>
-                <figcaption>
-                  <span className={styles.num}>{p.brand}</span>
-                  <strong>{p.title}</strong>
-                  <span>{p.location} · {p.scope}</span>
-                </figcaption>
-              </figure>
-            ))}
+          {/* Collage on the page grid, like the home's projects: small pieces
+              placed by column and height, a blue wash that lifts and the name
+              that shows on hover. Phones get a two-column grid, names visible. */}
+          <div className={styles.collage}>
+            {projects.items.map((p, i) => {
+              const pos = COLLAGE[i % COLLAGE.length];
+              return (
+                <figure
+                  key={p.title}
+                  className={styles.piece}
+                  style={{ left: `calc(${pos.col} * (var(--u) + var(--grid-gutter)))`, top: pos.top }}
+                >
+                  <div className={styles.frame}>
+                    <Image
+                      src={withBasePath(p.image)}
+                      alt={`${p.title} · ${p.brand} · ${p.location} · latroupe()`}
+                      fill
+                      sizes="(max-width: 768px) 50vw, 25vw"
+                    />
+                    <div className={styles.wash} aria-hidden="true" />
+                  </div>
+                  <figcaption className={styles.pieceLabel}>
+                    <b>{p.title}</b>
+                    <i>{p.brand} · {p.location}</i>
+                  </figcaption>
+                </figure>
+              );
+            })}
           </div>
         </div>
       </section>

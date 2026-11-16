@@ -52,7 +52,7 @@ export interface HospitalityContent {
   projects: {
     eyebrow: string;
     headline: string;
-    items: { title: string; brand: string; location: string; scope: string; image: string }[];
+    items: { title: string; brand: string; location: string; image: string }[];
   };
   /** Hotel brands the studio has worked for (logos already in /images/logos). */
   brands: { headline: string; logos: { name: string; src: string }[] };
@@ -216,15 +216,19 @@ const es: HospitalityContent = {
         title: "ORO Hato Rey",
         brand: "Marriott Autograph Collection",
         location: "San Juan, Puerto Rico",
-        scope: "Renovación integral de hotel boutique",
         image: "/images/projects/collage/ororender.jpg",
       },
       {
         title: "Andaz Turks & Caicos at Grace Bay",
         brand: "Hyatt",
         location: "Grace Bay, Turks and Caicos",
-        scope: "Renovación de hotel",
         image: "/images/projects/collage/vista-celosia-2.jpg",
+      },
+      {
+        title: "Radisson Blu Hamburg",
+        brand: "Radisson Blu",
+        location: "Hamburgo, Alemania",
+        image: "/images/projects/collage/radisson-blu-hamburg.webp",
       },
     ],
   },
@@ -381,15 +385,19 @@ const en: HospitalityContent = {
         title: "ORO Hato Rey",
         brand: "Marriott Autograph Collection",
         location: "San Juan, Puerto Rico",
-        scope: "Full renovation of a boutique hotel",
         image: "/images/projects/collage/ororender.jpg",
       },
       {
         title: "Andaz Turks & Caicos at Grace Bay",
         brand: "Hyatt",
         location: "Grace Bay, Turks and Caicos",
-        scope: "Hotel renovation",
         image: "/images/projects/collage/vista-celosia-2.jpg",
+      },
+      {
+        title: "Radisson Blu Hamburg",
+        brand: "Radisson Blu",
+        location: "Hamburg, Germany",
+        image: "/images/projects/collage/radisson-blu-hamburg.webp",
       },
     ],
   },
