@@ -1,0 +1,63 @@
+/*
+ * Animated partner icons. Loops run only while the icon's panel is the
+ * active one (data-active), and stop for people who ask for less motion.
+ */
+.icon { display: block; width: 100%; height: auto; overflow: visible; }
+
+/* chain — windows light up one after another */
+.window { opacity: 0.12; animation: windowOn 3.6s ease-in-out infinite; }
+@keyframes windowOn {
+  0%, 100% { opacity: 0.12; }
+  25%, 60% { opacity: 1; }
+}
+
+/* owner — bars grow from the base line, the key turns a quarter */
+.bar { transform-box: fill-box; transform-origin: 50% 100%; animation: barGrow 3.2s cubic-bezier(0.65, 0, 0.35, 1) infinite; }
+@keyframes barGrow {
+  0%, 8% { transform: scaleY(0.15); }
+  45%, 85% { transform: scaleY(1); }
+  100% { transform: scaleY(0.15); }
+}
+.key { transform-box: view-box; transform-origin: 30px 84px; animation: keyTurn 3.2s ease-in-out infinite; }
+@keyframes keyTurn {
+  0%, 30% { transform: rotate(0deg); }
+  45%, 80% { transform: rotate(-90deg); }
+  95%, 100% { transform: rotate(0deg); }
+}
+
+/* studio — the pencil draws the wall, then the door swing */
+.faint { opacity: 0.35; }
+.wall { stroke-dasharray: 100; animation: drawWall 4s linear infinite; }
+.door { stroke-dasharray: 100; animation: drawDoor 4s linear infinite; }
+@keyframes drawWall {
+  0% { stroke-dashoffset: 100; }
+  55%, 90% { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: 100; }
+}
+@keyframes drawDoor {
+  0%, 55% { stroke-dashoffset: 100; }
+  75%, 90% { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: 100; }
+}
+.pencil { animation: pencilMove 4s linear infinite; }
+@keyframes pencilMove {
+  0% { transform: translate(12px, 60px); }
+  55% { transform: translate(108px, 60px); }
+  60% { transform: translate(58px, 60px); }
+  75% { transform: translate(74px, 44px); }
+  90% { transform: translate(74px, 44px); }
+  100% { transform: translate(12px, 60px); }
+}
+
+.icon[data-active="false"] * { animation-play-state: paused; }
+/* Phones show the three stacked, so all of them move. */
+@media (max-width: 768px) {
+  .icon[data-active="false"] * { animation-play-state: running; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .icon * { animation: none !important; }
+  .window { opacity: 1; }
+  .wall, .door { stroke-dashoffset: 0; }
+  .pencil { transform: translate(74px, 44px); }
+}

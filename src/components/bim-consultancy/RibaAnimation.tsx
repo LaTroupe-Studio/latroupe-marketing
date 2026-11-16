@@ -13,23 +13,23 @@ const SCROLL_MAX_T = 8.4;
 const MOBILE_LOOP_T = 10.4;
 
 /* ── isometric projection ─────────────────────────────── */
-const S = 24;
-function isoXY(x: number, y: number, z: number) {
+export const S = 24;
+export function isoXY(x: number, y: number, z: number) {
   return { x: (x - y) * 0.8660254 * S + 150, y: (x + y) * 0.5 * S - z * S + 152 };
 }
-function iso(x: number, y: number, z: number) {
+export function iso(x: number, y: number, z: number) {
   const p = isoXY(x, y, z);
   return `${p.x.toFixed(2)},${p.y.toFixed(2)}`;
 }
 
-interface Face {
+export interface Face {
   points: string;
   fill: string;
   opacity: number;
   stroke: string;
   key: number;
 }
-interface Outline {
+export interface Outline {
   points: string;
   stroke: string;
   width: number;
@@ -37,10 +37,10 @@ interface Outline {
   cap: string;
   opacity: number;
 }
-type Pal = { top: string; left: string; right: string; stroke: string };
-type Pt3 = [number, number, number];
+export type Pal = { top: string; left: string; right: string; stroke: string };
+export type Pt3 = [number, number, number];
 
-function boxFaces(o: number[], pal: Pal, op = 1): Face[] {
+export function boxFaces(o: number[], pal: Pal, op = 1): Face[] {
   const [ox, oy, oz, w, d, h] = o;
   const top = [iso(ox, oy, oz + h), iso(ox + w, oy, oz + h), iso(ox + w, oy + d, oz + h), iso(ox, oy + d, oz + h)].join(" ");
   const left = [iso(ox, oy + d, oz), iso(ox + w, oy + d, oz), iso(ox + w, oy + d, oz + h), iso(ox, oy + d, oz + h)].join(" ");
@@ -51,7 +51,7 @@ function boxFaces(o: number[], pal: Pal, op = 1): Face[] {
     { points: right, fill: pal.right, stroke: pal.stroke, opacity: op, key: ox + w + (oy + d / 2) + (oz + h / 2) },
   ];
 }
-function openRight(xf: number, a: number, b: number, c: number, e: number, pal: { fill: string; stroke: string }, op = 1): Face {
+export function openRight(xf: number, a: number, b: number, c: number, e: number, pal: { fill: string; stroke: string }, op = 1): Face {
   return {
     points: [iso(xf, a, c), iso(xf, b, c), iso(xf, b, e), iso(xf, a, e)].join(" "),
     fill: pal.fill,
@@ -60,7 +60,7 @@ function openRight(xf: number, a: number, b: number, c: number, e: number, pal: 
     key: xf + (a + b) / 2 + (c + e) / 2 + 0.2,
   };
 }
-function openLeft(yf: number, a: number, b: number, c: number, e: number, pal: { fill: string; stroke: string }, op = 1): Face {
+export function openLeft(yf: number, a: number, b: number, c: number, e: number, pal: { fill: string; stroke: string }, op = 1): Face {
   return {
     points: [iso(a, yf, c), iso(b, yf, c), iso(b, yf, e), iso(a, yf, e)].join(" "),
     fill: pal.fill,
@@ -69,16 +69,16 @@ function openLeft(yf: number, a: number, b: number, c: number, e: number, pal: {
     key: (a + b) / 2 + yf + (c + e) / 2 + 0.2,
   };
 }
-function oline(pts: Pt3[], stroke: string, width: number, dash = "0", cap = "butt", opacity = 1): Outline {
+export function oline(pts: Pt3[], stroke: string, width: number, dash = "0", cap = "butt", opacity = 1): Outline {
   return { points: pts.map((p) => iso(p[0], p[1], p[2])).join(" "), stroke, width, dash, cap, opacity };
 }
-function loop(pts: Pt3[], stroke: string, width: number, dash = "0", opacity = 1): Outline {
+export function loop(pts: Pt3[], stroke: string, width: number, dash = "0", opacity = 1): Outline {
   return oline(pts.concat([pts[0]]), stroke, width, dash, "butt", opacity);
 }
-function osline(pts: { x: number; y: number }[], stroke: string, width: number, opacity = 1): Outline {
+export function osline(pts: { x: number; y: number }[], stroke: string, width: number, opacity = 1): Outline {
   return { points: pts.map((p) => `${p.x.toFixed(2)},${p.y.toFixed(2)}`).join(" "), stroke, width, dash: "0", cap: "round", opacity };
 }
-function fineStar(anchor: Pt3, r: number, dy: number, stroke: string, w: number, op: number): Outline[] {
+export function fineStar(anchor: Pt3, r: number, dy: number, stroke: string, w: number, op: number): Outline[] {
   const c = isoXY(anchor[0], anchor[1], anchor[2]);
   c.y += dy || 0;
   return [
@@ -86,7 +86,7 @@ function fineStar(anchor: Pt3, r: number, dy: number, stroke: string, w: number,
     osline([{ x: c.x, y: c.y - r }, { x: c.x, y: c.y + r }], stroke, w, op),
   ];
 }
-function scene(boxes: { o: number[]; pal: Pal; op?: number }[], extras: Face[]): Face[] {
+export function scene(boxes: { o: number[]; pal: Pal; op?: number }[], extras: Face[]): Face[] {
   let faces: Face[] = [];
   boxes.forEach((b) => {
     faces = faces.concat(boxFaces(b.o, b.pal, b.op));
@@ -143,7 +143,7 @@ const GUIDE = "#C3B7AE";
 const GLINT = "#FBF6EE";
 const GRID = "#8CA0BC";
 
-function windows(op: number, t: number): Face[] {
+export function windows(op: number, t: number): Face[] {
   const specs: [string, number, number, number, number][] = [
     ["R", 0.6, 1.1, 0.5, 0.95], ["R", 1.6, 2.1, 0.5, 0.95], ["R", 2.7, 3.2, 0.5, 0.95],
     ["R", 0.6, 1.1, 1.05, 1.5], ["R", 1.6, 2.1, 1.05, 1.5], ["R", 2.7, 3.2, 1.05, 1.5],
@@ -159,16 +159,16 @@ function windows(op: number, t: number): Face[] {
     return s[0] === "R" ? openRight(4, s[1], s[2], s[3], s[4], pal, op) : openLeft(4, s[1], s[2], s[3], s[4], pal, op);
   });
 }
-function gridRight(xf: number, y0: number, y1: number, z0: number, z1: number, step: number, color: string, w: number, op: number): Outline[] {
+export function gridRight(xf: number, y0: number, y1: number, z0: number, z1: number, step: number, color: string, w: number, op: number): Outline[] {
   const lines: Outline[] = [];
   for (let y = y0; y <= y1 + 1e-6; y += step) lines.push(oline([[xf, y, z0], [xf, y, z1]], color, w, "0", "butt", op));
   for (let z = z0; z <= z1 + 1e-6; z += step) lines.push(oline([[xf, y0, z], [xf, y1, z]], color, w, "0", "butt", op));
   return lines;
 }
-function gridFacade(col: string, op: number): Outline[] {
+export function gridFacade(col: string, op: number): Outline[] {
   return [...gridRight(4, 0, 4, 0, 1.6, 0.4, col, 0.5, op), ...gridRight(4, 0, 2.2, 1.6, 3.0, 0.4, col, 0.5, op)];
 }
-function envLines(pale: string, plot: string, op: number): Outline[] {
+export function envLines(pale: string, plot: string, op: number): Outline[] {
   return [
     loop([[-0.7, -0.7, 0], [4.7, -0.7, 0], [4.7, 4.7, 0], [-0.7, 4.7, 0]], pale, 1, "5 4", op),
     loop([[0, 0, 0], [4, 0, 0], [4, 4, 0], [0, 4, 0]], plot, 1.4, "0", op),
@@ -176,7 +176,7 @@ function envLines(pale: string, plot: string, op: number): Outline[] {
     oline([[0, 2, 0], [4, 2, 0]], pale, 1, "4 4", "butt", op),
   ];
 }
-function guides(col: string, op: number, uz: number): Outline[] {
+export function guides(col: string, op: number, uz: number): Outline[] {
   return [
     loop([[0, 0, 1.6], [4, 0, 1.6], [4, 2.2, 1.6], [0, 2.2, 1.6]], col, 1, "4 4", op),
     loop([[0, 2.2, 1.6], [2.2, 2.2, 1.6], [2.2, 4, 1.6], [0, 4, 1.6]], col, 1, "4 4", op),
@@ -185,7 +185,7 @@ function guides(col: string, op: number, uz: number): Outline[] {
     oline([[0, 4, 1.6], [0, 4, uz]], col, 1, "4 4", "butt", op),
   ];
 }
-function glintFx(col: string, terra: string, op: number, t: number): Outline[] {
+export function glintFx(col: string, terra: string, op: number, t: number): Outline[] {
   const sh = 0.6 + 0.4 * Math.abs(Math.sin(t * 2.2));
   return [
     ...fineStar([0, 0, 3.0], 9, -9, col, 0.9, op * sh),

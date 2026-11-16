@@ -1,0 +1,74 @@
+/*
+ * Hotel phases — layout of the BIM consultancy RIBA section in the
+ * hospitality palette: a tall track, a pinned row with the phase list on the
+ * left and the building on the right.
+ */
+.track { position: relative; height: 320vh; }
+.pin {
+  position: sticky;
+  top: calc(50vh - min(40vmin, 300px));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(28px, 5vw, 88px);
+}
+
+.stages { list-style: none; flex: none; width: min(380px, 36vw); display: flex; flex-direction: column; }
+.stage {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  padding: 12px 0;
+  border-top: 1px solid rgba(11, 23, 44, 0.15);
+  opacity: 0.45;
+  transition: opacity 0.3s ease;
+}
+.stage:last-child { border-bottom: 1px solid rgba(11, 23, 44, 0.15); }
+.stage[data-active="true"] { opacity: 1; }
+.stage strong {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: clamp(18px, 1.5vw, 22px);
+  font-weight: 700;
+  line-height: 1.15;
+}
+/* Only the current phase opens its line. */
+.stage p {
+  max-height: 0;
+  overflow: hidden;
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.35;
+  transition: max-height 0.35s ease, margin 0.35s ease;
+}
+.stage[data-active="true"] p { max-height: 5em; margin-top: 6px; }
+
+.num { flex: none; font-family: var(--font-mono); font-size: 14px; font-weight: 400; color: #2F4868; }
+
+.canvas { position: relative; flex: none; width: min(62vmin, 520px); aspect-ratio: 1 / 1; }
+.canvas svg { display: block; overflow: visible; }
+
+.caption { display: none; }
+
+/* Phones: no pinning; the drawing plays in a loop with a caption under it. */
+@media (max-width: 768px) {
+  .track { height: auto; }
+  .pin { position: static; flex-direction: column; gap: 8px; }
+  .stages { display: none; }
+  .canvas { width: min(86vw, 420px); }
+  .caption {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    min-height: 7.5em;
+    text-align: center;
+  }
+  .caption strong { font-family: var(--font-heading); font-size: 20px; font-weight: 700; }
+  .caption p { font-family: var(--font-body); font-size: 16px; font-weight: 400; line-height: 1.35; max-width: 30ch; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stage, .stage p { transition: none; }
+}
