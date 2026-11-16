@@ -4,9 +4,21 @@
  * left and the building on the right.
  */
 .track { position: relative; height: 320vh; }
+/* The pin fills the screen under the fixed header: the section heading on
+   top, then the list and the drawing sharing what is left. */
 .pin {
   position: sticky;
-  top: calc(50vh - min(40vmin, 300px));
+  top: 0;
+  height: 100svh;
+  display: flex;
+  flex-direction: column;
+  padding-top: clamp(110px, 12vh, 130px);
+  padding-bottom: clamp(16px, 3vh, 32px);
+}
+.header { flex: none; }
+.row {
+  flex: 1;
+  min-height: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -18,12 +30,10 @@
   display: flex;
   align-items: baseline;
   gap: 16px;
-  padding: 12px 0;
-  border-top: 1px solid rgba(11, 23, 44, 0.15);
+  padding: 10px 0;
   opacity: 0.45;
   transition: opacity 0.3s ease;
 }
-.stage:last-child { border-bottom: 1px solid rgba(11, 23, 44, 0.15); }
 .stage[data-active="true"] { opacity: 1; }
 .stage strong {
   display: block;
@@ -46,17 +56,20 @@
 
 .num { flex: none; font-family: var(--font-mono); font-size: 14px; font-weight: 400; color: #2F4868; }
 
-.canvas { position: relative; flex: none; width: min(62vmin, 520px); aspect-ratio: 1 / 1; }
+/* Sized by the height left under the heading, never past 520px. */
+.canvas { position: relative; flex: none; height: min(100%, 520px); aspect-ratio: 1 / 1; }
 .canvas svg { display: block; overflow: visible; }
+.sign { font-family: var(--font-heading); font-size: 12.5px; font-weight: 700; fill: #F5EBDD; }
 
 .caption { display: none; }
 
 /* Phones: no pinning; the drawing plays in a loop with a caption under it. */
 @media (max-width: 768px) {
   .track { height: auto; }
-  .pin { position: static; flex-direction: column; gap: 8px; }
+  .pin { position: static; height: auto; padding: 0; }
+  .row { flex-direction: column; gap: 8px; }
   .stages { display: none; }
-  .canvas { width: min(86vw, 420px); }
+  .canvas { height: auto; width: min(86vw, 420px); }
   .caption {
     display: flex;
     flex-direction: column;

@@ -109,7 +109,7 @@ export function HospitalityRole() {
           <p className={styles.statementText}>{t.intro}</p>
           {t.items.map((it, i) => (
             <div key={it.title} className={styles.roleItem} data-i={i}>
-              <span className={`${styles.num} ${styles.accent}`}>( {String(i + 1).padStart(2, "0")} )</span>
+              <span className={`${styles.num} ${styles.accent}`}>{String(i + 1).padStart(2, "0")}</span>
               <h3>{it.title}</h3>
               <p>{it.text}</p>
             </div>
@@ -170,7 +170,7 @@ export function HospitalityPartners() {
                 <div key={it.title} className={`grid-12 ${styles.seqPanel}`} data-active={i === step}>
                   <div className={styles.seqIcon}>
                     <PartnerIcon name={it.icon} active={i === step} />
-                    <span className={styles.num}>( {String(i + 1).padStart(2, "0")} / {String(count).padStart(2, "0")} )</span>
+                    <span className={styles.num}>{String(i + 1).padStart(2, "0")} / {String(count).padStart(2, "0")}</span>
                   </div>
                   <div className={styles.seqItemHead}>
                     <h3>{it.title}</h3>
@@ -197,14 +197,18 @@ export function HospitalityLifecycle() {
   const t = useT().lifecycle;
   return (
     <section className={styles.lifecycle} data-bg-color={BEIGE_DARK} data-text-color={BLUE_DEEP} style={{ color: BLUE_DEEP }}>
-      <div className="grid-container">
-        <div className={`grid-12 ${styles.head}`} data-align="mid">
-          <p className={`${styles.eyebrow} ${styles.accent}`}>{t.eyebrow}</p>
-          <h2 className={styles.headline}>{t.headline}</h2>
-          <p className={styles.intro}>{t.intro}</p>
-        </div>
-      </div>
-      <PhasesAnimation steps={t.steps} />
+      <PhasesAnimation
+        steps={t.steps}
+        header={
+          <div className="grid-container">
+            <div className={`grid-12 ${styles.head} ${styles.lifecycleHead}`} data-align="mid">
+              <p className={`${styles.eyebrow} ${styles.accent}`}>{t.eyebrow}</p>
+              <h2 className={styles.headline}>{t.headline}</h2>
+              <p className={styles.intro}>{t.intro}</p>
+            </div>
+          </div>
+        }
+      />
     </section>
   );
 }
@@ -230,7 +234,7 @@ export function HospitalityTech() {
           <div className={`grid-12 ${styles.partnerGrid} ${styles.levers}`}>
             {tech.levers.map((it, i) => (
               <div key={it.title} className={styles.partner} data-i={i}>
-                <span className={styles.num}>( {String(i + 1).padStart(2, "0")} )</span>
+                <span className={styles.num}>{String(i + 1).padStart(2, "0")}</span>
                 <h3>{it.title}</h3>
                 <p>{it.text}</p>
               </div>

@@ -257,9 +257,16 @@
 }
 
 /* ─── Lifecycle: heading over the phases animation ─ */
+/* The heading lives inside the pinned animation, which clears the fixed
+   header itself, so the band only needs a little air above and below. */
 .lifecycle {
-  padding-top: clamp(100px, 13vh, 160px);
+  padding-top: clamp(24px, 4vh, 48px);
   padding-bottom: clamp(60px, 8vh, 100px);
+}
+.head.lifecycleHead { margin-bottom: clamp(12px, 2.5vh, 32px); row-gap: 10px; }
+@media (max-width: 768px) {
+  .lifecycle { padding-top: 80px; }
+  .head.lifecycleHead { margin-bottom: 32px; }
 }
 
 /* ─── Technology: margin argument + tools ──── */
