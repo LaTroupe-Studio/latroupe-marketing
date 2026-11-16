@@ -276,80 +276,80 @@ const es: TechContent = {
 
 const en: TechContent = {
   meta: {
-    title: "latroupe(tech) · Tools for architecture and interior design studios",
+    title: "latroupe(tech) · Software for architecture and interior design studios",
     description:
-      "[specbook], [specto] and design tracker: the tools we use on our own projects, now for your studio.",
+      "[specbook], [specto] and design tracker: the tools we built for our own projects, now ready for your studio.",
   },
   hero: {
     rotatingWords: ["checks", "specifies", "coordinates", "automates"],
-    suffix: "for your studio",
-    description: "The tools we use on our own projects, now for your team.",
-    demo: "request a demo",
+    suffix: "so you don't have to",
+    description: "We built these tools for our own projects. Now your team can use them too.",
+    demo: "book a demo",
     screens: heroScreens,
   },
-  requestDemo: "request a demo",
+  requestDemo: "book a demo",
   intro: {
     eyebrow: "latroupe(tech)",
-    headline: "the product arm of",
-    text: "We use technology, and AI, where it really helps: on the tasks that took hours on every project without adding value. That is where our tools come from. We try them on our own projects first and now make them available to everyone.",
+    headline: "the product side of",
+    text: "We use technology, AI included, where it actually earns its keep: on the jobs that ate up hours on every project and added nothing. That's where our tools come from. We road-test them on our own projects first, and now we're opening them up to everyone.",
   },
   specbook: {
     eyebrow: "[specbook]",
-    headline: "the specification, live in the model",
-    intro: "FF&E, materials and OS&E by area and room, connected to Revit with no scripts.",
+    headline: "your spec, living in the model",
+    intro: "FF&E, materials and OS&E by area and room, synced with Revit. No scripts.",
     features: [
-      { title: "specify", text: "Every spec in the project, with its image, code and status.", from: 0 },
-      { title: "fill with AI", tag: "AI", text: "Paste the maker's URL and AI reads its website and data sheet: reference, sizes, finishes, price and images. You just review and approve.", from: 1 },
-      { title: "apply to Revit", text: "Review the changes and write them to the model, no scripts.", from: 4 },
-      { title: "budget", text: "The budget adds itself up from the specs.", from: 5 },
+      { title: "specify", text: "Every spec on the project in one place, with its image, code and status.", from: 0 },
+      { title: "autofill with AI", tag: "AI", text: "Paste a product link and AI reads the manufacturer's site and data sheet, pulling in the reference, dimensions, finishes, price and images. All you do is check and approve.", from: 1 },
+      { title: "push to Revit", text: "Review the changes and they go straight into the model. No scripts.", from: 4 },
+      { title: "budget", text: "The budget totals itself up from your specs.", from: 5 },
     ],
     screens: [
       {
         src: `${IMG}/gallery.webp`, tab: "gallery", path: "specbook / schedule",
         callouts: [
-          { x: 8.5, y: 41.6, title: "cards with images", text: "Every spec with its code, status and photo." },
+          { x: 8.5, y: 41.6, title: "a visual schedule", text: "Each spec with its code, status and photo." },
         ],
       },
       {
         src: `${IMG}/url-filled.webp`, tab: "AI", path: "specbook / new spec",
         callouts: [
-          { x: 50, y: 54, title: "paste the URL", text: "Just the product link on the maker's website." },
+          { x: 50, y: 54, title: "paste a link", text: "Just the product page on the manufacturer's site." },
         ],
       },
       {
         src: `${IMG}/extracting.webp`, tab: "AI", path: "specbook / schedule",
         callouts: [
-          { x: 50, y: 51, title: "AI reads it", text: "The maker's website and the PDF data sheet, in under a minute." },
+          { x: 50, y: 51, title: "AI does the reading", text: "The manufacturer's site and the PDF data sheet, in under a minute." },
         ],
       },
       {
         src: `${IMG}/spec.webp`, tab: "spec", path: "specbook / spec",
         callouts: [
-          { x: 75, y: 67, title: "full spec", text: "Reference, sizes, finishes, price and images, ready to review." },
+          { x: 75, y: 67, title: "spec complete", text: "Reference, dimensions, finishes, price and images, ready for review." },
         ],
       },
       {
         src: `${IMG}/revit-review.webp`, tab: "Revit", path: "specbook / apply to revit",
         callouts: [
-          { x: 74.8, y: 92, title: "you decide", text: "Review and apply only what you want." },
+          { x: 74.8, y: 92, title: "your call", text: "Pick what goes into the model and leave the rest." },
         ],
       },
       {
         src: `${IMG}/budget.webp`, tab: "budget", path: "specbook / budget",
         callouts: [
-          { x: 6.5, y: 23.5, title: "budget", text: "It adds itself up from the specs." },
+          { x: 6.5, y: 23.5, title: "budget", text: "Totals itself up from the specs." },
         ],
       },
     ],
   },
   specto: {
     eyebrow: "[specto]",
-    headline: "your model, checked against the standard",
-    intro: "Turns regulations, brand books and BEPs into automatic checks on Revit or IFC.",
+    headline: "your model, checked against the standards",
+    intro: "Turns regulations, brand standards and BEPs into automated checks on Revit or IFC models.",
     features: [
-      { title: "analyse", text: "Upload the PDF and AI extracts the rules that can be checked.", from: 0 },
-      { title: "verify", text: "The rules run on the model and failures are flagged.", from: 2 },
-      { title: "certify", text: "A signed report with the standard's version and the project stage.", from: 4 },
+      { title: "analyse", text: "Upload the PDF and AI pulls out every rule that can be checked.", from: 0 },
+      { title: "check", text: "The rules run against the model and anything that fails gets flagged.", from: 2 },
+      { title: "certify", text: "A signed report stating the version of the standard and the project stage.", from: 4 },
     ],
     demo: {
       crumb: "Tools",
@@ -358,11 +358,11 @@ const en: TechContent = {
       doc: "brand_standards_v3.2.pdf",
       cols: { rules: ["ID", "Rule", "Category", "Source"], checks: ["Category", "Checks", "Result"] },
       rules: [
-        { id: "R-01", text: "Minimum guestroom clear height of 2.60 m", cat: "geometry", page: "p. 12" },
+        { id: "R-01", text: "Min. guestroom ceiling height of 2600 mm", cat: "geometry", page: "p. 12" },
         { id: "R-02", text: "Door families from the approved catalogue only", cat: "components", page: "p. 18" },
-        { id: "R-03", text: "FF&E finishes from the brand catalogue", cat: "materials", page: "p. 24" },
-        { id: "R-04", text: "View naming as per the BEP", cat: "annotation", page: "p. 31" },
-        { id: "R-05", text: "90 cm clear width at accessible doors", cat: "compliance", page: "p. 40" },
+        { id: "R-03", text: "FF&E finishes to brand catalogue", cat: "materials", page: "p. 24" },
+        { id: "R-04", text: "View names to follow BEP convention", cat: "annotation", page: "p. 31" },
+        { id: "R-05", text: "900 mm clear opening at accessible doors", cat: "compliance", page: "p. 40" },
       ],
       extracting: "extracting rules",
       checks: [
@@ -372,7 +372,7 @@ const en: TechContent = {
         { label: "Annotation", count: 96, issues: 0 },
       ],
       ok: "ok",
-      issues: (n) => (n === 1 ? "1 exception" : `${n} exceptions`),
+      issues: (n) => (n === 1 ? "1 issue" : `${n} issues`),
       checking: "checking",
       waiting: "queued",
       compliance: "compliance",
@@ -380,38 +380,38 @@ const en: TechContent = {
       agent: "agent online",
       connect: "connect revit",
       notes: [
-        { x: 78, y: 46.5, title: "rules from the PDF", text: "Each rule with its category and the page it comes from." },
-        { x: 83, y: 55, title: "exceptions", text: "What fails, flagged in the model." },
-        { x: 82, y: 45, title: "signed report", text: "With the standard's version and the stage." },
+        { x: 78, y: 46.5, title: "rules from the PDF", text: "Each rule tagged with its category and source page." },
+        { x: 83, y: 55, title: "issues", text: "Anything that fails, flagged in the model." },
+        { x: 82, y: 45, title: "signed report", text: "Stamped with the standard version and project stage." },
       ],
     },
   },
   tracker: {
     eyebrow: "design tracker",
-    headline: "every query, with an owner and a date",
-    intro: "The project's design queries in one register, and a portal for each company.",
+    headline: "every query has an owner and a deadline",
+    intro: "All the project's design queries in one register, with a portal for every firm involved.",
     features: [
-      { title: "log", text: "Every query with its chapter, owner and due date.", from: 0 },
-      { title: "answer", text: "People reply straight from their email and the answer syncs to the register.", from: 1 },
-      { title: "publish", text: "Each company sees only its own queries in its own portal.", from: 2 },
+      { title: "log", text: "Every query logged with its section, owner and due date.", from: 0 },
+      { title: "reply", text: "People answer straight from their inbox and the reply syncs back to the register.", from: 1 },
+      { title: "share", text: "Each firm sees only its own queries, in its own portal.", from: 2 },
     ],
     screens: [
       {
         src: "/images/tech/tracker/tracker-register.webp", tab: "register", path: "design-tracker",
         callouts: [
-          { x: 73.2, y: 38.7, title: "due dates", text: "Overdue items stand out at once." },
+          { x: 73.2, y: 38.7, title: "due dates", text: "Anything overdue jumps out straight away." },
         ],
       },
       {
         src: "/images/tech/tracker/tracker-item.webp", tab: "query", path: "design-tracker",
         callouts: [
-          { x: 34, y: 46.4, title: "from email", text: "Every reply lands in the history, signed and dated." },
+          { x: 34, y: 46.4, title: "reply by email", text: "Every answer is kept in the history, signed and dated." },
         ],
       },
       {
         src: "/images/tech/tracker/tracker-portal.webp", tab: "portal", path: "portal",
         callouts: [
-          { x: 30, y: 42.4, title: "only their own", text: "Each company sees only its queries." },
+          { x: 30, y: 42.4, title: "just theirs", text: "Each firm only sees the queries meant for them." },
         ],
       },
     ],
@@ -419,41 +419,41 @@ const en: TechContent = {
   soon: {
     eyebrow: "coming soon",
     headline: "[specbook] procurement",
-    text: "The project's purchasing, from the same specs.",
+    text: "Purchasing for the whole project, driven by the same specs.",
     points: [
-      "Orders to each supplier with their order sheet and delivery address.",
-      "Partial deliveries and issues, tracked piece by piece.",
-      "The whole supplier conversation next to the order.",
+      "Purchase orders for every supplier, each with its own order sheet and delivery address.",
+      "Part deliveries and snags, tracked item by item.",
+      "The full supplier thread, right next to the order.",
     ],
-    badge: "in development",
+    badge: "in the works",
     src: `${IMG}/deliveries.webp`,
     path: "specbook / procurement",
   },
   manifesto: {
     eyebrow: "our AI manifesto",
-    headline: "we work with AI, people decide",
+    headline: "we build with AI. people make the call.",
     intro:
-      "For us technology is a vehicle that runs through every layer of latroupe(): our projects, our processes and the way we run the studio. That is why we keep researching new products and build our own tools, funded by the studio, because it is how we add more value.",
+      "Technology runs through every layer of latroupe(): our projects, our processes and the way we run the studio. That's why we're always exploring new products and building our own tools, funded by the studio itself. It's how we add more value.",
     blocks: [
       {
         title: "how we use AI",
-        text: "At every stage: reading regulations and briefs, specification, technical documentation, model review and management. Every deliverable is checked by someone on the team before it reaches the client.",
+        text: "Across every stage: reading regulations and tender documents, specification, technical documentation, model review and project management. Nothing reaches a client without someone on the team checking it first.",
       },
       {
-        title: "ongoing training",
-        text: "The whole team stays current with Claude, Autodesk and Forma. Training is part of how we work and the studio pays for it.",
+        title: "always learning",
+        text: "The whole team keeps up to speed with Claude, Autodesk and Forma. Training is built into how we work, and the studio covers the cost.",
       },
       {
         title: "our commitment",
-        text: "Every AI-assisted process has a named owner. We work with checkpoints, not black boxes, and we explain how we do it.",
+        text: "Every AI-assisted process has a named person responsible for it. We work with checkpoints, not black boxes, and we're open about how we do it.",
       },
     ],
     never: {
-      title: "what we don't do",
+      title: "what we won't do",
       items: [
-        "We don't put confidential client data into public models without consent.",
-        "We don't deliver proposals, estimates or drawings without human review.",
-        "We don't promise results we cannot measure.",
+        "Put confidential client data into public models without their consent.",
+        "Send out proposals, estimates or drawings that a person hasn't signed off.",
+        "Promise results we can't measure.",
       ],
     },
     partner: "latroupe() is an official Anthropic partner.",
