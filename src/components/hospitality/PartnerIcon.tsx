@@ -1,14 +1,15 @@
+import type { CSSProperties } from "react";
 import type { PartnerIconName } from "./content";
 import styles from "./PartnerIcon.module.css";
 
 /**
- * Line icons for the three kinds of partner, drawn in currentColor and
- * animated in CSS (PartnerIcon.module.css). They only move while `active`,
- * so the hidden panels of the sequence stay still.
+ * Hairline icons for the three kinds of partner, drawn in currentColor with
+ * one terracotta accent each and animated in CSS (PartnerIcon.module.css).
+ * An icon draws itself once when its panel becomes `active`, then rests.
  *
- *   chain   three hotels of a group, their windows lighting up in turn
- *   owner   a room key under a bar chart that grows: the investment per key
- *   studio  a floor plan whose wall a pencil draws, door swing included
+ *   chain   a grid of identical modules: the brand standard, spreading
+ *   owner   the investment curve: it dips, breaks even, and returns
+ *   studio  the spark of the idea
  */
 export default function PartnerIcon({ name, active }: { name: PartnerIconName; active: boolean }) {
   return (
@@ -19,9 +20,9 @@ export default function PartnerIcon({ name, active }: { name: PartnerIconName; a
       aria-hidden="true"
       fill="none"
       stroke="currentColor"
-      strokeWidth={2.5}
-      strokeLinecap="round"
-      strokeLinejoin="round"
+      strokeWidth={1.25}
+      strokeLinecap="butt"
+      strokeLinejoin="miter"
     >
       {name === "chain" && <Chain />}
       {name === "owner" && <Owner />}
@@ -30,38 +31,29 @@ export default function PartnerIcon({ name, active }: { name: PartnerIconName; a
   );
 }
 
-/** Each window gets its own delay, so they light up one after another. */
-const WINDOWS: [number, number][] = [
-  // left hotel
-  [16, 62], [26, 62], [16, 76], [26, 76],
-  // centre hotel (tallest)
-  [50, 32], [62, 32], [50, 46], [62, 46], [50, 60], [62, 60], [50, 74], [62, 74],
-  // right hotel
-  [88, 52], [98, 52], [88, 66], [98, 66], [88, 80], [98, 80],
-];
+const CELL = 22;
+const CELL_AT = [17, 49, 81];
 
+/** The top-left module is the standard; the rest take it up in a diagonal wave. */
 function Chain() {
   return (
     <>
-      <line x1="6" y1="102" x2="114" y2="102" />
-      <rect x="10" y="52" width="26" height="50" />
-      <rect x="42" y="20" width="34" height="82" />
-      <rect x="82" y="42" width="26" height="60" />
-      {/* door of the centre hotel */}
-      <path d="M53 102 V90 H65 V102" />
-      {WINDOWS.map(([x, y], i) => (
-        <rect
-          key={i}
-          x={x}
-          y={y}
-          width="6"
-          height="7"
-          className={styles.window}
-          style={{ animationDelay: `${(i * 0.37) % 3.6}s` }}
-          fill="currentColor"
-          stroke="none"
-        />
-      ))}
+      {CELL_AT.map((y, row) =>
+        CELL_AT.map((x, col) => {
+          const master = row === 0 && col === 0;
+          return (
+            <rect
+              key={`${row}-${col}`}
+              x={x}
+              y={y}
+              width={CELL}
+              height={CELL}
+              className={master ? styles.master : styles.cell}
+              style={{ "--i": row + col } as CSSProperties}
+            />
+          );
+        }),
+      )}
     </>
   );
 }
@@ -69,17 +61,13 @@ function Chain() {
 function Owner() {
   return (
     <>
-      {/* bars growing from the base line: the value of the asset */}
-      <line x1="54" y1="58" x2="110" y2="58" />
-      <rect x="60" y="40" width="10" height="18" className={styles.bar} style={{ animationDelay: "0s" }} />
-      <rect x="76" y="30" width="10" height="28" className={styles.bar} style={{ animationDelay: "0.25s" }} />
-      <rect x="92" y="16" width="10" height="42" className={styles.bar} style={{ animationDelay: "0.5s" }} />
-      {/* the key, which turns a quarter in the lock */}
-      <g className={styles.key}>
-        <circle cx="30" cy="84" r="16" />
-        <circle cx="30" cy="84" r="5" />
-        <path d="M46 84 H106 M90 84 V96 M100 84 V94" />
-      </g>
+      <path d="M12 20V104" className={styles.faint} />
+      <path d="M12 64H108" />
+      {/* what is invested before the curve crosses the axis again */}
+      <path d="M12 64C30 64 34 96 48 96C55 96 62 82 71 66L72 64Z" className={styles.dip} />
+      <path d="M12 64C30 64 34 96 48 96S76 40 106 24" className={styles.draw} pathLength={100} />
+      {/* break-even */}
+      <circle cx="72" cy="64" r="4" className={styles.point} />
     </>
   );
 }
@@ -87,16 +75,12 @@ function Owner() {
 function Studio() {
   return (
     <>
-      {/* plan outline, faint, with the wall and door drawn over it */}
-      <rect x="12" y="20" width="96" height="80" className={styles.faint} />
-      <path d="M12 60 H58 M74 60 H108" className={styles.wall} pathLength={100} />
-      <path d="M58 60 A16 16 0 0 1 74 44" className={styles.door} pathLength={100} />
-      {/* pencil, travelling along the wall as it is drawn */}
-      <g className={styles.pencil}>
-        <path d="M0 0 L6 -14 L28 -40 L36 -33 L14 -7 Z" />
-        <path d="M0 0 L6 -14 L14 -7 Z" fill="currentColor" />
-        <path d="M24 -36 L32 -29" />
-      </g>
+      <path
+        d="M56 22Q60 62 100 66Q60 70 56 110Q52 70 12 66Q52 62 56 22Z"
+        className={styles.draw}
+        pathLength={100}
+      />
+      <path d="M96 12Q97 25 110 26Q97 27 96 40Q95 27 82 26Q95 25 96 12Z" className={styles.glint} />
     </>
   );
 }

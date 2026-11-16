@@ -1,63 +1,97 @@
 /*
- * Animated partner icons. Loops run only while the icon's panel is the
- * active one (data-active), and stop for people who ask for less motion.
+ * Animated partner icons. Every rule below describes the finished drawing;
+ * the keyframes only say where each part starts from. So an icon with no
+ * animation (inactive panel, reduced motion) simply shows its final state.
+ *
+ * Desktop: an icon draws itself once when its panel becomes active.
+ * Phones: the three are stacked, so each draws itself as it scrolls into view.
  */
-.icon { display: block; width: 100%; height: auto; overflow: visible; }
-
-/* chain — windows light up one after another */
-.window { opacity: 0.12; animation: windowOn 3.6s ease-in-out infinite; }
-@keyframes windowOn {
-  0%, 100% { opacity: 0.12; }
-  25%, 60% { opacity: 1; }
+.icon {
+  --accent: #ac6752;
+  --duration: 2.6s;
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
 }
 
-/* owner — bars grow from the base line, the key turns a quarter */
-.bar { transform-box: fill-box; transform-origin: 50% 100%; animation: barGrow 3.2s cubic-bezier(0.65, 0, 0.35, 1) infinite; }
-@keyframes barGrow {
-  0%, 8% { transform: scaleY(0.15); }
-  45%, 85% { transform: scaleY(1); }
-  100% { transform: scaleY(0.15); }
+.faint { opacity: 0.4; }
+
+/* chain — the standard (terracotta) spreads to the other modules */
+.master { fill: var(--accent); stroke: none; }
+.cell {
+  fill: currentColor;
+  fill-opacity: 0.24;
+  animation: cellIn var(--duration) ease both;
+  animation-delay: calc(var(--i) * 0.14s);
 }
-.key { transform-box: view-box; transform-origin: 30px 84px; animation: keyTurn 3.2s ease-in-out infinite; }
-@keyframes keyTurn {
-  0%, 30% { transform: rotate(0deg); }
-  45%, 80% { transform: rotate(-90deg); }
-  95%, 100% { transform: rotate(0deg); }
+@keyframes cellIn {
+  0%, 8% { fill-opacity: 0; }
+  32% { fill-opacity: 0.24; }
 }
 
-/* studio — the pencil draws the wall, then the door swing */
-.faint { opacity: 0.35; }
-.wall { stroke-dasharray: 100; animation: drawWall 4s linear infinite; }
-.door { stroke-dasharray: 100; animation: drawDoor 4s linear infinite; }
-@keyframes drawWall {
-  0% { stroke-dashoffset: 100; }
-  55%, 90% { stroke-dashoffset: 0; }
-  100% { stroke-dashoffset: 100; }
+/* owner + studio — a line that draws itself */
+.draw {
+  /* 101, not 100: a hair of overshoot hides the speck rounding leaves at the start */
+  stroke-dasharray: 101;
+  stroke-dashoffset: 0;
+  animation: drawIn var(--duration) cubic-bezier(0.65, 0, 0.35, 1) both;
 }
-@keyframes drawDoor {
-  0%, 55% { stroke-dashoffset: 100; }
-  75%, 90% { stroke-dashoffset: 0; }
-  100% { stroke-dashoffset: 100; }
-}
-.pencil { animation: pencilMove 4s linear infinite; }
-@keyframes pencilMove {
-  0% { transform: translate(12px, 60px); }
-  55% { transform: translate(108px, 60px); }
-  60% { transform: translate(58px, 60px); }
-  75% { transform: translate(74px, 44px); }
-  90% { transform: translate(74px, 44px); }
-  100% { transform: translate(12px, 60px); }
+@keyframes drawIn {
+  0%, 5% { stroke-dashoffset: 101; }
+  55% { stroke-dashoffset: 0; }
 }
 
-.icon[data-active="false"] * { animation-play-state: paused; }
-/* Phones show the three stacked, so all of them move. */
+/* owner — the invested area, then the break-even point as the curve crosses */
+.dip {
+  fill: currentColor;
+  fill-opacity: 0.16;
+  stroke: none;
+  animation: dipIn var(--duration) ease both;
+}
+@keyframes dipIn {
+  0%, 22% { fill-opacity: 0; }
+  50% { fill-opacity: 0.16; }
+}
+.point,
+.glint {
+  fill: var(--accent);
+  stroke: none;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.point { animation: pointIn var(--duration) ease-out both; }
+@keyframes pointIn {
+  0%, 30% { opacity: 0; transform: scale(0.2); }
+  44% { opacity: 1; transform: scale(1); }
+}
+
+/* studio — the small spark lands once the big one is drawn */
+.glint { animation: glintIn var(--duration) ease-out both; }
+@keyframes glintIn {
+  0%, 48% { opacity: 0; transform: scale(0.3) rotate(-45deg); }
+  70% { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+
+/* Desktop: only the active panel's icon plays; it replays each time it comes back. */
+@media (min-width: 769px) {
+  .icon[data-active="false"] * { animation: none; }
+}
+/*
+ * Phones show the three stacked, so all of them move: each one is drawn by
+ * the scroll as it comes into view. Browsers without scroll-driven
+ * animations just play it once on load and show the finished icon.
+ */
 @media (max-width: 768px) {
-  .icon[data-active="false"] * { animation-play-state: running; }
+  @supports (animation-timeline: view()) {
+    .icon * {
+      animation-timeline: view();
+      /* starts once the icon is fully on screen, done by mid-screen */
+      animation-range: cover 8% cover 67%;
+    }
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .icon * { animation: none !important; }
-  .window { opacity: 1; }
-  .wall, .door { stroke-dashoffset: 0; }
-  .pencil { transform: translate(74px, 44px); }
 }
