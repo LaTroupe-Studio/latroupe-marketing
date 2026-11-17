@@ -25,6 +25,9 @@ export default function ContactForm({ defaultReason = "" }: { defaultReason?: st
     (e: { target: { value: string } }) => setForm({ ...form, [key]: e.target.value });
 
   const isProduct = form.reason === "product";
+  // Specbook requests can turn into a private demo once the team approves them,
+  // so the form says so before sending (see `contact.specbookDemo`).
+  const showsSpecbookDemo = isProduct && form.product === "specbook" && !!contact.specbookDemo;
   const labelOf = (list: { value: string; label: string }[], value: string) =>
     list.find((o) => o.value === value)?.label ?? value;
 
@@ -51,6 +54,9 @@ export default function ContactForm({ defaultReason = "" }: { defaultReason?: st
       form.message.trim() || "(sin mensaje)",
       "",
       "---",
+      ...(showsSpecbookDemo
+        ? [`Demo specbook: aceptada al enviar el ${new Date().toISOString()} (web /${locale}) con el texto: «${contact.specbookDemo}»`]
+        : []),
       marketing
         ? `Comunicaciones comerciales: SÍ. Aceptadas el ${new Date().toISOString()} (web /${locale}) con el texto: «${contact.marketing}»`
         : "Comunicaciones comerciales: no",
@@ -164,6 +170,9 @@ export default function ContactForm({ defaultReason = "" }: { defaultReason?: st
                 </div>
               )}
             </div>
+            {showsSpecbookDemo && (
+              <p className={`${styles.legalText} ${styles.notice}`} role="note">{contact.specbookDemo}</p>
+            )}
             <div>
               <label className={styles.label} htmlFor="contact-message">{fields.company}</label>
               <textarea id="contact-message" rows={1} placeholder={fields.message} value={form.message}

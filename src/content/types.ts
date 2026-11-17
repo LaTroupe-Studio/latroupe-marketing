@@ -146,6 +146,12 @@ export interface SiteContent {
     reasons: { value: string; label: string }[];
     products: { value: string; label: string }[];
     /**
+     * Shown under the product choice when it is specbook. Sending the form
+     * with specbook accepts that, once the team approves the request, a
+     * private demo is created for them (lt-tools, `demo` branch).
+     */
+    specbookDemo?: string;
+    /**
      * Optional, unticked opt-in for commercial emails (RGPD art. 7, LSSI
      * art. 21). Never a condition to send the form.
      */

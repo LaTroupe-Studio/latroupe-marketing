@@ -190,6 +190,11 @@
   color: rgba(40, 23, 14, 0.7);
 }
 
+/* Specbook demo notice, under the product choice. Same type as the consents. */
+.notice {
+  margin: 0;
+}
+
 .legalLink {
   color: inherit;
   text-decoration: underline;
