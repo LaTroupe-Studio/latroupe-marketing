@@ -1,5 +1,6 @@
 "use client";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 /**
  * Scroll-driven steps, like the home page's methodology section: the band
@@ -21,6 +22,16 @@ export function useScrollStep(frames: number) {
     mql.addEventListener("change", sync);
     return () => mql.removeEventListener("change", sync);
   }, []);
+
+  // Pinning makes the band several screens taller after the page has mounted.
+  // The background colour tween (ScrollColorBackground) measured the sections
+  // before that, so its triggers must be re-measured or the next band's
+  // colour kicks in too early (the beige from the contact form showed up
+  // over the tools).
+  useEffect(() => {
+    const id = requestAnimationFrame(() => ScrollTrigger.refresh());
+    return () => cancelAnimationFrame(id);
+  }, [pinned]);
 
   useEffect(() => {
     const track = trackRef.current;
