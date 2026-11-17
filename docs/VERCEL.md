@@ -47,6 +47,7 @@ DNS (en el proveedor del dominio, fuera del repo):
 | Variable                  | Entornos              | Valor                                  |
 |---------------------------|-----------------------|----------------------------------------|
 | `NEXT_PUBLIC_CONTACT_URL` | Production, Preview    | URL de la Lambda Function URL de `lambda/contact` (también recibe los leads del chat) |
+| `NEXT_PUBLIC_DEMO_REQUEST_URL` | Opcional | Dónde deja el formulario la solicitud de demo de specbook (panel de demos de LT Tools). Por defecto `https://demo.latroupeapps.com/api/demo/solicitud` |
 | `NEXT_PUBLIC_CHAT_URL`    | Production, Preview    | URL de la Lambda Function URL de `lambda/chat` |
 
 ## CORS de los Lambdas (contacto y chat)
