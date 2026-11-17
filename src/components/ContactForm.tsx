@@ -7,6 +7,12 @@ import styles from "./ContactForm.module.css";
 
 const EMPTY = { name: "", surname: "", email: "", organization: "", reason: "", product: "", message: "" };
 
+// Where a specbook request lands as a pending private demo, for the team to
+// approve in LT Tools (lt-tools, branch `demo`: src/demo/solicitud-publica.ts).
+// A public URL, so it has a default and needs no secret.
+const DEMO_REQUEST_URL =
+  process.env.NEXT_PUBLIC_DEMO_REQUEST_URL?.trim() || "https://demo.latroupeapps.com/api/demo/solicitud";
+
 /**
  * `defaultReason` preselects the "why" dropdown, e.g. "product" on the tech
  * page so visitors land straight on the product choice.
@@ -74,6 +80,25 @@ export default function ContactForm({ defaultReason = "" }: { defaultReason?: st
       });
       const data = (await res.json().catch(() => ({}))) as { ok?: boolean };
       if (!res.ok || !data?.ok) throw new Error("submit failed");
+      // Specbook: also leave the request pending in the demo panel. The email
+      // above is still what reaches the team, so if this fails the request is
+      // not lost and the visitor is not told otherwise.
+      if (showsSpecbookDemo) {
+        await fetch(DEMO_REQUEST_URL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            email: form.email.trim(),
+            nombre: form.name.trim(),
+            apellidos: form.surname.trim() || undefined,
+            empresa: form.organization.trim() || undefined,
+            idioma: locale === "en" ? "en" : "es",
+            producto: "specbook",
+            aviso: contact.specbookDemo,
+            mensaje: form.message.trim() || undefined,
+          }),
+        }).catch(() => {});
+      }
       setStatus("sent");
       trackLeadConversion();
       setForm(initial);
