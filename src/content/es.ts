@@ -89,6 +89,7 @@ const es: SiteContent = {
       { value:"design-tracker", label:"design tracker" },
       { value:"unsure", label:"Aún no lo sé, enseñádmelos" },
     ],
+    specbookDemo: "Al enviar una solicitud de specbook aceptas que, si la aprobamos, creemos una demo privada a tu nombre y te enviemos el acceso por correo. La demo dura 15 días y después se borra con todo lo que hayas hecho en ella. Mientras está activa, el equipo de latroupe() puede acceder a ella para ver cómo la usas y ayudarte.",
     marketing: "Me apetece que latroupe() me escriba de vez en cuando por email con proyectos, herramientas y eventos. Pocos correos y útiles, prometido. Puedo darme de baja cuando quiera. (Opcional)",
     legal: "He leído la política de privacidad de Awesomely SL (latroupe()) y acepto que uséis mis datos para responder a mi mensaje.",
     legalLinkPhrase: "política de privacidad",
