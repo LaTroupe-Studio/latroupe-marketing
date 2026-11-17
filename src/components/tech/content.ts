@@ -95,7 +95,7 @@ const es: TechContent = {
       "[specbook], [specto] y design tracker: las herramientas que usamos en nuestros proyectos, ahora para tu estudio.",
   },
   hero: {
-    rotatingWords: ["verifica", "especifica", "coordina", "automatiza"],
+    rotatingWords: ["verifica", "especifica", "automatiza", "construye"],
     suffix: "para tu estudio",
     description: "Las herramientas que usamos en nuestros proyectos, ahora para tu equipo.",
     demo: "solicitar una demo",
@@ -113,7 +113,7 @@ const es: TechContent = {
     intro: "FF&E, materiales y OS&E por área y habitación, conectados a Revit sin scripts.",
     features: [
       { title: "especifica", text: "Todas las specs del proyecto, con imagen, código y estado.", from: 0 },
-      { title: "rellena con IA", tag: "IA", text: "Pegas la URL del fabricante y la IA lee su web y la ficha técnica: referencia, medidas, acabados, precio e imágenes. Tú solo revisas y apruebas.", from: 1 },
+      { title: "rellena con IA", tag: "Claude", text: "Pegas la URL del fabricante y la IA lee su web y la ficha técnica: referencia, medidas, acabados, precio e imágenes. Tú solo revisas y apruebas.", from: 1 },
       { title: "aplica a Revit", text: "Revisas los cambios y se escriben en el modelo, sin scripts.", from: 4 },
       { title: "presupuesta", text: "El presupuesto se suma solo a partir de las specs.", from: 5 },
     ],
@@ -281,7 +281,7 @@ const en: TechContent = {
       "[specbook], [specto] and design tracker: the tools we built for our own projects, now ready for your studio.",
   },
   hero: {
-    rotatingWords: ["checks", "specifies", "coordinates", "automates"],
+    rotatingWords: ["checks", "specifies", "automates", "builds"],
     suffix: "so you don't have to",
     description: "We built these tools for our own projects. Now your team can use them too.",
     demo: "book a demo",
@@ -299,7 +299,7 @@ const en: TechContent = {
     intro: "FF&E, materials and OS&E by area and room, synced with Revit. No scripts.",
     features: [
       { title: "specify", text: "Every spec on the project in one place, with its image, code and status.", from: 0 },
-      { title: "autofill with AI", tag: "AI", text: "Paste a product link and AI reads the manufacturer's site and data sheet, pulling in the reference, dimensions, finishes, price and images. All you do is check and approve.", from: 1 },
+      { title: "autofill with AI", tag: "Claude", text: "Paste a product link and AI reads the manufacturer's site and data sheet, pulling in the reference, dimensions, finishes, price and images. All you do is check and approve.", from: 1 },
       { title: "push to Revit", text: "Review the changes and they go straight into the model. No scripts.", from: 4 },
       { title: "budget", text: "The budget totals itself up from your specs.", from: 5 },
     ],
