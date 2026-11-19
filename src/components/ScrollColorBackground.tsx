@@ -14,9 +14,11 @@ export default function ScrollColorBackground() {
     const body = document.body;
     const header = document.querySelector<HTMLElement>("header");
 
+    // --page-bg mirrors the body colour so the header can take it on phones,
+    // where it is too tall to float transparent over the content.
     const initialBg = sections[0].dataset.bgColor;
     const initialText = sections[0].dataset.textColor;
-    if (initialBg) gsap.set(body, { backgroundColor: initialBg });
+    if (initialBg) gsap.set(body, { backgroundColor: initialBg, "--page-bg": initialBg });
     if (initialText && header) gsap.set(header, { color: initialText });
 
     const timelines = sections.slice(1).map((section) => {
@@ -26,7 +28,7 @@ export default function ScrollColorBackground() {
         scrollTrigger: { trigger: section, start: "top 55%", end: "top 45%", scrub: true },
         defaults: { ease: "none", immediateRender: false },
       });
-      if (bgColor) tl.to(body, { backgroundColor: bgColor }, 0);
+      if (bgColor) tl.to(body, { backgroundColor: bgColor, "--page-bg": bgColor }, 0);
       if (textColor && header) tl.to(header, { color: textColor }, 0);
       return tl;
     });

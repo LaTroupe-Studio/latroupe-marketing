@@ -71,25 +71,66 @@
 
 .caption { display: none; }
 
-/* Phones: no pinning; the drawing plays in a loop with a caption under it. */
-@media (max-width: 768px) {
+.dots { display: none; }
+
+/* Compact screens — phones in either orientation and any short window, where
+   a pinned 100svh scene leaves no room for the drawing. Keep this query in
+   sync with COMPACT_MQ in PhasesAnimation.tsx.
+   No pinning and no flexbox around the drawing: it is a plain block with a
+   fixed width and a square ratio, so no engine can collapse it. It plays in
+   a loop with a caption and phase dots under it. */
+@media (max-width: 768px), (max-height: 640px) {
   .track { height: auto; }
-  .pin { position: static; height: auto; padding: 0; }
-  .row { flex-direction: column; justify-content: center; gap: 8px; }
+  .pin { position: static; display: block; height: auto; padding: 0; }
+  .row { display: block; }
   .stages { display: none; }
-  .canvas { height: auto; width: min(86vw, 420px); }
+  .canvas {
+    width: min(86vw, 420px, 72vh);
+    height: auto;
+    aspect-ratio: 1 / 1;
+    margin: 0 auto 8px;
+  }
+  .canvas svg { width: 100%; height: auto; aspect-ratio: 1 / 1; }
   .caption {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 6px;
-    min-height: 7.5em;
     text-align: center;
   }
   .caption strong { font-family: var(--font-heading); font-size: 20px; font-weight: 700; }
-  .caption p { font-family: var(--font-body); font-size: 16px; font-weight: 400; line-height: 1.35; max-width: 30ch; }
+  /* Two lines reserved so the dots do not jump between phases. */
+  .caption p { font-family: var(--font-body); font-size: 16px; font-weight: 400; line-height: 1.35; max-width: 30ch; min-height: 2.7em; }
+
+  .dots { display: flex; justify-content: center; margin-top: 4px; }
+  /* 44px tall hit area around an 8px dot. */
+  .dot {
+    width: 36px;
+    height: 44px;
+    border: 0;
+    background: none;
+    padding: 0;
+    position: relative;
+    cursor: pointer;
+    color: inherit;
+  }
+  .dot::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 8px;
+    height: 8px;
+    margin: -4px 0 0 -4px;
+    border-radius: 50%;
+    background: currentColor;
+    opacity: 0.3;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+  }
+  .dot[data-active="true"]::after { opacity: 1; transform: scale(1.25); }
+  .dot:focus-visible { outline: 2px solid currentColor; outline-offset: -6px; border-radius: 8px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .stage, .stage p { transition: none; }
+  .stage, .stage p, .dot::after { transition: none; }
 }
