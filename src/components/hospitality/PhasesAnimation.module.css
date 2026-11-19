@@ -16,12 +16,18 @@
   padding-bottom: clamp(16px, 3vh, 32px);
 }
 .header { flex: none; }
+/* Same box as the site grid, so the phase list lines up with the heading
+   above it; the drawing takes the right-hand side. */
 .row {
   flex: 1;
   min-height: 0;
+  width: 100%;
+  max-width: var(--grid-max-width);
+  margin-inline: auto;
+  padding-inline: var(--grid-margin);
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   gap: clamp(28px, 5vw, 88px);
 }
 
@@ -57,7 +63,9 @@
 .num { flex: none; font-family: var(--font-mono); font-size: 14px; font-weight: 400; color: #2F4868; }
 
 /* Sized by the height left under the heading, never past 520px. */
-.canvas { position: relative; flex: none; height: min(100%, 520px); aspect-ratio: 1 / 1; }
+/* It may narrow on mid-size screens rather than push the list off the left
+   edge; the drawing keeps its proportions inside. */
+.canvas { position: relative; flex: 0 1 auto; min-width: 0; height: min(100%, 520px); aspect-ratio: 1 / 1; }
 .canvas svg { display: block; overflow: visible; }
 .sign { font-family: var(--font-heading); font-size: 12.5px; font-weight: 700; fill: #F5EBDD; }
 
@@ -67,7 +75,7 @@
 @media (max-width: 768px) {
   .track { height: auto; }
   .pin { position: static; height: auto; padding: 0; }
-  .row { flex-direction: column; gap: 8px; }
+  .row { flex-direction: column; justify-content: center; gap: 8px; }
   .stages { display: none; }
   .canvas { height: auto; width: min(86vw, 420px); }
   .caption {

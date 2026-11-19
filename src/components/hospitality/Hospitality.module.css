@@ -264,9 +264,13 @@
   padding-bottom: clamp(60px, 8vh, 100px);
 }
 .head.lifecycleHead { margin-bottom: clamp(12px, 2.5vh, 32px); row-gap: 10px; }
+/* Flush with the grid margin, like the phase list under it. */
+.head.lifecycleHead > * { grid-column: 1 / 11; }
+.head.lifecycleHead .intro { grid-column: 1 / 8; }
 @media (max-width: 768px) {
   .lifecycle { padding-top: 80px; }
   .head.lifecycleHead { margin-bottom: 32px; }
+  .head.lifecycleHead > *, .head.lifecycleHead .intro { grid-column: 1 / -1; }
 }
 
 /* ─── Technology: margin argument + tools ──── */
@@ -322,6 +326,20 @@
 }
 .toolScreen { aspect-ratio: 2400 / 1500; background: #ECE6E3; overflow: hidden; }
 .toolScreen img { width: 100%; height: 100%; object-fit: cover; object-position: top left; }
+.toolLink {
+  align-self: flex-start;
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 600;
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 5px;
+  text-decoration-thickness: 1px;
+  transition: opacity var(--transition-fast);
+}
+.toolLink:hover { opacity: 0.7; }
+.toolLink span { display: inline-block; transition: transform var(--transition-fast); }
+.toolLink:hover span { transform: translateX(4px); }
 .toolMore { margin-top: clamp(56px, 8vh, 100px); }
 .toolMore .btn { grid-column: 2 / 6; justify-self: start; display: inline-flex; align-items: center; }
 
@@ -343,12 +361,21 @@
    and the name revealed underneath. The wash is blue here, not terracotta. */
 .collage {
   position: relative;
-  aspect-ratio: 1509 / 620;
+  aspect-ratio: 1509 / 900;
   --u: calc((100% - 11 * var(--grid-gutter)) / 12);
 }
 .piece { position: absolute; width: calc(3 * var(--u) + 2 * var(--grid-gutter)); }
 .frame { position: relative; aspect-ratio: 327 / 218; overflow: hidden; background: #2F4868; }
 .frame img { object-fit: cover; }
+/* Line drawings sit straight on the band: no frame, no wash, no caption. */
+/* They are drawn in blue for a light ground: inverted, stripped of colour,
+   warmed a touch and brightened (--lift, --contrast and --halo are set per
+   drawing), they read as light beige line drawings on the deep blue band. */
+.drawing img {
+  object-fit: contain;
+  filter: invert(1) grayscale(1) sepia(0.18) brightness(var(--lift, 1.2)) contrast(var(--contrast, 1.1))
+    drop-shadow(0 0 var(--halo, 0px) rgba(236, 230, 227, 0.7));
+}
 /* Lighter blue and lighter hand than the home's terracotta wash: on the deep
    blue band a dark multiply would sink the photos into the background. */
 .wash {
@@ -395,6 +422,8 @@
     align-items: start;
   }
   .piece { position: static; width: auto; }
+  /* Drawings carry their desktop place inline; on phones they just take their cell. */
+  .piece.drawing { position: relative; left: auto !important; top: auto !important; width: auto !important; }
   .pieceLabel { position: static; opacity: 1; transform: none; padding-top: 8px; }
 }
 

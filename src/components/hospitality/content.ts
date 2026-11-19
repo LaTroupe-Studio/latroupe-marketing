@@ -44,15 +44,22 @@ export interface HospitalityContent {
   tools: {
     eyebrow: string;
     headline: string;
+    intro: string;
     /** Link to the latroupe(tech) page. */
     more: string;
-    items: { name: string; badge?: string; title: string; text: string; points: string[]; image: string; path: string }[];
+    /**
+     * `anchor` is the tool's section on the latroupe(tech) page, `link` the
+     * label of the link that goes there.
+     */
+    items: { name: string; badge?: string; title: string; text: string; points: string[]; image: string; path: string; anchor: string; link: string }[];
   };
   /** Hotel projects already worked on. */
   projects: {
     eyebrow: string;
     headline: string;
     items: { title: string; brand: string; location: string; image: string }[];
+    /** Axonometric drawings from the projects page, set among the photos. */
+    drawings: { src: string; alt: string }[];
   };
   /** Hotel brands the studio has worked for (logos already in /images/logos). */
   brands: { headline: string; logos: { name: string; src: string }[] };
@@ -73,7 +80,7 @@ const es: HospitalityContent = {
       "Acompañamos a cadenas hoteleras, propietarios y estudios de diseño en todo el ciclo de un hotel: estándares de marca, desarrollo técnico, BIM, FF&E, procurement y tecnología propia para proteger el margen.",
   },
   hero: {
-    rotatingWords: ["diseña", "tecnifica", "coordina", "equipa", "renueva", "abre"],
+    rotatingWords: ["tecnifica", "coordina", "equipa", "renueva", "abre"],
     suffix: "tu hotel",
     description:
       "Somos el partner técnico de cadenas hoteleras, propietarios y estudios de diseño. Hacemos que cada hotel llegue a su apertura fiel a la marca, a tiempo y sin sorpresas.",
@@ -178,7 +185,8 @@ const es: HospitalityContent = {
   },
   tools: {
     eyebrow: "Nuestras herramientas",
-    headline: "De la spec a la compra, sin cambiar de herramienta",
+    headline: "Herramientas que nacen de lo que necesitan nuestros clientes",
+    intro: "No partimos de un software genérico. Cada herramienta la hemos desarrollado nosotros para resolver un problema real que nos encontrábamos en los hoteles de nuestros clientes, y la seguimos mejorando con ellos.",
     more: "Conoce latroupe tech",
     items: [
       {
@@ -192,6 +200,8 @@ const es: HospitalityContent = {
         ],
         image: "/images/tech/specbook/budget.webp",
         path: "specbook / budget",
+        anchor: "specbook",
+        link: "Ver [specbook] en detalle",
       },
       {
         name: "[specbook] procurement",
@@ -205,6 +215,8 @@ const es: HospitalityContent = {
         ],
         image: "/images/tech/specbook/deliveries.webp",
         path: "specbook / procurement",
+        anchor: "procurement",
+        link: "Ver procurement en detalle",
       },
     ],
   },
@@ -231,6 +243,10 @@ const es: HospitalityContent = {
         image: "/images/projects/collage/radisson-blu-hamburg.webp",
       },
     ],
+    drawings: [
+      { src: "/images/projects/collage/axo-bar-lounge.png", alt: "Axonometría de un bar lounge de hotel · latroupe()" },
+      { src: "/images/projects/collage/axo-closet.png", alt: "Axonometría de un armario de habitación · latroupe()" },
+    ],
   },
   brands: { headline: "Marcas hoteleras con las que hemos trabajado", logos: LOGOS },
 };
@@ -242,7 +258,7 @@ const en: HospitalityContent = {
       "We support hotel groups, owners and design studios across the whole life of a hotel: brand standards, technical design, BIM, FF&E, procurement and our own technology to protect the margin.",
   },
   hero: {
-    rotatingWords: ["designs", "details", "coordinates", "fits out", "renovates", "opens"],
+    rotatingWords: ["details", "coordinates", "fits out", "renovates", "opens"],
     suffix: "your hotel",
     description:
       "We are the technical partner of hotel groups, owners and design studios. We get every hotel to opening day true to the brand, on time and without surprises.",
@@ -347,7 +363,8 @@ const en: HospitalityContent = {
   },
   tools: {
     eyebrow: "Our tools",
-    headline: "From spec to purchase order, in one tool",
+    headline: "Tools born from what our clients need",
+    intro: "We didn't start from off-the-shelf software. We built each tool ourselves to solve a real problem we kept running into on our clients' hotels, and we keep refining it with them.",
     more: "Discover latroupe tech",
     items: [
       {
@@ -361,6 +378,8 @@ const en: HospitalityContent = {
         ],
         image: "/images/tech/specbook/budget.webp",
         path: "specbook / budget",
+        anchor: "specbook",
+        link: "See [specbook] in detail",
       },
       {
         name: "[specbook] procurement",
@@ -374,6 +393,8 @@ const en: HospitalityContent = {
         ],
         image: "/images/tech/specbook/deliveries.webp",
         path: "specbook / procurement",
+        anchor: "procurement",
+        link: "See procurement in detail",
       },
     ],
   },
@@ -399,6 +420,10 @@ const en: HospitalityContent = {
         location: "Hamburg, Germany",
         image: "/images/projects/collage/radisson-blu-hamburg.webp",
       },
+    ],
+    drawings: [
+      { src: "/images/projects/collage/axo-bar-lounge.png", alt: "Axonometric of a hotel bar lounge · latroupe()" },
+      { src: "/images/projects/collage/axo-closet.png", alt: "Axonometric of a guest room wardrobe · latroupe()" },
     ],
   },
   brands: { headline: "Hotel brands we have worked with", logos: LOGOS },

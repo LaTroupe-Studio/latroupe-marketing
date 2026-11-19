@@ -201,7 +201,7 @@ export function HospitalityLifecycle() {
         steps={t.steps}
         header={
           <div className="grid-container">
-            <div className={`grid-12 ${styles.head} ${styles.lifecycleHead}`} data-align="mid">
+            <div className={`grid-12 ${styles.head} ${styles.lifecycleHead}`}>
               <p className={`${styles.eyebrow} ${styles.accent}`}>{t.eyebrow}</p>
               <h2 className={styles.headline}>{t.headline}</h2>
               <p className={styles.intro}>{t.intro}</p>
@@ -248,6 +248,7 @@ export function HospitalityTech() {
           <div className={`grid-12 ${styles.head}`}>
             <p className={`${styles.eyebrow} ${styles.accent}`}>{tools.eyebrow}</p>
             <h2 className={styles.headline}>{tools.headline}</h2>
+            <p className={styles.intro}>{tools.intro}</p>
           </div>
           {tools.items.map((tool, i) => (
             <div key={tool.name} className={`grid-12 ${styles.tool}`} data-flip={i % 2 === 1}>
@@ -261,6 +262,9 @@ export function HospitalityTech() {
                 <ul className={styles.toolPoints}>
                   {tool.points.map((pt) => <li key={pt}>{pt}</li>)}
                 </ul>
+                <Link href={`/${locale}/tech#${tool.anchor}`} className={styles.toolLink}>
+                  {tool.link} <span aria-hidden="true">→</span>
+                </Link>
               </div>
               <div className={styles.toolVisual}>
                 <BrowserFrame path={tool.path}>
@@ -286,11 +290,22 @@ export function HospitalityTech() {
   );
 }
 
-/** Where each project sits on the grid: start column (0–11) and height on the canvas. */
-const COLLAGE = [
-  { col: 1, top: "0%" },
-  { col: 5, top: "38%" },
-  { col: 8, top: "8%" },
+/**
+ * The collage, in reading order: a project photo or an axonometric drawing,
+ * its start column (0–11), height on the canvas and, for drawings, how many
+ * columns wide it is, its proportions and its tone on the dark band: `lift`
+ * (brightness), `contrast` and `halo` (a faint glow that thickens hairlines).
+ * The bar's fine lines need far more than the solid wardrobe.
+ */
+type CollageSlot =
+  | { kind: "project"; i: number; col: number; top: string }
+  | { kind: "drawing"; i: number; col: number; top: string; cols: number; ratio: string; lift: number; contrast: number; halo: string };
+const COLLAGE: CollageSlot[] = [
+  { kind: "project", i: 0, col: 1, top: "0%" },
+  { kind: "drawing", i: 0, col: 5, top: "5%", cols: 3, ratio: "2222 / 1687", lift: 2.6, contrast: 1.25, halo: "0.6px" },
+  { kind: "project", i: 1, col: 9, top: "15%" },
+  { kind: "drawing", i: 1, col: 9, top: "62%", cols: 2, ratio: "224 / 270", lift: 1.2, contrast: 1.1, halo: "0px" },
+  { kind: "project", i: 2, col: 3, top: "58%" },
 ];
 
 /** Hotel projects on deep blue, then the hotel brands on beige. */
@@ -308,13 +323,36 @@ export function HospitalityProjects() {
               placed by column and height, a blue wash that lifts and the name
               that shows on hover. Phones get a two-column grid, names visible. */}
           <div className={styles.collage}>
-            {projects.items.map((p, i) => {
-              const pos = COLLAGE[i % COLLAGE.length];
+            {COLLAGE.map((pos) => {
+              const left = `calc(${pos.col} * (var(--u) + var(--grid-gutter)))`;
+              if (pos.kind === "drawing") {
+                const d = projects.drawings[pos.i];
+                if (!d) return null;
+                return (
+                  <figure
+                    key={d.src}
+                    className={`${styles.piece} ${styles.drawing}`}
+                    style={{
+                      left,
+                      top: pos.top,
+                      width: `calc(${pos.cols} * var(--u) + ${pos.cols - 1} * var(--grid-gutter))`,
+                      aspectRatio: pos.ratio,
+                      "--lift": pos.lift,
+                      "--contrast": pos.contrast,
+                      "--halo": pos.halo,
+                    } as React.CSSProperties}
+                  >
+                    <Image src={withBasePath(d.src)} alt={d.alt} fill sizes="(max-width: 768px) 50vw, 25vw" />
+                  </figure>
+                );
+              }
+              const p = projects.items[pos.i];
+              if (!p) return null;
               return (
                 <figure
                   key={p.title}
                   className={styles.piece}
-                  style={{ left: `calc(${pos.col} * (var(--u) + var(--grid-gutter)))`, top: pos.top }}
+                  style={{ left, top: pos.top }}
                 >
                   <div className={styles.frame}>
                     <Image
