@@ -19,7 +19,10 @@ export default function Methodology() {
     const track = trackRef.current;
     if (!track || pillars.length === 0) return;
 
-    // Respect users who asked for less motion: show the first pillar, no cross-fade.
+    // Respect users who asked for less motion: skip the step-driving scroll
+    // listener entirely. Visibility for this case is handled purely in CSS
+    // (all pillars are stacked and shown at once, see Methodology.module.css),
+    // so we never need `step` to advance past its initial value here.
     const quieto = window.matchMedia("(prefers-reduced-motion: reduce)");
     if (quieto.matches) return;
 
