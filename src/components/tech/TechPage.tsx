@@ -7,6 +7,7 @@ import Logo from "../Logo";
 import heroStyles from "../Hero.module.css";
 import { Feature, getTechContent } from "./content";
 import { BrowserFrame, ScreenPlayer, ShotStage, SpectoApp, SPECTO_FRAMES } from "./Demos";
+import { useHashAnchor } from "./useHashAnchor";
 import { useScrollStep } from "./useScrollStep";
 import styles from "./Tech.module.css";
 
@@ -181,6 +182,8 @@ export function TechIntro() {
 export function TechTools() {
   const { locale } = useContent();
   const t = getTechContent(locale);
+  // Links like /tech#procurement must land after these bands have pinned.
+  useHashAnchor();
   return (
     <>
       <FeatureBand
@@ -209,7 +212,7 @@ export function TechSoon() {
   // "[specbook] procurement": the product name in terracotta, the rest in beige.
   const [product, ...rest] = t.headline.split(" ");
   return (
-    <section className={`${styles.band} ${styles.ruled}`} data-bg-color="#28170E" data-text-color="#ECE6E3" style={{ color: "#ECE6E3" }}>
+    <section id="procurement" className={`${styles.band} ${styles.ruled}`} data-bg-color="#28170E" data-text-color="#ECE6E3" style={{ color: "#ECE6E3" }}>
       <div className="grid-container">
         <div className={`grid-12 ${styles.soonGrid}`}>
           <div className={styles.soonCopy}>
