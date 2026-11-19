@@ -65,6 +65,8 @@ export interface SiteContent {
     contact: NavLink;
     /** Link to the latroupe(tech) page; `href` is relative to the locale. */
     tech: { label: string; href: string };
+    /** Link to the latroupe(hospitality) page; `href` is relative to the locale. */
+    hospitality: { label: string; href: string };
   };
 
   hero: {

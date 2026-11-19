@@ -15,8 +15,9 @@ export default function Header({ onNavigate }: { onNavigate?: (id: string) => vo
   const home = `/${locale}`;
   const isHome = pathname === home || pathname === `${home}/`;
   const techHref = `${home}/${content.nav.tech.href}`;
+  const hospitalityHref = `${home}/${content.nav.hospitality.href}`;
 
-  // Section links point at ids on the home page. Elsewhere (the tech page)
+  // Section links point at ids on the home page. Elsewhere (tech, hospitality)
   // they scroll if the section exists here — the contact form does — and
   // otherwise go back to the home page at that section.
   const handleClick = (id: string) => {
@@ -49,6 +50,13 @@ export default function Header({ onNavigate }: { onNavigate?: (id: string) => vo
               {link.label}
             </button>
           ))}
+          <Link
+            href={hospitalityHref}
+            className={styles.navLink}
+            aria-current={pathname.startsWith(hospitalityHref) ? "page" : undefined}
+          >
+            {content.nav.hospitality.label}
+          </Link>
           <Link
             href={techHref}
             className={styles.navLink}

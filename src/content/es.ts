@@ -1,7 +1,7 @@
 import { SiteContent } from "./types";
 const es: SiteContent = {
   locale: "es",
-  nav: { links: [{ label: "proyectos", id: "proyectos" },{ label: "nosotros", id: "por-que-nosotros" }], contact: { label: "contacto", id: "contacto" }, tech: { label: "tech", href: "tech" } },
+  nav: { links: [{ label: "proyectos", id: "proyectos" },{ label: "nosotros", id: "por-que-nosotros" }], contact: { label: "contacto", id: "contacto" }, tech: { label: "tech", href: "tech" }, hospitality: { label: "hospitality", href: "hospitality" } },
   hero: {
     prefix: "latroupe",
     rotatingWords: ["diseña","tecnifica","ordena","mejora","optimiza","ejecuta","construye","anticipa"],
