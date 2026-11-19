@@ -267,7 +267,8 @@
 /* Flush with the grid margin, like the phase list under it. */
 .head.lifecycleHead > * { grid-column: 1 / 11; }
 .head.lifecycleHead .intro { grid-column: 1 / 8; }
-@media (max-width: 768px) {
+/* Same query as the compact mode of PhasesAnimation. */
+@media (max-width: 768px), (max-height: 640px) {
   .lifecycle { padding-top: 80px; }
   .head.lifecycleHead { margin-bottom: 32px; }
   .head.lifecycleHead > *, .head.lifecycleHead .intro { grid-column: 1 / -1; }

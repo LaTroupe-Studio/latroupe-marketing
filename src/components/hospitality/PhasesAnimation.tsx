@@ -17,9 +17,16 @@ import styles from "./PhasesAnimation.module.css";
  *   5 opening          windows lit, sign up, pool and parasols on the terrace
  *
  * Desktop: the scene is pinned and scrolling walks the phases; the list on
- * the left marks the current one and shows its line. Phones: it plays in a
- * loop and a caption replaces the list.
+ * the left marks the current one and shows its line. Compact screens (phones
+ * in either orientation, and any short window): it plays in a loop, a caption
+ * replaces the list and a row of dots jumps to a phase. With reduced motion
+ * it does not loop; it rests on the finished hotel and the dots step through.
  */
+
+/* Keep in sync with the compact block of PhasesAnimation.module.css. */
+const COMPACT_MQ = "(max-width: 768px), (max-height: 640px)";
+/* How long a tapped phase holds before the loop carries on, in ms. */
+const TAP_HOLD_MS = 5000;
 
 /* Keyframed parameters, one value per phase. */
 const KF: Record<string, number[]> = {
@@ -41,6 +48,8 @@ const ANCHORS: [number, number][] = [
 ];
 const SCROLL_MAX_T = 5.4;
 const MOBILE_LOOP_T = 7.4;
+/* The time at which phase i is fully on screen and held. */
+const phaseTime = (i: number) => (i === 0 ? 0.2 : 0.4 + i);
 
 function paramsAt(t: number): Record<string, number> {
   let i = 0;
@@ -368,34 +377,65 @@ export default function PhasesAnimation({
   const trackRef = useRef<HTMLDivElement>(null);
   const [stageT, setStageT] = useState(0);
   const [flick, setFlick] = useState(0);
+  // The loop's clock lives in refs so a tapped phase can steer it.
+  const tRef = useRef(0);
+  const targetRef = useRef<number | null>(null);
+  const holdUntilRef = useRef(0);
 
   useEffect(() => {
-    const mq = window.matchMedia("(max-width: 768px)");
+    const compact = window.matchMedia(COMPACT_MQ);
     const still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     let raf = 0;
     let last = performance.now();
     let visible = true;
 
+    const setT = (t: number) => {
+      if (t === tRef.current) return;
+      tRef.current = t;
+      setStageT(t);
+    };
+
+    // Reduced motion on a compact screen: rest on the finished hotel.
+    if (still && compact.matches) setT(phaseTime(5));
+
     const tick = (now: number) => {
       const dt = Math.min(0.05, (now - last) / 1000);
       last = now;
-      if (visible && !still) {
-        setFlick((f) => f + dt);
-        if (mq.matches) setStageT((t) => (t + dt) % MOBILE_LOOP_T);
+      if (visible) {
+        if (!still) setFlick((f) => f + dt);
+        if (compact.matches) {
+          let t = tRef.current;
+          const target = targetRef.current;
+          if (target !== null) {
+            // Glide to the tapped phase (or jump, with reduced motion), then hold it.
+            const d = target - t;
+            const step = still ? Math.abs(d) : dt * 2.5;
+            t = Math.abs(d) <= step ? target : t + Math.sign(d) * step;
+            if (t === target) {
+              targetRef.current = null;
+              holdUntilRef.current = now + TAP_HOLD_MS;
+            }
+          } else if (!still && now > holdUntilRef.current) {
+            t = (t + dt) % MOBILE_LOOP_T;
+          }
+          setT(t);
+        }
       }
       raf = requestAnimationFrame(tick);
     };
     raf = requestAnimationFrame(tick);
 
     const onScroll = () => {
-      if (mq.matches) return;
+      if (compact.matches) return;
       const track = trackRef.current;
       if (!track) return;
       const span = Math.max(1, track.offsetHeight - window.innerHeight);
       const y = Math.min(span, Math.max(0, -track.getBoundingClientRect().top));
-      setStageT((y / span) * SCROLL_MAX_T);
+      setT((y / span) * SCROLL_MAX_T);
     };
     window.addEventListener("scroll", onScroll, { passive: true });
+    // Rotating a phone or resizing a window can switch between the two modes.
+    compact.addEventListener("change", onScroll);
     onScroll();
 
     // Stop the clock while the section is off-screen.
@@ -405,9 +445,14 @@ export default function PhasesAnimation({
     return () => {
       cancelAnimationFrame(raf);
       window.removeEventListener("scroll", onScroll);
+      compact.removeEventListener("change", onScroll);
       io.disconnect();
     };
   }, []);
+
+  const goTo = (i: number) => {
+    targetRef.current = phaseTime(i);
+  };
 
   const P = paramsAt(stageT);
   const items = hotel(P, flick);
@@ -458,6 +503,19 @@ export default function PhasesAnimation({
             <span className={styles.num}>{num(cur)}</span>
             <strong>{steps[cur]?.label}</strong>
             <p>{steps[cur]?.text}</p>
+            <div className={styles.dots}>
+              {steps.map((s, i) => (
+                <button
+                  key={s.label}
+                  type="button"
+                  className={styles.dot}
+                  data-active={i === cur}
+                  aria-label={`${num(i)} ${s.label}`}
+                  aria-current={i === cur ? "step" : undefined}
+                  onClick={() => goTo(i)}
+                />
+              ))}
+            </div>
           </div>
           </div>
         </div>
