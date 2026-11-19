@@ -14,15 +14,15 @@ const MOBILE_LOOP_T = 10.4;
 
 /* ── isometric projection ─────────────────────────────── */
 const S = 24;
-function isoXY(x: number, y: number, z: number) {
+export function isoXY(x: number, y: number, z: number) {
   return { x: (x - y) * 0.8660254 * S + 150, y: (x + y) * 0.5 * S - z * S + 152 };
 }
-function iso(x: number, y: number, z: number) {
+export function iso(x: number, y: number, z: number) {
   const p = isoXY(x, y, z);
   return `${p.x.toFixed(2)},${p.y.toFixed(2)}`;
 }
 
-interface Face {
+export interface Face {
   points: string;
   fill: string;
   opacity: number;
@@ -37,10 +37,10 @@ interface Outline {
   cap: string;
   opacity: number;
 }
-type Pal = { top: string; left: string; right: string; stroke: string };
-type Pt3 = [number, number, number];
+export type Pal = { top: string; left: string; right: string; stroke: string };
+export type Pt3 = [number, number, number];
 
-function boxFaces(o: number[], pal: Pal, op = 1): Face[] {
+export function boxFaces(o: number[], pal: Pal, op = 1): Face[] {
   const [ox, oy, oz, w, d, h] = o;
   const top = [iso(ox, oy, oz + h), iso(ox + w, oy, oz + h), iso(ox + w, oy + d, oz + h), iso(ox, oy + d, oz + h)].join(" ");
   const left = [iso(ox, oy + d, oz), iso(ox + w, oy + d, oz), iso(ox + w, oy + d, oz + h), iso(ox, oy + d, oz + h)].join(" ");

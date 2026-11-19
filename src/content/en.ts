@@ -1,8 +1,8 @@
 import { SiteContent } from "./types";
 const en: SiteContent = {
   locale: "en",
-  nav: { links: [{label:"projects",id:"proyectos"},{label:"about",id:"por-que-nosotros"}], contact:{label:"contact",id:"contacto"} },
-  hero: { prefix:"latroupe", rotatingWords:["designs","technifies","organises","improves","optimises","executes","builds","anticipates"], suffix:"behind the scenes", description:"We expand the capabilities of architecture and interior design studios supporting them throughout every phase of a project." },
+  nav: { links: [{label:"projects",id:"proyectos"},{label:"about",id:"por-que-nosotros"}], contact:{label:"contact",id:"contacto"}, tech: { label: "tech", href: "tech" }, hospitality: { label: "hospitality", href: "hospitality" } },
+  hero: { prefix:"latroupe", rotatingWords:["designs","technifies","organises","improves","optimises","executes","builds","anticipates"], suffix:"behind the scenes", description:"We expand the capabilities of architecture and interior design studios supporting them throughout every phase of a project.", srHeading:"latroupe() · technical support for architecture and interior design studios" },
   about: { eyebrow:"Really...", headline:"There are few things we cannot do", blocks:["Those who work with latroupe rely on us to expand their teams without compromising on quality.","We support design, planning, technical development, and project management, whenever needed. We integrate in a coordinated way with the team, adapting to their way of working, whatever it may be.","We have the experience and capability to work on all types of projects, regardless of their magnitude and complexity."] },
   projectsSection: { headline:"A selection of recent projects in which we collaborate" },
   projectsCollage: [
@@ -42,13 +42,32 @@ const en: SiteContent = {
   whyUs: { headline:"Why us?", paragraphs:["At latroupe, we've worked across architecture, construction, design, technology, and business.","That is why we can offer a service that adapts to your current needs—and evolves as they change.","Our way of working is simple (but not simplistic) and is based on establishing sustainable, long-term relationships.","If you think we can help, it all starts with a conversation."] },
   contact: {
     headline:"Let's talk.",
-    intro:"Tell us where your project is — at the start, mid-stage or already on site. It all begins with a video call to get to know each other. No commitment: we reply within one working day.",
+    intro:"Tell us where your project is, whether you're just starting out or already on site. It all begins with a video call to get to know each other, no strings attached. We reply within one working day.",
     fields:{
-      name:"( who are you? )", email:"( how do we reach you? )", company:"( tell us more )",
-      namePlaceholder:"Your name", emailPlaceholder:"Your email", message:"A short description of what you need",
+      name:"( first name )", surname:"( last name )", email:"( email )", company:"( tell us more )",
+      organization:"( company )", reason:"( what brings you here? )", product:"( which product? )",
+      namePlaceholder:"Your first name", surnamePlaceholder:"Your last name", emailPlaceholder:"Your email",
+      organizationPlaceholder:"Studio or company (optional)", selectPlaceholder:"Choose one",
+      message:"A short description of what you need",
       submit:"Send", sending:"Sending...", sent:"Sent!", error:"Could not send. Please try again.",
     },
-    legal:"By submitting this form you agree to our privacy policy. We only use your details to reply to your enquiry — never for anything else.",
+    reasons:[
+      { value:"design", label:"Design or interior design support" },
+      { value:"technical", label:"Technical design and construction documents" },
+      { value:"bim", label:"BIM: modelling or consultancy" },
+      { value:"product", label:"One of our products" },
+      { value:"join", label:"I'd like to join the team" },
+      { value:"other", label:"Something else" },
+    ],
+    products:[
+      { value:"specbook", label:"specbook" },
+      { value:"specto", label:"specto" },
+      { value:"design-tracker", label:"design tracker" },
+      { value:"unsure", label:"Not sure yet, show me" },
+    ],
+    specbookDemo:"By sending a specbook request you agree that, once we approve it, we'll set up a private demo in your name and email you the access details. The demo lasts 15 days and is then deleted along with everything you've done in it. While it's active, the latroupe() team can access it to see how you use it and help you.",
+    marketing:"I'd like latroupe() to email me now and then about projects, tools and events. Few emails, all useful, promise. I can unsubscribe whenever I want. (Optional)",
+    legal:"I have read the privacy policy of Awesomely SL (latroupe()) and agree that you use my details to reply to my message.",
     legalLinkPhrase:"privacy policy",
     legalLinkHref:"/en/privacy",
   },

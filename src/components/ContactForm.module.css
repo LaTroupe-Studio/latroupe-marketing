@@ -1,11 +1,12 @@
 /*
  * "¿Hablamos?" — ported from the design prototype.
  * Two columns: headline + intro on the left, form on the right.
- * The form top aligns with the intro paragraph, not with the headline.
+ * The whole section is meant to fit in one desktop screen, so the form
+ * starts level with the headline and pairs short fields two by two.
  */
 
 .section {
-  padding: clamp(88px, 11vw, 168px) 0;
+  padding: clamp(56px, 6.5vw, 100px) 0 clamp(56px, 6vw, 96px);
 }
 
 .grid {
@@ -38,15 +39,24 @@
 }
 
 .form {
-  grid-column: 8 / 13;
+  grid-column: 7 / 13;
   display: flex;
   flex-direction: column;
-  gap: clamp(22px, 2.6vw, 32px);
-  /* Drop the form to the intro paragraph: headline box (font-size x
-     line-height 0.9) plus its margin-bottom. Same clamps as .headline,
-     so the offset tracks the headline as it scales. */
+  gap: clamp(16px, 1.8vw, 24px);
+  /* The headline sits above the form: drop the form to the intro paragraph
+     (headline box = font-size x line-height 0.9, plus its margin-bottom).
+     Same clamps as .headline, so the offset tracks it as it scales. */
   margin-top: calc(clamp(52px, 8.5vw, 108px) * 0.9 + clamp(28px, 3.4vw, 40px));
 }
+
+/* Two short fields side by side (nombre | apellido, email | empresa…). */
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(16px, 2vw, 28px);
+}
+
+.row > * { min-width: 0; }
 
 .label {
   display: block;
@@ -56,43 +66,31 @@
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: #AC6752;
-  margin-bottom: clamp(8px, 1vw, 12px);
-}
-
-.field {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  border-bottom: 1.5px solid #28170E;
-  padding-bottom: clamp(6px, 0.7vw, 9px);
-}
-
-.fieldMultiline {
-  align-items: flex-start;
-}
-
-.bracket {
-  font-family: var(--font-body);
-  font-size: clamp(20px, 2.2vw, 28px);
-  line-height: 1;
-  font-weight: 300;
-  color: #AC6752;
-  user-select: none;
+  margin-bottom: 6px;
 }
 
 .input {
-  flex: 1;
+  display: block;
+  width: 100%;
   min-width: 0;
   border: 0;
-  background: transparent;
+  border-bottom: 1.5px solid #28170E;
+  border-radius: 0;
+  background-color: transparent;
   outline: none;
-  padding: 0;
+  padding: 0 0 6px;
   font-family: var(--font-body);
-  font-size: clamp(17px, 1.7vw, 22px);
-  line-height: 1.4;
-  font-weight: 500;
+  /* Same size as the intro paragraph next to it. */
+  font-size: clamp(15px, 1.5vw, 17px);
+  line-height: 1.5;
+  font-weight: 400;
   letter-spacing: -0.01em;
   color: #28170E;
+  transition: border-color 0.2s ease;
+}
+
+.input:focus {
+  border-bottom-color: #AC6752;
 }
 
 .input::placeholder {
@@ -106,7 +104,35 @@
 
 .textarea {
   resize: vertical;
-  min-height: 2.6em;
+  min-height: 1.8em;
+}
+
+/* Desplegable con el mismo aspecto que los campos de texto: sin caja del
+   sistema, flecha propia en terracota y el gris del placeholder mientras
+   no se elige nada. */
+.select {
+  appearance: none;
+  -webkit-appearance: none;
+  cursor: pointer;
+  padding-right: 22px;
+  text-overflow: ellipsis;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%23AC6752' stroke-width='1.6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 2px center;
+}
+
+.select[data-empty="true"] {
+  color: rgba(40, 23, 14, 0.42);
+}
+
+.select option {
+  color: #28170E;
+}
+
+.consents {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .legalRow {
@@ -114,13 +140,45 @@
   align-items: flex-start;
   gap: 10px;
   cursor: pointer;
-  max-width: 420px;
 }
 
+/* Casilla cuadrada en la paleta de la web, en lugar de la del sistema. */
 .checkbox {
-  margin-top: 2px;
-  accent-color: #77330B;
+  appearance: none;
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  margin: 1px 0 0;
   flex-shrink: 0;
+  border: 1.5px solid #28170E;
+  border-radius: 0;
+  background: transparent;
+  cursor: pointer;
+  display: grid;
+  place-content: center;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.checkbox::after {
+  content: "";
+  width: 8px;
+  height: 4px;
+  border-left: 1.5px solid #ECE6E3;
+  border-bottom: 1.5px solid #ECE6E3;
+  transform: translateY(-1px) rotate(-45deg);
+  opacity: 0;
+}
+
+.checkbox:checked {
+  background: #AC6752;
+  border-color: #AC6752;
+}
+
+.checkbox:checked::after { opacity: 1; }
+
+.checkbox:focus-visible {
+  outline: 2px solid #77330B;
+  outline-offset: 2px;
 }
 
 .legalText {
@@ -129,11 +187,16 @@
   line-height: 1.6;
   font-weight: 400;
   letter-spacing: 0.01em;
-  color: rgba(40, 23, 14, 0.55);
+  color: rgba(40, 23, 14, 0.7);
+}
+
+/* Specbook demo notice, under the product choice. Same type as the consents. */
+.notice {
+  margin: 0;
 }
 
 .legalLink {
-  color: rgba(40, 23, 14, 0.55);
+  color: inherit;
   text-decoration: underline;
 }
 
@@ -162,9 +225,13 @@
 .submitBtn:hover { opacity: 0.85; }
 .submitBtn:disabled { opacity: 0.4; cursor: not-allowed; }
 
-/* Below the 12-col grid the layout stacks, so the offset is dropped. */
+/* Below the 12-col grid the layout stacks. */
 @media (max-width: 768px) {
   .section { padding: 60px 0; }
   .intro, .form { grid-column: 1 / -1; }
   .form { margin-top: 0; }
+}
+
+@media (max-width: 480px) {
+  .row { grid-template-columns: 1fr; }
 }

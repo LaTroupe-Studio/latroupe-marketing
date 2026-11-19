@@ -43,6 +43,19 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   }));
 
+  const techUrls: MetadataRoute.Sitemap = ["es", "en"].map((loc) => ({
+    url: `${SITE_URL}/${loc}/tech`,
+    lastModified,
+    priority: 0.8,
+    alternates: {
+      languages: {
+        es: `${SITE_URL}/es/tech`,
+        en: `${SITE_URL}/en/tech`,
+        "x-default": `${SITE_URL}/es/tech`,
+      },
+    },
+  }));
+
   const legalUrls: MetadataRoute.Sitemap = legalPairs.flatMap(({ es, en }) =>
     [es, en].map((url) => ({
       url,
@@ -58,5 +71,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }))
   );
 
-  return [...mainUrls, ...bimConsultancyUrls, ...legalUrls];
+  return [...mainUrls, ...bimConsultancyUrls, ...techUrls, ...legalUrls];
 }

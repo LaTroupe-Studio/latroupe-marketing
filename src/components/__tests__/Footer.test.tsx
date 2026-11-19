@@ -31,8 +31,8 @@ vi.mock("../Logo", () => ({
 
 const baseContent: SiteContent = {
   locale: "es",
-  nav: { links: [], contact: { label: "contacto", id: "contacto" } },
-  hero: { prefix: "", rotatingWords: [], suffix: "", description: "" },
+  nav: { links: [], contact: { label: "contacto", id: "contacto" }, tech: { label: "tech", href: "tech" }, hospitality: { label: "hospitality", href: "hospitality" } },
+  hero: { prefix: "", rotatingWords: [], suffix: "", description: "", srHeading: "" },
   about: { eyebrow: "", headline: "", blocks: [] },
   projectsSection: { headline: "" },
   projectsCollage: [],
@@ -45,16 +45,26 @@ const baseContent: SiteContent = {
     intro: "",
     fields: {
       name: "",
+      surname: "",
       email: "",
       company: "",
+      organization: "",
+      reason: "",
+      product: "",
       namePlaceholder: "",
+      surnamePlaceholder: "",
       emailPlaceholder: "",
+      organizationPlaceholder: "",
+      selectPlaceholder: "",
       message: "",
       submit: "",
       sending: "",
       sent: "",
       error: "",
     },
+    reasons: [],
+    products: [],
+    marketing: "",
   },
   footer: {
     links: [

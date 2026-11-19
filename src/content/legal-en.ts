@@ -27,7 +27,9 @@ The legal basis for this processing is the legitimate interest of Awesomely SL i
 
 CONTACT FORMS
 
-If you provide your name, email address and message through the contact form or the chat form, we will use them to respond to your request. If you submit it from the chat, the conversation you had with the assistant is sent together with your details, so that our team has the context of your enquiry. This data is sent by email through Amazon Web Services (Amazon SES), on servers located in the European Union, and is kept for one year from receipt.
+If you provide your details through the contact form (first name, last name, email address and, if you wish, company, the reason for your enquiry and your message) or through the chat form (name, email address and message), we will use them to respond to your request. If you submit it from the chat, the conversation you had with the assistant is sent together with your details, so that our team has the context of your enquiry. This data is sent by email through Amazon Web Services (Amazon SES), on servers located in the European Union, and is kept for one year from receipt.
+
+In the contact form you may also choose to tick a box to receive news, projects, tools and events from latroupe() by email. Not ticking it does not affect our reply to your enquiry. The legal basis is your consent (art. 6.1.a GDPR and art. 21 of Spanish Law 34/2002, LSSI). We record the date you gave it and the wording you accepted, and keep your name, last name, company and email address for this purpose until you unsubscribe or withdraw your consent, which you can do at any time by writing to legal@awesomelygroup.com or through the unsubscribe link in every email.
 
 PROVIDERS AND INTERNATIONAL TRANSFERS
 

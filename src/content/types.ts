@@ -63,6 +63,10 @@ export interface SiteContent {
   nav: {
     links: NavLink[];
     contact: NavLink;
+    /** Link to the latroupe(tech) page; `href` is relative to the locale. */
+    tech: { label: string; href: string };
+    /** Link to the latroupe(hospitality) page; `href` is relative to the locale. */
+    hospitality: { label: string; href: string };
   };
 
   hero: {
@@ -70,6 +74,8 @@ export interface SiteContent {
     rotatingWords: string[];
     suffix: string;
     description: string;
+    /** Visually hidden H1 text. Carries the keywords the wordmark cannot. */
+    srHeading: string;
   };
 
   about: {
@@ -116,19 +122,42 @@ export interface SiteContent {
     /** Paragraph under the headline, left column. */
     intro: string;
     fields: {
-      /** Bracketed mono eyebrow above each input. */
+      /** Mono eyebrow above each input. */
       name: string;
+      surname: string;
       email: string;
+      /** Eyebrow of the free-text message field. */
       company: string;
+      organization: string;
+      reason: string;
+      product: string;
       /** Input placeholders. */
       namePlaceholder: string;
+      surnamePlaceholder: string;
       emailPlaceholder: string;
+      organizationPlaceholder: string;
+      /** First, empty option of the dropdowns. */
+      selectPlaceholder: string;
       message: string;
       submit: string;
       sending: string;
       sent: string;
       error: string;
     };
+    /** Why they get in touch. `product` reveals the product dropdown. */
+    reasons: { value: string; label: string }[];
+    products: { value: string; label: string }[];
+    /**
+     * Shown under the product choice when it is specbook. Sending the form
+     * with specbook accepts that, once the team approves the request, a
+     * private demo is created for them (lt-tools, `demo` branch).
+     */
+    specbookDemo?: string;
+    /**
+     * Optional, unticked opt-in for commercial emails (RGPD art. 7, LSSI
+     * art. 21). Never a condition to send the form.
+     */
+    marketing: string;
     legal?: string;
     legalLinkPhrase?: string;
     legalLinkHref?: string;

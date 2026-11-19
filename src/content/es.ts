@@ -1,12 +1,13 @@
 import { SiteContent } from "./types";
 const es: SiteContent = {
   locale: "es",
-  nav: { links: [{ label: "proyectos", id: "proyectos" },{ label: "nosotros", id: "por-que-nosotros" }], contact: { label: "contacto", id: "contacto" } },
+  nav: { links: [{ label: "proyectos", id: "proyectos" },{ label: "nosotros", id: "por-que-nosotros" }], contact: { label: "contacto", id: "contacto" }, tech: { label: "tech", href: "tech" }, hospitality: { label: "hospitality", href: "hospitality" } },
   hero: {
     prefix: "latroupe",
     rotatingWords: ["diseña","tecnifica","ordena","mejora","optimiza","ejecuta","construye","anticipa"],
     suffix: "contigo",
     description: "Reforzamos la capacidad de los estudios de arquitectura o interiorismo y les acompañamos en todas las fases de desarrollo de cada proyecto.",
+    srHeading: "latroupe() · apoyo técnico para estudios de arquitectura e interiorismo",
   },
   about: {
     eyebrow: "Realmente...",
@@ -65,13 +66,32 @@ const es: SiteContent = {
   },
   contact: {
     headline: "¿Hablamos?",
-    intro: "Cuéntanos en qué punto está tu proyecto — al inicio, en fase intermedia o ya en obra. Todo empieza con una videollamada para conocernos. Sin compromiso: respondemos en un día laborable.",
+    intro: "Cuéntanos en qué punto está tu proyecto, tanto si acabas de empezar como si ya estás en obra. Todo empieza con una videollamada para conocernos, sin compromiso. Te respondemos en un día laborable.",
     fields: {
-      name:"( quién eres )", email:"( cómo te contactamos )", company:"( cuéntanos más )",
-      namePlaceholder:"Tu nombre", emailPlaceholder:"Tu email", message:"Una breve descripción de lo que necesitas",
+      name:"( nombre )", surname:"( apellido )", email:"( email )", company:"( cuéntanos más )",
+      organization:"( empresa )", reason:"( qué te trae por aquí )", product:"( qué producto )",
+      namePlaceholder:"Tu nombre", surnamePlaceholder:"Tu apellido", emailPlaceholder:"Tu email",
+      organizationPlaceholder:"Estudio o empresa (opcional)", selectPlaceholder:"Elige una opción",
+      message:"Una breve descripción de lo que necesitas",
       submit:"Enviar", sending:"Enviando...", sent:"¡Enviado!", error:"No se pudo enviar. Inténtalo de nuevo.",
     },
-    legal: "Al enviar este formulario aceptas nuestra política de privacidad. Solo usamos tus datos para responder a tu consulta — nunca para nada más.",
+    reasons: [
+      { value:"design", label:"Apoyo en diseño o interiorismo" },
+      { value:"technical", label:"Tecnificación o proyecto ejecutivo" },
+      { value:"bim", label:"BIM: modelado o consultoría" },
+      { value:"product", label:"Uno de nuestros productos" },
+      { value:"join", label:"Quiero unirme al equipo" },
+      { value:"other", label:"Otra cosa" },
+    ],
+    products: [
+      { value:"specbook", label:"specbook" },
+      { value:"specto", label:"specto" },
+      { value:"design-tracker", label:"design tracker" },
+      { value:"unsure", label:"Aún no lo sé, enseñádmelos" },
+    ],
+    specbookDemo: "Al enviar una solicitud de specbook aceptas que, si la aprobamos, creemos una demo privada a tu nombre y te enviemos el acceso por correo. La demo dura 15 días y después se borra con todo lo que hayas hecho en ella. Mientras está activa, el equipo de latroupe() puede acceder a ella para ver cómo la usas y ayudarte.",
+    marketing: "Me apetece que latroupe() me escriba de vez en cuando por email con proyectos, herramientas y eventos. Pocos correos y útiles, prometido. Puedo darme de baja cuando quiera. (Opcional)",
+    legal: "He leído la política de privacidad de Awesomely SL (latroupe()) y acepto que uséis mis datos para responder a mi mensaje.",
     legalLinkPhrase: "política de privacidad",
     legalLinkHref: "/es/privacidad",
   },

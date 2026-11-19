@@ -1,5 +1,6 @@
 "use client";
 import { useCallback } from "react";
+import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import Logo from "./Logo";
 import { useContent } from "@/lib/locale-context";
@@ -11,10 +12,24 @@ export default function Header({ onNavigate }: { onNavigate?: (id: string) => vo
   const router = useRouter();
   const pathname = usePathname();
 
+  const home = `/${locale}`;
+  const isHome = pathname === home || pathname === `${home}/`;
+  const techHref = `${home}/${content.nav.tech.href}`;
+  const hospitalityHref = `${home}/${content.nav.hospitality.href}`;
+
+  // Section links point at ids on the home page. Elsewhere (tech, hospitality)
+  // they scroll if the section exists here — the contact form does — and
+  // otherwise go back to the home page at that section.
   const handleClick = (id: string) => {
-    if (onNavigate) onNavigate(id);
-    else if (id === "top") window.scrollTo({ top: 0, behavior: "smooth" });
-    else document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    if (onNavigate) return onNavigate(id);
+    if (id === "top") {
+      if (isHome) window.scrollTo({ top: 0, behavior: "smooth" });
+      else router.push(home);
+      return;
+    }
+    const target = document.getElementById(id);
+    if (target) target.scrollIntoView({ behavior: "smooth" });
+    else router.push(`${home}#${id}`);
   };
 
   const switchLocale = useCallback((newLocale: Locale) => {
@@ -27,7 +42,7 @@ export default function Header({ onNavigate }: { onNavigate?: (id: string) => vo
     <header className={styles.header}>
       <div className={styles.bar}>
         <button className={styles.logoButton} onClick={() => handleClick("top")} aria-label="Home">
-          <Logo color="currentColor" width={197} className={styles.logo} />
+          <Logo color="currentColor" width={184} className={styles.logo} />
         </button>
         <nav className={styles.nav}>
           {content.nav.links.map((link) => (
@@ -35,6 +50,20 @@ export default function Header({ onNavigate }: { onNavigate?: (id: string) => vo
               {link.label}
             </button>
           ))}
+          <Link
+            href={hospitalityHref}
+            className={styles.navLink}
+            aria-current={pathname.startsWith(hospitalityHref) ? "page" : undefined}
+          >
+            {content.nav.hospitality.label}
+          </Link>
+          <Link
+            href={techHref}
+            className={styles.navLink}
+            aria-current={pathname.startsWith(techHref) ? "page" : undefined}
+          >
+            {content.nav.tech.label}
+          </Link>
           <button className={styles.navLink} onClick={() => handleClick(content.nav.contact.id)}>
             {content.nav.contact.label}
           </button>
