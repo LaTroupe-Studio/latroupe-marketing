@@ -295,7 +295,8 @@ export function HospitalityTech() {
  * its start column (0–11), height on the canvas and, for drawings, how many
  * columns wide it is, its proportions and its tone on the dark band: `lift`
  * (brightness), `contrast` and `halo` (a faint glow that thickens hairlines).
- * The bar's fine lines need far more than the solid wardrobe.
+ * Both drawings are blue ink on transparent (the wardrobe uses a line
+ * version, axo-closet-line.png), so they share the same tone.
  */
 type CollageSlot =
   | { kind: "project"; i: number; col: number; top: string }
@@ -304,7 +305,7 @@ const COLLAGE: CollageSlot[] = [
   { kind: "project", i: 0, col: 1, top: "0%" },
   { kind: "drawing", i: 0, col: 5, top: "5%", cols: 3, ratio: "2222 / 1687", lift: 2.6, contrast: 1.25, halo: "0.6px" },
   { kind: "project", i: 1, col: 9, top: "15%" },
-  { kind: "drawing", i: 1, col: 9, top: "62%", cols: 2, ratio: "224 / 270", lift: 1.2, contrast: 1.1, halo: "0px" },
+  { kind: "drawing", i: 1, col: 9, top: "62%", cols: 2, ratio: "1036 / 1249", lift: 2.6, contrast: 1.25, halo: "0.6px" },
   { kind: "project", i: 2, col: 3, top: "58%" },
 ];
 

@@ -245,7 +245,7 @@ const es: HospitalityContent = {
     ],
     drawings: [
       { src: "/images/projects/collage/axo-bar-lounge.png", alt: "Axonometría de un bar lounge de hotel · latroupe()" },
-      { src: "/images/projects/collage/axo-closet.png", alt: "Axonometría de un armario de habitación · latroupe()" },
+      { src: "/images/projects/collage/axo-closet-line.png", alt: "Axonometría de un armario de habitación · latroupe()" },
     ],
   },
   brands: { headline: "Marcas hoteleras con las que hemos trabajado", logos: LOGOS },
@@ -423,7 +423,7 @@ const en: HospitalityContent = {
     ],
     drawings: [
       { src: "/images/projects/collage/axo-bar-lounge.png", alt: "Axonometric of a hotel bar lounge · latroupe()" },
-      { src: "/images/projects/collage/axo-closet.png", alt: "Axonometric of a guest room wardrobe · latroupe()" },
+      { src: "/images/projects/collage/axo-closet-line.png", alt: "Axonometric of a guest room wardrobe · latroupe()" },
     ],
   },
   brands: { headline: "Hotel brands we have worked with", logos: LOGOS },
